@@ -90,8 +90,9 @@
         <div class="col-md-5 p-lg-5 mx-auto my-5">
             <h1 class="display-4 fw-normal">Budget</h1>
             <p class="lead fw-normal">A free open source budgeting tool<br />
-                powered by the Costs to Expect API.</p>
-            <p class="lead fw-normal">In early development, we expect to be ready later this year.</p>
+                powered by the <a href="https://api.costs-to-expect.com">Costs to Expect API</a>.</p>
+            <p class="lead fw-normal">In early development, we expect to have our v1.00.0 ready
+                before spring 2023, our Beta will be ready much sooner.</p>
             <a class="btn btn-outline-primary">Coming Soon</a>
         </div>
     </div>
@@ -117,15 +118,32 @@
         <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 py-3">
                 <h2 class="display-5">Open Source</h2>
-                <p class="lead">THis app and the API it uses are open source, we aren't hiding anything, you
+                <p class="lead">This app and the API it uses are open source, we aren't hiding anything, you
                     are free to see how your data is transmitted and saved.</p>
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 p-3">
                 <h2 class="display-5">Powerful</h2>
-                <p class="lead">THe Costs to Expect API is incredible powerful, we designed it knowing
+                <p class="lead">The Costs to Expect API is incredible powerful, we designed it knowing
                     we were going to use it for a variety of different tools.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+        <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+            <div class="my-3 py-3">
+                <h2 class="display-5">Your Data</h2>
+                <p class="lead">You can use this app or access your data directly via the API,
+                    inject into your system or just view the JSON.</p>
+            </div>
+        </div>
+        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+            <div class="my-3 p-3">
+                <h2 class="display-5">Full Control</h2>
+                <p class="lead">If you want to leave, no worries, we provide the tools to let you
+                    export and delete your data immediately, no waiting.</p>
             </div>
         </div>
     </div>
@@ -138,7 +156,7 @@
             <small class="d-block mb-3 text-muted">&copy; 2022</small>
         </div>
         <div class="col-6 col-md">
-            <h5>Powered by the API</h5>
+            <h5>Powered by our API</h5>
             <ul class="list-unstyled text-small">
                 <li><a class="link-secondary" href="https://www.costs-to-expect.com">Social Experiment</a></li>
                 <li><a class="link-secondary" href="#">Yahtzee Game Scorer</a></li>
