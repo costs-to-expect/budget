@@ -1,5 +1,3 @@
-![Score sheet](/resources/art/score-sheet.png)
-
 # Budget by Costs to Expect
 
 ## Overview
