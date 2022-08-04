@@ -1,0 +1,40 @@
+version: '3'
+services:
+    costs.budget.app:
+        build:
+            context: .
+            dockerfile: .docker/app/Dockerfile
+        image: costs.budget.app
+        container_name: costs.budget.app
+        ports:
+            - "80:80"
+        volumes:
+            - .:/var/www/html
+        env_file: .env
+        environment:
+            TZ: UTC
+            DB_HOST: ${DB_HOST}
+            DB_DATABASE: ${DB_DATABASE}
+            DB_USERNAME: ${DB_USERNAME}
+            DB_PASSWORD: ${DB_PASSWORD}
+    costs.budget.mysql:
+        build:
+            context: .
+            dockerfile: .docker/mysql/Dockerfile
+        image: costs.budget.mysql
+        container_name: costs.budget.mysql
+        ports:
+            - "3306:3306"
+        env_file: .env
+        environment:
+            TZ: UTC
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+        volumes:
+            - ./.docker/mysql/data:/var/lib/mysql
+networks:
+    default:
+        name: costs.network
+        external: true
