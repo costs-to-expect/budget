@@ -31,11 +31,11 @@
 
         <div class="row">
             <div class="col-12">
-                <h2 class="display-6 mt-4">Your Budget</h2>
+                <h2 class="display-6">Your Budget</h2>
             </div>
         </div>
 
-        <div class="row text-primary">
+        <div class="row text-primary pb-2">
             <div class="col-4 month">Aug.</div>
             <div class="col-4 month">Sep.</div>
             <div class="col-4 month">Oct.</div>
@@ -149,7 +149,7 @@
             </div>
         </div>
 
-        <div class="row text-primary mt-2 pt-2">
+        <div class="row text-light mt-2 pt-2">
             <div class="col-4 month-total"><small>&pound;</small>475</div>
             <div class="col-4 month-total"><small>&pound;</small>591.99</div>
             <div class="col-4 month-total"><small>&pound;</small>475</div>
