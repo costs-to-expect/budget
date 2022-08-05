@@ -1,6 +1,13 @@
 $theme-colors: (
     "primary": rgba(137, 43, 124, 1),
-    "danger": rgb(182, 36, 36),
+    "secondary": rgba(43, 137, 56, 1),
+    "tertiary": rgba(137, 103, 43, 1),
+    "quaternary": rgba(43, 77, 137, 1),
+    "light": rgba(121, 131, 141, 1),
+
+    "savings": rgba(43, 137, 56, 1),
+    "flexible": rgba(137, 103, 43, 1),
+    "fixed": rgba(43, 77, 137, 1),
 );
 
 $link-color: rgba(137, 43, 124, 1);
@@ -40,4 +47,32 @@ div.header {
 
 a.nav-link.active {
     text-decoration: underline;
+}
+
+div.month {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+div.month-total {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+div.expense {
+
+    padding-bottom: 0.4rem;
+
+    div.name {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    div.amount {
+        font-size: 0.9rem;
+        font-weight: 400;
+        text-align: center;
+    }
 }
