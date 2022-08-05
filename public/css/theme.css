@@ -11799,26 +11799,24 @@ a.nav-link.active {
   text-decoration: underline;
 }
 
-div.month {
+div.budget div.month {
   text-align: center;
   font-size: 1.2rem;
   font-weight: 300;
 }
-
-div.month-total {
+div.budget div.month-total {
   text-align: center;
   font-size: 1.7rem;
   font-weight: 300;
 }
-
-div.expense {
+div.budget div.expense {
   padding-bottom: 0.4rem;
 }
-div.expense div.name {
+div.budget div.expense div.name {
   font-size: 0.8rem;
   text-align: center;
 }
-div.expense div.amount {
+div.budget div.expense div.amount {
   font-size: 0.9rem;
   font-weight: 400;
   text-align: center;
