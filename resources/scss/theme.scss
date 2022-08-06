@@ -3,11 +3,12 @@ $theme-colors: (
     "secondary": rgba(43, 137, 56, 1),
     "tertiary": rgba(137, 103, 43, 1),
     "quaternary": rgba(43, 77, 137, 1),
-    "light": rgba(121, 131, 141, 1),
+    "light": rgba(239, 242, 245, 1),
 
     "savings": rgba(43, 137, 56, 1),
     "flexible": rgba(137, 103, 43, 1),
     "fixed": rgba(43, 77, 137, 1),
+    "grey": rgba(43, 77, 137, 1),
 );
 
 $link-color: rgba(137, 43, 124, 1);
@@ -49,7 +50,7 @@ a.nav-link.active {
     text-decoration: underline;
 }
 
-div.budget {
+main.budget {
     div.month {
         text-align: center;
         font-size: 1.2rem;
