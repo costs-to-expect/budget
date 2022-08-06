@@ -34,6 +34,7 @@
   --bs-tertiary: #89672b;
   --bs-quaternary: #2b4d89;
   --bs-light: #eff2f5;
+  --bs-dark: #0f1b2f;
   --bs-savings: #2b8938;
   --bs-flexible: #89672b;
   --bs-fixed: #2b4d89;
@@ -43,6 +44,7 @@
   --bs-tertiary-rgb: 137, 103, 43;
   --bs-quaternary-rgb: 43, 77, 137;
   --bs-light-rgb: 239, 242, 245;
+  --bs-dark-rgb: 15, 27, 47;
   --bs-savings-rgb: 43, 137, 56;
   --bs-flexible-rgb: 137, 103, 43;
   --bs-fixed-rgb: 43, 77, 137;
@@ -3099,6 +3101,23 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #eff2f5;
 }
 
+.btn-dark {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #0f1b2f;
+  --bs-btn-border-color: #0f1b2f;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #333d4e;
+  --bs-btn-hover-border-color: #273244;
+  --bs-btn-focus-shadow-rgb: 51, 61, 78;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #3f4959;
+  --bs-btn-active-border-color: #273244;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #0f1b2f;
+  --bs-btn-disabled-border-color: #0f1b2f;
+}
+
 .btn-savings {
   --bs-btn-color: #000;
   --bs-btn-bg: #2b8938;
@@ -3249,6 +3268,23 @@ textarea.form-control-lg {
   --bs-btn-disabled-color: #eff2f5;
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #eff2f5;
+  --bs-gradient: none;
+}
+
+.btn-outline-dark {
+  --bs-btn-color: #0f1b2f;
+  --bs-btn-border-color: #0f1b2f;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #0f1b2f;
+  --bs-btn-hover-border-color: #0f1b2f;
+  --bs-btn-focus-shadow-rgb: 15, 27, 47;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #0f1b2f;
+  --bs-btn-active-border-color: #0f1b2f;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #0f1b2f;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #0f1b2f;
   --bs-gradient: none;
 }
 
@@ -4904,6 +4940,15 @@ textarea.form-control-lg {
   color: #4d4e4e;
 }
 
+.alert-dark {
+  --bs-alert-color: #09101c;
+  --bs-alert-bg: #cfd1d5;
+  --bs-alert-border-color: #b7bbc1;
+}
+.alert-dark .alert-link {
+  color: #070d16;
+}
+
 .alert-savings {
   --bs-alert-color: #1a5222;
   --bs-alert-bg: #d5e7d7;
@@ -5300,6 +5345,20 @@ textarea.form-control-lg {
   color: #fff;
   background-color: #606162;
   border-color: #606162;
+}
+
+.list-group-item-dark {
+  color: #09101c;
+  background-color: #cfd1d5;
+}
+.list-group-item-dark.list-group-item-action:hover, .list-group-item-dark.list-group-item-action:focus {
+  color: #09101c;
+  background-color: #babcc0;
+}
+.list-group-item-dark.list-group-item-action.active {
+  color: #fff;
+  background-color: #09101c;
+  border-color: #09101c;
 }
 
 .list-group-item-savings {
@@ -6900,6 +6959,11 @@ textarea.form-control-lg {
   background-color: RGBA(239, 242, 245, var(--bs-bg-opacity, 1)) !important;
 }
 
+.text-bg-dark {
+  color: #fff !important;
+  background-color: RGBA(15, 27, 47, var(--bs-bg-opacity, 1)) !important;
+}
+
 .text-bg-savings {
   color: #000 !important;
   background-color: RGBA(43, 137, 56, var(--bs-bg-opacity, 1)) !important;
@@ -6953,6 +7017,13 @@ textarea.form-control-lg {
 }
 .link-light:hover, .link-light:focus {
   color: #f2f5f7 !important;
+}
+
+.link-dark {
+  color: #0f1b2f !important;
+}
+.link-dark:hover, .link-dark:focus {
+  color: #0c1626 !important;
 }
 
 .link-savings {
@@ -7432,6 +7503,11 @@ textarea.form-control-lg {
 .border-light {
   --bs-border-opacity: 1;
   border-color: rgba(var(--bs-light-rgb), var(--bs-border-opacity)) !important;
+}
+
+.border-dark {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-dark-rgb), var(--bs-border-opacity)) !important;
 }
 
 .border-savings {
@@ -8301,6 +8377,11 @@ textarea.form-control-lg {
   color: rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important;
 }
 
+.text-dark {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
+}
+
 .text-savings {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-savings-rgb), var(--bs-text-opacity)) !important;
@@ -8395,6 +8476,11 @@ textarea.form-control-lg {
 .bg-light {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.bg-dark {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
 }
 
 .bg-savings {
@@ -11883,6 +11969,13 @@ div.header a img {
 
 a.nav-link.active {
   text-decoration: underline;
+}
+
+a.navbar-brand {
+  font-weight: 300;
+}
+a.navbar-brand img {
+  margin-right: -0.35rem;
 }
 
 main.budget div.month {

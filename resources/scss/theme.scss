@@ -4,6 +4,7 @@ $theme-colors: (
     "tertiary": rgba(137, 103, 43, 1),
     "quaternary": rgba(43, 77, 137, 1),
     "light": rgba(239, 242, 245, 1),
+    "dark": rgb(15, 27, 47),
 
     "savings": rgba(43, 137, 56, 1),
     "flexible": rgba(137, 103, 43, 1),
@@ -48,6 +49,14 @@ div.header {
 
 a.nav-link.active {
     text-decoration: underline;
+}
+
+a.navbar-brand {
+    font-weight: 300;
+
+    img {
+        margin-right: -0.35rem;
+    }
 }
 
 main.budget {
