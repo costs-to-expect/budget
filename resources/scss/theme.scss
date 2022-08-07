@@ -4,12 +4,12 @@ $theme-colors: (
     "tertiary": rgba(137, 103, 43, 1),
     "quaternary": rgba(43, 77, 137, 1),
     "light": rgba(239, 242, 245, 1),
-    "dark": rgb(15, 27, 47),
+    "dark": rgba(15, 27, 47, 1),
 
     "savings": rgba(43, 137, 56, 1),
     "flexible": rgba(137, 103, 43, 1),
     "fixed": rgba(43, 77, 137, 1),
-    "grey": rgba(43, 77, 137, 1),
+    "grey": rgba(15, 27, 47, 1),
 );
 
 $link-color: rgba(137, 43, 124, 1);
@@ -17,6 +17,8 @@ $input-focus-border-color: rgba(137, 43, 124, 1);
 $form-check-input-checked-bg-color: rgba(137, 43, 124, 1);
 $pagination-border-radius: 0;
 $pagination-border-radius-sm: 0;
+$progress-border-radius: 0.1rem;
+$badge-border-radius: 0.1rem;
 
 @import "../../public/node_modules/bootstrap/scss/bootstrap";
 
@@ -46,16 +48,22 @@ div.header {
         }
     }
 }
+nav {
 
-a.nav-link.active {
-    text-decoration: underline;
-}
+    a.nav-link.active {
+        text-decoration: underline;
+    }
 
-a.navbar-brand {
-    font-weight: 300;
+    a.navbar-brand {
+        font-weight: 300;
 
-    img {
-        margin-right: -0.35rem;
+        img {
+            margin-right: -0.35rem;
+        }
+    }
+
+    .offcanvas-title {
+        font-weight: 300;
     }
 }
 
