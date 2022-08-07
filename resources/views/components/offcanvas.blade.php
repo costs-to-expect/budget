@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark bg-dark" aria-label="Offcanvas navbar">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="{{ route('home') }}">
             Budget by <img src="{{ asset('images/logo.png') }}" width="32" height="32" class="d-inline-block align-middle" alt=""><span class="d-none">C</span>osts to Expect.com
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark" title="Open the menu">
