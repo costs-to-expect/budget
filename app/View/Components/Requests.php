@@ -10,22 +10,18 @@ use Illuminate\View\Component;
  * @copyright Dean Blackborough (Costs to Expect) 2018-2022
  * @license https://github.com/costs-to-expect/budget/blob/main/LICENSE
  */
-class Offcanvas extends Component
+class Requests extends Component
 {
-    public string $active;
-
-    public function __construct(string $active)
+    public function __construct()
     {
-        $this->active = $active;
+        //
     }
 
     public function render()
     {
         return view(
-            'components.offcanvas',
-            [
-                'active' => $this->active
-            ]
+            'components.requests',
+            []
         );
     }
 }
