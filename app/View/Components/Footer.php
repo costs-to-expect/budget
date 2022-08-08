@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
  * @copyright Dean Blackborough (Costs to Expect) 2018-2022
- * https://github.com/costs-to-expect/budget/blob/main/LICENSE
+ * @license https://github.com/costs-to-expect/budget/blob/main/LICENSE
  */
 class Footer extends Component
 {

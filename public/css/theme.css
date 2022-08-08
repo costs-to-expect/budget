@@ -4835,9 +4835,9 @@ textarea.form-control-lg {
   --bs-badge-padding-x: 0.65em;
   --bs-badge-padding-y: 0.35em;
   --bs-badge-font-size:0.75em;
-  --bs-badge-font-weight: 700;
+  --bs-badge-font-weight: 300;
   --bs-badge-color: #fff;
-  --bs-badge-border-radius: 0.1rem;
+  --bs-badge-border-radius: 0.15rem;
   display: inline-block;
   padding: var(--bs-badge-padding-y) var(--bs-badge-padding-x);
   font-size: var(--bs-badge-font-size);
@@ -4994,7 +4994,7 @@ textarea.form-control-lg {
   --bs-progress-height: 1rem;
   --bs-progress-font-size:0.75rem;
   --bs-progress-bg: #e9ecef;
-  --bs-progress-border-radius: 0.1rem;
+  --bs-progress-border-radius: 0.15rem;
   --bs-progress-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
   --bs-progress-bar-color: #fff;
   --bs-progress-bar-bg: #0d6efd;
@@ -12001,6 +12001,13 @@ main.budget div.expense div.amount {
   font-size: 0.9rem;
   font-weight: 400;
   text-align: center;
+}
+
+table thead th {
+  font-weight: 300;
+}
+table tbody th {
+  font-weight: 300;
 }
 
 /*# sourceMappingURL=theme.css.map */

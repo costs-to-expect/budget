@@ -1,7 +1,7 @@
 <footer class="container py-5">
     <div class="row">
         <div class="col-12 col-md">
-            <small class="d-block mb-3 text-muted">&copy; 2018 {{ date('Y') }} Dean Blackborough</small>
+            <small class="d-block mb-3 text-muted">&copy; 2018-{{ date('Y') }} Dean Blackborough</small>
             <small class="d-block mb-3 text-muted">{{ $version }} released {{ $release_date }}</small>
         </div>
         <div class="col-6 col-md">

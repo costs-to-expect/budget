@@ -13,12 +13,18 @@ $theme-colors: (
 );
 
 $link-color: rgba(137, 43, 124, 1);
+
 $input-focus-border-color: rgba(137, 43, 124, 1);
+
 $form-check-input-checked-bg-color: rgba(137, 43, 124, 1);
+
 $pagination-border-radius: 0;
 $pagination-border-radius-sm: 0;
-$progress-border-radius: 0.1rem;
-$badge-border-radius: 0.1rem;
+
+$progress-border-radius: 0.15rem;
+
+$badge-border-radius: 0.15rem;
+$badge-font-weight: 300;
 
 @import "../../public/node_modules/bootstrap/scss/bootstrap";
 
@@ -93,6 +99,20 @@ main.budget {
             font-size: 0.9rem;
             font-weight: 400;
             text-align: center;
+        }
+    }
+}
+
+table {
+    thead {
+        th {
+            font-weight: 300;
+        }
+    }
+
+    tbody {
+        th {
+            font-weight: 300;
         }
     }
 }

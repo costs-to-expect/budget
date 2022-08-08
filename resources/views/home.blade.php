@@ -19,7 +19,7 @@
             <main class="budget">
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="display-6">Your Budget</h2>
+                        <h2 class="display-6 mt-3">Your Budget</h2>
                     </div>
                 </div>
 
@@ -157,7 +157,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="display-6 mt-4">Definitions</h2>
+                        <h2 class="display-6 mt-3">Definitions</h2>
                     </div>
                     <div class="col-12">
                         <ul class="list-group list-group-flush">
@@ -177,6 +177,8 @@
                     </div>
                 </div>
             </main>
+
+            <x-requests />
 
             <x-footer />
         </div>
