@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Api;
 
+use Illuminate\Support\Facades\Config;
 use JetBrains\PhpStorm\ArrayShape;
 
 /**
@@ -14,12 +15,15 @@ class Service
 {
     private Http $http;
 
-    private string $item_type_id = '2AP1axw6L7';
-    private string $item_subtype_id = '3JgkeMkB4q';
+    private string $item_type_id;
+    private string $item_subtype_id;
 
     public function __construct(string $bearer = null)
     {
         $this->http = new Http($bearer);
+
+        $this->item_type_id = Config::get('app.config.item_type_id');
+        $this->item_subtype_id = Config::get('app.config.item_subtype_id');
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array"])]
@@ -68,7 +72,7 @@ class Service
             $uri['uri'],
             [
                 'name' => 'Annual Budget',
-                'description' => 'Annual Budget',
+                'description' => 'Your annual budget',
                 'item_subtype_id' => $this->item_subtype_id
             ]
         );
@@ -83,7 +87,7 @@ class Service
             $uri['uri'],
             [
                 'name' => 'Budgeting',
-                'description' => 'Annual budgeting',
+                'description' => 'Free budgeting for all',
                 'item_type_id' => $this->item_type_id
             ]
         );
