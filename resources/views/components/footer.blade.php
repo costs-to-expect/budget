@@ -14,7 +14,7 @@
             <h5>Powered by our API</h5>
             <ul class="list-unstyled text-small">
                 <li><a class="link-primary" href="https://www.costs-to-expect.com">Social Experiment</a></li>
-                <li><a class="link-primary" href="#">Yahtzee Game Scorer</a></li>
+                <li><a class="link-primary" href="https://yahtzee.game-scorer.com">Yahtzee Game Scorer</a></li>
                 <li><a class="link-primary" href="#">Yatzy Game Scorer (Coming soon)</a></li>
             </ul>
         </div>
