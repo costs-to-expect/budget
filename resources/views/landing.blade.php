@@ -10,7 +10,6 @@
     <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet"/>
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/product/">
     <meta name="theme-color" content="#892b7c">
     <style>
         .bd-placeholder-img {
