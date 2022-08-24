@@ -23,7 +23,7 @@
                 </a>
             </div>
 
-            <form action="{{ route('sign-in.process') }}" method="POST" class="col-12 col-md-4 col-lg-4 mx-auto p-2">
+            <form action="{{ route('sign-in.process') }}" method="POST" class="col-12 col-md-4 col-lg-3 mx-auto p-2">
 
                 @csrf
 
@@ -64,7 +64,9 @@
                         access to Budget and the entire Costs to Expect service.</p>
                 </div>
 
+                @env('local')
                 <button type="submit" class="btn btn-primary w-100">Sign-in</button>
+                @endenv
             </form>
         </div>
     </div>

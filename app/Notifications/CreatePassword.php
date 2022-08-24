@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\PartialRegistration;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -28,7 +29,7 @@ class CreatePassword extends Notification implements ShouldQueue
 
     public function shouldSend($notifiable, $channel)
     {
-        return DB::table('password_creates')
+        return PartialRegistration::query()
                 ->where('email', '=', $this->email)
                 ->first() !== null;
     }

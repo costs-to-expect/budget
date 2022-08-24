@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Api\Service;
+use App\Models\PartialRegistration;
 use App\Notifications\CreatePassword;
 use App\Notifications\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -20,10 +21,28 @@ class Authentication extends Controller
 {
     public function createPassword(Request $request)
     {
+        $token = null;
+        $email = null;
+
+        if (session()->get('authentication.parameters') !== null) {
+            $token = session()->get('authentication.parameters')['token'];
+            $email = session()->get('authentication.parameters')['email'];
+        }
+
+        if ($request->input('token') !== null && $request->input('email') !== null) {
+            $token = $request->input('token');
+            $email = $request->input('email');
+        }
+
+        if ($token === null && $email === null) {
+            abort(404, 'Password cannot be created, registration parameters not found');
+        }
+
         return view(
             'authentication.create-password',
             [
-                'parameters' => session()->get('authentication.parameters'),
+                'token' => $token,
+                'email' => $email,
                 'errors' => session()->get('authentication.errors'),
                 'failed' => session()->get('authentication.failed'),
             ]
@@ -43,16 +62,30 @@ class Authentication extends Controller
             Notification::route('mail', $request->input('email'))
                 ->notify(new Registered());
 
+            PartialRegistration::query()
+                ->where('token', '=', $request->input('token'))
+                ->delete();
+
             return redirect()->route('registration-complete');
         }
 
         if ($response['status'] === 422) {
-            return redirect()->route('create-password.view')
+            return redirect()->route(
+                'create-password.view',
+                [
+                    'token' => $request->input('token'),
+                    'email' => $request->input('email'),
+                ])
                 ->withInput()
                 ->with('authentication.errors', $response['fields']);
         }
 
-        return redirect()->route('create-password.view')
+        return redirect()->route(
+            'create-password.view',
+            [
+                'token' => $request->input('token'),
+                'email' => $request->input('email'),
+            ])
             ->with('authentication.failed', $response['content']);
     }
 
@@ -77,6 +110,11 @@ class Authentication extends Controller
 
         if ($response['status'] === 201) {
             $parameters = $response['content']['uris']['create-password']['parameters'];
+
+            $model = new PartialRegistration();
+            $model->token = $parameters['token'];
+            $model->email = $parameters['email'];
+            $model->save();
 
             Notification::route('mail', $request->input('email'))
                 ->notify((new CreatePassword($parameters['email'], $parameters['token']))->delay(now()->addMinute()));
