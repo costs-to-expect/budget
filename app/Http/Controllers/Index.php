@@ -12,8 +12,10 @@ use Illuminate\Http\Request;
  */
 class Index extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
+        $this->bootstrap($request);
+
         return view('home');
     }
 
