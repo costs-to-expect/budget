@@ -39,7 +39,7 @@ class CreatePassword extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject('Budget: Create Password')
             ->greeting('Hi Budgeteer!')
-            ->line('You account has been created, you now need to create your password.')
+            ->line('Your account has been created, to finish, you need to create your password.')
             ->line('Chances are, you have already created your password, this email is just in case you never got a chance, you can pick up where you left off.')
             ->action('Create Password', url('/create-password') . '?token=' . urlencode($this->token) . '&email=' . urlencode($this->email))
             ->line('Thank you for using Budget, we hope it helps!');
