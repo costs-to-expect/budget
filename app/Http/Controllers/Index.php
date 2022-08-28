@@ -16,6 +16,32 @@ class Index extends Controller
     {
         $this->bootstrap($request);
 
+        $budget = [];
+
+        // Budget
+
+        // Which months are visible
+        // How many months are visible
+        // Start month
+        // Current month
+        // Working date in month, not weekends?
+
+
+        // Budget item (Income or Expense)
+
+        // Name
+        // Description
+        // Start date
+        // End date
+        // Currency
+        // Amount
+        // Active (Function of start date and end date)
+        // Disabled (User controlled option, manual version of active)
+        // Type (Income or Expense)
+        // Frequency (daily, weekly, monthly, annually (relevant options for each))
+        // Added by
+
+
         return view('home');
     }
 
