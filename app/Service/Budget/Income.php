@@ -9,7 +9,7 @@ namespace App\Service\Budget;
  * @copyright Dean Blackborough (Costs to Expect) 2018-2022
  * @license https://github.com/costs-to-expect/budget/blob/main/LICENSE
  */
-class Expense extends Item
+class Income extends Item
 {
     public function __construct()
     {
@@ -18,6 +18,6 @@ class Expense extends Item
 
     public function category(): string
     {
-        return array_rand(['Fixed', 'Flexible']);
+        return 'Savings';
     }
 }
