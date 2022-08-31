@@ -13,15 +13,10 @@ use JetBrains\PhpStorm\ArrayShape;
  */
 class Annually extends Period
 {
-    private int $day;
-    private int $month;
-
     protected string $type = 'annually';
 
-    public function __construct(int $day, int $month)
+    public function __construct(private readonly int $day, private readonly int $month)
     {
-        $this->day = $day;
-        $this->month = $month;
     }
 
     public function day(): int

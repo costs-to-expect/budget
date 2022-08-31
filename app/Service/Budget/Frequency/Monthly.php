@@ -13,18 +13,13 @@ use JetBrains\PhpStorm\ArrayShape;
  */
 class Monthly extends Period
 {
-    private int $day;
-    private array $exclusions;
-
     protected string $type = 'monthly';
 
     public function __construct(
-        int $day = 10,
-        array $exclusions = []
+        private readonly int $day = 10,
+        private readonly array $exclusions = []
     )
     {
-        $this->day = $day;
-        $this->exclusions = $exclusions;
     }
 
     public function day(): int
