@@ -44,9 +44,16 @@
                 </div>
 
                 <div class="row text-grey mt-2 pt-2">
-                    <div class="col-4 month-total"><small>&pound;</small>475</div>
-                    <div class="col-4 month-total"><small>&pound;</small>591.99</div>
-                    <div class="col-4 month-total"><small>&pound;</small>475</div>
+                    @foreach ($months as $__month)
+                    <div class="col-4 month-total">
+                        <div>
+                        <small>&pound;</small>{{ $__month->totalExpense() }}
+                        </div>
+                        <div class="fs-6">
+                        Income <small>&pound;</small>{{ $__month->totalIncome() }}
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
 
                 <div class="row">

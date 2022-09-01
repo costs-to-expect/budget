@@ -56,6 +56,30 @@ class Month
         return $this->date->format('F');
     }
 
+    public function totalExpense(): float
+    {
+        $total = 0;
+        foreach ($this->items as $item) {
+            if ($item->category() !== 'income') {
+                $total += $item->amount();
+            }
+        }
+
+        return (float) $total;
+    }
+
+    public function totalIncome(): float
+    {
+        $total = 0;
+        foreach ($this->items as $item) {
+            if ($item->category() === 'income') {
+                $total += $item->amount();
+            }
+        }
+
+        return (float) $total;
+    }
+
     public function year(): int
     {
         return $this->year;
