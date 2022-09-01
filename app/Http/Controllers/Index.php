@@ -162,15 +162,7 @@ class Index extends Controller
             $budget->add($budget_item);
         }
 
-        // Test with an annual expense
-        // Convert months to an object, want everything that way
-        // Rewrite active for month based on the frequency type
-        // Get exclusions working
-        // Get the totals working
-
         $budget->generate();
-
-        //dd($budget->items(), $budget->months());
 
         return view(
             'home',

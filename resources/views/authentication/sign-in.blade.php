@@ -64,9 +64,7 @@
                         access to Budget and the entire Costs to Expect service.</p>
                 </div>
 
-                @env('local')
                 <button type="submit" class="btn btn-primary w-100">Sign-in</button>
-                @endenv
             </form>
         </div>
     </div>
