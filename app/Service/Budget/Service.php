@@ -14,7 +14,7 @@ class Service
     /** @var Item[] */
     private array $budget_items = [];
 
-    /** @var array{ year: int, month: int, days: int, leap_year: boolean, items: Item[] } */
+    /** @var Month[] */
     private array $months = [];
 
     public function __construct()
@@ -68,9 +68,8 @@ class Service
     {
         foreach ($this->months as $month) {
             foreach ($this->budget_items as $budget_item) {
-
-                if ($budget_item->activeForMonth($month['days'], $month['month'], $month['year']) === true) {
-                    $this->months[$month['year'] . '-' . $month['month']]['items'][] = $budget_item;
+                if ($budget_item->activeForMonth($month->days(), $month->month(), $month->year()) === true) {
+                    $this->months[$month->year() . '-' . $month->month()]->add($budget_item);
                 }
             }
         }
@@ -80,17 +79,10 @@ class Service
     {
         for ($i = 0; $i < $this->numberOfVisibleMonths(); $i++) {
 
-            $year = (int) now(new \DateTimeZone('UTC'))->addMonths($i)->format('Y');
-            $month = (int) now(new \DateTimeZone('UTC'))->addMonths($i)->format('n');
+            $year_int = (int) now(new \DateTimeZone('UTC'))->addMonths($i)->format('Y');
+            $month_int = (int) now(new \DateTimeZone('UTC'))->addMonths($i)->format('n');
 
-            $this->months[$year . '-' . $month] = [
-                'year' => $year,
-                'month' => $month,
-                'name' => now(new \DateTimeZone('UTC'))->addMonths($i)->format('F'),
-                'days' => (int) now(new \DateTimeZone('UTC'))->addMonths($i)->format('t'),
-                'leap_year' => (bool) now(new \DateTimeZone('UTC'))->addMonths($i)->format('L'),
-                'items' => [],
-            ];
+            $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int);
         }
     }
 }

@@ -26,9 +26,9 @@
                 <div class="row">
                     @foreach ($months as $__month)
                     <div class="col-4 @if($loop->index === 1) border-start border-end border-primary border-opacity-50 @endif">
-                        <div class="text-primary month pb-2">{{ $__month['name'] }}</div>
+                        <div class="text-primary month pb-2">{{ $__month->name() }}</div>
                         <div class="row">
-                            @foreach ($__month['items'] as $__item)
+                            @foreach ($__month->items() as $__item)
                                 <div class="col-12 expense">
                                     <div class="name text-grey">{{ $__item->name() }}</div>
                                     <div class="progress">
