@@ -19,6 +19,21 @@ class Index extends Controller
 
         $data = [
             [
+                'name' => 'Salary',
+                'description' => 'This is a description for the expense',
+                'amount' => 1866.00,
+                'currency_code' => 'GBP',
+                'category' => 'income',
+                'start_date' => '2021-01-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => []
+                ]
+            ],
+            [
                 'name' => 'Rent',
                 'description' => 'This is a description for the expense',
                 'amount' => 850.00,
@@ -99,7 +114,7 @@ class Index extends Controller
                 'amount' => 45.00,
                 'currency_code' => 'GBP',
                 'category' => 'flexible',
-                'start_date' => '2021-01-01',
+                'start_date' => '2022-09-01',
                 'end_date' => '2023-12-31',
                 'disabled' => false,
                 'frequency' => [
@@ -115,12 +130,27 @@ class Index extends Controller
                 'amount' => 16.99,
                 'currency_code' => 'GBP',
                 'category' => 'flexible',
-                'start_date' => '2021-01-01',
+                'start_date' => '2021-10-15',
                 'end_date' => '2023-12-31',
                 'disabled' => false,
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 10,
+                    'exclusions' => []
+                ]
+            ],
+            [
+                'name' => 'Disney +',
+                'description' => 'This is a description for the expense',
+                'amount' => 16.99,
+                'currency_code' => 'GBP',
+                'category' => 'flexible',
+                'start_date' => '2022-10-05',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 5,
                     'exclusions' => []
                 ]
             ]
@@ -134,13 +164,9 @@ class Index extends Controller
 
         // Test with an annual expense
         // Convert months to an object, want everything that way
-        // Work out why active for month isn't working
         // Rewrite active for month based on the frequency type
-        // End date might and more often than not will be null (endless)
         // Get exclusions working
         // Get the totals working
-        // Add tickets for these tasks
-        // Work out have savings work
 
         $budget->generate();
 

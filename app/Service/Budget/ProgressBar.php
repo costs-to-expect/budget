@@ -34,6 +34,10 @@ class ProgressBar
         ],
         1000 => [
             'max' => 1000,
+            'percentage' => 70
+        ],
+        1500 => [
+            'max' => 1500,
             'percentage' => 95
         ],
     ];
@@ -45,7 +49,7 @@ class ProgressBar
 
     public function percentage(): int
     {
-        $percentage = $this->ranges[1000]['percentage'];
+        $percentage = $this->ranges[1500]['percentage'];
 
         foreach ($this->ranges as $range) {
             if ($this->amount < $range['max']) {

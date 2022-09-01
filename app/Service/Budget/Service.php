@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Service\Budget;
 
-use JetBrains\PhpStorm\ArrayShape;
-
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
  * @copyright Dean Blackborough (Costs to Expect) 2018-2022
@@ -70,7 +68,8 @@ class Service
     {
         foreach ($this->months as $month) {
             foreach ($this->budget_items as $budget_item) {
-                if ($budget_item->activeForMonth($month['month'], $month['year']) === true) {
+
+                if ($budget_item->activeForMonth($month['days'], $month['month'], $month['year']) === true) {
                     $this->months[$month['year'] . '-' . $month['month']]['items'][] = $budget_item;
                 }
             }

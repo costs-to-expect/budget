@@ -56,6 +56,10 @@
                     <div class="col-12">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
+                                <span class="badge text-bg-income">Income</span>
+                                This is your income, this is what pays your expenses
+                            </li>
+                            <li class="list-group-item">
                                 <span class="badge text-bg-fixed">Fixed</span>
                                 Expenses that are fixed and cannot be changed
                             </li>

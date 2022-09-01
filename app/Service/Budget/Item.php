@@ -7,7 +7,7 @@ namespace App\Service\Budget;
 use App\Service\Budget\Frequency\Annually;
 use App\Service\Budget\Frequency\Monthly;
 use App\Service\Budget\Frequency\Period;
-use DateTime;
+use DateTimeImmutable;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -19,8 +19,8 @@ class Item
     protected string $name;
     protected ?string $description;
 
-    protected DateTime $start_date;
-    protected DateTime $end_date;
+    protected DateTimeImmutable $start_date;
+    protected ?DateTimeImmutable $end_date = null;
 
     protected float $amount;
     protected string $currency_code;
@@ -31,8 +31,10 @@ class Item
 
     public function __construct(array $data)
     {
-        $this->start_date = new DateTime($data['start_date'], new \DateTimeZone('UTC'));
-        $this->end_date = new DateTime($data['end_date'], new \DateTimeZone('UTC'));
+        $this->start_date = new \DateTimeImmutable($data['start_date'], new \DateTimeZone('UTC'));
+        if ($data['end_date'] !== null) {
+            $this->end_date = new DateTimeImmutable($data['end_date'], new \DateTimeZone('UTC'));
+        }
 
         $this->name = $data['name'];
         $this->description = $data['description'];
@@ -59,15 +61,14 @@ class Item
         );
     }
 
-    public function activeForMonth(int $month, int $year): bool
+    public function activeForMonth(int $days, int $month, int $year): bool
     {
-        $start_of_active_month = new DateTime("{$year}-{$month}-01", new \DateTimeZone('UTC'));
-        $end_of_active_month = clone $start_of_active_month;
-        $end_of_active_month->modify('last day of this month');
+        $start_of_active_month = new DateTimeImmutable("{$year}-{$month}-01", new \DateTimeZone('UTC'));
+        $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", new \DateTimeZone('UTC'));
 
         return (
             $this->startDate() <= $end_of_active_month &&
-            $this->endDate() >= $start_of_active_month
+            ($this->endDate() === null || $this->endDate() >= $end_of_active_month)
         );
     }
 
@@ -96,14 +97,14 @@ class Item
         return false;
     }
 
-    public function endDate(): DateTime
+    public function endDate(): ?DateTimeImmutable
     {
-        return new DateTime('2023-12-31');
+        return $this->end_date;
     }
 
     public function frequency(): Period
     {
-        return new Monthly(10, [2,3]);
+        return $this->frequency;
     }
 
     public function name(): string
@@ -116,8 +117,8 @@ class Item
         return (new ProgressBar($this->amount))->percentage();
     }
 
-    public function startDate(): DateTime
+    public function startDate(): DateTimeImmutable
     {
-        return new DateTime('2021-01-01');
+        return $this->start_date;
     }
 }
