@@ -12,6 +12,7 @@ namespace App\Service\Budget\Frequency;
 abstract class Period
 {
     protected string $type;
+    protected string $name;
 
     public function type(): string
     {

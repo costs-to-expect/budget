@@ -4,41 +4,91 @@ declare(strict_types=1);
 
 namespace App\Service\Budget;
 
+use App\Service\Budget\Frequency\Annually;
 use App\Service\Budget\Frequency\Monthly;
 use App\Service\Budget\Frequency\Period;
+use DateTime;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
  * @copyright Dean Blackborough (Costs to Expect) 2018-2022
  * @license https://github.com/costs-to-expect/budget/blob/main/LICENSE
  */
-abstract class Item
+class Item
 {
-    public function __construct()
-    {
+    protected string $name;
+    protected ?string $description;
 
+    protected DateTime $start_date;
+    protected DateTime $end_date;
+
+    protected float $amount;
+    protected string $currency_code;
+
+    protected Period $frequency;
+
+    protected string $category;
+
+    public function __construct(array $data)
+    {
+        $this->start_date = new DateTime($data['start_date'], new \DateTimeZone('UTC'));
+        $this->end_date = new DateTime($data['end_date'], new \DateTimeZone('UTC'));
+
+        $this->name = $data['name'];
+        $this->description = $data['description'];
+
+        $this->amount = (float) $data['amount'];
+        $this->currency_code = $data['currency_code'];
+
+        if ($data['frequency']['type'] === 'monthly') {
+            $this->frequency = new Monthly($data['frequency']['day'], $data['frequency']['exclusions']);
+        }
+
+        if ($data['frequency']['type'] === 'annually') {
+            $this->frequency = new Annually($data['frequency']['day'], $data['frequency']['month']);
+        }
+
+        $this->category = $data['category'];
     }
 
     public function active(): bool
     {
-        return ($this->startDate() <= now() && now() <= $this->endDate());
+        return (
+            $this->startDate() <= now() &&
+            now() <= $this->endDate()
+        );
+    }
+
+    public function activeForMonth(int $month, int $year): bool
+    {
+        $start_of_active_month = new DateTime("{$year}-{$month}-01", new \DateTimeZone('UTC'));
+        $end_of_active_month = clone $start_of_active_month;
+        $end_of_active_month->modify('last day of this month');
+
+        return (
+            $this->startDate() <= $end_of_active_month &&
+            $this->endDate() >= $start_of_active_month
+        );
     }
 
     public function amount(): float
     {
-        return 0.00;
+        return $this->amount;
     }
 
-    abstract public function category(): string;
+    public function category(): string
+    {
+        return $this->category;
+    }
 
     public function currencyCode(): string
     {
-        return 'GBP';
+        return $this->currency_code;
     }
 
     public function description(): string
     {
-        return 'Expense: Description';
+        return $this->description;
     }
 
     public function disabled(): bool
@@ -46,9 +96,9 @@ abstract class Item
         return false;
     }
 
-    public function endDate(): \DateTime
+    public function endDate(): DateTime
     {
-        return new \DateTime('2023-12-31');
+        return new DateTime('2023-12-31');
     }
 
     public function frequency(): Period
@@ -58,11 +108,16 @@ abstract class Item
 
     public function name(): string
     {
-        return 'Expense: Name';
+        return $this->name;
     }
 
-    public function startDate(): \DateTime
+    public function progressBarPercentage(): int
     {
-        return new \DateTime('2021-01-01');
+        return (new ProgressBar($this->amount))->percentage();
+    }
+
+    public function startDate(): DateTime
+    {
+        return new DateTime('2021-01-01');
     }
 }

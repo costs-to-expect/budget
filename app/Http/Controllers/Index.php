@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Service\Budget\Service;
 use Illuminate\Http\Request;
 
 /**
@@ -18,6 +19,21 @@ class Index extends Controller
 
         $data = [
             [
+                'name' => 'Rent',
+                'description' => 'This is a description for the expense',
+                'amount' => 850.00,
+                'currency_code' => 'GBP',
+                'category' => 'fixed',
+                'start_date' => '2021-01-01',
+                'end_date' => '2022-10-31',
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => []
+                ]
+            ],
+            [
                 'name' => 'Gas & Electric',
                 'description' => 'This is a description for the expense',
                 'amount' => 275.00,
@@ -29,8 +45,8 @@ class Index extends Controller
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 15,
+                    'exclusions' => []
                 ],
-                'exclusions' => [11,12]
             ],
             [
                 'name' => 'Guitar Lessons',
@@ -44,8 +60,8 @@ class Index extends Controller
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 15,
+                    'exclusions' => []
                 ],
-                'exclusions' => []
             ],
             [
                 'name' => 'Holiday Savings',
@@ -59,8 +75,8 @@ class Index extends Controller
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 15,
+                    'exclusions' => []
                 ],
-                'exclusions' => []
             ],
             [
                 'name' => 'TV, Phone & Internet',
@@ -74,8 +90,8 @@ class Index extends Controller
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 15,
+                    'exclusions' => []
                 ],
-                'exclusions' => []
             ],
             [
                 'name' => 'School Uniform',
@@ -89,9 +105,9 @@ class Index extends Controller
                 'frequency' => [
                     'type' => 'annually',
                     'day' => 15,
-                    'month' => 10
+                    'month' => 10,
+                    'exclusions' => []
                 ],
-                'exclusions' => []
             ],
             [
                 'name' => 'Netflix',
@@ -105,39 +121,37 @@ class Index extends Controller
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 10,
-                ],
-                'exclusions' => []
+                    'exclusions' => []
+                ]
             ]
         ];
 
+        $budget = new Service();
 
-        $budget = [];
+        foreach ($data as $budget_item) {
+            $budget->add($budget_item);
+        }
 
-        // Budget
+        // Test with an annual expense
+        // Convert months to an object, want everything that way
+        // Work out why active for month isn't working
+        // Rewrite active for month based on the frequency type
+        // End date might and more often than not will be null (endless)
+        // Get exclusions working
+        // Get the totals working
+        // Add tickets for these tasks
+        // Work out have savings work
 
-        // Which months are visible
-        // How many months are visible
-        // Start month
-        // Current month
-        // Working date in month, not weekends?
+        $budget->generate();
 
+        //dd($budget->items(), $budget->months());
 
-        // Budget item (Income or Expense)
-
-        // Name
-        // Description
-        // Start date
-        // End date
-        // Currency
-        // Amount
-        // Active (Function of start date and end date)
-        // Disabled (User controlled option, manual version of active)
-        // Type (Income or Expense)
-        // Frequency (daily, weekly, monthly, annually (relevant options for each))
-        // Added by
-
-
-        return view('home');
+        return view(
+            'home',
+            [
+                'months' => $budget->months()
+            ]
+        );
     }
 
     public function landing()

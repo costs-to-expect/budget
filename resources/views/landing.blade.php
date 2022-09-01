@@ -41,7 +41,11 @@
                 powered by the <a href="https://api.costs-to-expect.com">Costs to Expect API</a>.</p>
             <p class="lead fw-normal">In early development, we expect to have our v1.00.0 ready
                 before spring 2023, our Beta will be ready much sooner.</p>
+            @env('local')
+            <a href="{{ route('sign-in.view') }}" class="btn btn-outline-primary">Sign-in</a>
+            @else
             <a class="btn btn-outline-primary">Coming Soon</a>
+            @endenv
         </div>
     </div>
 

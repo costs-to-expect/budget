@@ -12,6 +12,7 @@ namespace App\Service\Budget\Frequency;
 class Annually extends Period
 {
     protected string $type = 'annually';
+    protected string $name = 'Annually';
 
     public function __construct(
         private readonly int $day,

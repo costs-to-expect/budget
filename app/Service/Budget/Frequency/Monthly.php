@@ -12,6 +12,7 @@ namespace App\Service\Budget\Frequency;
 class Monthly extends Period
 {
     protected string $type = 'monthly';
+    protected string $name = 'Monthly';
 
     public function __construct(
         private readonly int $day = 10,

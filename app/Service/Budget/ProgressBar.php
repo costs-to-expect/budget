@@ -25,7 +25,7 @@ class ProgressBar
             'percentage' => 15
         ],
         250 => [
-            'max' => 150,
+            'max' => 250,
             'percentage' => 25
         ],
         500  => [
