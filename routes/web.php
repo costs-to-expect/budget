@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Account;
 use App\Http\Controllers\Authentication;
 use App\Http\Controllers\Index;
 use Illuminate\Support\Facades\Route;
@@ -61,9 +62,16 @@ Route::group(
         ]
     ],
     static function() {
+
         Route::get(
             '/home',
             [Index::class, 'home']
         )->name('home');
+
+        // Account management
+        Route::get(
+            '/account',
+            [Account::class, 'index']
+        )->name('account.index');
     }
 );

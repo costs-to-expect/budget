@@ -14,7 +14,10 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link @if($active === 'home') active" aria-current="page" @endif href="{{ route('home') }}">Home</a>
+                        <a class="nav-link @if($active === 'home') active @endif" href="{{ route('home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @if($active === 'account') active @endif" href="{{ route('account.index') }}">Account</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('sign-out') }}">Sign-out</a>

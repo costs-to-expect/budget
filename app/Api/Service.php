@@ -42,7 +42,7 @@ class Service
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array"])]
-    public function authUser(): array
+    public function getAuthUser(): array
     {
         $uri = Uri::authUser();
 

@@ -35,6 +35,7 @@
   --bs-quaternary: #2b4d89;
   --bs-light: #eff2f5;
   --bs-dark: #0f1b2f;
+  --bs-income: #892b7c;
   --bs-savings: #2b8938;
   --bs-flexible: #89672b;
   --bs-fixed: #2b4d89;
@@ -45,6 +46,7 @@
   --bs-quaternary-rgb: 43, 77, 137;
   --bs-light-rgb: 239, 242, 245;
   --bs-dark-rgb: 15, 27, 47;
+  --bs-income-rgb: 137, 43, 124;
   --bs-savings-rgb: 43, 137, 56;
   --bs-flexible-rgb: 137, 103, 43;
   --bs-fixed-rgb: 43, 77, 137;
@@ -3118,6 +3120,23 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #0f1b2f;
 }
 
+.btn-income {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #892b7c;
+  --bs-btn-border-color: #892b7c;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #742569;
+  --bs-btn-hover-border-color: #6e2263;
+  --bs-btn-focus-shadow-rgb: 155, 75, 144;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #6e2263;
+  --bs-btn-active-border-color: #67205d;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #892b7c;
+  --bs-btn-disabled-border-color: #892b7c;
+}
+
 .btn-savings {
   --bs-btn-color: #000;
   --bs-btn-bg: #2b8938;
@@ -3285,6 +3304,23 @@ textarea.form-control-lg {
   --bs-btn-disabled-color: #0f1b2f;
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #0f1b2f;
+  --bs-gradient: none;
+}
+
+.btn-outline-income {
+  --bs-btn-color: #892b7c;
+  --bs-btn-border-color: #892b7c;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #892b7c;
+  --bs-btn-hover-border-color: #892b7c;
+  --bs-btn-focus-shadow-rgb: 137, 43, 124;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #892b7c;
+  --bs-btn-active-border-color: #892b7c;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #892b7c;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #892b7c;
   --bs-gradient: none;
 }
 
@@ -4949,6 +4985,15 @@ textarea.form-control-lg {
   color: #070d16;
 }
 
+.alert-income {
+  --bs-alert-color: #521a4a;
+  --bs-alert-bg: #e7d5e5;
+  --bs-alert-border-color: #dcbfd8;
+}
+.alert-income .alert-link {
+  color: #42153b;
+}
+
 .alert-savings {
   --bs-alert-color: #1a5222;
   --bs-alert-bg: #d5e7d7;
@@ -5359,6 +5404,20 @@ textarea.form-control-lg {
   color: #fff;
   background-color: #09101c;
   border-color: #09101c;
+}
+
+.list-group-item-income {
+  color: #521a4a;
+  background-color: #e7d5e5;
+}
+.list-group-item-income.list-group-item-action:hover, .list-group-item-income.list-group-item-action:focus {
+  color: #521a4a;
+  background-color: #d0c0ce;
+}
+.list-group-item-income.list-group-item-action.active {
+  color: #fff;
+  background-color: #521a4a;
+  border-color: #521a4a;
 }
 
 .list-group-item-savings {
@@ -6964,6 +7023,11 @@ textarea.form-control-lg {
   background-color: RGBA(15, 27, 47, var(--bs-bg-opacity, 1)) !important;
 }
 
+.text-bg-income {
+  color: #fff !important;
+  background-color: RGBA(137, 43, 124, var(--bs-bg-opacity, 1)) !important;
+}
+
 .text-bg-savings {
   color: #000 !important;
   background-color: RGBA(43, 137, 56, var(--bs-bg-opacity, 1)) !important;
@@ -7024,6 +7088,13 @@ textarea.form-control-lg {
 }
 .link-dark:hover, .link-dark:focus {
   color: #0c1626 !important;
+}
+
+.link-income {
+  color: #892b7c !important;
+}
+.link-income:hover, .link-income:focus {
+  color: #6e2263 !important;
 }
 
 .link-savings {
@@ -7508,6 +7579,11 @@ textarea.form-control-lg {
 .border-dark {
   --bs-border-opacity: 1;
   border-color: rgba(var(--bs-dark-rgb), var(--bs-border-opacity)) !important;
+}
+
+.border-income {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-income-rgb), var(--bs-border-opacity)) !important;
 }
 
 .border-savings {
@@ -8382,6 +8458,11 @@ textarea.form-control-lg {
   color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
 }
 
+.text-income {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-income-rgb), var(--bs-text-opacity)) !important;
+}
+
 .text-savings {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-savings-rgb), var(--bs-text-opacity)) !important;
@@ -8481,6 +8562,11 @@ textarea.form-control-lg {
 .bg-dark {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.bg-income {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-income-rgb), var(--bs-bg-opacity)) !important;
 }
 
 .bg-savings {
