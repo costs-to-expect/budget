@@ -11,7 +11,7 @@ use DateTimeImmutable;
  * @copyright Dean Blackborough (Costs to Expect) 2018-2022
  * @license https://github.com/costs-to-expect/budget/blob/main/LICENSE
  */
-class Service
+class Budget
 {
     /** @var Item[] */
     private array $budget_items = [];
@@ -21,15 +21,25 @@ class Service
 
     private DateTimeImmutable $start_date;
 
-    public function __construct(int $start_month = null, int $start_year = null)
+    private DateTimeImmutable $view_start_date;
+
+    public function __construct()
     {
-        $this->start_date = new DateTimeImmutable('first day of this month');
+        $start_month = null;
+        $start_year = null;
+        if (request()->query('month') !== null && request()->query('year') !== null) {
+            $start_month = (int) request()->query('month');
+            $start_year = (int) request()->query('year');
+        }
+
+        $this->start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1 );
+        $this->view_start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1);
 
         if ($start_month !== NULL && $start_year !== NULL) {
-            $this->start_date = new DateTimeImmutable(
+            $this->view_start_date = (new DateTimeImmutable(
                 "{$start_year}-{$start_month}-01",
                 new \DateTimeZone('UTC')
-            );
+            ))->setTime(7, 1);
         }
 
         $this->setUpMonths();
@@ -40,6 +50,29 @@ class Service
         $this->budget_items[] = new Item($data);
 
         return true;
+    }
+
+    public function pagination(): array
+    {
+        if (date_diff($this->start_date, $this->view_start_date)->days === 0) {
+            $earlier = null;
+        } else {
+            $date = $this->view_start_date->sub(new \DateInterval("P1M"));
+            $earlier = [
+                'month' => $date->format('n'),
+                'year' => $date->format('Y')
+            ];
+        }
+
+        $later = $this->view_start_date->add(new \DateInterval("P1M"));
+
+        return [
+            'earlier' => $earlier,
+            'later' => [
+                'month' => (int) $later->format('n'),
+                'year' => (int) $later->format('Y')
+            ]
+        ];
     }
 
     /*private function startMonth(): int
@@ -81,14 +114,14 @@ class Service
 
     private function setUpMonths(): void
     {
-        $year_int = (int) $this->start_date->format('Y');
-        $month_int = (int) $this->start_date->format('n');
+        $year_int = (int) $this->view_start_date->format('Y');
+        $month_int = (int) $this->view_start_date   ->format('n');
 
         $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int);
 
         for ($i = 1; $i < $this->numberOfVisibleMonths(); $i++) {
 
-            $next = $this->start_date->add(new \DateInterval("P{$i}M"));
+            $next = $this->view_start_date->add(new \DateInterval("P{$i}M"));
 
             $year_int = (int) $next->format('Y');
             $month_int = (int) $next->format('n');
