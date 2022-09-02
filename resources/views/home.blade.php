@@ -19,16 +19,16 @@
             <main class="budget">
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="display-6 mt-3">Your Budget</h2>
+                        <h2 class="display-6 mt-3 mb-3">Your Budget</h2>
                     </div>
                 </div>
 
                 <div class="row">
                     @foreach ($months as $__month)
                     <div class="col-4 @if($loop->index === 1) border-start border-end border-primary border-opacity-50 @endif">
-                        <div class="text-primary month pb-2">{{ $__month['name'] }}</div>
+                        <div class="text-primary month pb-2">{{ $__month->name() }}</div>
                         <div class="row">
-                            @foreach ($__month['items'] as $__item)
+                            @foreach ($__month->items() as $__item)
                                 <div class="col-12 expense">
                                     <div class="name text-grey">{{ $__item->name() }}</div>
                                     <div class="progress">
@@ -44,14 +44,72 @@
                 </div>
 
                 <div class="row text-grey mt-2 pt-2">
-                    <div class="col-4 month-total"><small>&pound;</small>475</div>
-                    <div class="col-4 month-total"><small>&pound;</small>591.99</div>
-                    <div class="col-4 month-total"><small>&pound;</small>475</div>
+                    @foreach ($months as $__month)
+                    <div class="col-4 month-total">
+                        <div class="fs-5 text-center text-muted">Expenditure</div>
+                        <div>
+                        <small>&pound;</small>{{ $__month->totalExpense() }}
+                        </div>
+                        <div class="fs-6">
+                        Income <small>&pound;</small>{{ $__month->totalIncome() }}
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
+
+                <div class="pagination justify-content-between mt-3">
+                    @if ($pagination['previous'] === null)
+                    <a class="btn btn-sm btn-outline-primary disabled" href="" aria-disabled="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                        </svg>
+                        Previous
+                    </a>
+                    @else
+                    <a class="btn btn-sm btn-outline-primary" href="{{ route('home', $pagination['previous']) }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                        </svg>
+                        Previous
+                    </a>
+                    @endif
+
+                    <a class="btn btn-sm btn-outline-primary" href="{{ route('home', $pagination['next']) }}">
+                        Next
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                        </svg>
+                    </a>
+                </div>
+
+                {{--<div class="pagination justify-content-between mt-3">
+                    @if ($pagination['previous'] === null)
+                        <a class="btn btn-sm btn-outline-primary disabled" href="" aria-disabled="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                            </svg>
+                            Previous Quarter
+                        </a>
+                    @else
+                        <a class="btn btn-sm btn-outline-primary" href="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                            </svg>
+                            Previous Quarter
+                        </a>
+                    @endif
+
+                    <a class="btn btn-sm btn-outline-primary" href="">
+                        Next Quarter
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                        </svg>
+                    </a>
+                </div>--}}
 
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="display-6 mt-3">Definitions</h2>
+                        <h2 class="display-6 mt-5">Definitions</h2>
                     </div>
                     <div class="col-12">
                         <ul class="list-group list-group-flush">

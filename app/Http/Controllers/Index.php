@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Service\Budget\Service;
+use App\Service\Budget\Budget;
 use Illuminate\Http\Request;
 
 /**
@@ -156,18 +156,19 @@ class Index extends Controller
             ]
         ];
 
-        $budget = new Service();
+        $budget = new Budget();
 
         foreach ($data as $budget_item) {
             $budget->add($budget_item);
         }
 
-        $budget->generate();
+        $budget->allocatedItemsToMonths();
 
         return view(
             'home',
             [
-                'months' => $budget->months()
+                'months' => $budget->months(),
+                'pagination' => $budget->pagination(),
             ]
         );
     }
