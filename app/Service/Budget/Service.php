@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Service\Budget;
 
+use DateTimeImmutable;
+
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
  * @copyright Dean Blackborough (Costs to Expect) 2018-2022
@@ -17,36 +19,38 @@ class Service
     /** @var Month[] */
     private array $months = [];
 
-    public function __construct()
+    private DateTimeImmutable $start_date;
+
+    public function __construct(int $start_month = null, int $start_year = null)
     {
+        $this->start_date = new DateTimeImmutable('first day of this month');
+
+        if ($start_month !== NULL && $start_year !== NULL) {
+            $this->start_date = new DateTimeImmutable(
+                "{$start_year}-{$start_month}-01",
+                new \DateTimeZone('UTC')
+            );
+        }
+
         $this->setUpMonths();
     }
 
     public function add(array $data): bool
     {
-        /*if ($data['category'] !== 'savings') {
-            $this->budget_items[] = new Expense();
-        }*/
-
         $this->budget_items[] = new Item($data);
 
         return true;
     }
 
-    public function currentMonth(): int
+    /*private function startMonth(): int
     {
-        return (int) now(new \DateTimeZone('UTC'))->format('n');
+        return (int) $this->start_date->format('n');
     }
 
     public function endMonth(): int
     {
         return (int) now(new \DateTimeZone('UTC'))->addMonths($this->numberOfVisibleMonths())->format('n');
-    }
-
-    public function generate(): void
-    {
-        $this->assignItems();
-    }
+    }*/
 
     /** @return Item[] */
     public function items(): array
@@ -64,7 +68,7 @@ class Service
         return 3;
     }
 
-    private function assignItems(): void
+    public function allocatedItemsToMonths(): void
     {
         foreach ($this->months as $month) {
             foreach ($this->budget_items as $budget_item) {
@@ -77,10 +81,17 @@ class Service
 
     private function setUpMonths(): void
     {
-        for ($i = 0; $i < $this->numberOfVisibleMonths(); $i++) {
+        $year_int = (int) $this->start_date->format('Y');
+        $month_int = (int) $this->start_date->format('n');
 
-            $year_int = (int) now(new \DateTimeZone('UTC'))->addMonths($i)->format('Y');
-            $month_int = (int) now(new \DateTimeZone('UTC'))->addMonths($i)->format('n');
+        $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int);
+
+        for ($i = 1; $i < $this->numberOfVisibleMonths(); $i++) {
+
+            $next = $this->start_date->add(new \DateInterval("P{$i}M"));
+
+            $year_int = (int) $next->format('Y');
+            $month_int = (int) $next->format('n');
 
             $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int);
         }

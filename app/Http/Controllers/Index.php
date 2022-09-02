@@ -162,7 +162,7 @@ class Index extends Controller
             $budget->add($budget_item);
         }
 
-        $budget->generate();
+        $budget->allocatedItemsToMonths();
 
         return view(
             'home',
