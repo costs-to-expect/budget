@@ -67,8 +67,8 @@ class Budget
         $later = $this->view_start_date->add(new \DateInterval("P1M"));
 
         return [
-            'earlier' => $earlier,
-            'later' => [
+            'previous' => $earlier,
+            'next' => [
                 'month' => (int) $later->format('n'),
                 'year' => (int) $later->format('Y')
             ]
