@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Account;
 use App\Http\Controllers\Authentication;
+use App\Http\Controllers\BudgetItem;
 use App\Http\Controllers\Index;
 use Illuminate\Support\Facades\Route;
 
@@ -67,6 +68,22 @@ Route::group(
             '/home',
             [Index::class, 'home']
         )->name('home');
+
+        // Budget item management
+        Route::get(
+            '/budget/item/create',
+            [BudgetItem::class, 'item']
+        )->name('budget.item.create');
+
+        Route::get(
+            '/budget/item/{item_id}',
+            [BudgetItem::class, 'index']
+        )->name('budget.item.view');
+
+        Route::get(
+            '/budget/item/{item_id}/update',
+            [BudgetItem::class, 'update']
+        )->name('budget.item.update');
 
         // Account management
         Route::get(

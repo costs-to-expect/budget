@@ -11,7 +11,8 @@
                 <div class="text-primary month pb-2">{{ $__month->name() }}</div>
                 <div class="row">
                     @foreach ($__month->items() as $__item)
-                        <div class="col-12 expense">
+                        <a href="{{ route('budget.item.view', ['item_id' => str()->slug($__item->name())]) }}">
+                        <div class="col-12 expense @if ($active === true && $__item->name() === 'Netflix' && $__month->name() === 'October') active shadow @endif">
                             <div class="name text-grey">{{ $__item->name() }}</div>
                             <div class="progress">
                                 <div class="progress-bar bg-{{ $__item->category() }}" role="progressbar" aria-label="" style="width: {{ $__item->progressBarPercentage() }}%"
@@ -19,6 +20,7 @@
                             </div>
                             <div class="amount text-grey"><small>&pound;</small>{{ $__item->amount() }}</div>
                         </div>
+                        </a>
                     @endforeach
                 </div>
             </div>

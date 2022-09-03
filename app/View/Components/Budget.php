@@ -12,10 +12,13 @@ class Budget extends Component
 
     public array $pagination;
 
-    public function __construct(array $months, array $pagination)
+    private bool $active;
+
+    public function __construct(array $months, array $pagination, bool $active = false)
     {
         $this->months = $months;
         $this->pagination = $pagination;
+        $this->active = $active;
     }
 
     public function render()
@@ -24,7 +27,8 @@ class Budget extends Component
             'components.budget',
             [
                 'months' => $this->months,
-                'pagination' => $this->pagination
+                'pagination' => $this->pagination,
+                'active' => $this->active,
             ]
         );
     }

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Service\Budget\Budget;
+use App\Service\Budget\Service;
 use Illuminate\Http\Request;
 
 /**
@@ -17,7 +17,7 @@ class Index extends Controller
     {
         $this->bootstrap($request);
 
-        $budget = new Budget();
+        $budget = new Service();
 
         foreach ($this->mock_data as $budget_item) {
             $budget->add($budget_item);
