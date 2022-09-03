@@ -9,7 +9,7 @@ class Budget extends Component
 {
     /** @var Month[] */
     public array $months;
-    
+
     public array $pagination;
 
     public function __construct(array $months, array $pagination)
