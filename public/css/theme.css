@@ -12044,6 +12044,11 @@ body.align-items {
   align-items: center;
 }
 
+fieldset legend {
+  font-size: 1.3rem !important;
+  font-weight: 300;
+}
+
 div.header a {
   text-decoration: none;
   color: #000000;
@@ -12067,8 +12072,7 @@ nav .offcanvas-title {
 }
 
 div.budget div.month {
-  text-align: center;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 300;
 }
 div.budget div.month-total {
