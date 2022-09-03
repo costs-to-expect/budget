@@ -12044,6 +12044,11 @@ body.align-items {
   align-items: center;
 }
 
+fieldset legend {
+  font-size: 1.3rem !important;
+  font-weight: 300;
+}
+
 div.header a {
   text-decoration: none;
   color: #000000;
@@ -12066,27 +12071,52 @@ nav .offcanvas-title {
   font-weight: 300;
 }
 
-main.budget div.month {
-  text-align: center;
-  font-size: 1.3rem;
+div.budget div.month {
+  font-size: 1.4rem;
   font-weight: 300;
 }
-main.budget div.month-total {
+div.budget div.month-total {
   text-align: center;
   font-size: 1.7rem;
   font-weight: 300;
 }
-main.budget div.expense {
-  padding-bottom: 0.4rem;
+div.budget a {
+  text-decoration: none;
 }
-main.budget div.expense div.name {
+div.budget a div.expense {
+  margin-bottom: 0.4rem;
+}
+div.budget a div.expense div.name {
   font-size: 0.8rem;
   text-align: center;
 }
-main.budget div.expense div.amount {
+div.budget a div.expense div.amount {
   font-size: 0.9rem;
   font-weight: 400;
   text-align: center;
+}
+div.budget a div.expense:hover {
+  background-color: rgba(137, 43, 124, 0.25);
+  padding-right: 0.3rem;
+  padding-left: 0.3rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+div.budget a div.expense:hover div.name {
+  font-weight: 650;
+}
+div.budget a div.expense:hover div.amount {
+  font-weight: 650;
+}
+div.budget a div.expense.active {
+  background-color: rgba(137, 43, 124, 0.25);
+  padding-right: 0.3rem;
+  padding-left: 0.3rem;
+}
+div.budget a div.expense.active div.name {
+  font-weight: 650;
+}
+div.budget a div.expense.active div.amount {
+  font-weight: 650;
 }
 
 table thead th {

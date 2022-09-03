@@ -31,11 +31,152 @@ class Controller extends BaseController
 
     protected Service $api;
 
+    protected array $mock_data;
+
     public function __construct()
     {
         $this->config = Config::get('app.config');
         $this->item_type_id = $this->config['item_type_id'];
         $this->item_subtype_id = $this->config['item_subtype_id'];
+
+        $this->mock_data = [
+            [
+                'name' => 'Salary',
+                'description' => 'This is a description for the expense',
+                'amount' => 1866.00,
+                'currency_code' => 'GBP',
+                'category' => 'income',
+                'start_date' => '2021-01-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => []
+                ]
+            ],
+            [
+                'name' => 'Rent',
+                'description' => 'This is a description for the expense',
+                'amount' => 850.00,
+                'currency_code' => 'GBP',
+                'category' => 'fixed',
+                'start_date' => '2021-01-01',
+                'end_date' => '2022-10-31',
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => []
+                ]
+            ],
+            [
+                'name' => 'Gas & Electric',
+                'description' => 'This is a description for the expense',
+                'amount' => 275.00,
+                'currency_code' => 'GBP',
+                'category' => 'fixed',
+                'start_date' => '2021-01-01',
+                'end_date' => '2023-12-31',
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 15,
+                    'exclusions' => []
+                ],
+            ],
+            [
+                'name' => 'Guitar Lessons',
+                'description' => 'This is a description for the expense',
+                'amount' => 25.00,
+                'currency_code' => 'GBP',
+                'category' => 'flexible',
+                'start_date' => '2021-01-01',
+                'end_date' => '2023-12-31',
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 15,
+                    'exclusions' => []
+                ],
+            ],
+            [
+                'name' => 'Holiday Savings',
+                'description' => 'This is a description for the expense',
+                'amount' => 150.00,
+                'currency_code' => 'GBP',
+                'category' => 'savings',
+                'start_date' => '2021-01-01',
+                'end_date' => '2023-12-31',
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 15,
+                    'exclusions' => []
+                ],
+            ],
+            [
+                'name' => 'TV, Phone & Internet',
+                'description' => 'This is a description for the expense',
+                'amount' => 75.00,
+                'currency_code' => 'GBP',
+                'category' => 'flexible',
+                'start_date' => '2021-01-01',
+                'end_date' => '2023-12-31',
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 15,
+                    'exclusions' => []
+                ],
+            ],
+            [
+                'name' => 'School Uniform',
+                'description' => 'This is a description for the expense',
+                'amount' => 45.00,
+                'currency_code' => 'GBP',
+                'category' => 'flexible',
+                'start_date' => '2022-09-01',
+                'end_date' => '2023-12-31',
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'annually',
+                    'day' => 15,
+                    'month' => 10,
+                    'exclusions' => []
+                ],
+            ],
+            [
+                'name' => 'Netflix',
+                'description' => 'This is a description for the expense',
+                'amount' => 16.99,
+                'currency_code' => 'GBP',
+                'category' => 'flexible',
+                'start_date' => '2021-10-15',
+                'end_date' => '2023-12-31',
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => []
+                ]
+            ],
+            [
+                'name' => 'Disney +',
+                'description' => 'This is a description for the expense',
+                'amount' => 16.99,
+                'currency_code' => 'GBP',
+                'category' => 'flexible',
+                'start_date' => '2022-10-05',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 5,
+                    'exclusions' => []
+                ]
+            ]
+        ];
     }
 
     protected function bootstrap(Request $request)

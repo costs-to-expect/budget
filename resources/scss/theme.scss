@@ -43,6 +43,13 @@ body.align-items {
     align-items: center;
 }
 
+fieldset {
+    legend {
+        font-size: 1.3rem !important;
+        font-weight: 300;
+    }
+}
+
 div.header {
     a {
         text-decoration: none;
@@ -74,10 +81,9 @@ nav {
     }
 }
 
-main.budget {
+div.budget {
     div.month {
-        text-align: center;
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         font-weight: 300;
     }
 
@@ -87,19 +93,52 @@ main.budget {
         font-weight: 300;
     }
 
-    div.expense {
+    a {
+        text-decoration: none;
 
-        padding-bottom: 0.4rem;
+        div.expense {
 
-        div.name {
-            font-size: 0.8rem;
-            text-align: center;
-        }
+            margin-bottom: 0.4rem;
 
-        div.amount {
-            font-size: 0.9rem;
-            font-weight: 400;
-            text-align: center;
+            div.name {
+                font-size: 0.8rem;
+                text-align: center;
+            }
+
+            div.amount {
+                font-size: 0.9rem;
+                font-weight: 400;
+                text-align: center;
+            }
+
+            &:hover {
+                background-color: rgba(137, 43, 124, 0.25);
+                padding-right: 0.3rem;
+                padding-left: 0.3rem;
+                box-shadow: $box-shadow;
+
+                div.name {
+                    font-weight: 650;
+                }
+
+                div.amount {
+                    font-weight: 650;
+                }
+            }
+
+            &.active {
+                background-color: rgba(137, 43, 124, 0.25);
+                padding-right: 0.3rem;
+                padding-left: 0.3rem;
+
+                div.name {
+                    font-weight: 650;
+                }
+
+                div.amount {
+                    font-weight: 650;
+                }
+            }
         }
     }
 }

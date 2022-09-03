@@ -11,7 +11,7 @@ use DateTimeImmutable;
  * @copyright Dean Blackborough (Costs to Expect) 2018-2022
  * @license https://github.com/costs-to-expect/budget/blob/main/LICENSE
  */
-class Budget
+class Service
 {
     /** @var Item[] */
     private array $budget_items = [];
