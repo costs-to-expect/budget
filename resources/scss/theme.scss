@@ -5,6 +5,7 @@ $theme-colors: (
     "quaternary": rgba(43, 77, 137, 1),
     "light": rgba(239, 242, 245, 1),
     "dark": rgba(15, 27, 47, 1),
+    "danger": rgb(169, 23, 23),
 
     "income": rgba(137, 43, 124, 1),
     "savings": rgba(43, 137, 56, 1),
@@ -164,6 +165,16 @@ div.budget {
         p {
             font-size: 0.8rem;
         }
+    }
+}
+
+div.budget-item {
+
+    font-size: 1.2rem;
+
+    div.label {
+        font-weight: 300;
+        font-size: 0.9rem;
     }
 }
 
