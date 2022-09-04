@@ -26,7 +26,7 @@ class BudgetItem extends Controller
         $budget->allocatedItemsToMonths();
 
         return view(
-            'budget.item',
+            'budget.item.create',
             [
                 'months' => $budget->months(),
                 'pagination' => $budget->pagination(),
@@ -68,7 +68,7 @@ class BudgetItem extends Controller
         $budget->allocatedItemsToMonths();
 
         return view(
-            'budget.item',
+            'budget.item.update',
             [
                 'months' => $budget->months(),
                 'pagination' => $budget->pagination(),
