@@ -71,8 +71,8 @@ Route::group(
 
         // Budget item management
         Route::get(
-            '/budget/item/create',
-            [BudgetItem::class, 'item']
+            '/budget/item',
+            [BudgetItem::class, 'create']
         )->name('budget.item.create');
 
         Route::get(
