@@ -35,6 +35,7 @@
   --bs-quaternary: #2b4d89;
   --bs-light: #eff2f5;
   --bs-dark: #0f1b2f;
+  --bs-danger: #a91717;
   --bs-income: #892b7c;
   --bs-savings: #2b8938;
   --bs-flexible: #89672b;
@@ -46,6 +47,7 @@
   --bs-quaternary-rgb: 43, 77, 137;
   --bs-light-rgb: 239, 242, 245;
   --bs-dark-rgb: 15, 27, 47;
+  --bs-danger-rgb: 169, 23, 23;
   --bs-income-rgb: 137, 43, 124;
   --bs-savings-rgb: 43, 137, 56;
   --bs-flexible-rgb: 137, 103, 43;
@@ -3120,6 +3122,23 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #0f1b2f;
 }
 
+.btn-danger {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #a91717;
+  --bs-btn-border-color: #a91717;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #901414;
+  --bs-btn-hover-border-color: #871212;
+  --bs-btn-focus-shadow-rgb: 182, 58, 58;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #871212;
+  --bs-btn-active-border-color: #7f1111;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #a91717;
+  --bs-btn-disabled-border-color: #a91717;
+}
+
 .btn-income {
   --bs-btn-color: #fff;
   --bs-btn-bg: #892b7c;
@@ -3304,6 +3323,23 @@ textarea.form-control-lg {
   --bs-btn-disabled-color: #0f1b2f;
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #0f1b2f;
+  --bs-gradient: none;
+}
+
+.btn-outline-danger {
+  --bs-btn-color: #a91717;
+  --bs-btn-border-color: #a91717;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #a91717;
+  --bs-btn-hover-border-color: #a91717;
+  --bs-btn-focus-shadow-rgb: 169, 23, 23;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #a91717;
+  --bs-btn-active-border-color: #a91717;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #a91717;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #a91717;
   --bs-gradient: none;
 }
 
@@ -4985,6 +5021,15 @@ textarea.form-control-lg {
   color: #070d16;
 }
 
+.alert-danger {
+  --bs-alert-color: #650e0e;
+  --bs-alert-bg: #eed1d1;
+  --bs-alert-border-color: #e5b9b9;
+}
+.alert-danger .alert-link {
+  color: #510b0b;
+}
+
 .alert-income {
   --bs-alert-color: #521a4a;
   --bs-alert-bg: #e7d5e5;
@@ -5404,6 +5449,20 @@ textarea.form-control-lg {
   color: #fff;
   background-color: #09101c;
   border-color: #09101c;
+}
+
+.list-group-item-danger {
+  color: #650e0e;
+  background-color: #eed1d1;
+}
+.list-group-item-danger.list-group-item-action:hover, .list-group-item-danger.list-group-item-action:focus {
+  color: #650e0e;
+  background-color: #d6bcbc;
+}
+.list-group-item-danger.list-group-item-action.active {
+  color: #fff;
+  background-color: #650e0e;
+  border-color: #650e0e;
 }
 
 .list-group-item-income {
@@ -7023,6 +7082,11 @@ textarea.form-control-lg {
   background-color: RGBA(15, 27, 47, var(--bs-bg-opacity, 1)) !important;
 }
 
+.text-bg-danger {
+  color: #fff !important;
+  background-color: RGBA(169, 23, 23, var(--bs-bg-opacity, 1)) !important;
+}
+
 .text-bg-income {
   color: #fff !important;
   background-color: RGBA(137, 43, 124, var(--bs-bg-opacity, 1)) !important;
@@ -7088,6 +7152,13 @@ textarea.form-control-lg {
 }
 .link-dark:hover, .link-dark:focus {
   color: #0c1626 !important;
+}
+
+.link-danger {
+  color: #a91717 !important;
+}
+.link-danger:hover, .link-danger:focus {
+  color: #871212 !important;
 }
 
 .link-income {
@@ -7579,6 +7650,11 @@ textarea.form-control-lg {
 .border-dark {
   --bs-border-opacity: 1;
   border-color: rgba(var(--bs-dark-rgb), var(--bs-border-opacity)) !important;
+}
+
+.border-danger {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-danger-rgb), var(--bs-border-opacity)) !important;
 }
 
 .border-income {
@@ -8458,6 +8534,11 @@ textarea.form-control-lg {
   color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
 }
 
+.text-danger {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-danger-rgb), var(--bs-text-opacity)) !important;
+}
+
 .text-income {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-income-rgb), var(--bs-text-opacity)) !important;
@@ -8562,6 +8643,11 @@ textarea.form-control-lg {
 .bg-dark {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.bg-danger {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity)) !important;
 }
 
 .bg-income {
@@ -12134,6 +12220,14 @@ div.budget div.balances div.balance small, div.budget div.balances div.balance .
 }
 div.budget div.balances p {
   font-size: 0.8rem;
+}
+
+div.budget-item {
+  font-size: 1.2rem;
+}
+div.budget-item div.label {
+  font-weight: 300;
+  font-size: 0.9rem;
 }
 
 table thead th {
