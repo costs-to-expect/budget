@@ -89,7 +89,7 @@ div.budget {
 
     div.month-total {
         text-align: center;
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         font-weight: 300;
     }
 
@@ -148,6 +148,7 @@ div.budget {
             font-size: 1.6rem;
             font-weight: 300;
             color: rgba(137, 43, 124, 1);
+            margin-bottom: 0;
         }
 
         div.balance {
@@ -158,6 +159,10 @@ div.budget {
                 font-weight: 300;
                 font-size: 1.1rem;
             }
+        }
+
+        p {
+            font-size: 0.8rem;
         }
     }
 }

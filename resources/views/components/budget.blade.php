@@ -107,8 +107,8 @@
             <h2 class="display-6 mt-3 mb-3">Your Balances</h2>
         </div>
         <div class="col-6">
-            <h3>Start
-            </h3>
+            <h3>Start</h3>
+            <p class="text-muted mb-1">Balances today</p>
             <div class="balance">
                 <a class="btn btn-sm btn-primary" href="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
@@ -128,6 +128,7 @@
         </div>
         <div class="col-6 text-end">
             <h3>Projected</h3>
+            <p class="text-muted mb-1">Projected for November</p>
             <div class="balance">
                 <small>Default &pound;</small>1500.00
             </div>

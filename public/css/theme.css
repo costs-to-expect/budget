@@ -12077,7 +12077,7 @@ div.budget div.month {
 }
 div.budget div.month-total {
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 300;
 }
 div.budget a {
@@ -12122,6 +12122,7 @@ div.budget div.balances h3, div.budget div.balances .h3 {
   font-size: 1.6rem;
   font-weight: 300;
   color: #892b7c;
+  margin-bottom: 0;
 }
 div.budget div.balances div.balance {
   font-size: 1.5rem;
@@ -12130,6 +12131,9 @@ div.budget div.balances div.balance {
 div.budget div.balances div.balance small, div.budget div.balances div.balance .small {
   font-weight: 300;
   font-size: 1.1rem;
+}
+div.budget div.balances p {
+  font-size: 0.8rem;
 }
 
 table thead th {
