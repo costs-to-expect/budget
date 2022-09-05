@@ -78,13 +78,30 @@ class Controller extends BaseController
                 'currency_code' => 'GBP',
                 'category' => 'fixed',
                 'start_date' => '2021-01-01',
-                'end_date' => '2022-10-31',
+                'end_date' => null,
                 'disabled' => false,
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 10,
                     'exclusions' => []
                 ]
+            ],
+            [
+                'name' => 'Council Tax',
+                'description' => 'This is a description for the expense',
+                'amount' => 163.00,
+                'currency_code' => 'GBP',
+                'category' => 'fixed',
+                'start_date' => '2021-01-01',
+                'end_date' => '2023-03-31',
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 20,
+                    'exclusions' => [
+                        2, 3
+                    ]
+                ],
             ],
             [
                 'name' => 'Gas & Electric',
@@ -158,7 +175,7 @@ class Controller extends BaseController
                 'frequency' => [
                     'type' => 'annually',
                     'day' => 15,
-                    'month' => 10,
+                    'month' => 9,
                     'exclusions' => []
                 ],
             ],
@@ -189,6 +206,22 @@ class Controller extends BaseController
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 5,
+                    'exclusions' => []
+                ]
+            ],
+            [
+                'name' => 'Car Insurance',
+                'description' => 'This is a description for the expense',
+                'amount' => 625.00,
+                'currency_code' => 'GBP',
+                'category' => 'fixed',
+                'start_date' => '2022-11-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'annually',
+                    'day' => 3,
+                    'month' => 11,
                     'exclusions' => []
                 ]
             ]
