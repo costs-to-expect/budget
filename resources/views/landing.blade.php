@@ -133,10 +133,10 @@
     <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
         <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 py-3">
-                <h2 class="display-5">Simple</h2>
-                <p class="lead">The first thing you see is a simple overview of your expenses, our overview is so
-                    easy to understand a child could manage your budgeting, we wouldn't
-                    suggest it, but they could.</p>
+                <h2 class="display-5">Dogfooding</h2>
+                <p class="lead">We use our products, if there is a feature that bugs you, it probably bugs us to,
+                    we use our products every day and improve them for you and us.</p>
+                <p class="text-muted small"><a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food">Dogfooding</a> on Wikipedia</p>
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -145,7 +145,7 @@
                 <p class="lead">Free forever*, simple budgeting should be free and easy, this app will be free
                     for as long as possible, Budget is funded by the API and Budget Pro.</p>
                 <p class="text-muted small">
-                    *We can't see into the future so we reserve the right to change this if necessary.
+                    *We can't see into the future, we reserve the right to change this if necessary.
                 </p>
             </div>
         </div>
