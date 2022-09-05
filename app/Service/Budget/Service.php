@@ -27,7 +27,7 @@ class Service
 
     public function __construct(array $accounts)
     {
-        $this->accounts = [];
+        $this->accounts = $accounts;
 
         $start_month = null;
         $start_year = null;

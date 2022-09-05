@@ -42,11 +42,13 @@ class Controller extends BaseController
 
         $this->mock_accounts_data = [
             [
+                'currency' => 'GBP',
                 'type' => 'expense',
                 'name' => 'Default',
                 'balance' => 1254.36,
             ],
             [
+                'currency' => 'GBP',
                 'type' => 'income',
                 'name' => 'Savings',
                 'balance' => 126.33,
