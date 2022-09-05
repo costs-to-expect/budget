@@ -16,7 +16,7 @@
 
         <div class="col-lg-8 mx-auto p-3">
 
-            <x-budget :months="$months" :pagination="$pagination" />
+            <x-budget :accounts="$accounts" :months="$months" :pagination="$pagination" />
 
             <x-requests />
 

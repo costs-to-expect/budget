@@ -13,6 +13,8 @@ use DateTimeImmutable;
  */
 class Service
 {
+    private array $accounts = [];
+
     /** @var Item[] */
     private array $budget_items = [];
 
@@ -23,8 +25,10 @@ class Service
 
     private DateTimeImmutable $view_start_date;
 
-    public function __construct()
+    public function __construct(array $accounts)
     {
+        $this->accounts = [];
+
         $start_month = null;
         $start_year = null;
         if (request()->query('month') !== null && request()->query('year') !== null) {
@@ -43,6 +47,11 @@ class Service
         }
 
         $this->setUpMonths();
+    }
+
+    public function accounts(): array
+    {
+        return $this->accounts;
     }
 
     public function add(array $data): bool

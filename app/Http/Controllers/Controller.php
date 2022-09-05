@@ -32,12 +32,26 @@ class Controller extends BaseController
     protected Service $api;
 
     protected array $mock_data;
+    protected array $mock_accounts_data;
 
     public function __construct()
     {
         $this->config = Config::get('app.config');
         $this->item_type_id = $this->config['item_type_id'];
         $this->item_subtype_id = $this->config['item_subtype_id'];
+
+        $this->mock_accounts_data = [
+            [
+                'type' => 'expense',
+                'name' => 'Default',
+                'balance' => 1254.36,
+            ],
+            [
+                'type' => 'income',
+                'name' => 'Savings',
+                'balance' => 126.33,
+            ]
+        ];
 
         $this->mock_data = [
             [

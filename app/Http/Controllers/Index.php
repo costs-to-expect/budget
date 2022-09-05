@@ -17,7 +17,7 @@ class Index extends Controller
     {
         $this->bootstrap($request);
 
-        $budget = new Service();
+        $budget = new Service($this->mock_accounts_data);
 
         foreach ($this->mock_data as $budget_item) {
             $budget->add($budget_item);
@@ -28,6 +28,7 @@ class Index extends Controller
         return view(
             'home',
             [
+                'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->pagination(),
             ]
