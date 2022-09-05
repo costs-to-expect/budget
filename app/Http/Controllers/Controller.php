@@ -44,12 +44,14 @@ class Controller extends BaseController
             [
                 'currency' => 'GBP',
                 'type' => 'expense',
+                'id' => 'default',
                 'name' => 'Default',
                 'balance' => 1254.36,
             ],
             [
                 'currency' => 'GBP',
-                'type' => 'income',
+                'type' => 'expense',
+                'id' => 'savings',
                 'name' => 'Savings',
                 'balance' => 126.33,
             ]
@@ -58,6 +60,7 @@ class Controller extends BaseController
         $this->mock_data = [
             [
                 'name' => 'Salary',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 1866.00,
                 'currency_code' => 'GBP',
@@ -73,6 +76,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'Rent',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 850.00,
                 'currency_code' => 'GBP',
@@ -88,6 +92,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'Council Tax',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 163.00,
                 'currency_code' => 'GBP',
@@ -105,6 +110,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'Gas & Electric',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 275.00,
                 'currency_code' => 'GBP',
@@ -120,6 +126,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'Guitar Lessons',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 25.00,
                 'currency_code' => 'GBP',
@@ -135,6 +142,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'Holiday Savings',
+                'account' => 'savings',
                 'description' => 'This is a description for the expense',
                 'amount' => 150.00,
                 'currency_code' => 'GBP',
@@ -150,6 +158,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'TV, Phone & Internet',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 75.00,
                 'currency_code' => 'GBP',
@@ -165,6 +174,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'School Uniform',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 45.00,
                 'currency_code' => 'GBP',
@@ -181,6 +191,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'Netflix',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 16.99,
                 'currency_code' => 'GBP',
@@ -196,6 +207,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'Disney +',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 16.99,
                 'currency_code' => 'GBP',
@@ -211,6 +223,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'Car Insurance',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 625.00,
                 'currency_code' => 'GBP',

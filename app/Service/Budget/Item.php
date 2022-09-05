@@ -29,8 +29,12 @@ class Item
 
     protected string $category;
 
+    protected string $account;
+
     public function __construct(array $data)
     {
+        $this->account = $data['account'];
+
         $this->start_date = new \DateTimeImmutable($data['start_date'], new \DateTimeZone('UTC'));
         if ($data['end_date'] !== null) {
             $this->end_date = new DateTimeImmutable($data['end_date'], new \DateTimeZone('UTC'));
@@ -51,6 +55,11 @@ class Item
         }
 
         $this->category = $data['category'];
+    }
+
+    public function account(): string
+    {
+        return $this->account;
     }
 
     public function active(): bool

@@ -13,6 +13,7 @@ use DateTimeImmutable;
  */
 class Service
 {
+    /** @var Account[] */
     private array $accounts = [];
 
     /** @var Item[] */
@@ -27,7 +28,14 @@ class Service
 
     public function __construct(array $accounts)
     {
-        $this->accounts = $accounts;
+        foreach ($accounts as $account) {
+            $this->accounts[$account['id']] = new Account(
+                $account['id'],
+                $account['type'],
+                $account['name'],
+                $account['balance']
+            );
+        }
 
         $start_month = null;
         $start_year = null;
