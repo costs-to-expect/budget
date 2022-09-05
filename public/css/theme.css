@@ -12181,6 +12181,9 @@ div.budget a div.expense div.amount {
   font-weight: 400;
   text-align: center;
 }
+div.budget a div.expense div.amount small.disabled-expense, div.budget a div.expense div.amount .disabled-expense.small {
+  font-size: 0.7rem;
+}
 div.budget a div.expense:hover {
   background-color: rgba(137, 43, 124, 0.25);
   padding-right: 0.3rem;
@@ -12205,18 +12208,18 @@ div.budget a div.expense.active div.amount {
   font-weight: 650;
 }
 div.budget div.balances h3, div.budget div.balances .h3 {
-  font-size: 1.6rem;
+  font-size: 1.9rem;
   font-weight: 300;
   color: #892b7c;
   margin-bottom: 0;
 }
 div.budget div.balances div.balance {
-  font-size: 1.3rem;
-  font-weight: 350;
+  font-size: 1.8rem;
+  font-weight: 300;
 }
 div.budget div.balances div.balance small, div.budget div.balances div.balance .small {
   font-weight: 300;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 div.budget div.balances p {
   font-size: 0.75rem;

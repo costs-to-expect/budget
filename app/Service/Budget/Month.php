@@ -60,7 +60,7 @@ class Month
     {
         $total = 0;
         foreach ($this->items as $item) {
-            if ($item->category() !== 'income') {
+            if ($item->disabled() === false && $item->category() !== 'income') {
                 $total += $item->amount();
             }
         }
@@ -72,7 +72,7 @@ class Month
     {
         $total = 0;
         foreach ($this->items as $item) {
-            if ($item->category() === 'income') {
+            if ($item->disabled() === false && $item->category() === 'income') {
                 $total += $item->amount();
             }
         }
