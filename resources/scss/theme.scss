@@ -110,6 +110,10 @@ div.budget {
                 font-size: 0.9rem;
                 font-weight: 400;
                 text-align: center;
+
+                small.disabled-expense {
+                    font-size: 0.7rem;
+                }
             }
 
             &:hover {
@@ -146,19 +150,19 @@ div.budget {
     div.balances {
 
         h3 {
-            font-size: 1.6rem;
+            font-size: 1.9rem;
             font-weight: 300;
             color: rgba(137, 43, 124, 1);
             margin-bottom: 0;
         }
 
         div.balance {
-            font-size: 1.3rem;
-            font-weight: 350;
+            font-size: 1.8rem;
+            font-weight: 300;
 
             small {
                 font-weight: 300;
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
         }
 

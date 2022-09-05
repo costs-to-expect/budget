@@ -31,6 +31,8 @@ class Item
 
     protected string $account;
 
+    protected bool $disabled;
+
     public function __construct(array $data)
     {
         $this->account = $data['account'];
@@ -55,6 +57,8 @@ class Item
         }
 
         $this->category = $data['category'];
+
+        $this->disabled = $data['disabled'];
     }
 
     public function account(): string
@@ -127,7 +131,7 @@ class Item
 
     public function disabled(): bool
     {
-        return false;
+        return $this->disabled;
     }
 
     public function endDate(): ?DateTimeImmutable

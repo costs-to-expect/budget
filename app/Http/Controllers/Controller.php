@@ -50,7 +50,7 @@ class Controller extends BaseController
             ],
             [
                 'currency' => 'GBP',
-                'type' => 'expense',
+                'type' => 'savings',
                 'id' => 'savings',
                 'name' => 'Savings',
                 'balance' => 126.33,
@@ -142,7 +142,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'Holiday Savings',
-                'account' => 'savings',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 150.00,
                 'currency_code' => 'GBP',
@@ -181,7 +181,7 @@ class Controller extends BaseController
                 'category' => 'flexible',
                 'start_date' => '2022-09-01',
                 'end_date' => '2023-12-31',
-                'disabled' => false,
+                'disabled' => true,
                 'frequency' => [
                     'type' => 'annually',
                     'day' => 15,
@@ -214,7 +214,7 @@ class Controller extends BaseController
                 'category' => 'flexible',
                 'start_date' => '2022-10-05',
                 'end_date' => null,
-                'disabled' => false,
+                'disabled' => true,
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 5,

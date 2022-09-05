@@ -51,6 +51,11 @@ class Account
         return $this->name;
     }
 
+    public function projected(): float
+    {
+        return $this->projected;
+    }
+
     public function type(): string
     {
         return $this->type;

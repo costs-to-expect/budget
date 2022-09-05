@@ -23,13 +23,19 @@
                 <div class="row">
                     @foreach ($__month->items() as $__item)
                         <a href="{{ route('budget.item.view', ['item_id' => str()->slug($__item->name())]) }}">
-                        <div class="col-12 expense @if ($active === true && $__item->name() === 'Netflix' && $__month->name() === 'October') active shadow @endif">
-                            <div class="name text-grey">{{ $__item->name() }}</div>
+                        <div class="col-12 expense @if ($active === true && $__item->name() === 'Netflix' && $__month->name() === 'October') active shadow @endif @if($__item->disabled() === true) opacity-50 @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
+                            <div class="name text-grey">
+                                {{ $__item->name() }}
+                            </div>
                             <div class="progress">
                                 <div class="progress-bar bg-{{ $__item->category() }}" role="progressbar" aria-label="" style="width: {{ $__item->progressBarPercentage() }}%"
                                      aria-valuenow="{{ $__item->progressBarPercentage() }}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <div class="amount text-grey"><small>&pound;</small>{{ $__item->amount() }}</div>
+                            <div class="amount text-grey"><small>&pound;</small>{{ $__item->amount() }}
+                                @if ($__item->disabled() === true)
+                                    <small class="text-dark disabled-expense">Disabled</small>
+                                @endif
+                            </div>
                         </div>
                         </a>
                     @endforeach
@@ -117,19 +123,30 @@
                         <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                     </svg>
                 </a>
-                <small>{{ $__account->name() }} &pound;</small>{{ $__account->balance() }}
+                <small>{{ $__account->name() }}<br /> &pound;</small>{{ $__account->balance() }}
             </div>
             @endforeach
         </div>
         <div class="col-6 text-end">
             <h3>Projected</h3>
             <p class="text-muted mb-1">Projected for November</p>
-            <div class="balance">
+
+            @foreach ($accounts as $__account)
+                <div class="balance">
+                    <a class="btn btn-sm btn-primary" href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                        </svg>
+                    </a>
+                    <small>{{ $__account->name() }}<br /> &pound;</small>{{ $__account->projected() }}
+                </div>
+            @endforeach
+            {{--<div class="balance">
                 <small>Default &pound;</small>1500.00
             </div>
             <div class="balance">
                 <small>Savings &pound;</small>2546.0
-            </div>
+            </div>--}}
         </div>
         <div class="col-12 mt-2">
             <a class="btn btn-sm btn-primary" href="{{ route('budget.account.create') }}">
