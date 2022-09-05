@@ -71,6 +71,16 @@ Route::group(
 
         // Budget item management
         Route::get(
+            '/budget/item/{item_id}/confirm-delete',
+            [BudgetItem::class, 'confirmDelete']
+        )->name('budget.item.confirm-delete');
+
+        Route::get(
+            '/budget/item/{item_id}/confirm-disable',
+            [BudgetItem::class, 'confirmDisable']
+        )->name('budget.item.confirm-disable');
+
+        Route::get(
             '/budget/item',
             [BudgetItem::class, 'create']
         )->name('budget.item.create');

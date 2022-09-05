@@ -13,6 +13,48 @@ use Illuminate\Http\Request;
  */
 class BudgetItem extends Controller
 {
+    public function confirmDelete(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $budget = new Service();
+
+        foreach ($this->mock_data as $budget_item) {
+            $budget->add($budget_item);
+        }
+
+        $budget->allocatedItemsToMonths();
+
+        return view(
+            'budget.item.confirm-delete',
+            [
+                'months' => $budget->months(),
+                'pagination' => $budget->pagination(),
+            ]
+        );
+    }
+
+    public function confirmDisable(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $budget = new Service();
+
+        foreach ($this->mock_data as $budget_item) {
+            $budget->add($budget_item);
+        }
+
+        $budget->allocatedItemsToMonths();
+
+        return view(
+            'budget.item.confirm-disable',
+            [
+                'months' => $budget->months(),
+                'pagination' => $budget->pagination(),
+            ]
+        );
+    }
+
     public function create(Request $request)
     {
         $this->bootstrap($request);
