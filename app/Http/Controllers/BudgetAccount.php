@@ -11,9 +11,9 @@ use Illuminate\Http\Request;
  * @copyright Dean Blackborough (Costs to Expect) 2018-2022
  * @license https://github.com/costs-to-expect/budget/blob/main/LICENSE
  */
-class Index extends Controller
+class BudgetAccount extends Controller
 {
-    public function home(Request $request)
+    public function create(Request $request)
     {
         $this->bootstrap($request);
 
@@ -26,17 +26,12 @@ class Index extends Controller
         $budget->allocatedItemsToMonths();
 
         return view(
-            'home',
+            'budget.account.create',
             [
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->pagination(),
             ]
         );
-    }
-
-    public function landing()
-    {
-        return view('landing');
     }
 }

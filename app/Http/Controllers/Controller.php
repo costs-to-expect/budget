@@ -32,6 +32,7 @@ class Controller extends BaseController
     protected Service $api;
 
     protected array $mock_data;
+    protected array $mock_accounts_data;
 
     public function __construct()
     {
@@ -39,9 +40,27 @@ class Controller extends BaseController
         $this->item_type_id = $this->config['item_type_id'];
         $this->item_subtype_id = $this->config['item_subtype_id'];
 
+        $this->mock_accounts_data = [
+            [
+                'currency' => 'GBP',
+                'type' => 'expense',
+                'id' => 'default', // Needs to be a unique id
+                'name' => 'Default',
+                'balance' => 1254.36,
+            ],
+            [
+                'currency' => 'GBP',
+                'type' => 'expense',
+                'id' => 'savings',
+                'name' => 'Savings',
+                'balance' => 126.33,
+            ]
+        ];
+
         $this->mock_data = [
             [
                 'name' => 'Salary',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 1866.00,
                 'currency_code' => 'GBP',
@@ -57,12 +76,13 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'Rent',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 850.00,
                 'currency_code' => 'GBP',
                 'category' => 'fixed',
                 'start_date' => '2021-01-01',
-                'end_date' => '2022-10-31',
+                'end_date' => null,
                 'disabled' => false,
                 'frequency' => [
                     'type' => 'monthly',
@@ -71,7 +91,26 @@ class Controller extends BaseController
                 ]
             ],
             [
+                'name' => 'Council Tax',
+                'account' => 'default',
+                'description' => 'This is a description for the expense',
+                'amount' => 163.00,
+                'currency_code' => 'GBP',
+                'category' => 'fixed',
+                'start_date' => '2021-01-01',
+                'end_date' => '2023-03-31',
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 20,
+                    'exclusions' => [
+                        2, 3
+                    ]
+                ],
+            ],
+            [
                 'name' => 'Gas & Electric',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 275.00,
                 'currency_code' => 'GBP',
@@ -87,6 +126,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'Guitar Lessons',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 25.00,
                 'currency_code' => 'GBP',
@@ -102,6 +142,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'Holiday Savings',
+                'account' => 'savings',
                 'description' => 'This is a description for the expense',
                 'amount' => 150.00,
                 'currency_code' => 'GBP',
@@ -117,6 +158,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'TV, Phone & Internet',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 75.00,
                 'currency_code' => 'GBP',
@@ -132,6 +174,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'School Uniform',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 45.00,
                 'currency_code' => 'GBP',
@@ -142,12 +185,13 @@ class Controller extends BaseController
                 'frequency' => [
                     'type' => 'annually',
                     'day' => 15,
-                    'month' => 10,
+                    'month' => 9,
                     'exclusions' => []
                 ],
             ],
             [
                 'name' => 'Netflix',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 16.99,
                 'currency_code' => 'GBP',
@@ -163,6 +207,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'Disney +',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 16.99,
                 'currency_code' => 'GBP',
@@ -173,6 +218,23 @@ class Controller extends BaseController
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 5,
+                    'exclusions' => []
+                ]
+            ],
+            [
+                'name' => 'Car Insurance',
+                'account' => 'default',
+                'description' => 'This is a description for the expense',
+                'amount' => 625.00,
+                'currency_code' => 'GBP',
+                'category' => 'fixed',
+                'start_date' => '2022-11-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'annually',
+                    'day' => 3,
+                    'month' => 11,
                     'exclusions' => []
                 ]
             ]

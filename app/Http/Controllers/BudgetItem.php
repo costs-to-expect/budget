@@ -13,11 +13,55 @@ use Illuminate\Http\Request;
  */
 class BudgetItem extends Controller
 {
+    public function confirmDelete(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $budget = new Service($this->mock_accounts_data);
+
+        foreach ($this->mock_data as $budget_item) {
+            $budget->add($budget_item);
+        }
+
+        $budget->allocatedItemsToMonths();
+
+        return view(
+            'budget.item.confirm-delete',
+            [
+                'accounts' => $budget->accounts(),
+                'months' => $budget->months(),
+                'pagination' => $budget->pagination(),
+            ]
+        );
+    }
+
+    public function confirmDisable(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $budget = new Service($this->mock_accounts_data);
+
+        foreach ($this->mock_data as $budget_item) {
+            $budget->add($budget_item);
+        }
+
+        $budget->allocatedItemsToMonths();
+
+        return view(
+            'budget.item.confirm-disable',
+            [
+                'accounts' => $budget->accounts(),
+                'months' => $budget->months(),
+                'pagination' => $budget->pagination(),
+            ]
+        );
+    }
+
     public function create(Request $request)
     {
         $this->bootstrap($request);
 
-        $budget = new Service();
+        $budget = new Service($this->mock_accounts_data);
 
         foreach ($this->mock_data as $budget_item) {
             $budget->add($budget_item);
@@ -28,6 +72,7 @@ class BudgetItem extends Controller
         return view(
             'budget.item.create',
             [
+                'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->pagination(),
             ]
@@ -38,7 +83,7 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $budget = new Service();
+        $budget = new Service($this->mock_accounts_data);
 
         foreach ($this->mock_data as $budget_item) {
             $budget->add($budget_item);
@@ -49,6 +94,7 @@ class BudgetItem extends Controller
         return view(
             'budget.item.index',
             [
+                'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->pagination(),
             ]
@@ -59,7 +105,7 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $budget = new Service();
+        $budget = new Service($this->mock_accounts_data);
 
         foreach ($this->mock_data as $budget_item) {
             $budget->add($budget_item);
@@ -70,6 +116,7 @@ class BudgetItem extends Controller
         return view(
             'budget.item.update',
             [
+                'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->pagination(),
             ]

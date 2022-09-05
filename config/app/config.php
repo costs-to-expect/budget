@@ -10,6 +10,6 @@ return [
     'item_subtype_id' => env('ITEM_SUBTYPE_ID'),
     'cookie_user' => env('SESSION_NAME_USER'),
     'cookie_bearer' => env('SESSION_NAME_BEARER'),
-    'version' => 'v0.01.0',
-    'release_date' => '24th August 2022'
+    'version' => 'v0.02.0',
+    'release_date' => '5th September 2022'
 ];

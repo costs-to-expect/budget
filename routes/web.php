@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Account;
 use App\Http\Controllers\Authentication;
+use App\Http\Controllers\BudgetAccount;
 use App\Http\Controllers\BudgetItem;
 use App\Http\Controllers\Index;
 use Illuminate\Support\Facades\Route;
@@ -69,7 +70,23 @@ Route::group(
             [Index::class, 'home']
         )->name('home');
 
+        // Budget account management
+        Route::get(
+            '/budget/account',
+            [BudgetAccount::class, 'create']
+        )->name('budget.account.create');
+
         // Budget item management
+        Route::get(
+            '/budget/item/{item_id}/confirm-delete',
+            [BudgetItem::class, 'confirmDelete']
+        )->name('budget.item.confirm-delete');
+
+        Route::get(
+            '/budget/item/{item_id}/confirm-disable',
+            [BudgetItem::class, 'confirmDisable']
+        )->name('budget.item.confirm-disable');
+
         Route::get(
             '/budget/item',
             [BudgetItem::class, 'create']

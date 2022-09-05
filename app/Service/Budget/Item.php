@@ -29,8 +29,12 @@ class Item
 
     protected string $category;
 
+    protected string $account;
+
     public function __construct(array $data)
     {
+        $this->account = $data['account'];
+
         $this->start_date = new \DateTimeImmutable($data['start_date'], new \DateTimeZone('UTC'));
         if ($data['end_date'] !== null) {
             $this->end_date = new DateTimeImmutable($data['end_date'], new \DateTimeZone('UTC'));
@@ -53,6 +57,11 @@ class Item
         $this->category = $data['category'];
     }
 
+    public function account(): string
+    {
+        return $this->account;
+    }
+
     public function active(): bool
     {
         return (
@@ -62,6 +71,30 @@ class Item
     }
 
     public function activeForMonth(int $days, int $month, int $year): bool
+    {
+        switch ($this->frequency->type()) {
+            case 'monthly':
+                return $this->activeForMonthMonthlyItem($days, $month, $year);
+            case 'annually':
+                return $this->activeForMonthAnnualItem($days, $month, $year);
+            default:
+                abort(500, 'Unknown frequency type');
+        }
+    }
+
+    private function activeForMonthAnnualItem(int $days, int $month, int $year)
+    {
+        $start_of_active_month = new DateTimeImmutable("{$year}-{$month}-01", new \DateTimeZone('UTC'));
+        $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", new \DateTimeZone('UTC'));
+
+        return (
+            $this->frequency()->month() === $month &&
+            $this->startDate() <= $end_of_active_month &&
+            ($this->endDate() === null || $this->endDate() >= $end_of_active_month)
+        );
+    }
+
+    private function activeForMonthMonthlyItem(int $days, int $month, int $year)
     {
         $start_of_active_month = new DateTimeImmutable("{$year}-{$month}-01", new \DateTimeZone('UTC'));
         $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", new \DateTimeZone('UTC'));

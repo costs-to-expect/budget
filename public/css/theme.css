@@ -12211,15 +12211,15 @@ div.budget div.balances h3, div.budget div.balances .h3 {
   margin-bottom: 0;
 }
 div.budget div.balances div.balance {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 350;
 }
 div.budget div.balances div.balance small, div.budget div.balances div.balance .small {
   font-weight: 300;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 div.budget div.balances p {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 div.budget-item {

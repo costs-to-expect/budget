@@ -37,31 +37,36 @@
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
         <div class="col-md-5 p-lg-5 mx-auto my-5">
             <h1 class="display-4 fw-normal">Budget</h1>
-            <p class="lead fw-normal">A free open source budgeting tool<br />
+            <p class="lead fw-normal">A free, open source budgeting tool<br />
                 powered by the <a href="https://api.costs-to-expect.com">Costs to Expect API</a>.</p>
             <p class="lead fw-normal">In early development, we expect to have our v1.00.0 ready
-                before spring 2023, our Beta will be ready much sooner.</p>
-            @env('local')
-            <a href="{{ route('sign-in.view') }}" class="btn btn-outline-primary">Sign-in</a>
-            @else
-            <a class="btn btn-outline-primary">Coming Soon</a>
-            @endenv
+                before spring 2023, our Beta will be ready before the end of the year.</p>
+            <a class="btn btn-outline-primary"><span class="badge text-bg-income">Beta</span> Coming Soon </a>
         </div>
     </div>
 
     <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
         <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 py-3">
-                <h2 class="display-5">Simple to use</h2>
-                <p class="lead">So simple to use your child could manage your budgeting, we wouldn't
+                <h2 class="display-5">Simple</h2>
+                <p class="lead">Our overview is so
+                    easy to understand a child could manage your budgeting, we wouldn't
                     suggest it, but they could.</p>
+            </div>
+            <div class="bg-light shadow-sm mx-auto"
+                 style="width: 80%; height: 500px; border-radius: 21px 21px 0 0;">
+                <img src="{{ asset('images/budget.png') }}" width="275" height="" alt="Budget overview screen, expense for each month" />
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 p-3">
-                <h2 class="display-5">Free</h2>
-                <p class="lead">Free forever, simple budgeting should be free and easy, this app will always
-                    be free. We have a pro version in the works if you need more powerful tools.</p>
+                <h2 class="display-5">Projections</h2>
+                <p class="lead">At a glance projections, no matter what you are doing, a projection is always
+                    available for each of your accounts.</p>
+            </div>
+            <div class="bg-dark shadow-sm mx-auto"
+                 style="width: 80%; height: 500px; border-radius: 21px 21px 0 0;">
+                <img src="{{ asset('images/projections.png') }}" width="275" height="" alt="Budget overview screen, expense for each month" />
             </div>
         </div>
     </div>
@@ -70,14 +75,14 @@
         <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 py-3">
                 <h2 class="display-5">Open Source</h2>
-                <p class="lead">This app and the API it uses are open source, we aren't hiding anything, you
+                <p class="lead">Budget and the API it uses are open source, we aren't hiding anything, you
                     are free to see how your data is transmitted and saved.</p>
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 p-3">
                 <h2 class="display-5">Powerful</h2>
-                <p class="lead">The Costs to Expect API is incredible powerful, we designed it knowing
+                <p class="lead">The Costs to Expect API is incredibly powerful, we designed it knowing
                     we were going to use it for a variety of different tools.</p>
             </div>
         </div>
@@ -86,9 +91,34 @@
     <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
         <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 py-3">
+                <h2 class="display-5">Detail</h2>
+                <p class="lead">We only show you the data you need but behind the scenes we
+                    have all the detail, expenses can be as complex as you like.</p>
+            </div>
+            <div class="bg-light shadow-sm mx-auto"
+                 style="width: 80%; height: 470px; border-radius: 21px 21px 0 0;">
+                <img src="{{ asset('images/item-detail.png') }}" width="275" height="" alt="Budget overview screen, expense for each month" />
+            </div>
+        </div>
+        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+            <div class="my-3 p-3">
+                <h2 class="display-5">Exclusions</h2>
+                <p class="lead">We provide the tools to set exclusions, all expenses aren't monthly,
+                    do you want to set when an expense shouldn't appear on the budget?.</p>
+            </div>
+            <div class="bg-dark shadow-sm mx-auto"
+                 style="width: 80%; height: 470px; border-radius: 21px 21px 0 0;">
+                <img src="{{ asset('images/exclusions.png') }}" width="275" height="" alt="Budget overview screen, expense for each month" />
+            </div>
+        </div>
+    </div>
+
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+        <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+            <div class="my-3 py-3">
                 <h2 class="display-5">Your Data</h2>
-                <p class="lead">You can use this app or access your data directly via the API,
-                    inject into your system or just view the JSON.</p>
+                <p class="lead">You can use our app or access your data directly via the API,
+                    we don't mind how you use our tools.</p>
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -96,6 +126,27 @@
                 <h2 class="display-5">Full Control</h2>
                 <p class="lead">If you want to leave, no worries, we provide the tools to let you
                     export and delete your data immediately, no waiting.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+        <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+            <div class="my-3 py-3">
+                <h2 class="display-5">Simple</h2>
+                <p class="lead">The first thing you see is a simple overview of your expenses, our overview is so
+                    easy to understand a child could manage your budgeting, we wouldn't
+                    suggest it, but they could.</p>
+            </div>
+        </div>
+        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+            <div class="my-3 p-3">
+                <h2 class="display-5">Free</h2>
+                <p class="lead">Free forever*, simple budgeting should be free and easy, this app will be free
+                    for as long as possible, Budget is funded by the API and Budget Pro.</p>
+                <p class="text-muted small">
+                    *We can't see into the future so we reserve the right to change this if necessary.
+                </p>
             </div>
         </div>
     </div>

@@ -13,6 +13,9 @@ use DateTimeImmutable;
  */
 class Service
 {
+    /** @var Account[] */
+    private array $accounts = [];
+
     /** @var Item[] */
     private array $budget_items = [];
 
@@ -23,8 +26,17 @@ class Service
 
     private DateTimeImmutable $view_start_date;
 
-    public function __construct()
+    public function __construct(array $accounts)
     {
+        foreach ($accounts as $account) {
+            $this->accounts[$account['id']] = new Account(
+                $account['id'],
+                $account['type'],
+                $account['name'],
+                $account['balance']
+            );
+        }
+
         $start_month = null;
         $start_year = null;
         if (request()->query('month') !== null && request()->query('year') !== null) {
@@ -43,6 +55,11 @@ class Service
         }
 
         $this->setUpMonths();
+    }
+
+    public function accounts(): array
+    {
+        return $this->accounts;
     }
 
     public function add(array $data): bool
