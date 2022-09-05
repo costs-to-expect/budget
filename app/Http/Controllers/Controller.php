@@ -50,7 +50,7 @@ class Controller extends BaseController
             ],
             [
                 'currency' => 'GBP',
-                'type' => 'expense',
+                'type' => 'savings',
                 'id' => 'savings',
                 'name' => 'Savings',
                 'balance' => 126.33,
@@ -142,7 +142,7 @@ class Controller extends BaseController
             ],
             [
                 'name' => 'Holiday Savings',
-                'account' => 'savings',
+                'account' => 'default',
                 'description' => 'This is a description for the expense',
                 'amount' => 150.00,
                 'currency_code' => 'GBP',

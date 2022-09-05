@@ -57,6 +57,11 @@ class Service
         $this->setUpMonths();
     }
 
+    public function account(string $id) : Account
+    {
+        return $this->accounts[$id];
+    }
+
     public function accounts(): array
     {
         return $this->accounts;
@@ -124,6 +129,15 @@ class Service
             foreach ($this->budget_items as $budget_item) {
                 if ($budget_item->activeForMonth($month->days(), $month->month(), $month->year()) === true) {
                     $this->months[$month->year() . '-' . $month->month()]->add($budget_item);
+
+                    if ($budget_item->category() === 'income') {
+                        $this->accounts[$budget_item->account()]->add($budget_item->amount());
+                    } else if ($budget_item->category() === 'savings') {
+                        $this->accounts[$budget_item->account()]->sub($budget_item->amount());
+                        $this->accounts['savings']->add($budget_item->amount()); // How do we deal with this?
+                    } else {
+                        $this->accounts[$budget_item->account()]->sub($budget_item->amount());
+                    }
                 }
             }
         }
