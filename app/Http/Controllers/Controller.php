@@ -44,7 +44,7 @@ class Controller extends BaseController
             [
                 'currency' => 'GBP',
                 'type' => 'expense',
-                'id' => 'default',
+                'id' => 'default', // Needs to be a unique id
                 'name' => 'Default',
                 'balance' => 1254.36,
             ],

@@ -13,6 +13,8 @@ class Account
 {
     private float $balance;
 
+    private float $projected;
+
     public function __construct(
         private readonly string $id,
         private readonly string $type,
@@ -21,11 +23,12 @@ class Account
     )
     {
         $this->balance = $start;
+        $this->projected = $start;
     }
 
     public function add(float $amount) : void
     {
-        $this->balance += $amount;
+        $this->projected += $amount;
     }
 
     public function balance() : float
@@ -40,7 +43,7 @@ class Account
 
     public function sub(float $amount) : void
     {
-        $this->balance -= $amount;
+        $this->projected -= $amount;
     }
 
     public function name() : string

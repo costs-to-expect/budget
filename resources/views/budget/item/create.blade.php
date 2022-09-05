@@ -237,7 +237,8 @@
                         </div>
                     </fieldset>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary w-100">Save</button>
+                        <a href="{{ route('home') }}" class="btn btn-dark">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                     <div class="col-12 text-muted">Fields marked with an asterisk * are required.</div>
                 </form>
