@@ -31,11 +31,16 @@ class Item
 
     protected string $account;
 
+    protected ?string $target_account;
+
     protected bool $disabled;
 
     public function __construct(array $data)
     {
+        $this->id = $data['id'];
+
         $this->account = $data['account'];
+        $this->target_account = $data['target_account'];
 
         $this->start_date = new \DateTimeImmutable($data['start_date'], new \DateTimeZone('UTC'));
         if ($data['end_date'] !== null) {
@@ -86,7 +91,7 @@ class Item
         }
     }
 
-    private function activeForMonthAnnualItem(int $days, int $month, int $year)
+    private function activeForMonthAnnualItem(int $days, int $month, int $year): bool
     {
         $start_of_active_month = new DateTimeImmutable("{$year}-{$month}-01", new \DateTimeZone('UTC'));
         $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", new \DateTimeZone('UTC'));
@@ -98,12 +103,13 @@ class Item
         );
     }
 
-    private function activeForMonthMonthlyItem(int $days, int $month, int $year)
+    private function activeForMonthMonthlyItem(int $days, int $month, int $year): bool
     {
         $start_of_active_month = new DateTimeImmutable("{$year}-{$month}-01", new \DateTimeZone('UTC'));
         $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", new \DateTimeZone('UTC'));
 
         return (
+            in_array($month, $this->frequency()->exclusions(), true) === false &&
             $this->startDate() <= $end_of_active_month &&
             ($this->endDate() === null || $this->endDate() >= $end_of_active_month)
         );
@@ -144,6 +150,11 @@ class Item
         return $this->frequency;
     }
 
+    public function id(): string
+    {
+        return $this->id;
+    }
+
     public function name(): string
     {
         return $this->name;
@@ -157,5 +168,10 @@ class Item
     public function startDate(): DateTimeImmutable
     {
         return $this->start_date;
+    }
+
+    public function targetAccount(): ?string
+    {
+        return $this->target_account;
     }
 }

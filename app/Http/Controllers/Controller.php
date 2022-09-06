@@ -59,8 +59,10 @@ class Controller extends BaseController
 
         $this->mock_data = [
             [
+                'id' => 1,
                 'name' => 'Salary',
                 'account' => 'default',
+                'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 1866.00,
                 'currency_code' => 'GBP',
@@ -75,8 +77,10 @@ class Controller extends BaseController
                 ]
             ],
             [
+                'id' => 2,
                 'name' => 'Rent',
                 'account' => 'default',
+                'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 850.00,
                 'currency_code' => 'GBP',
@@ -91,8 +95,10 @@ class Controller extends BaseController
                 ]
             ],
             [
+                'id' => 3,
                 'name' => 'Council Tax',
                 'account' => 'default',
+                'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 163.00,
                 'currency_code' => 'GBP',
@@ -109,8 +115,30 @@ class Controller extends BaseController
                 ],
             ],
             [
+                'id' => 4,
+                'name' => 'Council Tax',
+                'account' => 'default',
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => 170.00,
+                'currency_code' => 'GBP',
+                'category' => 'fixed',
+                'start_date' => '2023-04-01',
+                'end_date' => '2024-03-31',
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 20,
+                    'exclusions' => [
+                        2, 3
+                    ]
+                ],
+            ],
+            [
+                'id' => 5,
                 'name' => 'Gas & Electric',
                 'account' => 'default',
+                'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 275.00,
                 'currency_code' => 'GBP',
@@ -125,8 +153,10 @@ class Controller extends BaseController
                 ],
             ],
             [
+                'id' => 6,
                 'name' => 'Guitar Lessons',
                 'account' => 'default',
+                'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 25.00,
                 'currency_code' => 'GBP',
@@ -141,8 +171,10 @@ class Controller extends BaseController
                 ],
             ],
             [
+                'id' => 7,
                 'name' => 'Holiday Savings',
                 'account' => 'default',
+                'target_account' => 'savings',
                 'description' => 'This is a description for the expense',
                 'amount' => 150.00,
                 'currency_code' => 'GBP',
@@ -157,8 +189,10 @@ class Controller extends BaseController
                 ],
             ],
             [
+                'id' => 8,
                 'name' => 'TV, Phone & Internet',
                 'account' => 'default',
+                'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 75.00,
                 'currency_code' => 'GBP',
@@ -173,8 +207,10 @@ class Controller extends BaseController
                 ],
             ],
             [
+                'id' => 9,
                 'name' => 'School Uniform',
                 'account' => 'default',
+                'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 45.00,
                 'currency_code' => 'GBP',
@@ -190,8 +226,10 @@ class Controller extends BaseController
                 ],
             ],
             [
+                'id' => 10,
                 'name' => 'Netflix',
                 'account' => 'default',
+                'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 16.99,
                 'currency_code' => 'GBP',
@@ -206,8 +244,10 @@ class Controller extends BaseController
                 ]
             ],
             [
+                'id' => 11,
                 'name' => 'Disney +',
                 'account' => 'default',
+                'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 16.99,
                 'currency_code' => 'GBP',
@@ -222,8 +262,10 @@ class Controller extends BaseController
                 ]
             ],
             [
+                'id' => 12,
                 'name' => 'Car Insurance',
                 'account' => 'default',
+                'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 625.00,
                 'currency_code' => 'GBP',

@@ -142,7 +142,7 @@
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 p-3">
                 <h2 class="display-5">Free</h2>
-                <p class="lead">Free forever*, simple budgeting should be free and easy, this app will be free
+                <p class="lead">Free*, simple budgeting should be free and easy, this app will be free
                     for as long as possible, Budget is funded by the API and Budget Pro.</p>
                 <p class="text-muted small">
                     *We can't see into the future, we reserve the right to change this if necessary.

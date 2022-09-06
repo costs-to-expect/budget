@@ -14,18 +14,22 @@ class Budget extends Component
 
     private array $pagination;
 
+    private array $view_end;
+
     private bool $active;
 
     public function __construct(
         array $accounts,
         array $months,
         array $pagination,
+        array $viewEnd,
         bool $active = false
     )
     {
         $this->accounts = $accounts;
         $this->months = $months;
         $this->pagination = $pagination;
+        $this->view_end = $viewEnd;
         $this->active = $active;
     }
 
@@ -37,6 +41,7 @@ class Budget extends Component
                 'accounts' => $this->accounts,
                 'months' => $this->months,
                 'pagination' => $this->pagination,
+                'view_end' => $this->view_end,
                 'active' => $this->active,
             ]
         );
