@@ -150,18 +150,27 @@ class Service
     private function setUpMonths(): void
     {
         $year_int = (int) $this->view_start_date->format('Y');
-        $month_int = (int) $this->view_start_date   ->format('n');
+        $month_int = (int) $this->view_start_date->format('n');
 
-        $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int);
+        //$this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, true);
 
-        for ($i = 1; $i < $this->numberOfVisibleMonths(); $i++) {
+        for ($i = 0; $i < date_diff($this->start_date, $this->view_start_date)->m; $i++) {
+            $next = $this->start_date->add(new \DateInterval("P{$i}M"));
+
+            $year_int = (int) $next->format('Y');
+            $month_int = (int) $next->format('n');
+
+            $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, false);
+        }
+
+        for ($i = 0; $i < $this->numberOfVisibleMonths(); $i++) {
 
             $next = $this->view_start_date->add(new \DateInterval("P{$i}M"));
 
             $year_int = (int) $next->format('Y');
             $month_int = (int) $next->format('n');
 
-            $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int);
+            $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, true);
         }
     }
 }

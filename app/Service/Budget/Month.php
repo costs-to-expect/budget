@@ -20,7 +20,8 @@ class Month
 
     public function __construct(
         private readonly int $month,
-        private readonly int $year
+        private readonly int $year,
+        private readonly bool $visible,
     )
     {
         $this->date = new DateTimeImmutable("{$this->year}-{$this->month}-01", new \DateTimeZone('UTC'));
@@ -78,6 +79,11 @@ class Month
         }
 
         return (float) $total;
+    }
+
+    public function visible(): bool
+    {
+        return $this->visible;
     }
 
     public function year(): int

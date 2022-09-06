@@ -16,9 +16,15 @@
         </div>
     </div>
 
+    @foreach ($months as $__month)
+        {{ $__month->name() }}
+    @endforeach
+
     <div class="row">
+        @php $counter = 0; @endphp
         @foreach ($months as $__month)
-            <div class="col-4 @if($loop->index === 1) border-start border-end border-primary border-opacity-50 @endif">
+            @if ($__month->visible())
+            <div class="col-4 @if($counter === 1) border-start border-end border-primary border-opacity-50 @endif">
                 <div class="text-primary month pb-2">{{ $__month->name() }}</div>
                 <div class="row">
                     @foreach ($__month->items() as $__item)
@@ -41,11 +47,14 @@
                     @endforeach
                 </div>
             </div>
+            @php $counter++; @endphp
+            @endif
         @endforeach
     </div>
 
-    <div class="row text-grey mt-2 pt-2">
+    <div class="row text-grey mt-2 pt-2" id="expenditure">
         @foreach ($months as $__month)
+            @if ($__month->visible())
             <div class="col-4 month-total">
                 <div class="fs-5 text-center text-muted">Expenditure</div>
                 <div>
@@ -55,6 +64,7 @@
                     Income <small>&pound;</small>{{ $__month->totalIncome() }}
                 </div>
             </div>
+            @endif
         @endforeach
     </div>
 
@@ -83,7 +93,8 @@
         </a>
     </div>--}}
 
-    <div class="pagination justify-content-between mt-3">
+    <div id="pagination" class="pagination justify-content-between mt-3">
+        <div>
         @if ($pagination['previous'] === null)
             <a class="btn btn-sm btn-outline-primary disabled" href="" aria-disabled="true">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -92,15 +103,23 @@
                 Previous
             </a>
         @else
-            <a class="btn btn-sm btn-outline-primary" href="{{ route('home', $pagination['previous']) }}">
+            <a class="btn btn-sm btn-outline-primary" href="{{ route('home', [...$pagination['previous'], ...['#expenditure']]) }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
                 </svg>
                 Previous
             </a>
+            <a class="btn btn-sm btn-outline-primary" href="{{ route('home') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar4-event" viewBox="0 0 16 16">
+                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
+                    <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                </svg>
+                Today
+            </a>
         @endif
+        </div>
 
-        <a class="btn btn-sm btn-outline-primary" href="{{ route('home', $pagination['next']) }}">
+        <a class="btn btn-sm btn-outline-primary" href="{{ route('home', [...$pagination['next'], ...['#expenditure']]) }}">
             Next
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
