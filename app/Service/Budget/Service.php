@@ -26,6 +26,8 @@ class Service
 
     private DateTimeImmutable $view_start_date;
 
+    private DateTimeImmutable $view_end_date;
+
     public function __construct(array $accounts)
     {
         foreach ($accounts as $account) {
@@ -97,6 +99,17 @@ class Service
         ];
     }
 
+    /**
+     * @return array{ month: string, year: int}
+     */
+    public function viewEnd(): array
+    {
+        return [
+            'month' => $this->view_end_date->format('F'),
+            'year' => (int) $this->view_end_date->format('Y')
+        ];
+    }
+
     /*private function startMonth(): int
     {
         return (int) $this->start_date->format('n');
@@ -149,11 +162,6 @@ class Service
 
     private function setUpMonths(): void
     {
-        $year_int = (int) $this->view_start_date->format('Y');
-        $month_int = (int) $this->view_start_date->format('n');
-
-        //$this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, true);
-
         for ($i = 0; $i < date_diff($this->start_date, $this->view_start_date)->m; $i++) {
             $next = $this->start_date->add(new \DateInterval("P{$i}M"));
 
@@ -169,6 +177,9 @@ class Service
 
             $year_int = (int) $next->format('Y');
             $month_int = (int) $next->format('n');
+
+            $this->view_end_date = (new DateTimeImmutable(
+                "{$year_int}-{$month_int}-01", new \DateTimeZone('UTC')))->setTime(7, 1);
 
             $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, true);
         }

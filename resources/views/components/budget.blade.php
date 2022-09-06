@@ -16,11 +16,7 @@
         </div>
     </div>
 
-    @foreach ($months as $__month)
-        {{ $__month->name() }}
-    @endforeach
-
-    <div class="row">
+    <div class="row mt-3">
         @php $counter = 0; @endphp
         @foreach ($months as $__month)
             @if ($__month->visible())
@@ -148,7 +144,7 @@
         </div>
         <div class="col-6 text-end">
             <h3>Projected</h3>
-            <p class="text-muted mb-1">Projected for November</p>
+            <p class="text-muted mb-1">Projected for {{ $view_end['month'] . ' ' . $view_end['year'] }}</p>
 
             @foreach ($accounts as $__account)
                 <div class="balance">
