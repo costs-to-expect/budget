@@ -31,11 +31,14 @@ class Item
 
     protected string $account;
 
+    protected ?string $target_account;
+
     protected bool $disabled;
 
     public function __construct(array $data)
     {
         $this->account = $data['account'];
+        $this->target_account = $data['target_account'];
 
         $this->start_date = new \DateTimeImmutable($data['start_date'], new \DateTimeZone('UTC'));
         if ($data['end_date'] !== null) {
@@ -158,5 +161,10 @@ class Item
     public function startDate(): DateTimeImmutable
     {
         return $this->start_date;
+    }
+
+    public function targetAccount(): ?string
+    {
+        return $this->target_account;
     }
 }

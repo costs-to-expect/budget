@@ -149,7 +149,7 @@ class Service
                         } else {
                             if ($budget_item->category() === 'savings') {
                                 $this->accounts[$budget_item->account()]->sub($budget_item->amount());
-                                $this->accounts['savings']->add($budget_item->amount()); // How do we deal with this?
+                                $this->accounts[$budget_item->targetAccount()]->add($budget_item->amount()); // How do we deal with this?
                             } else {
                                 $this->accounts[$budget_item->account()]->sub($budget_item->amount());
                             }
