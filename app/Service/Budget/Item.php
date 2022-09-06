@@ -37,6 +37,8 @@ class Item
 
     public function __construct(array $data)
     {
+        $this->id = $data['id'];
+
         $this->account = $data['account'];
         $this->target_account = $data['target_account'];
 
@@ -146,6 +148,11 @@ class Item
     public function frequency(): Period
     {
         return $this->frequency;
+    }
+
+    public function id(): string
+    {
+        return $this->id;
     }
 
     public function name(): string
