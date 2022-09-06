@@ -109,6 +109,24 @@ class Controller extends BaseController
                 ],
             ],
             [
+                'name' => 'Council Tax',
+                'account' => 'default',
+                'description' => 'This is a description for the expense',
+                'amount' => 170.00,
+                'currency_code' => 'GBP',
+                'category' => 'fixed',
+                'start_date' => '2023-04-01',
+                'end_date' => '2024-03-31',
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 20,
+                    'exclusions' => [
+                        2, 3
+                    ]
+                ],
+            ],
+            [
                 'name' => 'Gas & Electric',
                 'account' => 'default',
                 'description' => 'This is a description for the expense',

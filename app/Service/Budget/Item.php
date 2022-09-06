@@ -104,6 +104,7 @@ class Item
         $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", new \DateTimeZone('UTC'));
 
         return (
+            in_array($month, $this->frequency()->exclusions(), true) === false &&
             $this->startDate() <= $end_of_active_month &&
             ($this->endDate() === null || $this->endDate() >= $end_of_active_month)
         );
