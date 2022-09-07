@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service\Budget;
 
 use DateTimeImmutable;
+use DateTimeZone;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -28,8 +29,39 @@ class Service
 
     private DateTimeImmutable $view_end_date;
 
-    public function __construct(array $accounts, ?int $month = null, ?int $year = null)
+    public function __construct()
     {
+        $this->start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1 );
+        $this->view_start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1);
+    }
+
+    public function setNow(DateTimeImmutable $start_date): Service
+    {
+        $this->start_date = $start_date;
+        $this->view_start_date = $start_date;
+
+        return $this;
+    }
+
+    public function setPagination(int $month, $year): Service
+    {
+        $this->view_start_date = (new DateTimeImmutable(
+            "{$year}-{$month}-01",
+            new DateTimeZone('UTC')
+        ))->setTime(7, 1);
+
+        return $this;
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function setAccounts(array $accounts): Service
+    {
+        if(count($accounts) > 3) {
+            throw new \LengthException('Too many accounts, limit three');
+        }
+
         foreach ($accounts as $account) {
             $this->accounts[$account['id']] = new Account(
                 $account['id'],
@@ -39,16 +71,11 @@ class Service
             );
         }
 
-        $this->start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1 );
-        $this->view_start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1);
+        return $this;
+    }
 
-        if ($month !== NULL && $year !== NULL) {
-            $this->view_start_date = (new DateTimeImmutable(
-                "{$year}-{$month}-01",
-                new \DateTimeZone('UTC')
-            ))->setTime(7, 1);
-        }
-
+    public function setUp(): void
+    {
         $this->setUpMonths();
     }
 
@@ -155,7 +182,13 @@ class Service
 
     private function setUpMonths(): void
     {
-        for ($i = 0; $i < date_diff($this->start_date, $this->view_start_date)->m; $i++) {
+        $date_diff = date_diff($this->start_date, $this->view_start_date);
+
+        for (
+            $i = 0;
+            $i < ($date_diff->y * 12) + $date_diff->m;
+            $i++
+        ) {
             $next = $this->start_date->add(new \DateInterval("P{$i}M"));
 
             $year_int = (int) $next->format('Y');
@@ -172,7 +205,7 @@ class Service
             $month_int = (int) $next->format('n');
 
             $this->view_end_date = (new DateTimeImmutable(
-                "{$year_int}-{$month_int}-01", new \DateTimeZone('UTC')))->setTime(7, 1);
+                "{$year_int}-{$month_int}-01", new DateTimeZone('UTC')))->setTime(7, 1);
 
             $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, true);
         }

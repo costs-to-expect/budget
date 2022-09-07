@@ -17,14 +17,12 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $month = $request->query('month');
-        $year = $request->query('year');
-
-        $budget = new Service(
-            $this->mock_accounts_data,
-            ($month !== null ? (int) $month : null),
-            ($year !== null ? (int) $year : null)
-        );
+        $budget = new Service();
+        if ($request->query('month') !== null && $request->query('year') !== null) {
+            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
+        }
+        $budget->setAccounts($this->mock_accounts_data)
+            ->setUp();
 
         foreach ($this->mock_data as $budget_item) {
             $budget->add($budget_item);
@@ -47,14 +45,12 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $month = $request->query('month');
-        $year = $request->query('year');
-
-        $budget = new Service(
-            $this->mock_accounts_data,
-            ($month !== null ? (int) $month : null),
-            ($year !== null ? (int) $year : null)
-        );
+        $budget = new Service();
+        if ($request->query('month') !== null && $request->query('year') !== null) {
+            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
+        }
+        $budget->setAccounts($this->mock_accounts_data)
+            ->setUp();
 
         foreach ($this->mock_data as $budget_item) {
             $budget->add($budget_item);
@@ -77,14 +73,12 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $month = $request->query('month');
-        $year = $request->query('year');
-
-        $budget = new Service(
-            $this->mock_accounts_data,
-            ($month !== null ? (int) $month : null),
-            ($year !== null ? (int) $year : null)
-        );
+        $budget = new Service();
+        if ($request->query('month') !== null && $request->query('year') !== null) {
+            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
+        }
+        $budget->setAccounts($this->mock_accounts_data)
+            ->setUp();
 
         foreach ($this->mock_data as $budget_item) {
             $budget->add($budget_item);
@@ -107,14 +101,12 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $month = $request->query('month');
-        $year = $request->query('year');
-
-        $budget = new Service(
-            $this->mock_accounts_data,
-            ($month !== null ? (int) $month : null),
-            ($year !== null ? (int) $year : null)
-        );
+        $budget = new Service();
+        if ($request->query('month') !== null && $request->query('year') !== null) {
+            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
+        }
+        $budget->setAccounts($this->mock_accounts_data)
+            ->setUp();
 
         foreach ($this->mock_data as $budget_item) {
             $budget->add($budget_item);
@@ -137,14 +129,12 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $month = $request->query('month');
-        $year = $request->query('year');
-
-        $budget = new Service(
-            $this->mock_accounts_data,
-            ($month !== null ? (int) $month : null),
-            ($year !== null ? (int) $year : null)
-        );
+        $budget = new Service();
+        if ($request->query('month') !== null && $request->query('year') !== null) {
+            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
+        }
+        $budget->setAccounts($this->mock_accounts_data)
+            ->setUp();
 
         foreach ($this->mock_data as $budget_item) {
             $budget->add($budget_item);
