@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class BudgetServiceTest extends TestCase
+class BudgetTest extends TestCase
 {
     use WithFaker;
 
