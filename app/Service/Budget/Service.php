@@ -28,7 +28,7 @@ class Service
 
     private DateTimeImmutable $view_end_date;
 
-    public function __construct(array $accounts)
+    public function __construct(array $accounts, ?int $month = null, ?int $year = null)
     {
         foreach ($accounts as $account) {
             $this->accounts[$account['id']] = new Account(
@@ -39,19 +39,12 @@ class Service
             );
         }
 
-        $start_month = null;
-        $start_year = null;
-        if (request()->query('month') !== null && request()->query('year') !== null) {
-            $start_month = (int) request()->query('month');
-            $start_year = (int) request()->query('year');
-        }
-
         $this->start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1 );
         $this->view_start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1);
 
-        if ($start_month !== NULL && $start_year !== NULL) {
+        if ($month !== NULL && $year !== NULL) {
             $this->view_start_date = (new DateTimeImmutable(
-                "{$start_year}-{$start_month}-01",
+                "{$year}-{$month}-01",
                 new \DateTimeZone('UTC')
             ))->setTime(7, 1);
         }

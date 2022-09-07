@@ -17,7 +17,14 @@ class Index extends Controller
     {
         $this->bootstrap($request);
 
-        $budget = new Service($this->mock_accounts_data);
+        $month = $request->query('month');
+        $year = $request->query('year');
+
+        $budget = new Service(
+            $this->mock_accounts_data,
+            ($month !== null ? (int) $month : null),
+            ($year !== null ? (int) $year : null)
+        );
 
         foreach ($this->mock_data as $budget_item) {
             $budget->add($budget_item);
