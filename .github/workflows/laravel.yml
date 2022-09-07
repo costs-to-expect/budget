@@ -34,4 +34,4 @@ jobs:
         DB_DATABASE: database/database.sqlite
         ITEM_TYPE_ID: ${{ secrets.ITEM_TYPE_ID }}
         ITEM_SUBTYPE_ID: ${{ secrets.ITEM_SUBTYPE_ID }}
-      run: vendor/bin/phpunit
+      run: vendor/bin/phpunit tests/
