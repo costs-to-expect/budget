@@ -2,6 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Service\Budget\Service;
+use DateTimeImmutable;
+use DateTimeZone;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
@@ -12,15 +15,21 @@ class BudgetItemTest extends TestCase
     public function testMonthlyItemAddedToAllMonths(): void
     {
         $account_id = $this->faker->uuid();
-        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => 1254.36,];
+        $account = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $account_id,
+            'name' => 'Default',
+            'balance' => 1254.36,
+        ];
 
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
         $service->setAccounts([$account]);
-        $service->setUp();
-        $service->add(
+        $service->create();
+        $service->addItem(
             [
                 'id' => $this->faker->uuid(),
                 'name' => 'Salary',
@@ -41,7 +50,7 @@ class BudgetItemTest extends TestCase
             ]
         );
 
-        $service->allocatedItemsToMonths();
+        $service->assignItemsToBudget();
 
         $this->assertCount(3, $service->months());
         foreach ($service->months() as $month) {
@@ -52,15 +61,21 @@ class BudgetItemTest extends TestCase
     public function testMonthlyItemAddedToAOnlyRelevantMonths(): void
     {
         $account_id = $this->faker->uuid();
-        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => 1254.36,];
+        $account = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $account_id,
+            'name' => 'Default',
+            'balance' => 1254.36,
+        ];
 
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
         $service->setAccounts([$account]);
-        $service->setUp();
-        $service->add(
+        $service->create();
+        $service->addItem(
             [
                 'id' => $this->faker->uuid(),
                 'name' => 'Salary',
@@ -81,28 +96,34 @@ class BudgetItemTest extends TestCase
             ]
         );
 
-        $service->allocatedItemsToMonths();
+        $service->assignItemsToBudget();
 
         $this->assertCount(3, $service->months());
 
         $this->assertCount(0, $service->months()['2020-8']->items());
         $this->assertCount(1, $service->months()['2020-9']->items());
-        $this->assertCount(1,$service->months()['2020-10']->items());
+        $this->assertCount(1, $service->months()['2020-10']->items());
     }
 
     public function testMonthlyItemAddedToAllMonthsWithPagination(): void
     {
         $account_id = $this->faker->uuid();
-        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => 1254.36,];
+        $account = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $account_id,
+            'name' => 'Default',
+            'balance' => 1254.36,
+        ];
 
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
         $service->setAccounts([$account]);
         $service->setPagination(12, 2020);
-        $service->setUp();
-        $service->add(
+        $service->create();
+        $service->addItem(
             [
                 'id' => $this->faker->uuid(),
                 'name' => 'Salary',
@@ -123,7 +144,7 @@ class BudgetItemTest extends TestCase
             ]
         );
 
-        $service->allocatedItemsToMonths();
+        $service->assignItemsToBudget();
 
         $this->assertCount(7, $service->months());
         foreach ($service->months() as $month) {
@@ -134,16 +155,22 @@ class BudgetItemTest extends TestCase
     public function testMonthlyItemAddedToAOnlyRelevantMonthsWithPagination(): void
     {
         $account_id = $this->faker->uuid();
-        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => 1254.36,];
+        $account = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $account_id,
+            'name' => 'Default',
+            'balance' => 1254.36,
+        ];
 
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
         $service->setAccounts([$account]);
         $service->setPagination(10, 2020);
-        $service->setUp();
-        $service->add(
+        $service->create();
+        $service->addItem(
             [
                 'id' => $this->faker->uuid(),
                 'name' => 'Salary',
@@ -164,7 +191,7 @@ class BudgetItemTest extends TestCase
             ]
         );
 
-        $service->allocatedItemsToMonths();
+        $service->assignItemsToBudget();
 
         $this->assertCount(5, $service->months());
 
@@ -178,15 +205,21 @@ class BudgetItemTest extends TestCase
     public function testAnnualItemAddedNotAddedToMonths(): void
     {
         $account_id = $this->faker->uuid();
-        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => 1254.36,];
+        $account = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $account_id,
+            'name' => 'Default',
+            'balance' => 1254.36,
+        ];
 
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-05-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-05-01", new DateTimeZone('UTC'))
         );
         $service->setAccounts([$account]);
-        $service->setUp();
-        $service->add(
+        $service->create();
+        $service->addItem(
             [
                 'id' => $this->faker->uuid(),
                 'name' => 'Car Insurance',
@@ -207,7 +240,7 @@ class BudgetItemTest extends TestCase
             ]
         );
 
-        $service->allocatedItemsToMonths();
+        $service->assignItemsToBudget();
 
         $this->assertCount(3, $service->months());
         foreach ($service->months() as $month) {
@@ -218,16 +251,22 @@ class BudgetItemTest extends TestCase
     public function testAnnualItemAddedNotAddedToMonthsWithPagination(): void
     {
         $account_id = $this->faker->uuid();
-        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => 1254.36,];
+        $account = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $account_id,
+            'name' => 'Default',
+            'balance' => 1254.36,
+        ];
 
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-02-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-02-01", new DateTimeZone('UTC'))
         );
         $service->setPagination(5, 2020);
         $service->setAccounts([$account]);
-        $service->setUp();
-        $service->add(
+        $service->create();
+        $service->addItem(
             [
                 'id' => $this->faker->uuid(),
                 'name' => 'Car Insurance',
@@ -248,7 +287,7 @@ class BudgetItemTest extends TestCase
             ]
         );
 
-        $service->allocatedItemsToMonths();
+        $service->assignItemsToBudget();
 
         $this->assertCount(6, $service->months());
         foreach ($service->months() as $month) {
@@ -259,15 +298,21 @@ class BudgetItemTest extends TestCase
     public function testAnnualItemAddedToRelevantMonth(): void
     {
         $account_id = $this->faker->uuid();
-        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => 1254.36,];
+        $account = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $account_id,
+            'name' => 'Default',
+            'balance' => 1254.36,
+        ];
 
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-05-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-05-01", new DateTimeZone('UTC'))
         );
         $service->setAccounts([$account]);
-        $service->setUp();
-        $service->add(
+        $service->create();
+        $service->addItem(
             [
                 'id' => $this->faker->uuid(),
                 'name' => 'Car Insurance',
@@ -288,7 +333,7 @@ class BudgetItemTest extends TestCase
             ]
         );
 
-        $service->allocatedItemsToMonths();
+        $service->assignItemsToBudget();
 
         $this->assertCount(3, $service->months());
         $this->assertCount(0, $service->months()['2020-5']->items());
@@ -299,16 +344,22 @@ class BudgetItemTest extends TestCase
     public function testAnnualItemAddedToRelevantMonthWithPagination(): void
     {
         $account_id = $this->faker->uuid();
-        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => 1254.36,];
+        $account = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $account_id,
+            'name' => 'Default',
+            'balance' => 1254.36,
+        ];
 
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-02-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-02-01", new DateTimeZone('UTC'))
         );
         $service->setPagination(5, 2020);
         $service->setAccounts([$account]);
-        $service->setUp();
-        $service->add(
+        $service->create();
+        $service->addItem(
             [
                 'id' => $this->faker->uuid(),
                 'name' => 'Car Insurance',
@@ -329,7 +380,7 @@ class BudgetItemTest extends TestCase
             ]
         );
 
-        $service->allocatedItemsToMonths();
+        $service->assignItemsToBudget();
 
         $this->assertCount(6, $service->months());
         $this->assertCount(0, $service->months()['2020-2']->items());
@@ -343,15 +394,21 @@ class BudgetItemTest extends TestCase
     public function testMonthlyItemAddedToAllMonthsExceptExclusions(): void
     {
         $account_id = $this->faker->uuid();
-        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => 1254.36,];
+        $account = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $account_id,
+            'name' => 'Default',
+            'balance' => 1254.36,
+        ];
 
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
         $service->setAccounts([$account]);
-        $service->setUp();
-        $service->add(
+        $service->create();
+        $service->addItem(
             [
                 'id' => $this->faker->uuid(),
                 'name' => 'Salary',
@@ -372,7 +429,7 @@ class BudgetItemTest extends TestCase
             ]
         );
 
-        $service->allocatedItemsToMonths();
+        $service->assignItemsToBudget();
 
         $this->assertCount(3, $service->months());
         $this->assertCount(1, $service->months()['2020-8']->items());
@@ -383,16 +440,22 @@ class BudgetItemTest extends TestCase
     public function testMonthlyItemAddedToAllMonthsExceptExclusionsWithPagination(): void
     {
         $account_id = $this->faker->uuid();
-        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => 1254.36,];
+        $account = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $account_id,
+            'name' => 'Default',
+            'balance' => 1254.36,
+        ];
 
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
         $service->setAccounts([$account]);
         $service->setPagination(11, 2020);
-        $service->setUp();
-        $service->add(
+        $service->create();
+        $service->addItem(
             [
                 'id' => $this->faker->uuid(),
                 'name' => 'Salary',
@@ -413,7 +476,7 @@ class BudgetItemTest extends TestCase
             ]
         );
 
-        $service->allocatedItemsToMonths();
+        $service->assignItemsToBudget();
 
         $this->assertCount(6, $service->months());
         $this->assertCount(1, $service->months()['2020-8']->items());

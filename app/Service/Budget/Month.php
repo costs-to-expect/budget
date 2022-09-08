@@ -18,6 +18,9 @@ class Month
     /** @var Item[] */
     private array $items = [];
 
+    /**
+     * @throws \Exception
+     */
     public function __construct(
         private readonly int $month,
         private readonly int $year,
