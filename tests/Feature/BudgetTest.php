@@ -9,7 +9,7 @@ class BudgetTest extends TestCase
 {
     use WithFaker;
 
-    public function testGeneratedMonths()
+    public function testGeneratedMonths(): void
     {
         $service = new \App\Service\Budget\Service();
         $service->setUp();
@@ -17,7 +17,7 @@ class BudgetTest extends TestCase
         $this->assertCount(3, $service->months());
     }
 
-    public function testGeneratedMonthsWhenStartDateSet()
+    public function testGeneratedMonthsWhenStartDateSet(): void
     {
         $service = new \App\Service\Budget\Service();
         $service->setNow(
@@ -28,7 +28,7 @@ class BudgetTest extends TestCase
         $this->assertCount(3, $service->months());
     }
 
-    public function testGeneratedMonthsWithYearWrap()
+    public function testGeneratedMonthsWithYearWrap(): void
     {
         $service = new \App\Service\Budget\Service();
         $service->setNow(
@@ -55,7 +55,7 @@ class BudgetTest extends TestCase
         $this->assertCount(3, $service->months());
     }
 
-    public function testGeneratedMonthsPagintionOneMonth()
+    public function testGeneratedMonthsPagintionOneMonth(): void
     {
         $service = new \App\Service\Budget\Service();
         $service->setNow(
@@ -72,7 +72,7 @@ class BudgetTest extends TestCase
         $this->assertCount(4, $service->months());
     }
 
-    public function testGeneratedMonthsPaginationWrapsFutureYear()
+    public function testGeneratedMonthsPaginationWrapsFutureYear(): void
     {
         $service = new \App\Service\Budget\Service();
         $service->setNow(
@@ -89,7 +89,7 @@ class BudgetTest extends TestCase
         $this->assertCount(16, $service->months());
     }
 
-    public function testVewEndDate()
+    public function testVewEndDate(): void
     {
         $service = new \App\Service\Budget\Service();
         $service->setNow(
@@ -101,7 +101,7 @@ class BudgetTest extends TestCase
         $this->assertEquals(2020, $service->viewEnd()['year']);
     }
 
-    public function testVewEndDateWithPagination()
+    public function testVewEndDateWithPagination(): void
     {
         $service = new \App\Service\Budget\Service();
         $service->setNow(
@@ -114,7 +114,7 @@ class BudgetTest extends TestCase
         $this->assertEquals(2021, $service->viewEnd()['year']);
     }
 
-    public function testGeneratedMonthsVisibility()
+    public function testGeneratedMonthsVisibility(): void
     {
         $service = new \App\Service\Budget\Service();
         $service->setUp();
@@ -126,7 +126,7 @@ class BudgetTest extends TestCase
         }
     }
 
-    public function testGeneratedMonthsVisibilityWithPagination()
+    public function testGeneratedMonthsVisibilityWithPagination(): void
     {
         $service = new \App\Service\Budget\Service();
         $service->setNow(
@@ -144,7 +144,7 @@ class BudgetTest extends TestCase
         $this->assertTrue($service->months()['2022-12']->visible());
     }
 
-    public function testAccountCreated()
+    public function testAccountCreated(): void
     {
         $service = new \App\Service\Budget\Service();
         $service->setAccounts([[
@@ -159,7 +159,7 @@ class BudgetTest extends TestCase
         $this->assertCount(1, $service->accounts());
     }
 
-    public function testAccountLimit()
+    public function testAccountLimit(): void
     {
         $account_1 = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $this->faker()->uuid(), 'name' => $this->faker->name(),'balance' => 1254.36,];
         $account_2 = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $this->faker()->uuid(), 'name' => $this->faker->name(),'balance' => 1254.36,];
@@ -172,7 +172,7 @@ class BudgetTest extends TestCase
         $this->assertCount(3, $service->accounts());
     }
 
-    public function testAccountLimitNotPassable()
+    public function testAccountLimitNotPassable(): void
     {
         $account_1 = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $this->faker()->uuid(), 'name' => $this->faker->name(),'balance' => 1254.36,];
         $account_2 = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $this->faker()->uuid(), 'name' => $this->faker->name(),'balance' => 1254.36,];
