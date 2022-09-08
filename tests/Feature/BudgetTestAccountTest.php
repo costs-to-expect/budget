@@ -9,21 +9,523 @@ class BudgetTestAccountTest extends TestCase
 {
     use WithFaker;
 
-    // Monthly income added to balance
-    // Monthly income not added to balance when excluded
-    // Annual income added to balance
+    public function testMonthlyIncomeAddedToBalance(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 0, 1000);
+        $budget_item_amount = $this->faker->randomFloat(2, 0, 1000);
 
-    // Monthly income added to balance - Pagination
-    // Monthly income not added to balance when excluded - Pagination
-    // Annual income added to balance - Pagination
+        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => $starting_balance];
 
-    // Monthly expense subtracted from balance
-    // Monthly expense not subtracted from balance when excluded
-    // Annual expense subtracted from balance
+        $service = new \App\Service\Budget\Service();
+        $service->setNow(
+            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->setUp();
+        $service->add(
+            [
+                'id' => $this->faker->uuid(),
+                'name' => 'Salary',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                'currency_code' => 'GBP',
+                'category' => 'income',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => []
+                ]
+            ]
+        );
 
-    // Monthly expense subtracted from balance - Pagination
-    // Monthly expense not subtracted from balance when excluded - Pagination
-    // Annual expense subtracted from balance - Pagination
+        $service->allocatedItemsToMonths();
+
+        $this->assertEquals(
+            $starting_balance + ($budget_item_amount * 3),
+            $service->account($account_id)->projected()
+        );
+    }
+    public function testMonthlyIncomeNotAddedToBalanceWhenExcluded(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 0, 1000);
+        $budget_item_amount = $this->faker->randomFloat(2, 0, 1000);
+
+        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => $starting_balance];
+
+        $service = new \App\Service\Budget\Service();
+        $service->setNow(
+            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->setUp();
+        $service->add(
+            [
+                'id' => $this->faker->uuid(),
+                'name' => 'Salary',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                'currency_code' => 'GBP',
+                'category' => 'income',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => [10]
+                ]
+            ]
+        );
+
+        $service->allocatedItemsToMonths();
+
+        $this->assertEquals(
+            $starting_balance + ($budget_item_amount * 2),
+            $service->account($account_id)->projected()
+        );
+    }
+    public function testAnnualIncomeAddedToBalance(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 0, 1000);
+        $budget_item_amount = $this->faker->randomFloat(2, 0, 1000);
+
+        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => $starting_balance];
+
+        $service = new \App\Service\Budget\Service();
+        $service->setNow(
+            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->setUp();
+        $service->add(
+            [
+                'id' => $this->faker->uuid(),
+                'name' => 'Salary',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                'currency_code' => 'GBP',
+                'category' => 'income',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'annually',
+                    'day' => 10,
+                    'month' => 9
+                ]
+            ]
+        );
+
+        $service->allocatedItemsToMonths();
+
+        $this->assertEquals(
+            $starting_balance + $budget_item_amount,
+            $service->account($account_id)->projected()
+        );
+    }
+
+    public function testMonthlyIncomeAddedToBalanceWithPagination(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 0, 1000);
+        $budget_item_amount = $this->faker->randomFloat(2, 0, 1000);
+
+        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => $starting_balance];
+
+        $service = new \App\Service\Budget\Service();
+        $service->setNow(
+            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->setPagination(10, 2020);
+        $service->setUp();
+        $service->add(
+            [
+                'id' => $this->faker->uuid(),
+                'name' => 'Salary',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                'currency_code' => 'GBP',
+                'category' => 'income',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => []
+                ]
+            ]
+        );
+
+        $service->allocatedItemsToMonths();
+
+        $this->assertEquals(
+            $starting_balance + ($budget_item_amount * 5),
+            $service->account($account_id)->projected()
+        );
+    }
+    public function testMonthlyIncomeNotAddedToBalanceWhenExcludedWithPagination(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 0, 1000);
+        $budget_item_amount = $this->faker->randomFloat(2, 0, 1000);
+
+        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => $starting_balance];
+
+        $service = new \App\Service\Budget\Service();
+        $service->setNow(
+            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->setPagination(11, 2020);
+        $service->setUp();
+        $service->add(
+            [
+                'id' => $this->faker->uuid(),
+                'name' => 'Salary',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                'currency_code' => 'GBP',
+                'category' => 'income',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => [10, 11]
+                ]
+            ]
+        );
+
+        $service->allocatedItemsToMonths();
+
+        $this->assertEquals(
+            $starting_balance + ($budget_item_amount * 4),
+            $service->account($account_id)->projected()
+        );
+    }
+    public function testAnnualIncomeAddedToBalanceWithPagination(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 0, 1000);
+        $budget_item_amount = $this->faker->randomFloat(2, 0, 1000);
+
+        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => $starting_balance];
+
+        $service = new \App\Service\Budget\Service();
+        $service->setNow(
+            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->setPagination(9, 2021);
+        $service->setUp();
+        $service->add(
+            [
+                'id' => $this->faker->uuid(),
+                'name' => 'Salary',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                'currency_code' => 'GBP',
+                'category' => 'income',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'annually',
+                    'day' => 10,
+                    'month' => 8
+                ]
+            ]
+        );
+
+        $service->allocatedItemsToMonths();
+
+        $this->assertEquals(
+            $starting_balance + ($budget_item_amount * 2),
+            $service->account($account_id)->projected()
+        );
+    }
+
+    public function testMonthlyExpenseSubtractedFromBalance(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 1000, 5000);
+        $budget_item_amount = $this->faker->randomFloat(2, 10, 1000);
+
+        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => $starting_balance];
+
+        $service = new \App\Service\Budget\Service();
+        $service->setNow(
+            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->setUp();
+        $service->add(
+            [
+                'id' => $this->faker->uuid(),
+                'name' => 'Expense',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                'currency_code' => 'GBP',
+                'category' => 'expense',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => []
+                ]
+            ]
+        );
+
+        $service->allocatedItemsToMonths();
+
+        $this->assertEquals(
+            $starting_balance - ($budget_item_amount * 3),
+            $service->account($account_id)->projected()
+        );
+    }
+    public function testMonthlyExpenseSubtractedFromBalanceWhenExcluded(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 1000, 5000);
+        $budget_item_amount = $this->faker->randomFloat(2, 10, 1000);
+
+        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => $starting_balance];
+
+        $service = new \App\Service\Budget\Service();
+        $service->setNow(
+            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->setUp();
+        $service->add(
+            [
+                'id' => $this->faker->uuid(),
+                'name' => 'Expense',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                'currency_code' => 'GBP',
+                'category' => 'expense',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => [9]
+                ]
+            ]
+        );
+
+        $service->allocatedItemsToMonths();
+
+        $this->assertEquals(
+            $starting_balance - ($budget_item_amount * 2),
+            $service->account($account_id)->projected()
+        );
+    }
+    public function testAnnualExpenseSubtractedFromBalance(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 1000, 5000);
+        $budget_item_amount = $this->faker->randomFloat(2, 10, 2000);
+
+        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => $starting_balance];
+
+        $service = new \App\Service\Budget\Service();
+        $service->setNow(
+            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->setUp();
+        $service->add(
+            [
+                'id' => $this->faker->uuid(),
+                'name' => 'Expense',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                'currency_code' => 'GBP',
+                'category' => 'expense',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'annually',
+                    'day' => 5,
+                    'month' => 10
+                ]
+            ]
+        );
+
+        $service->allocatedItemsToMonths();
+
+        $this->assertEquals(
+            $starting_balance - $budget_item_amount,
+            $service->account($account_id)->projected()
+        );
+    }
+
+    public function testMonthlyExpenseSubtractedFromBalanceWithPagination(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 1000, 5000);
+        $budget_item_amount = $this->faker->randomFloat(2, 10, 1000);
+
+        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => $starting_balance];
+
+        $service = new \App\Service\Budget\Service();
+        $service->setNow(
+            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->setPagination(11, 2020);
+        $service->setUp();
+        $service->add(
+            [
+                'id' => $this->faker->uuid(),
+                'name' => 'Expense',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                'currency_code' => 'GBP',
+                'category' => 'expense',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => []
+                ]
+            ]
+        );
+
+        $service->allocatedItemsToMonths();
+
+        $this->assertEquals(
+            $starting_balance - ($budget_item_amount * 6),
+            $service->account($account_id)->projected()
+        );
+    }
+    public function testMonthlyExpenseSubtractedFromBalanceWhenExcludedWithPagination(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 1000, 5000);
+        $budget_item_amount = $this->faker->randomFloat(2, 10, 1000);
+
+        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => $starting_balance];
+
+        $service = new \App\Service\Budget\Service();
+        $service->setNow(
+            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->setPagination(12, 2020);
+        $service->setUp();
+        $service->add(
+            [
+                'id' => $this->faker->uuid(),
+                'name' => 'Expense',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                'currency_code' => 'GBP',
+                'category' => 'expense',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => [9, 10]
+                ]
+            ]
+        );
+
+        $service->allocatedItemsToMonths();
+
+        $this->assertEquals(
+            $starting_balance - ($budget_item_amount * 5),
+            $service->account($account_id)->projected()
+        );
+    }
+    public function testAnnualExpenseSubtractedFromBalanceWithPagination(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 1000, 5000);
+        $budget_item_amount = $this->faker->randomFloat(2, 10, 2000);
+
+        $account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $account_id, 'name' => 'Default','balance' => $starting_balance];
+
+        $service = new \App\Service\Budget\Service();
+        $service->setNow(
+            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->setPagination(10, 2021);
+        $service->setUp();
+        $service->add(
+            [
+                'id' => $this->faker->uuid(),
+                'name' => 'Expense',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                'currency_code' => 'GBP',
+                'category' => 'expense',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'annually',
+                    'day' => 5,
+                    'month' => 10
+                ]
+            ]
+        );
+
+        $service->allocatedItemsToMonths();
+
+        $this->assertEquals(
+            $starting_balance - ($budget_item_amount * 2),
+            $service->account($account_id)->projected()
+        );
+    }
+
+    
+
+    // Negative balance tests
 
     // Monthly saving removed from one account and added to another
     // Monthly saving not removed from one account and added to another when excluded
