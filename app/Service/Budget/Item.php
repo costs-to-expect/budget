@@ -35,6 +35,9 @@ class Item
 
     protected bool $disabled;
 
+    /**
+     * @throws \Exception
+     */
     public function __construct(array $data)
     {
         $this->id = $data['id'];

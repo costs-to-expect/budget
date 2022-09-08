@@ -2,39 +2,43 @@
 
 namespace Tests\Feature;
 
+use App\Service\Budget\Service;
+use DateTimeImmutable;
+use DateTimeZone;
 use Illuminate\Foundation\Testing\WithFaker;
+use LengthException;
 use Tests\TestCase;
 
 class BudgetTest extends TestCase
 {
     use WithFaker;
 
-    public function testGeneratedMonths()
+    public function testGeneratedMonths(): void
     {
-        $service = new \App\Service\Budget\Service();
-        $service->setUp();
+        $service = new Service();
+        $service->create();
 
         $this->assertCount(3, $service->months());
     }
 
-    public function testGeneratedMonthsWhenStartDateSet()
+    public function testGeneratedMonthsWhenStartDateSet(): void
     {
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
-        $service->setUp();
+        $service->create();
 
         $this->assertCount(3, $service->months());
     }
 
-    public function testGeneratedMonthsWithYearWrap()
+    public function testGeneratedMonthsWithYearWrap(): void
     {
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-11-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-11-01", new DateTimeZone('UTC'))
         );
-        $service->setUp();
+        $service->create();
 
         $this->assertArrayHasKey('2020-11', $service->months());
         $this->assertArrayHasKey('2020-12', $service->months());
@@ -42,11 +46,11 @@ class BudgetTest extends TestCase
 
         $this->assertCount(3, $service->months());
 
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-12-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-12-01", new DateTimeZone('UTC'))
         );
-        $service->setUp();
+        $service->create();
 
         $this->assertArrayHasKey('2020-12', $service->months());
         $this->assertArrayHasKey('2021-1', $service->months());
@@ -55,14 +59,14 @@ class BudgetTest extends TestCase
         $this->assertCount(3, $service->months());
     }
 
-    public function testGeneratedMonthsPagintionOneMonth()
+    public function testGeneratedMonthsPagintionOneMonth(): void
     {
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-12-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-12-01", new DateTimeZone('UTC'))
         );
         $service->setPagination(1, 2021);
-        $service->setUp();
+        $service->create();
 
         $this->assertArrayHasKey('2020-12', $service->months());
         $this->assertArrayHasKey('2021-1', $service->months());
@@ -72,14 +76,14 @@ class BudgetTest extends TestCase
         $this->assertCount(4, $service->months());
     }
 
-    public function testGeneratedMonthsPaginationWrapsFutureYear()
+    public function testGeneratedMonthsPaginationWrapsFutureYear(): void
     {
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-12-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-12-01", new DateTimeZone('UTC'))
         );
         $service->setPagination(1, 2022);
-        $service->setUp();
+        $service->create();
 
         $this->assertArrayNotHasKey('2020-11', $service->months());
         $this->assertArrayHasKey('2020-12', $service->months());
@@ -89,35 +93,35 @@ class BudgetTest extends TestCase
         $this->assertCount(16, $service->months());
     }
 
-    public function testVewEndDate()
+    public function testVewEndDate(): void
     {
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
-        $service->setUp();
+        $service->create();
 
-        $this->assertEquals('October', $service->viewEnd()['month']);
-        $this->assertEquals(2020, $service->viewEnd()['year']);
+        $this->assertEquals('October', $service->viewEndPeriod()['month']);
+        $this->assertEquals(2020, $service->viewEndPeriod()['year']);
     }
 
-    public function testVewEndDateWithPagination()
+    public function testVewEndDateWithPagination(): void
     {
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
         $service->setPagination(2, 2021);
-        $service->setUp();
+        $service->create();
 
-        $this->assertEquals('April', $service->viewEnd()['month']);
-        $this->assertEquals(2021, $service->viewEnd()['year']);
+        $this->assertEquals('April', $service->viewEndPeriod()['month']);
+        $this->assertEquals(2021, $service->viewEndPeriod()['year']);
     }
 
-    public function testGeneratedMonthsVisibility()
+    public function testGeneratedMonthsVisibility(): void
     {
-        $service = new \App\Service\Budget\Service();
-        $service->setUp();
+        $service = new Service();
+        $service->create();
 
         $this->assertCount(3, $service->months());
 
@@ -126,14 +130,14 @@ class BudgetTest extends TestCase
         }
     }
 
-    public function testGeneratedMonthsVisibilityWithPagination()
+    public function testGeneratedMonthsVisibilityWithPagination(): void
     {
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setNow(
-            new \DateTimeImmutable( "2022-08-01", new \DateTimeZone('UTC'))
+            new DateTimeImmutable("2022-08-01", new DateTimeZone('UTC'))
         );
         $service->setPagination(10, 2022);
-        $service->setUp();
+        $service->create();
 
         $this->assertCount(5, $service->months());
 
@@ -144,44 +148,88 @@ class BudgetTest extends TestCase
         $this->assertTrue($service->months()['2022-12']->visible());
     }
 
-    public function testAccountCreated()
+    public function testAccountCreated(): void
     {
-        $service = new \App\Service\Budget\Service();
-        $service->setAccounts([[
-            'currency' => 'GBP',
-            'type' => 'expense',
-            'id' => $this->faker()->uuid(),
-            'name' => 'Default',
-            'balance' => 1254.36,
-        ]]);
-        $service->setUp();
+        $service = new Service();
+        $service->setAccounts([
+            [
+                'currency' => 'GBP',
+                'type' => 'expense',
+                'id' => $this->faker()->uuid(),
+                'name' => 'Default',
+                'balance' => 1254.36,
+            ]
+        ]);
+        $service->create();
 
         $this->assertCount(1, $service->accounts());
     }
 
-    public function testAccountLimit()
+    public function testAccountLimit(): void
     {
-        $account_1 = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $this->faker()->uuid(), 'name' => $this->faker->name(),'balance' => 1254.36,];
-        $account_2 = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $this->faker()->uuid(), 'name' => $this->faker->name(),'balance' => 1254.36,];
-        $account_3 = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $this->faker()->uuid(), 'name' => $this->faker->name(),'balance' => 1254.36,];
+        $account_1 = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $this->faker()->uuid(),
+            'name' => $this->faker->name(),
+            'balance' => 1254.36,
+        ];
+        $account_2 = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $this->faker()->uuid(),
+            'name' => $this->faker->name(),
+            'balance' => 1254.36,
+        ];
+        $account_3 = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $this->faker()->uuid(),
+            'name' => $this->faker->name(),
+            'balance' => 1254.36,
+        ];
 
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setAccounts([$account_1, $account_2, $account_3]);
-        $service->setUp();
+        $service->create();
 
         $this->assertCount(3, $service->accounts());
     }
 
-    public function testAccountLimitNotPassable()
+    public function testAccountLimitNotPassable(): void
     {
-        $account_1 = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $this->faker()->uuid(), 'name' => $this->faker->name(),'balance' => 1254.36,];
-        $account_2 = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $this->faker()->uuid(), 'name' => $this->faker->name(),'balance' => 1254.36,];
-        $account_3 = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $this->faker()->uuid(), 'name' => $this->faker->name(),'balance' => 1254.36,];
-        $account_4 = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $this->faker()->uuid(), 'name' => $this->faker->name(),'balance' => 1254.36,];
+        $account_1 = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $this->faker()->uuid(),
+            'name' => $this->faker->name(),
+            'balance' => 1254.36,
+        ];
+        $account_2 = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $this->faker()->uuid(),
+            'name' => $this->faker->name(),
+            'balance' => 1254.36,
+        ];
+        $account_3 = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $this->faker()->uuid(),
+            'name' => $this->faker->name(),
+            'balance' => 1254.36,
+        ];
+        $account_4 = [
+            'currency' => 'GBP',
+            'type' => 'expense',
+            'id' => $this->faker()->uuid(),
+            'name' => $this->faker->name(),
+            'balance' => 1254.36,
+        ];
 
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
 
-        $this->expectException(\LengthException::class);
+        $this->expectException(LengthException::class);
         $service->setAccounts([$account_1, $account_2, $account_3, $account_4]);
     }
 
@@ -197,9 +245,9 @@ class BudgetTest extends TestCase
             'balance' => 1254.36,
         ];
 
-        $service = new \App\Service\Budget\Service();
+        $service = new Service();
         $service->setAccounts([$account]);
-        $service->setUp();
+        $service->create();
 
         $this->assertCount(1, $service->accounts());
         $this->assertEquals('Default', $service->account($uuid)->name());

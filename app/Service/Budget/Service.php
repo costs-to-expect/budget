@@ -74,7 +74,7 @@ class Service
         return $this;
     }
 
-    public function setUp(): void
+    public function create(): void
     {
         $this->setUpMonths();
     }
@@ -89,14 +89,14 @@ class Service
         return $this->accounts;
     }
 
-    public function add(array $data): bool
+    public function addItem(array $data): bool
     {
         $this->budget_items[] = new Item($data);
 
         return true;
     }
 
-    public function pagination(): array
+    public function paginationParameters(): array
     {
         if (date_diff($this->start_date, $this->view_start_date)->days === 0) {
             $earlier = null;
@@ -122,28 +122,12 @@ class Service
     /**
      * @return array{ month: string, year: int}
      */
-    public function viewEnd(): array
+    public function viewEndPeriod(): array
     {
         return [
             'month' => $this->view_end_date->format('F'),
             'year' => (int) $this->view_end_date->format('Y')
         ];
-    }
-
-    /*private function startMonth(): int
-    {
-        return (int) $this->start_date->format('n');
-    }
-
-    public function endMonth(): int
-    {
-        return (int) now(new \DateTimeZone('UTC'))->addMonths($this->numberOfVisibleMonths())->format('n');
-    }*/
-
-    /** @return Item[] */
-    public function items(): array
-    {
-        return $this->budget_items;
     }
 
     public function months(): array
@@ -156,7 +140,7 @@ class Service
         return 3;
     }
 
-    public function allocatedItemsToMonths(): void
+    public function assignItemsToBudget(): void
     {
         foreach ($this->months as $month) {
             foreach ($this->budget_items as $budget_item) {
