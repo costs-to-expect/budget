@@ -609,7 +609,58 @@ class BudgetTestAccountTest extends TestCase
         );
     }
 
-    
+    public function testMonthlySavingTransferredToSavingsBalance(): void
+    {
+        $default_account_id = $this->faker->uuid();
+        $savings_account_id = $this->faker->uuid();
+        $starting_account_balance = $this->faker->randomFloat(2, 0, 1000);
+        $starting_saving_balance = $this->faker->randomFloat(2, 0, 1000);
+
+        $savings_item_amount = $this->faker->randomFloat(2, 0, 1000);
+
+        $default_account = [ 'currency' => 'GBP', 'type' => 'expense', 'id' => $default_account_id, 'name' => 'Default','balance' => $starting_account_balance];
+        $savings_account = [ 'currency' => 'GBP', 'type' => 'savings', 'id' => $savings_account_id, 'name' => 'Savings','balance' => $starting_saving_balance];
+
+        $service = new \App\Service\Budget\Service();
+        $service->setNow(
+            new \DateTimeImmutable( "2020-08-01", new \DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$default_account, $savings_account]);
+        $service->setUp();
+        $service->add(
+            [
+                'id' => $this->faker->uuid(),
+                'name' => 'Savings',
+                'account' => $default_account_id,
+                'target_account' => $savings_account_id,
+                'description' => 'This is a description for the expense',
+                'amount' => $savings_item_amount,
+                'currency_code' => 'GBP',
+                'category' => 'savings',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => []
+                ]
+            ]
+        );
+
+        $service->allocatedItemsToMonths();
+
+        $this->assertEquals(
+            $starting_account_balance - ($savings_item_amount * 3),
+            $service->account($default_account_id)->projected()
+        );
+
+        $this->assertEquals(
+            $starting_saving_balance + ($savings_item_amount * 3),
+            $service->account($savings_account_id)->projected()
+        );
+
+    }
 
     // Monthly saving removed from one account and added to another
     // Monthly saving not removed from one account and added to another when excluded
