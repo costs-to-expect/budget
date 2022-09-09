@@ -18,12 +18,15 @@ class Budget extends Component
 
     private bool $active;
 
+    private bool $projection;
+
     public function __construct(
         array $accounts,
         array $months,
         array $pagination,
         array $viewEnd,
-        bool $active = false
+        bool $active = false,
+        bool $projection = true
     )
     {
         $this->accounts = $accounts;
@@ -31,6 +34,7 @@ class Budget extends Component
         $this->pagination = $pagination;
         $this->view_end = $viewEnd;
         $this->active = $active;
+        $this->projection = $projection;
     }
 
     public function render()
@@ -43,6 +47,7 @@ class Budget extends Component
                 'pagination' => $this->pagination,
                 'view_end' => $this->view_end,
                 'active' => $this->active,
+                'projection' => $this->projection,
             ]
         );
     }

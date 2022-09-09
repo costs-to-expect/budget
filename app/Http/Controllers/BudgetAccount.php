@@ -37,6 +37,7 @@ class BudgetAccount extends Controller
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
                 'view_end' => $budget->viewEndPeriod(),
+                'projection' => $budget->projection(),
             ]
         );
     }
