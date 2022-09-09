@@ -16,7 +16,12 @@
 
         <div class="col-lg-8 mx-auto p-3">
 
-            <x-budget :accounts="$accounts" :months="$months" :pagination="$pagination" :viewEnd="$view_end" />
+            <x-budget
+                :accounts="$accounts"
+                :months="$months"
+                :pagination="$pagination"
+                :viewEnd="$view_end"
+                :projection="$projection "/>
 
             <x-requests />
 

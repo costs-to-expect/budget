@@ -144,13 +144,18 @@
         </div>
         <div class="col-6 text-end">
             <h3>Projected</h3>
-            <p class="text-muted mb-1">Projected for {{ $view_end['month'] . ' ' . $view_end['year'] }}</p>
 
-            @foreach ($accounts as $__account)
-                <div class="balance">
-                    <small>{{ $__account->name() }}<br /> &pound;</small>{{ $__account->projected() }}
-                </div>
-            @endforeach
+            @if ($projection === true)
+                <p class="text-muted mb-1">Projected for {{ $view_end['month'] . ' ' . $view_end['year'] }}</p>
+
+                @foreach ($accounts as $__account)
+                    <div class="balance">
+                        <small>{{ $__account->name() }}<br /> &pound;</small>{{ $__account->projected() }}
+                    </div>
+                @endforeach
+            @else
+                <p class="text-muted mb-1">We can't show a Budget projection, you are reviewing your history.</p>
+            @endif
             {{--<div class="balance">
                 <small>Default &pound;</small>1500.00
             </div>

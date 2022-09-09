@@ -29,6 +29,8 @@ class Service
 
     private DateTimeImmutable $view_end_date;
 
+    private bool $projection = true;
+
     public function __construct()
     {
         $this->start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1 );
@@ -98,25 +100,24 @@ class Service
 
     public function paginationParameters(): array
     {
-        if (date_diff($this->start_date, $this->view_start_date)->days === 0) {
-            $earlier = null;
-        } else {
-            $date = $this->view_start_date->sub(new \DateInterval("P1M"));
-            $earlier = [
-                'month' => $date->format('n'),
-                'year' => $date->format('Y')
-            ];
-        }
-
+        $earlier = $this->view_start_date->sub(new \DateInterval("P1M"));
         $later = $this->view_start_date->add(new \DateInterval("P1M"));
 
         return [
-            'previous' => $earlier,
+            'previous' => [
+                'month' => (int) $earlier->format('n'),
+                'year' => (int) $earlier->format('Y')
+            ],
             'next' => [
                 'month' => (int) $later->format('n'),
                 'year' => (int) $later->format('Y')
             ]
         ];
+    }
+
+    public function projection(): bool
+    {
+        return $this->projection;
     }
 
     /**
@@ -147,7 +148,10 @@ class Service
                 if ($budget_item->activeForMonth($month->days(), $month->month(), $month->year()) === true) {
                     $this->months[$month->year() . '-' . $month->month()]->add($budget_item);
 
-                    if ($budget_item->disabled() === false) {
+                    if (
+                        $budget_item->disabled() === false &&
+                        $this->months[$month->year() . '-' . $month->month()]->future() === true
+                    ) {
                         if ($budget_item->category() === 'income') {
                             $this->accounts[$budget_item->account()]->add($budget_item->amount());
                         } else {
@@ -168,22 +172,55 @@ class Service
     {
         $date_diff = date_diff($this->start_date, $this->view_start_date);
 
-        for (
-            $i = 0;
-            $i < ($date_diff->y * 12) + $date_diff->m;
-            $i++
-        ) {
-            $next = $this->start_date->add(new \DateInterval("P{$i}M"));
+        if ($date_diff->invert === 0) {
 
-            $year_int = (int) $next->format('Y');
-            $month_int = (int) $next->format('n');
+            for (
+                $i = 0;
+                $i < ($date_diff->y * 12) + $date_diff->m;
+                $i++
+            ) {
+                $next = $this->start_date->add(new \DateInterval("P{$i}M"));
 
-            $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, false);
+                $year_int = (int)$next->format('Y');
+                $month_int = (int)$next->format('n');
+
+                $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, false);
+            }
         }
 
-        for ($i = 0; $i < $this->numberOfVisibleMonths(); $i++) {
+        $added_to_view_start_date = 0;
+        if ($date_diff->invert === 1) {
 
-            $next = $this->view_start_date->add(new \DateInterval("P{$i}M"));
+            $date_diff = date_diff($this->view_start_date, $this->start_date);
+
+            $period_in_months = ($date_diff->y * 12) + $date_diff->m;
+
+            for (
+                $i = 0;
+                $i < (min($period_in_months, 3));
+                $i++
+            ) {
+                $added_to_view_start_date++;
+                $next = $this->view_start_date->add(new \DateInterval("P{$i}M"));
+
+                $year_int = (int) $next->format('Y');
+                $month_int = (int) $next->format('n');
+
+                if ($i === 2) {
+                    $this->projection = false; // We are not projecting as there are three past months on display
+                    $this->view_end_date = (new DateTimeImmutable(
+                        "{$year_int}-{$month_int}-01", new DateTimeZone('UTC')))->setTime(7, 1);
+                }
+
+                $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, true, false);
+            }
+        }
+
+        for ($i = 0; $i < $this->numberOfVisibleMonths() - $added_to_view_start_date; $i++) {
+
+            $months_to_add = $i + $added_to_view_start_date;
+
+            $next = $this->view_start_date->add(new \DateInterval("P{$months_to_add}M"));
 
             $year_int = (int) $next->format('Y');
             $month_int = (int) $next->format('n');

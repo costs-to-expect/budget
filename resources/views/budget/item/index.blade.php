@@ -90,7 +90,13 @@
                 </div>
             </div>
 
-            <x-budget :accounts="$accounts" :months="$months" :pagination="$pagination" :view_end="$view_end" :active="true" />
+            <x-budget
+                    :accounts="$accounts"
+                    :months="$months"
+                    :pagination="$pagination"
+                    :viewEnd="$view_end"
+                    :active="true"
+                    :projection="$projection "/>
 
             <x-requests />
 

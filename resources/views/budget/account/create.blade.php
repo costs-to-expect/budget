@@ -57,7 +57,13 @@
                 </div>
             </div>
 
-            <x-budget :accounts="$accounts" :months="$months" :pagination="$pagination" :view_end="$view_end" />
+            <x-budget
+                    :accounts="$accounts"
+                    :months="$months"
+                    :pagination="$pagination"
+                    :viewEnd="$view_end"
+                    :active="false"
+                    :projection="$projection "/>
 
             <x-requests />
 

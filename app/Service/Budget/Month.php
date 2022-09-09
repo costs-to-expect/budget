@@ -25,6 +25,7 @@ class Month
         private readonly int $month,
         private readonly int $year,
         private readonly bool $visible,
+        private readonly bool $future = true
     )
     {
         $this->date = new DateTimeImmutable("{$this->year}-{$this->month}-01", new \DateTimeZone('UTC'));
@@ -38,6 +39,11 @@ class Month
     public function days(): int
     {
         return (int) $this->date->format('t');
+    }
+
+    public function future(): bool
+    {
+        return $this->future;
     }
 
     public function items(): array
