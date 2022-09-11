@@ -57,14 +57,15 @@ class BudgetAccount extends Controller
             $request->only(['name', 'type', 'description', 'currency_id', 'balance'])
         );
 
-        if ($result === 201) {
-            return redirect()->route('home');
+        if ($result === 204) {
+            return redirect()->route('home')
+                ->with('status', 'account-added');
         }
 
         if ($result === 422) {
             return redirect()->route('budget.account.create')
                 ->withInput()
-                ->with('validation.errors',$action->getValidationErrors());
+                ->with('validation.errors', $action->getValidationErrors());
         }
 
         abort($result, $action->getMessage());

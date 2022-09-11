@@ -26,28 +26,53 @@
                     </div>
                     <div class="col-6 col-md-6">
                         <label for="name" class="form-label">Name *</label>
-                        <input type="text" class="form-control form-control-sm" id="name" name="name" value="" placeholder="Debit">
+                        <input type="text" class="form-control form-control-sm @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required="required" placeholder="Debit">
+                        @error('name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="col-6 col-md-6">
                         <label for="type" class="form-label">Account Type *</label>
-                        <select id="type" name="type" class="form-select form-select-sm">
+                        <select id="type" name="type" class="form-select form-select-sm @error('type') is-invalid @enderror">
                             <option value="expense" selected="selected">Expense</option>
                             <option value="savings">Savings</option>
                         </select>
+                        @error('type')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="col-12">
                         <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control form-control-sm" id="description" name="description" placeholder="An optional description of the account"></textarea>
+                        <textarea class="form-control form-control-sm @error('description') is-invalid @enderror" id="description" name="description" placeholder="An optional description of the account">{{ old('description') }}</textarea>
+                        @error('description')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="col-6 col-md-6">
                         <label for="currency_id" class="form-label">Currency *</label>
-                        <select id="currency_id" name="currency_id" class="form-select form-select-sm">
+                        <select id="currency_id" name="currency_id" class="form-select form-select-sm @error('currency_id') is-invalid @enderror" required="required">
                             <option value="{{ $currency['id'] }}" selected="selected">{{ $currency['code'] . '-' . $currency['name'] }}</option>
                         </select>
+                        @error('currency_id')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="col-6 col-md-6">
                         <label for="balance" class="form-label">Balance *</label>
-                        <input type="number" class="form-control form-control-sm" id="balance" name="balance" placeholder="10.99" min="0" step="0.01">
+                        <input type="number" class="form-control form-control-sm @error('balance') is-invalid @enderror" id="balance" name="balance" required="required" placeholder="10.99" min="0" step="0.01" value="{{ old('balance') }}">
+                        @error('balance')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="col-12">
                         <a href="{{ route('home') }}" class="btn btn-dark">Cancel</a>
