@@ -17,8 +17,9 @@ class Account
 
     public function __construct(
         private readonly string $id,
-        private readonly string $type,
         private readonly string $name,
+        private readonly string $type,
+        private readonly array $currency,
         float $start,
     )
     {
@@ -34,6 +35,21 @@ class Account
     public function balance() : float
     {
         return $this->balance;
+    }
+
+    public function currencyId() : string
+    {
+        return $this->currency['id'];
+    }
+
+    public function currencyCode() : string
+    {
+        return $this->currency['code'];
+    }
+
+    public function currencyName() : string
+    {
+        return $this->currency['name'];
     }
 
     public function id(): string

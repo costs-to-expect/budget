@@ -31,10 +31,19 @@ class Service
 
     private bool $projection = true;
 
+    private array $currency;
+
     public function __construct()
     {
         $this->start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1 );
         $this->view_start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1);
+
+        // Default to GBP
+        $this->currency = [
+            'id' => 'epMqeYqPkL',
+            'code' => 'GBP',
+            'name' => 'Sterling'
+        ];
     }
 
     public function setNow(DateTimeImmutable $start_date): Service
@@ -67,8 +76,9 @@ class Service
         foreach ($accounts as $account) {
             $this->accounts[$account['id']] = new Account(
                 $account['id'],
-                $account['type'],
                 $account['name'],
+                $account['type'],
+                $account['currency'],
                 $account['balance']
             );
         }
@@ -76,9 +86,36 @@ class Service
         return $this;
     }
 
+    public function setCurrency(array $currency): Service
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
     public function create(): void
     {
         $this->setUpMonths();
+    }
+
+    public function currency() : array
+    {
+        return $this->currency;
+    }
+
+    public function currencyId() : string
+    {
+        return $this->currency['id'];
+    }
+
+    public function currencyCode() : string
+    {
+        return $this->currency['code'];
+    }
+
+    public function currencyName() : string
+    {
+        return $this->currency['name'];
     }
 
     public function account(string $id) : Account

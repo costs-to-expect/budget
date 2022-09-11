@@ -51,6 +51,7 @@
                 <div class="alert alert-primary alert-dismissible fade show mt-2" role="alert">
                     <h4 class="alert-heading">Budget Pro!</h4>
                     <p>In Budget Pro you can have more than three accounts.</p>
+                    <p>In Budget Pro your Budget can include multiple currencies.</p>
                     <hr>
                     <p class="mb-0"><a href="">Find out more</a>.</p>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
