@@ -49,6 +49,14 @@ class Service
         return $this->http->get($uri['uri']);
     }
 
+    #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    public function getCurrencies(): array
+    {
+        $uri = Uri::currencies();
+
+        return $this->http->get($uri['uri']);
+    }
+
     #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
     public function createPassword(array $payload): array
     {
@@ -94,6 +102,14 @@ class Service
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    public function getResource(string $resource_type_id, string $resource_id, array $parameters = []): array
+    {
+        $uri = Uri::resource($resource_type_id, $resource_id, $parameters);
+
+        return $this->http->get($uri['uri'], true);
+    }
+
+    #[ArrayShape(['status' => "integer", 'content' => "array"])]
     public function getResources(string $resource_type_id, array $parameters = []): array
     {
         $uri = Uri::resources($resource_type_id, $parameters);
@@ -107,6 +123,18 @@ class Service
         $uri = Uri::resourceTypes($parameters);
 
         return $this->http->get($uri['uri'], true);
+    }
+
+    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    public function patchResource(
+        string $resource_type_id,
+        string $resource_id,
+        array $payload = []
+    ): array
+    {
+        $uri = Uri::resource($resource_type_id, $resource_id);
+
+        return $this->http->patch($uri['uri'], $payload);
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]

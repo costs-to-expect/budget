@@ -21,9 +21,16 @@
                     <div class="col-12">
                         <h2 class="display-6">New account</h2>
                     </div>
-                    <div class="col-12 col-md-12">
+                    <div class="col-6 col-md-6">
                         <label for="name" class="form-label">Name *</label>
                         <input type="text" class="form-control form-control-sm" id="name" name="name" value="" placeholder="Rent">
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <label for="type" class="form-label">Account Type *</label>
+                        <select id="type" name="type" class="form-select form-select-sm">
+                            <option value="expense" selected="selected">Expense</option>
+                            <option value="savings">Savings</option>
+                        </select>
                     </div>
                     <div class="col-12">
                         <label for="description" class="form-label">Description</label>
@@ -32,9 +39,7 @@
                     <div class="col-6 col-md-6">
                         <label for="currency_id" class="form-label">Currency *</label>
                         <select id="currency_id" name="currency_id" class="form-select form-select-sm">
-                            <option value="gbp" selected="selected">GBP</option>
-                            <option value="eur">EUR</option>
-                            <option value="usd">USD</option>
+                            <option value="{{ $currency['id'] }}" selected="selected">{{ $currency['code'] . '-' . $currency['name'] }}</option>
                         </select>
                     </div>
                     <div class="col-6 col-md-6">
