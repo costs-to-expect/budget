@@ -27,11 +27,15 @@ class Create extends Action
             return $resource['status'];
         }
 
-        try {
-            $resource_data = json_decode($resource['content']['data'], true, 512, JSON_THROW_ON_ERROR);
-        } catch (\JsonException $e) {
-            $this->message = $e->getMessage();
-            return 500;
+        if ($resource['content']['data'] !== null) {
+            try {
+                $resource_data = json_decode($resource['content']['data'], true, 512, JSON_THROW_ON_ERROR);
+            } catch (\JsonException $e) {
+                $this->message = $e->getMessage();
+                return 500;
+            }
+        } else {
+            $resource_data = [];
         }
 
         $currencies = $api->getCurrencies();
@@ -41,7 +45,7 @@ class Create extends Action
         }
 
         $currency = null;
-        foreach ($currencies as $__currency) {
+        foreach ($currencies['content'] as $__currency) {
             if (array_key_exists('currency_id', $input) && $input['currency_id'] === $__currency['id']) {
                 $currency = $__currency;
                 break;
@@ -88,7 +92,7 @@ class Create extends Action
         $patch_resource_response = $api->patchResource(
             $resource_type_id,
             $resource_id,
-            $payload
+            ['data' => $payload]
         );
 
         if ($patch_resource_response['status'] === 201) {

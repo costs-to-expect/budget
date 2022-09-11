@@ -17,13 +17,16 @@
         <div class="col-lg-8 mx-auto p-3">
 
             <div class="col-12 col-md-6 col-lg-5 mx-auto p-2">
-                <form class="row g-2">
+                <form action="{{ route('budget.account.create') }}" method="POST" class="row g-2">
+
+                    @csrf
+
                     <div class="col-12">
                         <h2 class="display-6">New account</h2>
                     </div>
                     <div class="col-6 col-md-6">
                         <label for="name" class="form-label">Name *</label>
-                        <input type="text" class="form-control form-control-sm" id="name" name="name" value="" placeholder="Rent">
+                        <input type="text" class="form-control form-control-sm" id="name" name="name" value="" placeholder="Debit">
                     </div>
                     <div class="col-6 col-md-6">
                         <label for="type" class="form-label">Account Type *</label>
@@ -43,8 +46,8 @@
                         </select>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="amount" class="form-label">Balance *</label>
-                        <input type="number" class="form-control form-control-sm" id="amount" name="amount" placeholder="10.99">
+                        <label for="balance" class="form-label">Balance *</label>
+                        <input type="number" class="form-control form-control-sm" id="balance" name="balance" placeholder="10.99" min="0" step="0.01">
                     </div>
                     <div class="col-12">
                         <a href="{{ route('home') }}" class="btn btn-dark">Cancel</a>

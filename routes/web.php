@@ -78,7 +78,7 @@ Route::group(
 
         Route::post(
             '/budget/account',
-            [BudgetAccount::class, 'create']
+            [BudgetAccount::class, 'createProcess']
         )->name('budget.account.create.process');
 
         // Budget item management
