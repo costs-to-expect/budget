@@ -14,8 +14,6 @@ abstract class Action
 
     protected array $validation_errors = [];
 
-    protected string $game_id;
-
     public function getValidationErrors(): array
     {
         return $this->validation_errors;
@@ -24,10 +22,5 @@ abstract class Action
     public function getMessage(): string
     {
         return $this->message;
-    }
-
-    public function getGameId(): string
-    {
-        return $this->game_id;
     }
 }

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Actions\Budget\Account\Create;
 use App\Service\Budget\Service;
 use Illuminate\Http\Request;
 
@@ -33,6 +34,8 @@ class BudgetAccount extends Controller
         return view(
             'budget.account.create',
             [
+                'currency' => $budget->currency(),
+
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -40,5 +43,31 @@ class BudgetAccount extends Controller
                 'projection' => $budget->projection(),
             ]
         );
+    }
+
+    public function createProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Create();
+        $result = $action(
+            $this->api,
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->only(['name', 'type', 'description', 'currency_id', 'balance'])
+        );
+
+        if ($result === 204) {
+            return redirect()->route('home')
+                ->with('status', 'account-added');
+        }
+
+        if ($result === 422) {
+            return redirect()->route('budget.account.create')
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
     }
 }

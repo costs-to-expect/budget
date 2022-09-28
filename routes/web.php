@@ -76,6 +76,11 @@ Route::group(
             [BudgetAccount::class, 'create']
         )->name('budget.account.create');
 
+        Route::post(
+            '/budget/account',
+            [BudgetAccount::class, 'createProcess']
+        )->name('budget.account.create.process');
+
         // Budget item management
         Route::get(
             '/budget/item/{item_id}/confirm-delete',

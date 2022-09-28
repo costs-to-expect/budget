@@ -42,17 +42,25 @@ class Controller extends BaseController
 
         $this->mock_accounts_data = [
             [
-                'currency' => 'GBP',
-                'type' => 'expense',
                 'id' => 'default', // Needs to be a unique id
                 'name' => 'Default',
+                'type' => 'expense',
+                'currency' => [
+                    'id' => 1,
+                    'code' => 'GBP',
+                    'name' => 'Sterling'
+                ],
                 'balance' => 1254.36,
             ],
             [
-                'currency' => 'GBP',
-                'type' => 'savings',
                 'id' => 'savings',
                 'name' => 'Savings',
+                'type' => 'savings',
+                'currency' => [
+                    'id' => 1,
+                    'code' => 'GBP',
+                    'name' => 'Sterling'
+                ],
                 'balance' => 126.33,
             ]
         ];

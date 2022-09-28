@@ -34,6 +34,8 @@ class Index extends Controller
         return view(
             'home',
             [
+                'status' => session()->get('status'),
+
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),

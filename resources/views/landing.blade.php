@@ -11,6 +11,8 @@
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet"/>
     <meta name="theme-color" content="#892b7c">
+    <x-open-graph />
+    <x-twitter-card />
     <style>
         .container {
             max-width: 960px;
