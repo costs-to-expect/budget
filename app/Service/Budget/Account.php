@@ -69,7 +69,7 @@ class Account
 
     public function projected(): float
     {
-        return $this->projected;
+        return round($this->projected, 2);
     }
 
     public function type(): string

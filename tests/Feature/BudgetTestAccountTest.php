@@ -19,7 +19,11 @@ class BudgetTestAccountTest extends TestCase
         $budget_item_amount = $this->faker->randomFloat(2, 0, 1000);
 
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -56,7 +60,7 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_balance + ($budget_item_amount * 3),
+            round($starting_balance + ($budget_item_amount * 3), 2),
             $service->account($account_id)->projected()
         );
     }
@@ -68,7 +72,11 @@ class BudgetTestAccountTest extends TestCase
         $budget_item_amount = $this->faker->randomFloat(2, 0, 1000);
 
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -105,7 +113,7 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_balance + ($budget_item_amount * 2),
+            round($starting_balance + ($budget_item_amount * 2), 2),
             $service->account($account_id)->projected()
         );
     }
@@ -117,7 +125,11 @@ class BudgetTestAccountTest extends TestCase
         $budget_item_amount = $this->faker->randomFloat(2, 0, 1000);
 
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -154,7 +166,7 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_balance + $budget_item_amount,
+            round($starting_balance + $budget_item_amount, 2),
             $service->account($account_id)->projected()
         );
     }
@@ -166,7 +178,11 @@ class BudgetTestAccountTest extends TestCase
         $budget_item_amount = $this->faker->randomFloat(2, 0, 1000);
 
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -204,7 +220,7 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_balance + ($budget_item_amount * 5),
+            round($starting_balance + ($budget_item_amount * 5), 2),
             $service->account($account_id)->projected()
         );
     }
@@ -216,7 +232,11 @@ class BudgetTestAccountTest extends TestCase
         $budget_item_amount = $this->faker->randomFloat(2, 0, 1000);
 
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -254,7 +274,7 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_balance + ($budget_item_amount * 4),
+            round($starting_balance + ($budget_item_amount * 4), 2),
             $service->account($account_id)->projected()
         );
     }
@@ -266,7 +286,11 @@ class BudgetTestAccountTest extends TestCase
         $budget_item_amount = $this->faker->randomFloat(2, 0, 1000);
 
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -304,7 +328,7 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_balance + ($budget_item_amount * 2),
+            round($starting_balance + ($budget_item_amount * 2), 2),
             $service->account($account_id)->projected()
         );
     }
@@ -316,7 +340,11 @@ class BudgetTestAccountTest extends TestCase
         $budget_item_amount = $this->faker->randomFloat(2, 10, 1000);
 
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -353,7 +381,7 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_balance - ($budget_item_amount * 3),
+            round($starting_balance - ($budget_item_amount * 3), 2),
             $service->account($account_id)->projected()
         );
     }
@@ -365,7 +393,11 @@ class BudgetTestAccountTest extends TestCase
         $budget_item_amount = $this->faker->randomFloat(2, 10, 1000);
 
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -402,7 +434,7 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_balance - ($budget_item_amount * 2),
+            round($starting_balance - ($budget_item_amount * 2), 2),
             $service->account($account_id)->projected()
         );
     }
@@ -414,7 +446,11 @@ class BudgetTestAccountTest extends TestCase
         $budget_item_amount = $this->faker->randomFloat(2, 10, 2000);
 
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -451,7 +487,7 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_balance - $budget_item_amount,
+            round($starting_balance - $budget_item_amount, 2),
             $service->account($account_id)->projected()
         );
     }
@@ -463,7 +499,11 @@ class BudgetTestAccountTest extends TestCase
         $budget_item_amount = $this->faker->randomFloat(2, 10, 1000);
 
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -501,7 +541,7 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_balance - ($budget_item_amount * 6),
+            round($starting_balance - ($budget_item_amount * 6), 2),
             $service->account($account_id)->projected()
         );
     }
@@ -513,7 +553,11 @@ class BudgetTestAccountTest extends TestCase
         $budget_item_amount = $this->faker->randomFloat(2, 10, 1000);
 
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -551,7 +595,7 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_balance - ($budget_item_amount * 5),
+            round($starting_balance - ($budget_item_amount * 5), 2),
             $service->account($account_id)->projected()
         );
     }
@@ -563,7 +607,11 @@ class BudgetTestAccountTest extends TestCase
         $budget_item_amount = $this->faker->randomFloat(2, 10, 2000);
 
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -601,7 +649,7 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_balance - ($budget_item_amount * 2),
+            round($starting_balance - ($budget_item_amount * 2), 2),
             $service->account($account_id)->projected()
         );
     }
@@ -613,7 +661,11 @@ class BudgetTestAccountTest extends TestCase
         $budget_item_amount = $this->faker->randomFloat(2, 10, 1000);
 
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -650,7 +702,7 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_balance - ($budget_item_amount * 3),
+            round($starting_balance - ($budget_item_amount * 3), 2),
             $service->account($account_id)->projected()
         );
     }
@@ -662,7 +714,11 @@ class BudgetTestAccountTest extends TestCase
         $budget_item_amount = $this->faker->randomFloat(2, 10, 1000);
 
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -700,7 +756,7 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_balance - ($budget_item_amount * 8),
+            round($starting_balance - ($budget_item_amount * 8), 2),
             $service->account($account_id)->projected()
         );
     }
@@ -715,14 +771,22 @@ class BudgetTestAccountTest extends TestCase
         $savings_item_amount = $this->faker->randomFloat(2, 0, 1000);
 
         $default_account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $default_account_id,
             'name' => 'Default',
             'balance' => $starting_account_balance
         ];
         $savings_account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'savings',
             'id' => $savings_account_id,
             'name' => 'Savings',
@@ -759,12 +823,12 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_account_balance - ($savings_item_amount * 3),
+            round($starting_account_balance - ($savings_item_amount * 3), 2),
             $service->account($default_account_id)->projected()
         );
 
         $this->assertEquals(
-            $starting_saving_balance + ($savings_item_amount * 3),
+            round($starting_saving_balance + ($savings_item_amount * 3), 2),
             $service->account($savings_account_id)->projected()
         );
     }
@@ -779,14 +843,22 @@ class BudgetTestAccountTest extends TestCase
         $savings_item_amount = $this->faker->randomFloat(2, 0, 1000);
 
         $default_account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $default_account_id,
             'name' => 'Default',
             'balance' => $starting_account_balance
         ];
         $savings_account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'savings',
             'id' => $savings_account_id,
             'name' => 'Savings',
@@ -825,12 +897,12 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_account_balance - ($savings_item_amount * 2),
+            round($starting_account_balance - ($savings_item_amount * 2), 2),
             $service->account($default_account_id)->projected()
         );
 
         $this->assertEquals(
-            $starting_saving_balance + ($savings_item_amount * 2),
+            round($starting_saving_balance + ($savings_item_amount * 2), 2),
             $service->account($savings_account_id)->projected()
         );
     }
@@ -845,14 +917,22 @@ class BudgetTestAccountTest extends TestCase
         $savings_item_amount = $this->faker->randomFloat(2, 0, 1000);
 
         $default_account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $default_account_id,
             'name' => 'Default',
             'balance' => $starting_account_balance
         ];
         $savings_account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'savings',
             'id' => $savings_account_id,
             'name' => 'Savings',
@@ -889,12 +969,12 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_account_balance - $savings_item_amount,
+            round($starting_account_balance - $savings_item_amount, 2),
             $service->account($default_account_id)->projected()
         );
 
         $this->assertEquals(
-            $starting_saving_balance + $savings_item_amount,
+            round($starting_saving_balance + $savings_item_amount, 2),
             $service->account($savings_account_id)->projected()
         );
     }
@@ -909,14 +989,22 @@ class BudgetTestAccountTest extends TestCase
         $savings_item_amount = $this->faker->randomFloat(2, 0, 1000);
 
         $default_account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $default_account_id,
             'name' => 'Default',
             'balance' => $starting_account_balance
         ];
         $savings_account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'savings',
             'id' => $savings_account_id,
             'name' => 'Savings',
@@ -954,12 +1042,12 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_account_balance - ($savings_item_amount * 6),
+            round($starting_account_balance - ($savings_item_amount * 6), 2),
             $service->account($default_account_id)->projected()
         );
 
         $this->assertEquals(
-            $starting_saving_balance + ($savings_item_amount * 6),
+            round($starting_saving_balance + ($savings_item_amount * 6), 2),
             $service->account($savings_account_id)->projected()
         );
     }
@@ -974,14 +1062,22 @@ class BudgetTestAccountTest extends TestCase
         $savings_item_amount = $this->faker->randomFloat(2, 0, 1000);
 
         $default_account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $default_account_id,
             'name' => 'Default',
             'balance' => $starting_account_balance
         ];
         $savings_account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'savings',
             'id' => $savings_account_id,
             'name' => 'Savings',
@@ -1021,12 +1117,12 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_account_balance - ($savings_item_amount * 5),
+            round($starting_account_balance - ($savings_item_amount * 5), 2),
             $service->account($default_account_id)->projected()
         );
 
         $this->assertEquals(
-            $starting_saving_balance + ($savings_item_amount * 5),
+            round($starting_saving_balance + ($savings_item_amount * 5), 2),
             $service->account($savings_account_id)->projected()
         );
     }
@@ -1041,14 +1137,22 @@ class BudgetTestAccountTest extends TestCase
         $savings_item_amount = $this->faker->randomFloat(2, 0, 1000);
 
         $default_account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $default_account_id,
             'name' => 'Default',
             'balance' => $starting_account_balance
         ];
         $savings_account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'savings',
             'id' => $savings_account_id,
             'name' => 'Savings',
@@ -1086,12 +1190,12 @@ class BudgetTestAccountTest extends TestCase
         $service->assignItemsToBudget();
 
         $this->assertEquals(
-            $starting_account_balance - ($savings_item_amount * 2),
+            round($starting_account_balance - ($savings_item_amount * 2), 2),
             $service->account($default_account_id)->projected()
         );
 
         $this->assertEquals(
-            $starting_saving_balance + ($savings_item_amount * 2),
+            round($starting_saving_balance + ($savings_item_amount * 2), 2),
             $service->account($savings_account_id)->projected()
         );
     }

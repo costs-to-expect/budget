@@ -16,7 +16,11 @@ class BudgetItemTest extends TestCase
     {
         $account_id = $this->faker->uuid();
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -62,7 +66,11 @@ class BudgetItemTest extends TestCase
     {
         $account_id = $this->faker->uuid();
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -109,7 +117,11 @@ class BudgetItemTest extends TestCase
     {
         $account_id = $this->faker->uuid();
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -156,7 +168,11 @@ class BudgetItemTest extends TestCase
     {
         $account_id = $this->faker->uuid();
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -206,7 +222,11 @@ class BudgetItemTest extends TestCase
     {
         $account_id = $this->faker->uuid();
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -252,7 +272,11 @@ class BudgetItemTest extends TestCase
     {
         $account_id = $this->faker->uuid();
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -299,7 +323,11 @@ class BudgetItemTest extends TestCase
     {
         $account_id = $this->faker->uuid();
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -345,7 +373,11 @@ class BudgetItemTest extends TestCase
     {
         $account_id = $this->faker->uuid();
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -395,7 +427,11 @@ class BudgetItemTest extends TestCase
     {
         $account_id = $this->faker->uuid();
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
@@ -441,7 +477,11 @@ class BudgetItemTest extends TestCase
     {
         $account_id = $this->faker->uuid();
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',

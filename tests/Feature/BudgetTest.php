@@ -153,7 +153,11 @@ class BudgetTest extends TestCase
         $service = new Service();
         $service->setAccounts([
             [
-                'currency' => 'GBP',
+                'currency' => [
+                    'id' => 1,
+                    'code' => 'GBP',
+                    'name' => 'Sterling'
+                ],
                 'type' => 'expense',
                 'id' => $this->faker()->uuid(),
                 'name' => 'Default',
@@ -168,21 +172,33 @@ class BudgetTest extends TestCase
     public function testAccountLimit(): void
     {
         $account_1 = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
             'name' => $this->faker->name(),
             'balance' => 1254.36,
         ];
         $account_2 = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
             'name' => $this->faker->name(),
             'balance' => 1254.36,
         ];
         $account_3 = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
             'name' => $this->faker->name(),
@@ -199,28 +215,44 @@ class BudgetTest extends TestCase
     public function testAccountLimitNotPassable(): void
     {
         $account_1 = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
             'name' => $this->faker->name(),
             'balance' => 1254.36,
         ];
         $account_2 = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
             'name' => $this->faker->name(),
             'balance' => 1254.36,
         ];
         $account_3 = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
             'name' => $this->faker->name(),
             'balance' => 1254.36,
         ];
         $account_4 = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
             'name' => $this->faker->name(),
@@ -238,7 +270,11 @@ class BudgetTest extends TestCase
         $uuid = $this->faker->uuid();
 
         $account = [
-            'currency' => 'GBP',
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
             'type' => 'expense',
             'id' => $uuid,
             'name' => 'Default',
