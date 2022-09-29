@@ -81,40 +81,41 @@
                         </div>
                         <fieldset>
                             <legend class="col-form-label col-12 text-primary">Frequency *</legend>
-                            <p>Set how often the expense should appear within your Budget and optionally
-                                the day of the month of date it typically occurs.</p>
-                            <div class="row">
-                                <div class="col-6 col-md-6">
-                                    <label for="frequency" class="form-label">Frequency *</label>
-                                    <select id="frequency" name="frequency" class="form-select form-select-sm">
-                                        <option value="Monthly" selected="selected">Monthly</option>
-                                        <option value="Annually">Annually</option>
-                                    </select>
-                                </div>
-                                <div class="col-6 col-md-5">
-                                    <label for="day" class="form-label">Day of Month</label>
-                                    <input type="number" class="form-control form-control-sm" id="day" name="day" placeholder="5">
-                                </div>
+                            <p>Set how often the expense should appear on your Budget.</p>
+                            <div class="col-12">
+                                <label for="frequency" class="form-label">Repeats *</label>
+                                <select id="frequency" name="frequency" class="form-select form-select-sm">
+                                    <option value="monthly" selected="selected">Monthly</option>
+                                    <option value="annually">Annually</option>
+                                    <option value="never">Never/One off</option>
+                                </select>
+                            </div>
+                            <p class="mt-2 text-primary">You have selected monthly, please choose the day of the month it
+                                typically occurs, this is just a guide.</p>
+                            <div class="col-6">
+                                <label for="day" class="form-label">Day of Month</label>
+                                <input type="number" class="form-control form-control-sm" id="day" name="day" placeholder="5">
                             </div>
                         </fieldset>
 
-                        <fieldset>
+                        {{--<fieldset>
                             <legend class="col-form-label col-12 text-primary">Frequency</legend>
-                            <p>Set how often the expense should appear within your Budget and optionally
-                                the day of the month of date it typically occurs.</p>
+                            <p>Set how often the expense should appear on your budget.</p>
+                            <div class="col-12">
+                                <label for="frequency" class="form-label">Repeats *</label>
+                                <select id="frequency" name="frequency" class="form-select form-select-sm">
+                                    <option value="Monthly" selected="selected">Monthly</option>
+                                    <option value="Annually">Annually</option>
+                                </select>
+                            </div>
+                            <p>You have selected annually, please choose the day and month this
+                                typically occurs, this is just a guide.</p>
                             <div class="row">
-                                <div class="col-4 col-md-4">
-                                    <label for="frequency" class="form-label">Frequency *</label>
-                                    <select id="frequency" name="frequency" class="form-select form-select-sm">
-                                        <option value="Monthly">Monthly</option>
-                                        <option value="Annually" selected="selected">Annually</option>
-                                    </select>
-                                </div>
-                                <div class="col-4 col-md-4">
+                                <div class="col-6">
                                     <label for="day" class="form-label">Day</label>
                                     <input type="number" class="form-control form-control-sm" id="day" name="day" placeholder="5">
                                 </div>
-                                <div class="col-4 col-md-4">
+                                <div class="col-6">
                                     <label for="amount" class="form-label">Month</label>
                                     <select id="frequency" name="frequency" class="form-select form-select-sm">
                                         <option value="Monthly" selected="selected">Month.</option>
@@ -134,6 +135,44 @@
                                 </div>
                             </div>
                         </fieldset>
+
+                        <fieldset>
+                            <legend class="col-form-label col-12 text-primary">Frequency</legend>
+                            <p>Set how often the expense should appear on your budget.</p>
+                            <div class="col-12">
+                                <label for="frequency" class="form-label">Repeats *</label>
+                                <select id="frequency" name="frequency" class="form-select form-select-sm">
+                                    <option value="Monthly" selected="selected">Monthly</option>
+                                    <option value="Annually">Annually</option>
+                                </select>
+                            </div>
+                            <p>You have selected Never/One off, please choose the day and month this
+                                for this budget item.</p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="day" class="form-label">Day</label>
+                                    <input type="number" class="form-control form-control-sm" id="day" name="day" placeholder="5" min="1" max="31" step="1">
+                                </div>
+                                <div class="col-6">
+                                    <label for="amount" class="form-label">Month</label>
+                                    <select id="frequency" name="frequency" class="form-select form-select-sm">
+                                        <option value="Monthly" selected="selected">Month.</option>
+                                        <option value="Monthly">Jan.</option>
+                                        <option value="Monthly">Feb.</option>
+                                        <option value="Monthly">Mar.</option>
+                                        <option value="Monthly">Apr.</option>
+                                        <option value="Monthly">May.</option>
+                                        <option value="Monthly">Jun.</option>
+                                        <option value="Monthly">Jul.</option>
+                                        <option value="Monthly">Aug.</option>
+                                        <option value="Monthly">Sep.</option>
+                                        <option value="Monthly">Oct.</option>
+                                        <option value="Monthly">Nov.</option>
+                                        <option value="Monthly">Dec.</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </fieldset>--}}
 
                         <fieldset>
                             <legend class="col-form-label col-12 text-primary">Exclusions</legend>
