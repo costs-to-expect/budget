@@ -21,7 +21,7 @@
         @foreach ($months as $__month)
             @if ($__month->visible())
             <div class="col-4 @if($counter === 1) border-start border-end border-primary border-opacity-50 @endif">
-                <div class="text-primary month pb-2">{{ $__month->name() }}</div>
+                <div class="text-primary text-center month pb-2">{{ $__month->name() }}</div>
                 <div class="row">
                     @foreach ($__month->items() as $__item)
                         <a href="{{ route('budget.item.view', ['item_id' => str()->slug($__item->name())]) }}">
