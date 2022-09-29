@@ -14,15 +14,16 @@
 
         <x-offcanvas active="home"/>
 
-        <div class="col-lg-8 mx-auto p-3">
+        <div class="col-lg-10 col-xl-9 mx-auto p-3">
 
-            <div class="col-12 col-md-6 col-lg-5 mx-auto p-2">
+            <div class="row">
+                <div class="col-12 col-lg-4 mx-auto p-2">
                 <form action="{{ route('budget.account.create') }}" method="POST" class="row g-2">
 
                     @csrf
 
                     <div class="col-12">
-                        <h2 class="display-6">New account</h2>
+                        <h2 class="display-6 mt-3 mb-3">New account</h2>
                     </div>
                     <div class="col-6 col-md-6">
                         <label for="name" class="form-label">Name *</label>
@@ -91,13 +92,16 @@
                 </div>
             </div>
 
-            <x-budget
-                    :accounts="$accounts"
-                    :months="$months"
-                    :pagination="$pagination"
-                    :viewEnd="$view_end"
-                    :active="false"
-                    :projection="$projection "/>
+                <div class="col-12 col-lg-8 p-2">
+                    <x-budget
+                        :accounts="$accounts"
+                        :months="$months"
+                        :pagination="$pagination"
+                        :viewEnd="$view_end"
+                        :active="false"
+                        :projection="$projection "/>
+                </div>
+            </div>
 
             <x-requests />
 
