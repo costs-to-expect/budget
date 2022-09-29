@@ -29,7 +29,15 @@
                         <div class="col-6 col-md-6">
                             <label for="account" class="form-label">Account *</label>
                             <select id="account" name="account" class="form-select form-select-sm">
-                                <option value="default" selected="selected">Default</option>
+                                @foreach ($accounts as $__account)
+                                    @if ($__account->type() === 'expense')
+                                        <option value="{{ $__account->id() }}">{{ $__account->name() }}</option>
+                                    @endif
+
+                                    @if ($__account->type() === 'income')
+                                        <option value="{{ $__account->id() }}">{{ $__account->name() }}</option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-12">
@@ -62,7 +70,9 @@
                                 <optgroup label="Expense">
                                     <option selected="selected">Fixed</option>
                                     <option>Flexible</option>
+                                    @if ($has_savings_account)
                                     <option>Savings</option>
+                                    @endif
                                 </optgroup>
                                 <optgroup label="Income">
                                     <option selected="selected">Income</option>
@@ -82,7 +92,7 @@
                                     </select>
                                 </div>
                                 <div class="col-6 col-md-5">
-                                    <label for="amount" class="form-label">Day of Month</label>
+                                    <label for="day" class="form-label">Day of Month</label>
                                     <input type="number" class="form-control form-control-sm" id="day" name="day" placeholder="5">
                                 </div>
                             </div>
@@ -101,7 +111,7 @@
                                     </select>
                                 </div>
                                 <div class="col-4 col-md-4">
-                                    <label for="amount" class="form-label">Day</label>
+                                    <label for="day" class="form-label">Day</label>
                                     <input type="number" class="form-control form-control-sm" id="day" name="day" placeholder="5">
                                 </div>
                                 <div class="col-4 col-md-4">
@@ -237,11 +247,21 @@
                                 </div>
                             </div>
                         </fieldset>
-                        <div class="col-12">
+                        <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
+                        <div class="col-12 mt-3">
+
+                            @if (count($accounts) > 0)
                             <a href="{{ route('home') }}" class="btn btn-dark">Cancel</a>
                             <button type="submit" class="btn btn-primary">Save</button>
+                            @else
+                            <div class="alert alert-dark show mt-2" role="alert">
+                                <h4 class="alert-heading">No accounts!</h4>
+                                <p>You can't add a Budget item until you have added at least account, please create an account.</p>
+                                <hr>
+                                <p class="mb-0"><a href="{{ route('budget.account.create') }}">New account</a>.</p>
+                            </div>
+                            @endif
                         </div>
-                        <div class="col-12 text-muted">Fields marked with an asterisk * are required.</div>
                     </form>
 
                     <div class="alert alert-primary alert-dismissible fade show mt-2" role="alert">

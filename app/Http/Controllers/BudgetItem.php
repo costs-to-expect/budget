@@ -96,6 +96,9 @@ class BudgetItem extends Controller
                 'pagination' => $budget->paginationParameters(),
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
+                'currency' => $budget->currency(),
+
+                'has_savings_account' => $budget->hasSavingsAccount(),
             ]
         );
     }

@@ -75,11 +75,11 @@
                         </div>
                         @enderror
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
+                    <div class="col-12 mt-3">
                         <a href="{{ route('home') }}" class="btn btn-dark">Cancel</a>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
-                    <div class="col-12 text-muted">Fields marked with an asterisk * are required.</div>
                 </form>
 
                 <div class="alert alert-primary alert-dismissible fade show mt-2" role="alert">

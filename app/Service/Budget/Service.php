@@ -118,6 +118,17 @@ class Service
         return $this->currency['name'];
     }
 
+    public function hasSavingsAccount() : bool
+    {
+        foreach ($this->accounts() as $account) {
+            if ($account->type() === 'savings') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function account(string $id) : Account
     {
         return $this->accounts[$id];
