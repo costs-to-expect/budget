@@ -28,6 +28,7 @@ class Controller extends BaseController
 
     protected ?string $resource_type_id = null;
     protected ?string $resource_id = null;
+    protected array $accounts = [];
 
     protected Service $api;
 
@@ -309,6 +310,15 @@ class Controller extends BaseController
                     if (count($resources['content']) === 1) {
                         $this->resource_type_id = $resource_type_id;
                         $this->resource_id = $resources['content'][0]['id'];
+
+                        $data = $resources['content'][0]['data'];
+                        if ($data === null || (is_array($data) && array_key_exists('accounts', $data) === false)) {
+                            $this->accounts = [];
+                        }
+
+                        if (is_array($data) && array_key_exists('accounts', $data) === true) {
+                            $this->accounts = $data['accounts'];
+                        }
 
                         return true;
                     }

@@ -57,7 +57,7 @@ class Create extends Action
                 'balance.regex' => 'Costs should be in the format 0.00'
             ]
         )->validate();
-        
+
         $resource = $api->getResource($resource_type_id, $resource_id);
         if ($resource['status'] !== 200) {
             $this->message = 'Unable to fetch the resource for your Budget, please try again';
@@ -105,8 +105,9 @@ class Create extends Action
 
         if (array_key_exists('accounts', $resource_data) === true) {
             $payload = $resource_data;
-            $payload['accounts'][] = [
-                'id' => Str::uuid()->toString(),
+            $id = Str::uuid()->toString();
+            $payload['accounts'][$id] = [
+                'id' => $id,
                 'name' => $input['name'],
                 'type' => $input['type'],
                 'description' => $input['description'],
