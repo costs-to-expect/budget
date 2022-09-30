@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Actions\Budget\Item\Create;
 use App\Service\Budget\Service;
 use Illuminate\Http\Request;
 
@@ -88,6 +89,9 @@ class BudgetItem extends Controller
 
         $budget->assignItemsToBudget();
 
+        // We need to create a validation helper to handle displaying any error messages
+        // returned from the API, must also support our customer error messages
+
         return view(
             'budget.item.create',
             [
@@ -99,8 +103,40 @@ class BudgetItem extends Controller
                 'currency' => $budget->currency(),
 
                 'has_savings_account' => $budget->hasSavingsAccount(),
+
+                'validation' => [
+                    'errors' => session()->get('validation.errors'),
+                ]
             ]
         );
+    }
+
+    public function createProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Create();
+        $result = $action(
+            $this->api,
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->all()
+        );
+
+        if ($result === 201) {
+            return redirect()
+                ->route('home')
+                ->with('status', 'item-added');
+        }
+
+        if ($result === 422) {
+            return redirect()
+                ->route('budget.item.create')
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
     }
 
     public function index(Request $request)

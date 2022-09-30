@@ -56,6 +56,21 @@ class Uri
     }
 
     #[ArrayShape(['uri' => "string", 'name' => "string"])]
+    public static function items(string $resource_type_id, string $resource_id, array $parameters = []): array
+    {
+        $uri = '/' . self::VERSION . '/resource-types/' . $resource_type_id . '/resources/' .
+                $resource_id . '/items';
+        if (count($parameters) > 0) {
+            $uri .= '?' . http_build_query($parameters);
+        }
+
+        return [
+            'uri' => $uri,
+            'name' => 'Budget items'
+        ];
+    }
+
+    #[ArrayShape(['uri' => "string", 'name' => "string"])]
     public static function register(): array
     {
         $uri = '/' . self::VERSION . '/auth/register?send=false';

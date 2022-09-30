@@ -63,7 +63,8 @@ class BudgetAccount extends Controller
         }
 
         if ($result === 422) {
-            return redirect()->route('budget.account.create')
+            return redirect()
+                ->route('budget.account.create')
                 ->withInput()
                 ->with('validation.errors', $action->getValidationErrors());
         }

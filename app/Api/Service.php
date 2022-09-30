@@ -58,6 +58,17 @@ class Service
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    public function createBudgetItem(string $resource_type_id, string $resource_id, array $payload): array
+    {
+        $uri = Uri::items($resource_type_id, $resource_id);
+
+        return $this->http->post(
+            $uri['uri'],
+            $payload
+        );
+    }
+
+    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
     public function createPassword(array $payload): array
     {
         $uri = Uri::createPassword($payload['token'], $payload['email']);

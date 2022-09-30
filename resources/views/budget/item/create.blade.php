@@ -18,25 +18,22 @@
 
             <div class="row">
                 <div class="col-12 col-lg-4 mx-auto p-2">
-                    <form class="row g-2">
+                    <form action="{{ route('budget.item.create.process') }}" method="POST" class="row g-2">
+
+                        @csrf
+
                         <div class="col-12">
                             <h2 class="display-6 mt-3 mb-3">New</h2>
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="name" class="form-label">Name *</label>
-                            <input type="text" class="form-control form-control-sm" id="name" name="name" value="" placeholder="Rent">
+                            <input type="text" class="form-control form-control-sm" id="name" name="name" value="{{ old('name') }}" placeholder="Rent">
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="account" class="form-label">Account *</label>
                             <select id="account" name="account" class="form-select form-select-sm">
                                 @foreach ($accounts as $__account)
-                                    @if ($__account->type() === 'expense')
-                                        <option value="{{ $__account->id() }}">{{ $__account->name() }}</option>
-                                    @endif
-
-                                    @if ($__account->type() === 'income')
-                                        <option value="{{ $__account->id() }}">{{ $__account->name() }}</option>
-                                    @endif
+                                    <option value="{{ $__account->id() }}" @if (old('account') !== null && old('account') === $__account->id()) selected="selected" @endif>{{ $__account->name() }}</option>
                                 @endforeach
                             </select>
                         </div>
