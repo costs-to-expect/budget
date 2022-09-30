@@ -12135,6 +12135,10 @@ fieldset legend {
   font-weight: 300;
 }
 
+.form-label {
+  font-weight: 475;
+}
+
 div.header a {
   text-decoration: none;
   color: #000000;

@@ -79,7 +79,7 @@ class Service
                 $account['name'],
                 $account['type'],
                 $account['currency'],
-                $account['balance']
+                (float) $account['balance']
             );
         }
 
@@ -116,6 +116,17 @@ class Service
     public function currencyName() : string
     {
         return $this->currency['name'];
+    }
+
+    public function hasSavingsAccount() : bool
+    {
+        foreach ($this->accounts() as $account) {
+            if ($account->type() === 'savings') {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function account(string $id) : Account
@@ -190,13 +201,25 @@ class Service
                         $this->months[$month->year() . '-' . $month->month()]->future() === true
                     ) {
                         if ($budget_item->category() === 'income') {
-                            $this->accounts[$budget_item->account()]->add($budget_item->amount());
+
+                            if (array_key_exists($budget_item->account(), $this->accounts)) {
+                                $this->accounts[$budget_item->account()]->add($budget_item->amount());
+                            }
                         } else {
                             if ($budget_item->category() === 'savings') {
-                                $this->accounts[$budget_item->account()]->sub($budget_item->amount());
-                                $this->accounts[$budget_item->targetAccount()]->add($budget_item->amount()); // How do we deal with this?
+                                if (
+                                    array_key_exists($budget_item->account(), $this->accounts) &&
+                                    array_key_exists($budget_item->targetAccount(), $this->accounts)
+                                ) {
+                                    $this->accounts[$budget_item->account()]->sub($budget_item->amount());
+                                    $this->accounts[$budget_item->targetAccount()]->add(
+                                        $budget_item->amount()
+                                    );
+                                }
                             } else {
-                                $this->accounts[$budget_item->account()]->sub($budget_item->amount());
+                                if (array_key_exists($budget_item->account(), $this->accounts)) {
+                                    $this->accounts[$budget_item->account()]->sub($budget_item->amount());
+                                }
                             }
                         }
                     }

@@ -21,7 +21,7 @@ class BudgetItem extends Controller
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
         }
-        $budget->setAccounts($this->mock_accounts_data)
+        $budget->setAccounts($this->accounts)
             ->create();
 
         foreach ($this->mock_data as $budget_item) {
@@ -50,7 +50,7 @@ class BudgetItem extends Controller
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
         }
-        $budget->setAccounts($this->mock_accounts_data)
+        $budget->setAccounts($this->accounts)
             ->create();
 
         foreach ($this->mock_data as $budget_item) {
@@ -79,7 +79,7 @@ class BudgetItem extends Controller
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
         }
-        $budget->setAccounts($this->mock_accounts_data)
+        $budget->setAccounts($this->accounts)
             ->create();
 
         foreach ($this->mock_data as $budget_item) {
@@ -96,6 +96,9 @@ class BudgetItem extends Controller
                 'pagination' => $budget->paginationParameters(),
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
+                'currency' => $budget->currency(),
+
+                'has_savings_account' => $budget->hasSavingsAccount(),
             ]
         );
     }
@@ -108,7 +111,7 @@ class BudgetItem extends Controller
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
         }
-        $budget->setAccounts($this->mock_accounts_data)
+        $budget->setAccounts($this->accounts)
             ->create();
 
         foreach ($this->mock_data as $budget_item) {
@@ -137,7 +140,7 @@ class BudgetItem extends Controller
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
         }
-        $budget->setAccounts($this->mock_accounts_data)
+        $budget->setAccounts($this->accounts)
             ->create();
 
         foreach ($this->mock_data as $budget_item) {

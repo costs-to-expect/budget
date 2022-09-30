@@ -28,11 +28,11 @@ class Controller extends BaseController
 
     protected ?string $resource_type_id = null;
     protected ?string $resource_id = null;
+    protected array $accounts = [];
 
     protected Service $api;
 
     protected array $mock_data;
-    protected array $mock_accounts_data;
 
     public function __construct()
     {
@@ -40,36 +40,11 @@ class Controller extends BaseController
         $this->item_type_id = $this->config['item_type_id'];
         $this->item_subtype_id = $this->config['item_subtype_id'];
 
-        $this->mock_accounts_data = [
-            [
-                'id' => 'default', // Needs to be a unique id
-                'name' => 'Default',
-                'type' => 'expense',
-                'currency' => [
-                    'id' => 1,
-                    'code' => 'GBP',
-                    'name' => 'Sterling'
-                ],
-                'balance' => 1254.36,
-            ],
-            [
-                'id' => 'savings',
-                'name' => 'Savings',
-                'type' => 'savings',
-                'currency' => [
-                    'id' => 1,
-                    'code' => 'GBP',
-                    'name' => 'Sterling'
-                ],
-                'balance' => 126.33,
-            ]
-        ];
-
         $this->mock_data = [
             [
                 'id' => 1,
                 'name' => 'Salary',
-                'account' => 'default',
+                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 1866.00,
@@ -87,7 +62,7 @@ class Controller extends BaseController
             [
                 'id' => 2,
                 'name' => 'Rent',
-                'account' => 'default',
+                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 850.00,
@@ -105,7 +80,7 @@ class Controller extends BaseController
             [
                 'id' => 3,
                 'name' => 'Council Tax',
-                'account' => 'default',
+                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 163.00,
@@ -125,7 +100,7 @@ class Controller extends BaseController
             [
                 'id' => 4,
                 'name' => 'Council Tax',
-                'account' => 'default',
+                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 170.00,
@@ -145,7 +120,7 @@ class Controller extends BaseController
             [
                 'id' => 5,
                 'name' => 'Gas & Electric',
-                'account' => 'default',
+                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 275.00,
@@ -163,7 +138,7 @@ class Controller extends BaseController
             [
                 'id' => 6,
                 'name' => 'Guitar Lessons',
-                'account' => 'default',
+                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 25.00,
@@ -181,8 +156,8 @@ class Controller extends BaseController
             [
                 'id' => 7,
                 'name' => 'Holiday Savings',
-                'account' => 'default',
-                'target_account' => 'savings',
+                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
+                'target_account' => 'cffe9168-fba3-4544-9ca4-2fb0a14b6486',
                 'description' => 'This is a description for the expense',
                 'amount' => 150.00,
                 'currency_code' => 'GBP',
@@ -199,7 +174,7 @@ class Controller extends BaseController
             [
                 'id' => 8,
                 'name' => 'TV, Phone & Internet',
-                'account' => 'default',
+                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 75.00,
@@ -217,7 +192,7 @@ class Controller extends BaseController
             [
                 'id' => 9,
                 'name' => 'School Uniform',
-                'account' => 'default',
+                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 45.00,
@@ -236,7 +211,7 @@ class Controller extends BaseController
             [
                 'id' => 10,
                 'name' => 'Netflix',
-                'account' => 'default',
+                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 16.99,
@@ -254,7 +229,7 @@ class Controller extends BaseController
             [
                 'id' => 11,
                 'name' => 'Disney +',
-                'account' => 'default',
+                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 16.99,
@@ -272,7 +247,7 @@ class Controller extends BaseController
             [
                 'id' => 12,
                 'name' => 'Car Insurance',
-                'account' => 'default',
+                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 625.00,
@@ -309,6 +284,15 @@ class Controller extends BaseController
                     if (count($resources['content']) === 1) {
                         $this->resource_type_id = $resource_type_id;
                         $this->resource_id = $resources['content'][0]['id'];
+
+                        $data = $resources['content'][0]['data'];
+                        if ($data === null || (is_array($data) && array_key_exists('accounts', $data) === false)) {
+                            $this->accounts = [];
+                        }
+
+                        if (is_array($data) && array_key_exists('accounts', $data) === true) {
+                            $this->accounts = $data['accounts'];
+                        }
 
                         return true;
                     }

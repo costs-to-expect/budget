@@ -288,4 +288,20 @@ class BudgetTest extends TestCase
         $this->assertCount(1, $service->accounts());
         $this->assertEquals('Default', $service->account($uuid)->name());
     }
+
+    public function testGeneratedMonthsWhenViewingThePast(): void
+    {
+        $service = new Service();
+        $service->setNow(
+            new DateTimeImmutable("2022-08-01", new DateTimeZone('UTC'))
+        );
+        $service->setPagination(5, 2021);
+        $service->create();
+
+        $this->assertCount(3, $service->months());
+
+        $this->assertTrue($service->months()['2021-5']->visible());
+        $this->assertTrue($service->months()['2021-6']->visible());
+        $this->assertTrue($service->months()['2021-7']->visible());
+    }
 }
