@@ -89,9 +89,6 @@ class BudgetItem extends Controller
 
         $budget->assignItemsToBudget();
 
-        // We need to create a validation helper to handle displaying any error messages
-        // returned from the API, must also support our customer error messages
-
         return view(
             'budget.item.create',
             [

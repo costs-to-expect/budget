@@ -5,9 +5,6 @@ namespace App\Actions\Budget\Item;
 
 use App\Actions\Action;
 use App\Api\Service;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -23,16 +20,74 @@ class Create extends Action
         array $input
     ): int
     {
-        // Validate the fields for frequency, need to be correct
-        // Return validation error and manual 422 with input
+        if (array_key_exists('frequency_option', $input) === true) {
+            if (in_array($input['frequency_option'], ['monthly', 'annually', 'never']) === false) {
+                $this->validation_errors['frequency_option']['errors'] = [
+                    'The frequency need to be set to monthly, annually or never'
+                ];
+            }
+        } else {
+            $this->validation_errors['frequency_option']['errors'] = [
+                'The frequency is required.'
+            ];
+        }
 
-        // We need to structure the $payload from the given input
-        // Do it here for now, we will probably offload it to a separate class
+        if (array_key_exists('exclusion', $input) === true) {
+            foreach ($input['exclusion'] as $__month) {
+                if ((int) $__month < 1 || (int) $__month > 12) {
+                    $this->validation_errors['exclusion']['errors'] = [
+                        'Exclusions can only be set for real months, values should be between 1 and 12'
+                    ];
+                }
+            }
+        }
+
+        if (count($this->validation_errors) > 0) {
+            return 422;
+        }
+
+        $frequency = [ 'type' => $input['frequency_option'] ];
+        if ($frequency['type'] === 'monthly') {
+            $frequency['exclusions'] = [];
+            if ($input['monthly_day'] !== null) {
+                $frequency['day'] = (int) $input['monthly_day'];
+            } else {
+                $frequency['day'] = null;
+            }
+
+            if (array_key_exists('exclusion', $input)) {
+                foreach ($input['exclusion'] as $__month) {
+                    $frequency['exclusions'][] = (int) $__month;
+                }
+            }
+        }
+
+        try {
+            $frequency_json = json_encode($frequency, JSON_THROW_ON_ERROR);
+        } catch(\JsonException $e) {
+            $this->validation_errors['frequency_option']['errors'] = [
+                'The frequency settings could not be encoded to JSON, please try again'
+            ];
+            return 422;
+        }
+
+        $payload = [
+            'name' => $input['name'],
+            'account' => $input['account'],
+            'target_account' => $input['target_account'] ?? null,
+            'description' => $input['description'] ?? null,
+            'amount' => $input['amount'],
+            'start_date' => $input['start_date'],
+            'end_date' => $input['end_date'] ?? null,
+            'currency_id' => $input['currency_id'],
+            'category' => $input['category'],
+            'frequency' => $frequency_json
+        ];
 
         $create_budget_item_response = $api->createBudgetItem(
             $resource_type_id,
             $resource_id,
-            $input
+            $payload
         );
 
         if ($create_budget_item_response['status'] === 201) {

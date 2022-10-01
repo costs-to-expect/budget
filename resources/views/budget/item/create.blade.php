@@ -17,7 +17,7 @@
         <div class="col-lg-10 col-xl-9 mx-auto p-3">
 
             <div class="row">
-                <div class="col-12 col-lg-4 mx-auto p-2">
+                <div class="col-12 col-lg-5 mx-auto p-2">
                     <form action="{{ route('budget.item.create.process') }}" method="POST" class="row g-2">
 
                         @csrf
@@ -40,58 +40,64 @@
                         </div>
                         <div class="col-12">
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control form-control-sm" id="description" name="description" placeholder="An optional description of the expense/income"></textarea>
+                            <textarea class="form-control form-control-sm <x-validation-error field='description' />" id="description" name="description" placeholder="An optional description of the expense/income">{{ old('description') }}</textarea>
+                            <x-validation-error-message field="description" />
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="start_date" class="form-label">Start Date *</label>
-                            <input type="date" class="form-control form-control-sm <x-validation-error field='start_date' />" id="start_date" name="start_date" value="">
+                            <input type="date" class="form-control form-control-sm <x-validation-error field='start_date' />" id="start_date" name="start_date" value="{{ old('start_date') }}">
                             <x-validation-error-message field="start_date" />
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="end_date" class="form-label">End Date</label>
-                            <input type="date" class="form-control form-control-sm" id="end_date" name="end_date" value="">
+                            <input type="date" class="form-control form-control-sm <x-validation-error field='end_date' />" id="end_date" name="end_date" value="{{ old('end_date') }}">
+                            <x-validation-error-message field="end_date" />
                         </div>
                         <div class="col-4 col-md-4">
                             <label for="currency_id" class="form-label">Currency *</label>
-                            <select id="currency_id" name="currency_id" class="form-select form-select-sm @error('currency_id') is-invalid @enderror" required="required">
-                                <option value="{{ $currency['id'] }}" selected="selected">{{ $currency['code'] . '-' . $currency['name'] }}</option>
+                            <select id="currency_id" name="currency_id" class="form-select form-select-sm <x-validation-error field='currency_id' />">
+                                <option value="{{ $currency['id'] }}" @if (old('currency_id') !== null && old('currency_id') === $currency['id']) selected="selected" @endif>{{ $currency['code'] . '-' . $currency['name'] }}</option>
                             </select>
+                            <x-validation-error-message field="currency_id" />
                         </div>
                         <div class="col-4 col-md-4">
                             <label for="amount" class="form-label">Amount *</label>
-                            <input type="number" class="form-control form-control-sm" id="amount" name="amount" placeholder="10.99">
+                            <input type="number" class="form-control form-control-sm <x-validation-error field='amount' />" id="amount" name="amount" placeholder="10.99" value="{{ old('amount') }}">
+                            <x-validation-error-message field="amount" />
                         </div>
                         <div class="col-4 col-md-4">
-                            <label for="item_type" class="form-label">Type *</label>
-                            <select id="item_type" name="item_type" class="form-select form-select-sm">
+                            <label for="category" class="form-label">Type *</label>
+                            <select id="category" name="category" class="form-select form-select-sm <x-validation-error field='category' />">
                                 <optgroup label="Expense">
-                                    <option selected="selected">Fixed</option>
-                                    <option>Flexible</option>
+                                    <option value="fixed" @if (old('category') === 'fixed') selected="selected" @endif>Fixed</option>
+                                    <option value="flexible" @if (old('category') === 'flexible') selected="selected" @endif>Flexible</option>
                                     @if ($has_savings_account)
-                                    <option>Savings</option>
+                                    <option value="savings" @if (old('category') === 'savings') selected="selected" @endif>Savings</option>
                                     @endif
                                 </optgroup>
                                 <optgroup label="Income">
-                                    <option selected="selected">Income</option>
+                                    <option value="income" @if (old('category') === 'income') selected="selected" @endif>Income</option>
                                 </optgroup>
                             </select>
+                            <x-validation-error-message field="category" />
                         </div>
                         <fieldset>
-                            <legend class="col-form-label col-12 text-primary">Frequency *</legend>
-                            <p>Set how often the expense should appear on your Budget.</p>
+                            <legend class="col-form-label col-12 text-primary">Frequency</legend>
+                            <p>Please set how often the items repeats on your Budget.</p>
                             <div class="col-12">
-                                <label for="frequency" class="form-label">Repeats *</label>
-                                <select id="frequency" name="frequency" class="form-select form-select-sm">
-                                    <option value="monthly" selected="selected">Monthly</option>
-                                    <option value="annually">Annually</option>
-                                    <option value="never">Never/One off</option>
+                                <label for="frequency_option" class="form-label">Repeats *</label>
+                                <select id="frequency_option" name="frequency_option" class="form-select form-select-sm <x-validation-error field='frequency_option' />">
+                                    <option value="monthly" @if (old('frequency_option') === 'monthly') selected="selected" @endif>Monthly</option>
+                                    <option value="annually" @if (old('frequency_option') === 'annually') selected="selected" @endif>Annually</option>
+                                    <option value="never" @if (old('frequency_option') === 'never') selected="selected" @endif>Never/One off</option>
                                 </select>
+                                <x-validation-error-message field="frequency_option" />
                             </div>
-                            <p class="mt-2 text-primary">You have selected monthly, please choose the day of the month it
-                                typically occurs, this is just a guide.</p>
                             <div class="col-6">
-                                <label for="day" class="form-label">Day of Month</label>
-                                <input type="number" class="form-control form-control-sm" id="day" name="day" placeholder="5">
+                                <label for="monthly_day" class="form-label">Day of Month</label>
+                                <input type="number" class="form-control form-control-sm <x-validation-error field='monthly_day' />" id="monthly_day" name="monthly_day" placeholder="5" value="{{ old('monthly_day') }}" aria-describedby="monthly_dayHelpBlock">
+                                <div id="monthly_dayHelpBlock" class="form-text">Please set the day of the month this typically occurs</div>
+                                <x-validation-error-message field="monthly_day" />
                             </div>
                         </fieldset>
 
@@ -178,24 +184,24 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclude" name="exclude" value="1">
-                                        <label class="form-check-label" for="exclude">
+                                        <input class="form-check-input" type="checkbox" id="exclusion_1" name="exclusion[]" value="1" @if(is_array(old('exclusion')) && in_array('1', old('exclusion'), true)) checked="checked" @endif>
+                                        <label class="form-check-label" for="exclusion_1">
                                             January
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclude" name="exclude" value="1">
-                                        <label class="form-check-label" for="exclude">
+                                        <input class="form-check-input" type="checkbox" id="exclusion_2" name="exclusion[]" value="2" @if(is_array(old('exclusion')) && in_array('2', old('exclusion'), true)) checked="checked" @endif>
+                                        <label class="form-check-label" for="exclusion_2">
                                             February
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclude" name="exclude" value="1">
-                                        <label class="form-check-label" for="exclude">
+                                        <input class="form-check-input" type="checkbox" id="exclusion_3" name="exclusion[]" value="3" @if(is_array(old('exclusion')) && in_array('3', old('exclusion'), true)) checked="checked" @endif>
+                                        <label class="form-check-label" for="exclusion_3">
                                             March
                                         </label>
                                     </div>
@@ -205,24 +211,24 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclude" name="exclude" value="1">
-                                        <label class="form-check-label" for="exclude">
+                                        <input class="form-check-input" type="checkbox" id="exclusion_4" name="exclusion[]" value="4" @if(is_array(old('exclusion')) && in_array('4', old('exclusion'), true)) checked="checked" @endif>
+                                        <label class="form-check-label" for="exclusion_4">
                                             April
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclude" name="exclude" value="1">
-                                        <label class="form-check-label" for="exclude">
+                                        <input class="form-check-input" type="checkbox" id="exclusion_5" name="exclusion[]" value="5" @if(is_array(old('exclusion')) && in_array('5', old('exclusion'), true)) checked="checked" @endif>
+                                        <label class="form-check-label" for="exclusion_5">
                                             May
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclude" name="exclude" value="1">
-                                        <label class="form-check-label" for="exclude">
+                                        <input class="form-check-input" type="checkbox" id="exclusion_6" name="exclusion[]" value="6" @if(is_array(old('exclusion')) && in_array('6', old('exclusion'), true)) checked="checked" @endif>
+                                        <label class="form-check-label" for="exclusion_6">
                                             June
                                         </label>
                                     </div>
@@ -232,24 +238,24 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclude" name="exclude" value="1">
-                                        <label class="form-check-label" for="exclude">
+                                        <input class="form-check-input" type="checkbox" id="exclusion_7" name="exclusion[]" value="7" @if(is_array(old('exclusion')) && in_array('7', old('exclusion'), true)) checked="checked" @endif>
+                                        <label class="form-check-label" for="exclusion_7">
                                             July
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclude" name="exclude" value="1">
-                                        <label class="form-check-label" for="exclude">
+                                        <input class="form-check-input" type="checkbox" id="exclusion_8" name="exclusion[]" value="8" @if(is_array(old('exclusion')) && in_array('8', old('exclusion'), true)) checked="checked" @endif>
+                                        <label class="form-check-label" for="exclusion_8">
                                             August
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclude" name="exclude" value="1">
-                                        <label class="form-check-label" for="exclude">
+                                        <input class="form-check-input" type="checkbox" id="exclusion_9" name="exclusion[]" value="9" @if(is_array(old('exclusion')) && in_array('9', old('exclusion'), true)) checked="checked" @endif>
+                                        <label class="form-check-label" for="exclusion_9">
                                             September
                                         </label>
                                     </div>
@@ -259,24 +265,25 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclude" name="exclude" value="1">
-                                        <label class="form-check-label" for="exclude">
+                                        <input class="form-check-input <x-validation-error field='exclusion' />" type="checkbox" id="exclusion_10" name="exclusion[]" value="10" @if(is_array(old('exclusion')) && in_array('10', old('exclusion'), true)) checked="checked" @endif>
+                                        <label class="form-check-label" for="exclusion_10">
                                             October
                                         </label>
+                                        <x-validation-error-message field="exclusion" />
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclude" name="exclude" value="1">
-                                        <label class="form-check-label" for="exclude">
+                                        <input class="form-check-input" type="checkbox" id="exclusion_11" name="exclusion[]" value="14" @if(is_array(old('exclusion')) && in_array('11', old('exclusion'), true)) checked="checked" @endif>
+                                        <label class="form-check-label" for="exclusion_11">
                                             November
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclude" name="exclude" value="1">
-                                        <label class="form-check-label" for="exclude">
+                                        <input class="form-check-input" type="checkbox" id="exclusion_12" name="exclusion[]" value="12" @if(is_array(old('exclusion')) && in_array('12', old('exclusion'), true)) checked="checked" @endif>
+                                        <label class="form-check-label" for="exclusion_12">
                                             December
                                         </label>
                                     </div>
@@ -300,7 +307,7 @@
                         </div>
                     </form>
 
-                    <div class="alert alert-primary alert-dismissible fade show mt-2" role="alert">
+                    <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">
                         <h4 class="alert-heading">Budget Pro!</h4>
                         <p>In Budget Pro we include additional frequency options, daily, weekly, fortnights etc.</p>
                         <p>Additionally, we have more complicated exclusion options.</p>
@@ -310,7 +317,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-lg-8 p-2">
+                <div class="col-12 col-lg-7 p-2">
                     <x-budget
                         :accounts="$accounts"
                         :months="$months"

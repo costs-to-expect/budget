@@ -17,7 +17,7 @@
         <div class="col-lg-10 col-xl-9 mx-auto p-3">
 
             <div class="row">
-                <div class="col-12 col-lg-4 mx-auto p-2">
+                <div class="col-12 col-lg-5 mx-auto p-2">
                 <form action="{{ route('budget.account.create') }}" method="POST" class="row g-2">
 
                     @csrf
@@ -82,7 +82,7 @@
                     </div>
                 </form>
 
-                <div class="alert alert-primary alert-dismissible fade show mt-2" role="alert">
+                <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">
                     <h4 class="alert-heading">Budget Pro!</h4>
                     <p>In Budget Pro you can have more than three accounts.</p>
                     <p>In Budget Pro your Budget can include multiple currencies.</p>
@@ -92,7 +92,7 @@
                 </div>
             </div>
 
-                <div class="col-12 col-lg-8 p-2">
+                <div class="col-12 col-lg-7 p-2">
                     <x-budget
                         :accounts="$accounts"
                         :months="$months"
