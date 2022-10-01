@@ -103,10 +103,6 @@ class BudgetItem extends Controller
                 'currency' => $budget->currency(),
 
                 'has_savings_account' => $budget->hasSavingsAccount(),
-
-                'validation' => [
-                    'errors' => session()->get('validation.errors'),
-                ]
             ]
         );
     }

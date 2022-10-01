@@ -27,7 +27,8 @@
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="name" class="form-label">Name *</label>
-                            <input type="text" class="form-control form-control-sm" id="name" name="name" value="{{ old('name') }}" placeholder="Rent">
+                            <input type="text" class="form-control form-control-sm <x-validation-error field='name' />" id="name" name="name" value="{{ old('name') }}" placeholder="Rent">
+                            <x-validation-error-message field="name" />
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="account" class="form-label">Account *</label>
@@ -43,18 +44,17 @@
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="start_date" class="form-label">Start Date *</label>
-                            <input type="date" class="form-control form-control-sm" id="start_date" name="start_date">
+                            <input type="date" class="form-control form-control-sm <x-validation-error field='start_date' />" id="start_date" name="start_date" value="">
+                            <x-validation-error-message field="start_date" />
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="end_date" class="form-label">End Date</label>
-                            <input type="date" class="form-control form-control-sm" id="end_date" name="end_date">
+                            <input type="date" class="form-control form-control-sm" id="end_date" name="end_date" value="">
                         </div>
                         <div class="col-4 col-md-4">
                             <label for="currency_id" class="form-label">Currency *</label>
-                            <select id="currency_id" name="currency_id" class="form-select form-select-sm">
-                                <option value="gbp" selected="selected">GBP</option>
-                                <option value="eur">EUR</option>
-                                <option value="usd">USD</option>
+                            <select id="currency_id" name="currency_id" class="form-select form-select-sm @error('currency_id') is-invalid @enderror" required="required">
+                                <option value="{{ $currency['id'] }}" selected="selected">{{ $currency['code'] . '-' . $currency['name'] }}</option>
                             </select>
                         </div>
                         <div class="col-4 col-md-4">
