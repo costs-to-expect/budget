@@ -21,13 +21,15 @@ class Create extends Action
     ): int
     {
         if (array_key_exists('frequency_option', $input) === true) {
-            if (in_array($input['frequency_option'], ['monthly', 'annually', 'never']) === false) {
+            if (in_array($input['frequency_option'], ['monthly', 'annually']) === false) {
                 $this->validation_errors['frequency_option']['errors'] = [
-                    'The frequency need to be set to monthly, annually or never'
+                    'The frequency need to be set to monthly or annually'
                 ];
             }
 
-            if ($input['frequency_option'] === 'annually' && $input['annually_month'] === null) {
+            if (
+                $input['frequency_option'] === 'annually' &&
+                $input['annually_month'] === null) {
                 $this->validation_errors['annually_month']['errors'] = [
                     'You need to set the month the expense occurs'
                 ];

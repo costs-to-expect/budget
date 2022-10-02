@@ -32,10 +32,11 @@
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="account" class="form-label">Account *</label>
-                            <select id="account" name="account" class="form-select form-select-sm">
+                            <select id="account" name="account" class="form-select form-select-sm <x-validation-error field='account' />">
                                 @foreach ($accounts as $__account)
                                     <option value="{{ $__account->id() }}" @if (old('account') !== null && old('account') === $__account->id()) selected="selected" @endif>{{ $__account->name() }}</option>
                                 @endforeach
+                                <x-validation-error-message field="account" />
                             </select>
                         </div>
                         <div class="col-12">
@@ -53,19 +54,19 @@
                             <input type="date" class="form-control form-control-sm <x-validation-error field='end_date' />" id="end_date" name="end_date" value="{{ old('end_date') }}">
                             <x-validation-error-message field="end_date" />
                         </div>
-                        <div class="col-4 col-md-4">
+                        <div class="col-6 col-md-6">
                             <label for="currency_id" class="form-label">Currency *</label>
                             <select id="currency_id" name="currency_id" class="form-select form-select-sm <x-validation-error field='currency_id' />">
                                 <option value="{{ $currency['id'] }}" @if (old('currency_id') !== null && old('currency_id') === $currency['id']) selected="selected" @endif>{{ $currency['code'] }}</option>
                             </select>
                             <x-validation-error-message field="currency_id" />
                         </div>
-                        <div class="col-4 col-md-4">
+                        <div class="col-6 col-md-6">
                             <label for="amount" class="form-label">Amount *</label>
                             <input type="number" class="form-control form-control-sm <x-validation-error field='amount' /> to-fixed" id="amount" name="amount" placeholder="10.99" value="{{ old('amount') }}" data-points="2">
                             <x-validation-error-message field="amount" />
                         </div>
-                        <div class="col-4 col-md-4">
+                        <div class="col-6 col-md-6">
                             <label for="category" class="form-label">Type *</label>
                             <select id="category" name="category" class="form-select form-select-sm <x-validation-error field='category' />">
                                 <optgroup label="Expense">
@@ -81,6 +82,17 @@
                             </select>
                             <x-validation-error-message field="category" />
                         </div>
+                        <div class="col-6 col-md-6" data-savings="target_account">
+                            <label for="target_account" class="form-label">Target Account *</label>
+                            <select id="target_account" name="target_account" class="form-select form-select-sm <x-validation-error field='target_account' />">
+                                @foreach ($accounts as $__account)
+                                    @if ($__account->type() === 'savings')
+                                    <option value="{{ $__account->id() }}" @if (old('account') !== null && old('account') === $__account->id()) selected="selected" @endif>{{ $__account->name() }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            <x-validation-error-message field="target_account" />
+                        </div>
                         <fieldset>
                             <legend class="col-form-label col-12 text-primary">Frequency</legend>
                             <div class="col-12">
@@ -88,7 +100,6 @@
                                 <select id="frequency_option" name="frequency_option" class="form-select form-select-sm <x-validation-error field='frequency_option' />" aria-describedby="frequency_optionHelpBlock">
                                     <option value="monthly" @if (old('frequency_option') === 'monthly') selected="selected" @endif>Monthly</option>
                                     <option value="annually" @if (old('frequency_option') === 'annually') selected="selected" @endif>Annually</option>
-                                    <option value="never" @if (old('frequency_option') === 'never') selected="selected" @endif>Never/One off</option>
                                 </select>
                                 <p id="frequency_optionHelpBlock" class="form-text">Please choose how often this item should repeat on your budget.</p>
                                 <x-validation-error-message field="frequency_option" />
