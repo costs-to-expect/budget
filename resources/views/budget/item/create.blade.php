@@ -62,7 +62,7 @@
                         </div>
                         <div class="col-4 col-md-4">
                             <label for="amount" class="form-label">Amount *</label>
-                            <input type="number" class="form-control form-control-sm <x-validation-error field='amount' />" id="amount" name="amount" placeholder="10.99" value="{{ old('amount') }}">
+                            <input type="number" class="form-control form-control-sm <x-validation-error field='amount' /> to-fixed" id="amount" name="amount" placeholder="10.99" value="{{ old('amount') }}" data-points="2">
                             <x-validation-error-message field="amount" />
                         </div>
                         <div class="col-4 col-md-4">
@@ -284,5 +284,7 @@
             <x-footer />
         </div>
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
+        <script src="{{ asset('js/create-budget-item.js') }}" defer></script>
+        <script src="{{ asset('js/auto-format-numbers.js') }}" defer></script>
     </body>
 </html>

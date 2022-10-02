@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-6 col-md-6">
                         <label for="balance" class="form-label">Balance *</label>
-                        <input type="number" class="form-control form-control-sm @error('balance') is-invalid @enderror" id="balance" name="balance" required="required" placeholder="10.99" min="0" step="0.01" value="{{ old('balance') }}">
+                        <input type="number" class="form-control form-control-sm @error('balance') is-invalid @enderror to-fixed" id="balance" name="balance" required="required" placeholder="10.99" min="0" step="0.01" value="{{ old('balance') }}" data-points="2">
                         @error('balance')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -108,5 +108,6 @@
             <x-footer />
         </div>
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
+        <script src="{{ asset('js/auto-format-numbers.js') }}" defer></script>
     </body>
 </html>
