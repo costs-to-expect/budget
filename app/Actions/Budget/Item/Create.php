@@ -26,6 +26,12 @@ class Create extends Action
                     'The frequency need to be set to monthly, annually or never'
                 ];
             }
+
+            if ($input['frequency_option'] === 'annually' && $input['annually_month'] === null) {
+                $this->validation_errors['annually_month']['errors'] = [
+                    'You need to set the month the expense occurs'
+                ];
+            }
         } else {
             $this->validation_errors['frequency_option']['errors'] = [
                 'The frequency is required.'
@@ -60,6 +66,15 @@ class Create extends Action
                     $frequency['exclusions'][] = (int) $__month;
                 }
             }
+        }
+
+        if ($frequency['type'] === 'annually') {
+            if ($input['annually_day'] !== null) {
+                $frequency['day'] = (int) $input['annually_day'];
+            } else {
+                $frequency['day'] = null;
+            }
+            $frequency['month'] = (int) $input['annually_month'];
         }
 
         try {

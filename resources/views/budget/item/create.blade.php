@@ -45,7 +45,7 @@
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="start_date" class="form-label">Start Date *</label>
-                            <input type="date" class="form-control form-control-sm <x-validation-error field='start_date' />" id="start_date" name="start_date" value="{{ old('start_date') }}">
+                            <input type="date" class="form-control form-control-sm <x-validation-error field='start_date' />" id="start_date" name="start_date" value="{{ old('start_date', now()->toDateString()) }}">
                             <x-validation-error-message field="start_date" />
                         </div>
                         <div class="col-6 col-md-6">
@@ -56,7 +56,7 @@
                         <div class="col-4 col-md-4">
                             <label for="currency_id" class="form-label">Currency *</label>
                             <select id="currency_id" name="currency_id" class="form-select form-select-sm <x-validation-error field='currency_id' />">
-                                <option value="{{ $currency['id'] }}" @if (old('currency_id') !== null && old('currency_id') === $currency['id']) selected="selected" @endif>{{ $currency['code'] . '-' . $currency['name'] }}</option>
+                                <option value="{{ $currency['id'] }}" @if (old('currency_id') !== null && old('currency_id') === $currency['id']) selected="selected" @endif>{{ $currency['code'] }}</option>
                             </select>
                             <x-validation-error-message field="currency_id" />
                         </div>
@@ -83,101 +83,52 @@
                         </div>
                         <fieldset>
                             <legend class="col-form-label col-12 text-primary">Frequency</legend>
-                            <p>Please set how often the items repeats on your Budget.</p>
                             <div class="col-12">
                                 <label for="frequency_option" class="form-label">Repeats *</label>
-                                <select id="frequency_option" name="frequency_option" class="form-select form-select-sm <x-validation-error field='frequency_option' />">
+                                <select id="frequency_option" name="frequency_option" class="form-select form-select-sm <x-validation-error field='frequency_option' />" aria-describedby="frequency_optionHelpBlock">
                                     <option value="monthly" @if (old('frequency_option') === 'monthly') selected="selected" @endif>Monthly</option>
                                     <option value="annually" @if (old('frequency_option') === 'annually') selected="selected" @endif>Annually</option>
                                     <option value="never" @if (old('frequency_option') === 'never') selected="selected" @endif>Never/One off</option>
                                 </select>
+                                <p id="frequency_optionHelpBlock" class="form-text">Please choose how often this item should repeat on your budget.</p>
                                 <x-validation-error-message field="frequency_option" />
                             </div>
-                            <div class="col-6">
+                            <div class="col-12" data-frequency="monthly">
                                 <label for="monthly_day" class="form-label">Day of Month</label>
                                 <input type="number" class="form-control form-control-sm <x-validation-error field='monthly_day' />" id="monthly_day" name="monthly_day" placeholder="5" value="{{ old('monthly_day') }}" aria-describedby="monthly_dayHelpBlock">
                                 <div id="monthly_dayHelpBlock" class="form-text">Please set the day of the month this typically occurs</div>
                                 <x-validation-error-message field="monthly_day" />
                             </div>
-                        </fieldset>
-
-                        {{--<fieldset>
-                            <legend class="col-form-label col-12 text-primary">Frequency</legend>
-                            <p>Set how often the expense should appear on your budget.</p>
-                            <div class="col-12">
-                                <label for="frequency" class="form-label">Repeats *</label>
-                                <select id="frequency" name="frequency" class="form-select form-select-sm">
-                                    <option value="Monthly" selected="selected">Monthly</option>
-                                    <option value="Annually">Annually</option>
-                                </select>
-                            </div>
-                            <p>You have selected annually, please choose the day and month this
-                                typically occurs, this is just a guide.</p>
                             <div class="row">
-                                <div class="col-6">
-                                    <label for="day" class="form-label">Day</label>
-                                    <input type="number" class="form-control form-control-sm" id="day" name="day" placeholder="5">
+                                <div class="col-6" data-frequency="annually">
+                                    <label for="annually_day" class="form-label">Day of Month</label>
+                                    <input type="number" class="form-control form-control-sm <x-validation-error field='annually_day' />" id="annually_day" name="annually_day" placeholder="5" value="{{ old('annually_day') }}" aria-describedby="annually_dayHelpBlock">
+                                    <div id="annually_dayHelpBlock" class="form-text">Please set the day of the month this typically occurs</div>
+                                    <x-validation-error-message field="annually_day" />
                                 </div>
-                                <div class="col-6">
-                                    <label for="amount" class="form-label">Month</label>
-                                    <select id="frequency" name="frequency" class="form-select form-select-sm">
-                                        <option value="Monthly" selected="selected">Month.</option>
-                                        <option value="Monthly">Jan.</option>
-                                        <option value="Monthly">Feb.</option>
-                                        <option value="Monthly">Mar.</option>
-                                        <option value="Monthly">Apr.</option>
-                                        <option value="Monthly">May.</option>
-                                        <option value="Monthly">Jun.</option>
-                                        <option value="Monthly">Jul.</option>
-                                        <option value="Monthly">Aug.</option>
-                                        <option value="Monthly">Sep.</option>
-                                        <option value="Monthly">Oct.</option>
-                                        <option value="Monthly">Nov.</option>
-                                        <option value="Monthly">Dec.</option>
+                                <div class="col-6" data-frequency="annually">
+                                    <label for="annually_month" class="form-label">Month *</label>
+                                    <select id="annually_month" name="annually_month" class="form-select form-select-sm <x-validation-error field='annually_month' />">
+                                        <option value="">Select month</option>
+                                        <option value="1" @if (old('annually_month') === '1') selected="selected" @endif>Jan.</option>
+                                        <option value="2" @if (old('annually_month') === '2') selected="selected" @endif>Feb.</option>
+                                        <option value="3" @if (old('annually_month') === '3') selected="selected" @endif>Mar.</option>
+                                        <option value="4" @if (old('annually_month') === '4') selected="selected" @endif>Apr.</option>
+                                        <option value="5" @if (old('annually_month') === '5') selected="selected" @endif>May.</option>
+                                        <option value="6" @if (old('annually_month') === '6') selected="selected" @endif>Jun.</option>
+                                        <option value="7" @if (old('annually_month') === '7') selected="selected" @endif>Jul.</option>
+                                        <option value="8" @if (old('annually_month') === '8') selected="selected" @endif>Aug.</option>
+                                        <option value="9" @if (old('annually_month') === '9') selected="selected" @endif>Sep.</option>
+                                        <option value="10" @if (old('annually_month') === '10') selected="selected" @endif>Oct.</option>
+                                        <option value="11" @if (old('annually_month') === '11') selected="selected" @endif>Nov.</option>
+                                        <option value="12" @if (old('annually_month') === '12') selected="selected" @endif>Dec.</option>
                                     </select>
+                                    <x-validation-error-message field="annually_month" />
                                 </div>
                             </div>
                         </fieldset>
 
-                        <fieldset>
-                            <legend class="col-form-label col-12 text-primary">Frequency</legend>
-                            <p>Set how often the expense should appear on your budget.</p>
-                            <div class="col-12">
-                                <label for="frequency" class="form-label">Repeats *</label>
-                                <select id="frequency" name="frequency" class="form-select form-select-sm">
-                                    <option value="Monthly" selected="selected">Monthly</option>
-                                    <option value="Annually">Annually</option>
-                                </select>
-                            </div>
-                            <p>You have selected Never/One off, please choose the day and month this
-                                for this budget item.</p>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label for="day" class="form-label">Day</label>
-                                    <input type="number" class="form-control form-control-sm" id="day" name="day" placeholder="5" min="1" max="31" step="1">
-                                </div>
-                                <div class="col-6">
-                                    <label for="amount" class="form-label">Month</label>
-                                    <select id="frequency" name="frequency" class="form-select form-select-sm">
-                                        <option value="Monthly" selected="selected">Month.</option>
-                                        <option value="Monthly">Jan.</option>
-                                        <option value="Monthly">Feb.</option>
-                                        <option value="Monthly">Mar.</option>
-                                        <option value="Monthly">Apr.</option>
-                                        <option value="Monthly">May.</option>
-                                        <option value="Monthly">Jun.</option>
-                                        <option value="Monthly">Jul.</option>
-                                        <option value="Monthly">Aug.</option>
-                                        <option value="Monthly">Sep.</option>
-                                        <option value="Monthly">Oct.</option>
-                                        <option value="Monthly">Nov.</option>
-                                        <option value="Monthly">Dec.</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </fieldset>--}}
-
-                        <fieldset>
+                        <fieldset data-frequency="monthly">
                             <legend class="col-form-label col-12 text-primary">Exclusions</legend>
                             <p>Select any months when the expense <strong>should not</strong> appear on your
                                 budget, for example, you may not pay Council Tax in January & February.</p>
