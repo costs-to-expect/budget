@@ -44,6 +44,8 @@ class BudgetAccount extends Controller
                 'pagination' => $budget->paginationParameters(),
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
+
+                'max_accounts' => $budget->maxAccounts(),
             ]
         );
     }

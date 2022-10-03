@@ -76,16 +76,19 @@
                         @enderror
                     </div>
                     <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
+                    @if (count($accounts) < $max_accounts)
                     <div class="col-12 mt-3">
                         <a href="{{ route('home') }}" class="btn btn-dark">Cancel</a>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
+                    @endif
                 </form>
 
                 <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">
                     <h4 class="alert-heading">Budget Pro!</h4>
-                    <p>In Budget Pro you can have more than three accounts.</p>
-                    <p>In Budget Pro your Budget can include multiple currencies.</p>
+                    <p>In Budget Pro you can have more than {{ $max_accounts }} accounts.</p>
+                    <p>You have created {{ count($accounts) }} accounts.</p>
+                    <p>Additional, in Budget Pro your Budget can include multiple currencies.</p>
                     <hr>
                     <p class="mb-0"><a href="">Find out more</a>.</p>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

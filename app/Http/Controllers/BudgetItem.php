@@ -111,7 +111,10 @@ class BudgetItem extends Controller
                 'projection' => $budget->projection(),
                 'currency' => $budget->currency(),
 
+                'max_items' => $budget->maxItems(),
+
                 'has_savings_account' => $budget->hasSavingsAccount(),
+                'number_of_items' => $budget->numberOfItems(),
             ]
         );
     }

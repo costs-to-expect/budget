@@ -245,12 +245,6 @@
             @else
                 <p class="text-muted mb-1">We can't show a Budget projection, you are reviewing your history.</p>
             @endif
-            {{--<div class="balance">
-                <small>Default &pound;</small>1500.00
-            </div>
-            <div class="balance">
-                <small>Savings &pound;</small>2546.0
-            </div>--}}
         </div>
         <div class="col-12 mt-2">
             <a class="btn btn-sm btn-primary" href="{{ route('budget.account.create') }}">

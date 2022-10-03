@@ -72,8 +72,8 @@ class Service
      */
     public function setAccounts(array $accounts): Service
     {
-        if (count($accounts) > 3) {
-            throw new LengthException('Too many accounts, limit three');
+        if (count($accounts) > $this->maxAccounts()) {
+            throw new LengthException('Too many accounts, the limit is ' . $this->maxAccounts());
         }
 
         foreach ($accounts as $account) {
@@ -164,6 +164,11 @@ class Service
         }
     }
 
+    public function numberOfItems(): int
+    {
+        return count($this->budget_items);
+    }
+
     public function numberOfVisibleMonths(): int
     {
         return 3;
@@ -217,6 +222,10 @@ class Service
 
     public function addItem(array $data): bool
     {
+        if (count($this->budget_items) > $this->maxItems()) {
+            throw new LengthException('Too many items, the limit is ' . $this->maxItems());
+        }
+
         $this->budget_items[] = new Item($data);
 
         return true;
@@ -253,6 +262,16 @@ class Service
             'month' => $this->view_end_date->format('F'),
             'year' => (int)$this->view_end_date->format('Y')
         ];
+    }
+
+    public function maxItems(): int
+    {
+        return 50;
+    }
+
+    public function maxAccounts(): int
+    {
+        return 3;
     }
 
     public function months(): array

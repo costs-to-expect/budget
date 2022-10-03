@@ -256,9 +256,11 @@
                         <div class="col-12 mt-3">
 
                             @if (count($accounts) > 0)
-                            <a href="{{ route('home') }}" class="btn btn-dark">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                            <button name="submit_and_return" type="submit" class="btn btn-primary">Save & Add Another</button>
+                                @if ($number_of_items < $max_items)
+                                <a href="{{ route('home') }}" class="btn btn-dark">Cancel</a>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button name="submit_and_return" type="submit" class="btn btn-primary">Save & Add Another</button>
+                                @endif
                             @else
                             <div class="alert alert-dark show mt-2" role="alert">
                                 <h4 class="alert-heading">No accounts!</h4>
@@ -269,6 +271,17 @@
                             @endif
                         </div>
                     </form>
+
+                    @if ($number_of_items > ($max_items - 10))
+                    <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">
+                        <h4 class="alert-heading">Budget Pro!</h4>
+                        <p>In Budget Pro you are allowed to have more than {{ $max_items }} items on your Budget.</p>
+                        <p>You have {{ $number_of_items }} budget items.</p>
+                        <hr>
+                        <p class="mb-0"><a href="">Find out more</a>.</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
 
                     <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">
                         <h4 class="alert-heading">Budget Pro!</h4>
