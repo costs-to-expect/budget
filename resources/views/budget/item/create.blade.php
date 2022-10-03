@@ -63,7 +63,7 @@
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="amount" class="form-label">Amount *</label>
-                            <input type="number" class="form-control form-control-sm <x-validation-error field='amount' /> to-fixed" id="amount" name="amount" placeholder="10.99" value="{{ old('amount') }}" data-points="2">
+                            <input type="number" class="form-control form-control-sm <x-validation-error field='amount' /> to-fixed" id="amount" name="amount" placeholder="10.99" value="{{ old('amount') }}" data-points="2" min="0" step="0.01">
                             <x-validation-error-message field="amount" />
                         </div>
                         <div class="col-6 col-md-6">

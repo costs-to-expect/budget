@@ -104,7 +104,11 @@ class Controller extends BaseController
 
     protected function getBudgetItems(): array
     {
-        $response = $this->api->getBudgetItems($this->resource_type_id, $this->resource_id);
+        $response = $this->api->getBudgetItems(
+            $this->resource_type_id,
+            $this->resource_id,
+            ['sort' => 'created:desc']
+        );
         if ($response['status'] !== 200) {
             abort($response['status'], $response['content']);
         }
