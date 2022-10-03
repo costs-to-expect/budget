@@ -18,7 +18,7 @@ class Index extends Controller
     {
         $this->bootstrap($request);
 
-        //$budget_items = $this->getBudgetItems();
+        $budget_items = $this->getBudgetItems();
 
         $budget = new Service();
         if ($request->query('month') !== null && $request->query('year') !== null) {
@@ -27,7 +27,7 @@ class Index extends Controller
         $budget->setAccounts($this->accounts)
             ->create();
 
-        foreach ($this->mock_data as $budget_item) {
+        foreach ($budget_items as $budget_item) {
             $budget->addItem($budget_item);
         }
 
@@ -37,6 +37,7 @@ class Index extends Controller
             'home',
             [
                 'status' => session()->get('status'),
+                'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),

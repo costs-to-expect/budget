@@ -5,6 +5,7 @@
         </div>
     </div>
 
+    @if ($has_budget)
     <div class="row">
         <div class="col-12 text-end">
             <a class="btn btn-sm btn-primary" href="{{ route('budget.item.create') }}">
@@ -172,6 +173,42 @@
             </a>
         </div>
     </div>
+
+    @else
+    <div class="row mt-3 p-3">
+        <div class="alert alert-dark mt-2" role="alert">
+            <h4 class="alert-heading">No Budget!</h4>
+            <p class="lead">You haven't started creating your Budget, as soon as you start adding
+                budget items we can show you your projection.</p>
+
+            <p class="lead">If you aren't ready to start creating your Budget, you can load a demo to
+                see how our App works. As soon as you are ready to start your Budget you can adopt the
+                Demo or start fresh</p>
+            <hr>
+            <p class="mb-0">
+                <a class="btn btn-sm btn-primary" href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-easel" viewBox="0 0 16 16">
+                        <path d="M8.5 6a.5.5 0 1 0-1 0h-2A1.5 1.5 0 0 0 4 7.5v2A1.5 1.5 0 0 0 5.5 11h.473l-.447 1.342a.5.5 0 1 0 .948.316L7.027 11H7.5v1a.5.5 0 0 0 1 0v-1h.473l.553 1.658a.5.5 0 1 0 .948-.316L10.027 11h.473A1.5 1.5 0 0 0 12 9.5v-2A1.5 1.5 0 0 0 10.5 6h-2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-2z"/>
+                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                    </svg>
+                    Load the Demo
+                </a>
+                <a class="btn btn-sm btn-primary" href="{{ route('budget.item.create') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                    </svg>
+                    Add Budget Item
+                </a>
+                <a class="btn btn-sm btn-primary" href="{{ route('budget.account.create') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                    </svg>
+                    Add Account
+                </a>
+            </p>
+        </div>
+    </div>
+    @endif
 
     <div class="row">
         <div class="col-12">

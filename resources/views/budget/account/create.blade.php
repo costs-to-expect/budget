@@ -99,7 +99,8 @@
                         :pagination="$pagination"
                         :viewEnd="$view_end"
                         :active="false"
-                        :projection="$projection "/>
+                        :projection="$projection"
+                        :hasBudget="$has_budget"/>
                 </div>
             </div>
 

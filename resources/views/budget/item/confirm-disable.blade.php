@@ -113,7 +113,8 @@
                     :pagination="$pagination"
                     :viewEnd="$view_end"
                     :active="true"
-                    :projection="$projection "/>
+                    :projection="$projection"
+                    :hasBudget="has_budget"/>
 
             <x-requests />
 

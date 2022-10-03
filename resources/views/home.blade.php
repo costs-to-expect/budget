@@ -45,7 +45,8 @@
                 :months="$months"
                 :pagination="$pagination"
                 :viewEnd="$view_end"
-                :projection="$projection "/>
+                :projection="$projection"
+                :hasBudget="$has_budget"/>
 
             <x-requests />
 

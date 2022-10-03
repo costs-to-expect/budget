@@ -18,6 +18,8 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
+        $budget_items = $this->getBudgetItems();
+
         $budget = new Service();
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
@@ -25,7 +27,7 @@ class BudgetItem extends Controller
         $budget->setAccounts($this->accounts)
             ->create();
 
-        foreach ($this->mock_data as $budget_item) {
+        foreach ($budget_items as $budget_item) {
             $budget->addItem($budget_item);
         }
 
@@ -34,6 +36,7 @@ class BudgetItem extends Controller
         return view(
             'budget.item.confirm-delete',
             [
+                'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -47,6 +50,8 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
+        $budget_items = $this->getBudgetItems();
+
         $budget = new Service();
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
@@ -54,7 +59,7 @@ class BudgetItem extends Controller
         $budget->setAccounts($this->accounts)
             ->create();
 
-        foreach ($this->mock_data as $budget_item) {
+        foreach ($budget_items as $budget_item) {
             $budget->addItem($budget_item);
         }
 
@@ -63,6 +68,7 @@ class BudgetItem extends Controller
         return view(
             'budget.item.confirm-disable',
             [
+                'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -76,6 +82,8 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
+        $budget_items = $this->getBudgetItems();
+
         $budget = new Service();
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
@@ -83,7 +91,7 @@ class BudgetItem extends Controller
         $budget->setAccounts($this->accounts)
             ->create();
 
-        foreach ($this->mock_data as $budget_item) {
+        foreach ($budget_items as $budget_item) {
             $budget->addItem($budget_item);
         }
 
@@ -92,6 +100,7 @@ class BudgetItem extends Controller
         return view(
             'budget.item.create',
             [
+                'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -136,6 +145,8 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
+        $budget_items = $this->getBudgetItems();
+
         $budget = new Service();
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
@@ -143,7 +154,7 @@ class BudgetItem extends Controller
         $budget->setAccounts($this->accounts)
             ->create();
 
-        foreach ($this->mock_data as $budget_item) {
+        foreach ($budget_items as $budget_item) {
             $budget->addItem($budget_item);
         }
 
@@ -152,6 +163,7 @@ class BudgetItem extends Controller
         return view(
             'budget.item.index',
             [
+                'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -165,6 +177,8 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
+        $budget_items = $this->getBudgetItems();
+
         $budget = new Service();
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
@@ -172,7 +186,7 @@ class BudgetItem extends Controller
         $budget->setAccounts($this->accounts)
             ->create();
 
-        foreach ($this->mock_data as $budget_item) {
+        foreach ($budget_items as $budget_item) {
             $budget->addItem($budget_item);
         }
 
@@ -181,6 +195,7 @@ class BudgetItem extends Controller
         return view(
             'budget.item.update',
             [
+                'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),

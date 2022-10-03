@@ -15,7 +15,7 @@ class Monthly extends Period
     protected string $name = 'Monthly';
 
     public function __construct(
-        private readonly int $day = 10,
+        private readonly int $day = 15,
         private readonly array $exclusions = []
     )
     {

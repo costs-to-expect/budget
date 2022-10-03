@@ -57,11 +57,17 @@ class Item
         $this->currency = $data['currency'];
 
         if ($data['frequency']['type'] === 'monthly') {
-            $this->frequency = new Monthly($data['frequency']['day'], $data['frequency']['exclusions']);
+            $this->frequency = new Monthly(
+                $data['frequency']['day'] ?? 15,
+                $data['frequency']['exclusions']
+            );
         }
 
         if ($data['frequency']['type'] === 'annually') {
-            $this->frequency = new Annually($data['frequency']['day'], $data['frequency']['month']);
+            $this->frequency = new Annually(
+                $data['frequency']['day'] ?? 15,
+                $data['frequency']['month']
+            );
         }
 
         $this->category = $data['category'];
