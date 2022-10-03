@@ -258,6 +258,7 @@
                             @if (count($accounts) > 0)
                             <a href="{{ route('home') }}" class="btn btn-dark">Cancel</a>
                             <button type="submit" class="btn btn-primary">Save</button>
+                            <button name="submit_and_return" type="submit" class="btn btn-primary">Save & Add Another</button>
                             @else
                             <div class="alert alert-dark show mt-2" role="alert">
                                 <h4 class="alert-heading">No accounts!</h4>

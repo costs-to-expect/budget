@@ -129,6 +129,11 @@ class BudgetItem extends Controller
         );
 
         if ($result === 201) {
+            if (array_key_exists('submit_and_return', $request->all())) {
+                return redirect()
+                    ->route('budget.item.create');
+            }
+
             return redirect()
                 ->route('home')
                 ->with('status', 'item-added');
