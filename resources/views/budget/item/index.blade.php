@@ -29,40 +29,48 @@
                                 Budget Item
                             </h2>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12">
                             <div class="label">Name</div>
-                            Council Tax
+                            {{ $item['name'] }}
                         </div>
                         <div class="col-6">
                             <div class="label">Account</div>
                             Default
                         </div>
+                        <div class="col-6">
+                            <div class="label">Target Account</div>
+                            Default
+                        </div>
                         <div class="col-12">
                             <div class="label">Description</div>
-                            N/A
+                            {{ $item['description'] ?? 'None set' }}
                         </div>
                         <div class="col-6">
                             <div class="label">Start Date</div>
-                            01/04/2004
+                            {{ $item['start_date']->format('d/m/Y') }}
                         </div>
                         <div class="col-6">
                             <div class="label">End Date</div>
-                            No end date
+                            {{ ($item['end_date'] !== null) ? $item['end_date']->format('d/m/Y') : 'None set' }}
                         </div>
                         <div class="col-12">
                             <div class="label">Amount & Type</div>
-                            <small>&pound;</small>163.00 <span class="badge text-bg-fixed">Fixed</span>
+                            <small><x-currency :currency="$item['currency']" /></small>{{ number_format($item['amount'], 2) }} <x-category :category="$item['category']" />
                         </div>
 
+                        @if ($item['frequency']['type'] === 'monthly')
                         <div class="col-12">
                             <div class="label">Frequency</div>
-                            Monthly around the 5th
+                            Monthly @if ($item['frequency']['day'] !== null) around the <x-ordinal :day="$item['frequency']['day']" /> of the month. @endif
                         </div>
+                        @endif
 
-                        <div class="col-12">
-                            <div class="label">Frequency</div>
-                            Annually around 5th September
-                        </div>
+                        @if ($item['frequency']['type'] === 'annually')
+                            <div class="col-12">
+                                <div class="label">Frequency</div>
+                                Annually @if ($item['frequency']['day'] !== null) around the <x-ordinal :day="$item['frequency']['day']" /> of <x-month :month="$item['frequency']['month']" /> @else in <x-month :month="$item['frequency']['month']" /> @endif
+                            </div>
+                        @endif
 
                         <div class="col-12">
                             <div class="label">Exclusions</div>

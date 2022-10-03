@@ -56,6 +56,18 @@ class Uri
     }
 
     #[ArrayShape(['uri' => "string", 'name' => "string"])]
+    public static function item(string $resource_type_id, string $resource_id, string $item_id): array
+    {
+        $uri = '/' . self::VERSION . '/resource-types/' . $resource_type_id . '/resources/' .
+            $resource_id . '/items/' . $item_id;
+
+        return [
+            'uri' => $uri,
+            'name' => 'Budget item'
+        ];
+    }
+
+    #[ArrayShape(['uri' => "string", 'name' => "string"])]
     public static function items(string $resource_type_id, string $resource_id, array $parameters = []): array
     {
         $uri = '/' . self::VERSION . '/resource-types/' . $resource_type_id . '/resources/' .
