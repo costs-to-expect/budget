@@ -185,6 +185,10 @@ class Service
 
     public function currency(): array
     {
+        if (isset($this->currency) === false) {
+            return $this->default_currency;
+        }
+        
         return $this->currency;
     }
 
