@@ -18,6 +18,8 @@ class Index extends Controller
     {
         $this->bootstrap($request);
 
+        //$budget_items = $this->getBudgetItems();
+
         $budget = new Service();
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
@@ -35,7 +37,6 @@ class Index extends Controller
             'home',
             [
                 'status' => session()->get('status'),
-
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),

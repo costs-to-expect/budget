@@ -23,7 +23,7 @@ class Item
     protected ?DateTimeImmutable $end_date = null;
 
     protected float $amount;
-    protected string $currency_code;
+    protected array $currency;
 
     protected Period $frequency;
 
@@ -54,7 +54,7 @@ class Item
         $this->description = $data['description'];
 
         $this->amount = (float) $data['amount'];
-        $this->currency_code = $data['currency_code'];
+        $this->currency = $data['currency'];
 
         if ($data['frequency']['type'] === 'monthly') {
             $this->frequency = new Monthly($data['frequency']['day'], $data['frequency']['exclusions']);
@@ -128,9 +128,14 @@ class Item
         return $this->category;
     }
 
+    public function currency(): array
+    {
+        return $this->currency;
+    }
+
     public function currencyCode(): string
     {
-        return $this->currency_code;
+        return $this->currency['code'];
     }
 
     public function description(): string

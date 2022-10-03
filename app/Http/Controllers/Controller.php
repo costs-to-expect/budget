@@ -48,7 +48,12 @@ class Controller extends BaseController
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 1866.00,
-                'currency_code' => 'GBP',
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
                 'category' => 'income',
                 'start_date' => '2021-01-01',
                 'end_date' => null,
@@ -66,7 +71,12 @@ class Controller extends BaseController
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 850.00,
-                'currency_code' => 'GBP',
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
                 'category' => 'fixed',
                 'start_date' => '2021-01-01',
                 'end_date' => null,
@@ -84,7 +94,12 @@ class Controller extends BaseController
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 163.00,
-                'currency_code' => 'GBP',
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
                 'category' => 'fixed',
                 'start_date' => '2021-01-01',
                 'end_date' => '2023-03-31',
@@ -104,7 +119,12 @@ class Controller extends BaseController
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 170.00,
-                'currency_code' => 'GBP',
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
                 'category' => 'fixed',
                 'start_date' => '2023-04-01',
                 'end_date' => '2024-03-31',
@@ -124,7 +144,12 @@ class Controller extends BaseController
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 275.00,
-                'currency_code' => 'GBP',
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
                 'category' => 'fixed',
                 'start_date' => '2021-01-01',
                 'end_date' => '2023-12-31',
@@ -142,7 +167,12 @@ class Controller extends BaseController
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 25.00,
-                'currency_code' => 'GBP',
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
                 'category' => 'flexible',
                 'start_date' => '2021-01-01',
                 'end_date' => '2023-12-31',
@@ -160,7 +190,12 @@ class Controller extends BaseController
                 'target_account' => 'cffe9168-fba3-4544-9ca4-2fb0a14b6486',
                 'description' => 'This is a description for the expense',
                 'amount' => 150.00,
-                'currency_code' => 'GBP',
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
                 'category' => 'savings',
                 'start_date' => '2021-01-01',
                 'end_date' => '2023-12-31',
@@ -178,7 +213,12 @@ class Controller extends BaseController
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 75.00,
-                'currency_code' => 'GBP',
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
                 'category' => 'flexible',
                 'start_date' => '2021-01-01',
                 'end_date' => '2023-12-31',
@@ -196,7 +236,12 @@ class Controller extends BaseController
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 45.00,
-                'currency_code' => 'GBP',
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
                 'category' => 'flexible',
                 'start_date' => '2022-09-01',
                 'end_date' => '2023-12-31',
@@ -215,7 +260,12 @@ class Controller extends BaseController
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 16.99,
-                'currency_code' => 'GBP',
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
                 'category' => 'flexible',
                 'start_date' => '2021-10-15',
                 'end_date' => '2023-12-31',
@@ -233,7 +283,12 @@ class Controller extends BaseController
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 16.99,
-                'currency_code' => 'GBP',
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
                 'category' => 'flexible',
                 'start_date' => '2022-10-05',
                 'end_date' => null,
@@ -251,7 +306,12 @@ class Controller extends BaseController
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 625.00,
-                'currency_code' => 'GBP',
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
                 'category' => 'fixed',
                 'start_date' => '2022-11-01',
                 'end_date' => null,
@@ -327,5 +387,15 @@ class Controller extends BaseController
         } else {
             abort($resource_types['status'], $resource_types['content']);
         }
+    }
+
+    protected function getBudgetItems(): array
+    {
+        $response = $this->api->getBudgetItems($this->resource_type_id, $this->resource_id);
+        if ($response['status'] !== 200) {
+            abort($response['status'], $response['content']);
+        }
+
+        return $response['content'];
     }
 }

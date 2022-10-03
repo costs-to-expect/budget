@@ -50,6 +50,14 @@ class Service
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    public function getBudgetItems(string $resource_type_id, string $resource_id, array $parameters = []): array
+    {
+        $uri = Uri::items($resource_type_id, $resource_id, $parameters);
+
+        return $this->http->get($uri['uri']);
+    }
+
+    #[ArrayShape(['status' => "integer", 'content' => "array"])]
     public function getCurrencies(): array
     {
         $uri = Uri::currencies();
