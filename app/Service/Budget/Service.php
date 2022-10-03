@@ -188,7 +188,7 @@ class Service
         if (isset($this->currency) === false) {
             return $this->default_currency;
         }
-        
+
         return $this->currency;
     }
 

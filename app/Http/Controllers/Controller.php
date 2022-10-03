@@ -118,4 +118,24 @@ class Controller extends BaseController
 
         return $response['content'];
     }
+
+    protected function setUpBudget(Request $request): \App\Service\Budget\Service
+    {
+        $budget_items = $this->getBudgetItems();
+
+        $budget = new \App\Service\Budget\Service();
+        if ($request->query('month') !== null && $request->query('year') !== null) {
+            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
+        }
+        $budget->setAccounts($this->accounts)
+            ->create();
+
+        foreach ($budget_items as $budget_item) {
+            $budget->addItem($budget_item);
+        }
+
+        $budget->assignItemsToBudget();
+
+        return $budget;
+    }
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Budget\Item\Create;
-use App\Service\Budget\Service;
 use Illuminate\Http\Request;
 
 /**
@@ -18,20 +17,7 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $budget_items = $this->getBudgetItems();
-
-        $budget = new Service();
-        if ($request->query('month') !== null && $request->query('year') !== null) {
-            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
-        }
-        $budget->setAccounts($this->accounts)
-            ->create();
-
-        foreach ($budget_items as $budget_item) {
-            $budget->addItem($budget_item);
-        }
-
-        $budget->assignItemsToBudget();
+        $budget = $this->setUpBudget($request);
 
         return view(
             'budget.item.confirm-delete',
@@ -51,20 +37,7 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $budget_items = $this->getBudgetItems();
-
-        $budget = new Service();
-        if ($request->query('month') !== null && $request->query('year') !== null) {
-            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
-        }
-        $budget->setAccounts($this->accounts)
-            ->create();
-
-        foreach ($budget_items as $budget_item) {
-            $budget->addItem($budget_item);
-        }
-
-        $budget->assignItemsToBudget();
+        $budget = $this->setUpBudget($request);
 
         return view(
             'budget.item.confirm-disable',
@@ -84,20 +57,7 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $budget_items = $this->getBudgetItems();
-
-        $budget = new Service();
-        if ($request->query('month') !== null && $request->query('year') !== null) {
-            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
-        }
-        $budget->setAccounts($this->accounts)
-            ->create();
-
-        foreach ($budget_items as $budget_item) {
-            $budget->addItem($budget_item);
-        }
-
-        $budget->assignItemsToBudget();
+        $budget = $this->setUpBudget($request);
 
         return view(
             'budget.item.create',
@@ -156,20 +116,7 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $budget_items = $this->getBudgetItems();
-
-        $budget = new Service();
-        if ($request->query('month') !== null && $request->query('year') !== null) {
-            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
-        }
-        $budget->setAccounts($this->accounts)
-            ->create();
-
-        foreach ($budget_items as $budget_item) {
-            $budget->addItem($budget_item);
-        }
-
-        $budget->assignItemsToBudget();
+        $budget = $this->setUpBudget($request);
 
         return view(
             'budget.item.index',
@@ -189,20 +136,7 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $budget_items = $this->getBudgetItems();
-
-        $budget = new Service();
-        if ($request->query('month') !== null && $request->query('year') !== null) {
-            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
-        }
-        $budget->setAccounts($this->accounts)
-            ->create();
-
-        foreach ($budget_items as $budget_item) {
-            $budget->addItem($budget_item);
-        }
-
-        $budget->assignItemsToBudget();
+        $budget = $this->setUpBudget($request);
 
         return view(
             'budget.item.update',
