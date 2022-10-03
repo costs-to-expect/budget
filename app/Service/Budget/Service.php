@@ -189,6 +189,11 @@ class Service
         return $this->currency['name'];
     }
 
+    public function hasAccounts(): bool
+    {
+        return count($this->accounts) > 0;
+    }
+
     public function hasBudget(): bool
     {
         return count($this->budget_items) > 0;

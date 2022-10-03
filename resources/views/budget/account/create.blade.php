@@ -100,6 +100,7 @@
                         :viewEnd="$view_end"
                         :active="false"
                         :projection="$projection"
+                        :hasAccounts="$has_accounts"
                         :hasBudget="$has_budget"/>
                 </div>
             </div>

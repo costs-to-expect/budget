@@ -37,6 +37,7 @@ class BudgetAccount extends Controller
             'budget.account.create',
             [
                 'currency' => $budget->currency(),
+                'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),

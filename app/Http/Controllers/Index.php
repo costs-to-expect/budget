@@ -37,6 +37,8 @@ class Index extends Controller
             'home',
             [
                 'status' => session()->get('status'),
+
+                'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),

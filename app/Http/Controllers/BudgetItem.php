@@ -36,6 +36,7 @@ class BudgetItem extends Controller
         return view(
             'budget.item.confirm-delete',
             [
+                'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
@@ -68,6 +69,7 @@ class BudgetItem extends Controller
         return view(
             'budget.item.confirm-disable',
             [
+                'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
@@ -100,6 +102,7 @@ class BudgetItem extends Controller
         return view(
             'budget.item.create',
             [
+                'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
@@ -163,6 +166,7 @@ class BudgetItem extends Controller
         return view(
             'budget.item.index',
             [
+                'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
@@ -195,6 +199,7 @@ class BudgetItem extends Controller
         return view(
             'budget.item.update',
             [
+                'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),

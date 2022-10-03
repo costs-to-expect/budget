@@ -20,6 +20,8 @@ class Budget extends Component
 
     private bool $projection;
 
+    private bool $has_accounts;
+
     private bool $has_budget;
 
     public function __construct(
@@ -29,6 +31,7 @@ class Budget extends Component
         array $viewEnd,
         bool $active = false,
         bool $projection = true,
+        bool $hasAccounts = true,
         bool $hasBudget = true
     )
     {
@@ -38,6 +41,7 @@ class Budget extends Component
         $this->view_end = $viewEnd;
         $this->active = $active;
         $this->projection = $projection;
+        $this->has_accounts = $hasAccounts;
         $this->has_budget = $hasBudget;
     }
 
@@ -52,6 +56,7 @@ class Budget extends Component
                 'view_end' => $this->view_end,
                 'active' => $this->active,
                 'projection' => $this->projection,
+                'has_accounts' => $this->has_accounts,
                 'has_budget' => $this->has_budget,
             ]
         );

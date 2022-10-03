@@ -114,6 +114,7 @@
                     :viewEnd="$view_end"
                     :active="true"
                     :projection="$projection"
+                    :hasAccounts="$has_accounts"
                     :hasBudget="has_budget"/>
 
             <x-requests />
