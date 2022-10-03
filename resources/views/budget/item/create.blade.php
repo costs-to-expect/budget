@@ -57,7 +57,7 @@
                         <div class="col-6 col-md-6">
                             <label for="currency_id" class="form-label">Currency *</label>
                             <select id="currency_id" name="currency_id" class="form-select form-select-sm <x-validation-error field='currency_id' />">
-                                <option value="{{ $currency['id'] }}" @if (old('currency_id') !== null && old('currency_id') === $currency['id']) selected="selected" @endif>{{ $currency['code'] }}</option>
+                                <option value="{{ $currency['id'] }}" @if (old('currency_id') !== null && old('currency_id') === $currency['id']) selected="selected" @endif>{{ $currency['code'] }} - <x-currency :currency="$currency" /></option>
                             </select>
                             <x-validation-error-message field="currency_id" />
                         </div>

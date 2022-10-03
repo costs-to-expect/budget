@@ -37,6 +37,11 @@ class Account
         return $this->balance;
     }
 
+    public function currency() : array
+    {
+        return $this->currency;
+    }
+
     public function currencyId() : string
     {
         return $this->currency['id'];

@@ -58,7 +58,7 @@
                     <div class="col-6 col-md-6">
                         <label for="currency_id" class="form-label">Currency *</label>
                         <select id="currency_id" name="currency_id" class="form-select form-select-sm @error('currency_id') is-invalid @enderror" required="required">
-                            <option value="{{ $currency['id'] }}" selected="selected">{{ $currency['code'] . '-' . $currency['name'] }}</option>
+                            <option value="{{ $currency['id'] }}" selected="selected">{{ $currency['code'] }} - <x-currency :currency="$currency" /></option>
                         </select>
                         @error('currency_id')
                         <div class="invalid-feedback">

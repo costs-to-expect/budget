@@ -35,14 +35,14 @@ class Service
     private bool $projection = true;
 
     private array $currency;
+    private array $default_currency;
 
     public function __construct()
     {
         $this->start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1);
         $this->view_start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1);
 
-        // Default to GBP
-        $this->currency = [
+        $this->default_currency = [
             'id' => 'epMqeYqPkL',
             'code' => 'GBP',
             'name' => 'Sterling'
@@ -77,13 +77,22 @@ class Service
         }
 
         foreach ($accounts as $account) {
+
+            if (isset($this->currency) === false) {
+                $this->currency = $account['currency'];
+            }
+
             $this->accounts[$account['id']] = new Account(
                 $account['id'],
                 $account['name'],
                 $account['type'],
                 $account['currency'],
-                (float)$account['balance']
+                (float) $account['balance']
             );
+        }
+
+        if (isset($this->currency) === false) {
+            $this->currency = $this->default_currency;
         }
 
         return $this;
@@ -116,7 +125,7 @@ class Service
                 $year_int = (int)$next->format('Y');
                 $month_int = (int)$next->format('n');
 
-                $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, false);
+                $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, $this->currency(), false);
             }
         }
 
@@ -144,7 +153,7 @@ class Service
                     ))->setTime(7, 1);
                 }
 
-                $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, true, false);
+                $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, $this->currency(),true, false);
             }
         }
 
@@ -160,7 +169,7 @@ class Service
                 "{$year_int}-{$month_int}-01", new DateTimeZone('UTC')
             ))->setTime(7, 1);
 
-            $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, true);
+            $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, $this->currency(), true);
         }
     }
 
