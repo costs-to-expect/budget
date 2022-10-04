@@ -40,6 +40,16 @@ class BudgetItem extends Controller
 
         $budget = $this->setUpBudget($request);
 
+        $budget_item = $this->api->getBudgetItem(
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->route('item_id')
+        );
+
+        if ($budget_item['status'] !== 200) {
+            abort($budget_item['status'], $budget_item['content']);
+        }
+
         return view(
             'budget.item.confirm-disable',
             [
@@ -50,6 +60,8 @@ class BudgetItem extends Controller
                 'pagination' => $budget->paginationParameters(),
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
+
+                'item' => $budget_item['content'],
             ]
         );
     }
@@ -129,18 +141,6 @@ class BudgetItem extends Controller
             abort($budget_item['status'], $budget_item['content']);
         }
 
-        $item = $budget_item['content'];
-        $item['start_date'] = new \DateTimeImmutable($item['start_date'], new \DateTimeZone('UTC'));
-        $item['end_date'] = ($item['end_date'] !== null) ? new \DateTimeImmutable($item['end_date'], new \DateTimeZone('UTC')) : null;
-        if (
-            $item['frequency']['type'] === 'monthly' &&
-            is_array($item['frequency']['exclusions']) &&
-            count($item['frequency']['exclusions']) > 0
-        ) {
-            $exclusions = array_map(static fn ($m) => (new Month($m))->render()->getData()['name'], $item['frequency']['exclusions']);
-            $item['exclusions'] = implode(', ', $exclusions);
-        }
-
         return view(
             'budget.item.index',
             [
@@ -152,7 +152,7 @@ class BudgetItem extends Controller
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
 
-                'item' => $item,
+                'item' => $budget_item['content'],
             ]
         );
     }
