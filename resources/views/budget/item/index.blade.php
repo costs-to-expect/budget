@@ -35,12 +35,22 @@
                         </div>
                         <div class="col-6">
                             <div class="label">Account</div>
-                            Default
+                            @if (array_key_exists($item['account'], $accounts))
+                                {{ $accounts[$item['account']]->name() }}
+                            @else
+                                Unknown Account (Please edit to fix)
+                            @endif
                         </div>
+                        @if ($item['target_account'] !== null)
                         <div class="col-6">
                             <div class="label">Target Account</div>
-                            Default
+                            @if (array_key_exists($item['target_account'], $accounts))
+                                {{ $accounts[$item['target_account']]->name() }}
+                            @else
+                                Unknown Account (Please edit to fix)
+                            @endif
                         </div>
+                        @endif
                         <div class="col-12">
                             <div class="label">Description</div>
                             {{ $item['description'] ?? 'None set' }}
@@ -66,20 +76,25 @@
                         @endif
 
                         @if ($item['frequency']['type'] === 'annually')
-                            <div class="col-12">
-                                <div class="label">Frequency</div>
-                                Annually @if ($item['frequency']['day'] !== null) around the <x-ordinal :day="$item['frequency']['day']" /> of <x-month :month="$item['frequency']['month']" /> @else in <x-month :month="$item['frequency']['month']" /> @endif
-                            </div>
+                        <div class="col-12">
+                            <div class="label">Frequency</div>
+                            Annually @if ($item['frequency']['day'] !== null) around the <x-ordinal :day="$item['frequency']['day']" /> of <x-month :month="$item['frequency']['month']" /> @else in <x-month :month="$item['frequency']['month']" /> @endif
+                        </div>
+                        @endif
+
+                        @if (
+                            $item['frequency']['type'] === 'monthly' &&
+                            array_key_exists('exclusions', $item)
+                        )
+                        <div class="col-12">
+                            <div class="label">Exclusions</div>
+                            Not required: {{ $item['exclusions'] }}
+                        </div>
                         @endif
 
                         <div class="col-12">
-                            <div class="label">Exclusions</div>
-                            Not required January & February
-                        </div>
-
-                        <div class="col-12">
                             <a class="btn btn-sm btn-outline-primary" href="{{ route('home') }}">
-                                Cancel
+                                Return
                             </a>
                             <a class="btn btn-sm btn-dark" href="{{ route('budget.item.confirm-disable', ['item_id' => 'test']) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Budget\Item\Create;
+use App\View\Components\Month;
 use Illuminate\Http\Request;
 
 /**
@@ -131,6 +132,14 @@ class BudgetItem extends Controller
         $item = $budget_item['content'];
         $item['start_date'] = new \DateTimeImmutable($item['start_date'], new \DateTimeZone('UTC'));
         $item['end_date'] = ($item['end_date'] !== null) ? new \DateTimeImmutable($item['end_date'], new \DateTimeZone('UTC')) : null;
+        if (
+            $item['frequency']['type'] === 'monthly' &&
+            is_array($item['frequency']['exclusions']) &&
+            count($item['frequency']['exclusions']) > 0
+        ) {
+            $exclusions = array_map(static fn ($m) => (new Month($m))->render()->getData()['name'], $item['frequency']['exclusions']);
+            $item['exclusions'] = implode(', ', $exclusions);
+        }
 
         return view(
             'budget.item.index',
