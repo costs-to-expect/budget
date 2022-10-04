@@ -27,19 +27,18 @@
 
                         <div class="col-12">
                             <div class="alert alert-dark mt-2" role="alert">
-                                <h4 class="alert-heading">Disable</h4>
-                                <p>If you are sure you want to disable this budget item please click the button below.</p>
-                                <p>When you disable a budget item, it will still display on your Budget, but it won't
-                                    be included in any projections.</p>
+                                <h4 class="alert-heading">Enable</h4>
+                                <p>If you are sure you want to enable this budget item please click the button below.</p>
+                                <p>When you enable the budget item, it will start being included in projections.</p>
                                 <hr>
 
-                                <form action="{{ route('budget.item.confirm-disable.process', ['item_id' => $item['id']]) }}" method="POST" class="row g-2">
+                                <form action="{{ route('budget.item.confirm-enable.process', ['item_id' => $item['id']]) }}" method="POST" class="row g-2">
 
                                     @csrf
 
                                     <div class="col-12 mt-3">
                                     <a href="{{ route('budget.item.view', ['item_id' => $item['id']]) }}" class="btn btn-sm btn-outline-primary">Cancel</a>
-                                    <button type="submit" class="btn btn-sm btn-dark">Disable</button>
+                                    <button type="submit" class="btn btn-sm btn-dark">Enable</button>
                                     </div>
                                 </form>
                             </div>

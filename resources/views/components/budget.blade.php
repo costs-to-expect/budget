@@ -63,7 +63,7 @@
                             </div>
                             <div class="amount text-grey"><small><x-currency :currency="$__item->currency()" /></small>{{ $__item->amount() }}
                                 @if ($__item->disabled() === true)
-                                    <small class="text-dark disabled-expense">Disabled</small>
+                                    <small class="text-dark disabled-expense">(Disabled)</small>
                                 @endif
                             </div>
                         </div>
