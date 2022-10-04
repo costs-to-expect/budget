@@ -128,7 +128,7 @@ Route::group(
         )->name('budget.item.view');
 
         Route::get(
-            '/budget/item/{item_id}/update',
+            '/budget/item/{item_id}/edit',
             [BudgetItem::class, 'update']
         )->name('budget.item.update');
 

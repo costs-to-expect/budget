@@ -18,66 +18,66 @@
 
             <div class="row">
                 <div class="col-12 col-lg-5 mx-auto p-2">
-                    <form action="{{ route('budget.item.create.process') }}" method="POST" class="row g-2">
+                    <form action="" method="POST" class="row g-2">
 
                         @csrf
 
                         <div class="col-12">
-                            <h2 class="display-6 mt-3 mb-3">New</h2>
+                            <h2 class="display-6 mt-3 mb-3">Edit</h2>
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="name" class="form-label">Name *</label>
-                            <input type="text" class="form-control form-control-sm <x-validation-error field='name' />" id="name" name="name" value="{{ old('name') }}" placeholder="Rent">
+                            <input type="text" class="form-control form-control-sm <x-validation-error field='name' />" id="name" name="name" value="{{ old('name', $item['name']) }}" placeholder="Rent">
                             <x-validation-error-message field="name" />
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="account" class="form-label">Account *</label>
                             <select id="account" name="account" class="form-select form-select-sm <x-validation-error field='account' />">
                                 @foreach ($accounts as $__account)
-                                    <option value="{{ $__account->id() }}" @if (old('account') !== null && old('account') === $__account->id()) selected="selected" @endif>{{ $__account->name() }}</option>
+                                    <option value="{{ $__account->id() }}" @if (old('account', $item['account']) !== null && old('account') === $__account->id()) selected="selected" @endif>{{ $__account->name() }}</option>
                                 @endforeach
                                 <x-validation-error-message field="account" />
                             </select>
                         </div>
                         <div class="col-12">
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control form-control-sm <x-validation-error field='description' />" id="description" name="description" placeholder="An optional description of the expense/income">{{ old('description') }}</textarea>
+                            <textarea class="form-control form-control-sm <x-validation-error field='description' />" id="description" name="description" placeholder="An optional description of the expense/income">{{ old('description', $item['description']) }}</textarea>
                             <x-validation-error-message field="description" />
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="start_date" class="form-label">Start Date *</label>
-                            <input type="date" class="form-control form-control-sm <x-validation-error field='start_date' />" id="start_date" name="start_date" value="{{ old('start_date', now()->toDateString()) }}">
+                            <input type="date" class="form-control form-control-sm <x-validation-error field='start_date' />" id="start_date" name="start_date" value="{{ old('start_date', $item['start_date']) }}">
                             <x-validation-error-message field="start_date" />
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="end_date" class="form-label">End Date</label>
-                            <input type="date" class="form-control form-control-sm <x-validation-error field='end_date' />" id="end_date" name="end_date" value="{{ old('end_date') }}">
+                            <input type="date" class="form-control form-control-sm <x-validation-error field='end_date' />" id="end_date" name="end_date" value="{{ old('end_date', $item['end_date']) }}">
                             <x-validation-error-message field="end_date" />
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="currency_id" class="form-label">Currency *</label>
                             <select id="currency_id" name="currency_id" class="form-select form-select-sm <x-validation-error field='currency_id' />">
-                                <option value="{{ $currency['id'] }}" @if (old('currency_id') !== null && old('currency_id') === $currency['id']) selected="selected" @endif>{{ $currency['code'] }} - <x-currency :currency="$currency" /></option>
+                                <option value="{{ $currency['id'] }}" @if (old('currency_id', $item['currency']['id']) !== null && old('currency_id') === $currency['id']) selected="selected" @endif>{{ $currency['code'] }} - <x-currency :currency="$currency" /></option>
                             </select>
                             <x-validation-error-message field="currency_id" />
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="amount" class="form-label">Amount *</label>
-                            <input type="number" class="form-control form-control-sm <x-validation-error field='amount' /> to-fixed" id="amount" name="amount" placeholder="10.99" value="{{ old('amount') }}" data-points="2" min="0" step="0.01">
+                            <input type="number" class="form-control form-control-sm <x-validation-error field='amount' /> to-fixed" id="amount" name="amount" placeholder="10.99" value="{{ old('amount', $item['amount']) }}" data-points="2" min="0" step="0.01">
                             <x-validation-error-message field="amount" />
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="category" class="form-label">Type *</label>
                             <select id="category" name="category" class="form-select form-select-sm <x-validation-error field='category' />">
                                 <optgroup label="Expense">
-                                    <option value="fixed" @if (old('category') === 'fixed') selected="selected" @endif>Fixed</option>
-                                    <option value="flexible" @if (old('category') === 'flexible') selected="selected" @endif>Flexible</option>
+                                    <option value="fixed" @if (old('category', $item['category']) === 'fixed') selected="selected" @endif>Fixed</option>
+                                    <option value="flexible" @if (old('category', $item['category']) === 'flexible') selected="selected" @endif>Flexible</option>
                                     @if ($has_savings_account)
-                                    <option value="savings" @if (old('category') === 'savings') selected="selected" @endif>Savings</option>
+                                    <option value="savings" @if (old('category', $item['category']) === 'savings') selected="selected" @endif>Savings</option>
                                     @endif
                                 </optgroup>
                                 <optgroup label="Income">
-                                    <option value="income" @if (old('category') === 'income') selected="selected" @endif>Income</option>
+                                    <option value="income" @if (old('category', $item['category']) === 'income') selected="selected" @endif>Income</option>
                                 </optgroup>
                             </select>
                             <x-validation-error-message field="category" />
@@ -87,7 +87,7 @@
                             <select id="target_account" name="target_account" class="form-select form-select-sm <x-validation-error field='target_account' />">
                                 @foreach ($accounts as $__account)
                                     @if ($__account->type() === 'savings')
-                                    <option value="{{ $__account->id() }}" @if (old('target_account') !== null && old('target_account') === $__account->id()) selected="selected" @endif>{{ $__account->name() }}</option>
+                                    <option value="{{ $__account->id() }}" @if (old('target_account', $item['target_account']) !== null && old('target_account') === $__account->id()) selected="selected" @endif>{{ $__account->name() }}</option>
                                     @endif
                                 @endforeach
                             </select>
@@ -98,8 +98,8 @@
                             <div class="col-12">
                                 <label for="frequency_option" class="form-label">Repeats *</label>
                                 <select id="frequency_option" name="frequency_option" class="form-select form-select-sm <x-validation-error field='frequency_option' />" aria-describedby="frequency_optionHelpBlock">
-                                    <option value="monthly" @if (old('frequency_option') === 'monthly') selected="selected" @endif>Monthly</option>
-                                    <option value="annually" @if (old('frequency_option') === 'annually') selected="selected" @endif>Annually</option>
+                                    <option value="monthly" @if (old('frequency_option', $item['frequency']['type']) === 'monthly') selected="selected" @endif>Monthly</option>
+                                    <option value="annually" @if (old('frequency_option', $item['frequency']['type']) === 'annually') selected="selected" @endif>Annually</option>
                                 </select>
                                 <p id="frequency_optionHelpBlock" class="form-text">Please choose how often this item should repeat on your budget.</p>
                                 <x-validation-error-message field="frequency_option" />
@@ -254,39 +254,15 @@
                         </fieldset>
                         <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
                         <div class="col-12 mt-3">
-
-                            @if (count($accounts) > 0)
-                                @if ($number_of_items < $max_items)
-                                <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
-                                <button type="submit" class="btn btn-sm btn-primary">Save</button>
-                                <button name="submit_and_return" type="submit" class="btn btn-sm btn-primary">Save & Add Another</button>
-                                @endif
-                            @else
-                            <div class="alert alert-dark show mt-2" role="alert">
-                                <h4 class="alert-heading">No accounts!</h4>
-                                <p>You can't add a Budget item until you have added at least account, please create an account.</p>
-                                <hr>
-                                <p class="mb-0"><a href="{{ route('budget.account.create') }}">New account</a>.</p>
-                            </div>
-                            @endif
+                            <a href="{{ route('budget.item.view', ['item_id' => $item['id']]) }}" class="btn btn-sm btn-outline-primary">Cancel</a>
+                            <button type="submit" class="btn btn-sm btn-primary">Save</button>
                         </div>
                     </form>
 
-                    @if ($number_of_items > ($max_items - 10))
                     <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">
                         <h4 class="alert-heading">Budget Pro!</h4>
-                        <p>In Budget Pro you are allowed to have more than {{ $max_items }} items on your Budget.</p>
-                        <p>You have {{ $number_of_items }} budget items.</p>
-                        <hr>
-                        <p class="mb-0"><a href="">Find out more</a>.</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    @endif
-
-                    <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">
-                        <h4 class="alert-heading">Budget Pro!</h4>
-                        <p>In Budget Pro we include additional frequency options, daily, weekly, fortnights etc.</p>
-                        <p>Additionally, we have more complicated exclusion options.</p>
+                        <p>In Budget Pro we support multi-edit.</p>
+                        <p>You can update all your budget items on a single page.</p>
                         <hr>
                         <p class="mb-0"><a href="">Find out more</a>.</p>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -299,7 +275,7 @@
                         :months="$months"
                         :pagination="$pagination"
                         :viewEnd="$view_end"
-                        :active="false"
+                        :active="$item['id']"
                         :projection="$projection"
                         :hasAccounts="$has_accounts"
                         :hasBudget="$has_budget"/>

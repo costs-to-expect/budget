@@ -213,11 +213,11 @@ class BudgetItem extends Controller
                 'pagination' => $budget->paginationParameters(),
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
+
                 'currency' => $budget->currency(),
+                'has_savings_account' => $budget->hasSavingsAccount(),
 
                 'max_items' => $budget->maxItems(),
-
-                'has_savings_account' => $budget->hasSavingsAccount(),
                 'number_of_items' => $budget->numberOfItems(),
             ]
         );
@@ -294,6 +294,16 @@ class BudgetItem extends Controller
 
         $budget = $this->setUpBudget($request);
 
+        $budget_item = $this->api->getBudgetItem(
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->route('item_id')
+        );
+
+        if ($budget_item['status'] !== 200) {
+            abort($budget_item['status'], $budget_item['content']);
+        }
+
         return view(
             'budget.item.update',
             [
@@ -304,6 +314,11 @@ class BudgetItem extends Controller
                 'pagination' => $budget->paginationParameters(),
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
+
+                'currency' => $budget->currency(),
+                'has_savings_account' => $budget->hasSavingsAccount(),
+
+                'item' => $budget_item['content'],
             ]
         );
     }
