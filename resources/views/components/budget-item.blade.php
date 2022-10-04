@@ -1,9 +1,4 @@
 <div class="col-12">
-    <h2 class="display-6 mt-3 mb-3">
-        Budget Item
-    </h2>
-</div>
-<div class="col-12">
     <div class="label">Name</div>
     {{ $item['name'] }}
 </div>

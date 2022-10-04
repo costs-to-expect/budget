@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Budget\Item\Create;
-use App\View\Components\Month;
 use Illuminate\Http\Request;
 
 /**
@@ -20,6 +19,16 @@ class BudgetItem extends Controller
 
         $budget = $this->setUpBudget($request);
 
+        $budget_item = $this->api->getBudgetItem(
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->route('item_id')
+        );
+
+        if ($budget_item['status'] !== 200) {
+            abort($budget_item['status'], $budget_item['content']);
+        }
+
         return view(
             'budget.item.confirm-delete',
             [
@@ -30,6 +39,8 @@ class BudgetItem extends Controller
                 'pagination' => $budget->paginationParameters(),
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
+
+                'item' => $budget_item['content'],
             ]
         );
     }
