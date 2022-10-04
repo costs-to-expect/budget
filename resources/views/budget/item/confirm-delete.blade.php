@@ -33,11 +33,14 @@
                                 <p>If you click delete and discard, the item will be removed entirely and is not recoverable.</p>
                                 <hr>
 
-                                <form action="{{ route('budget.item.create.process') }}" method="POST" class="row g-2">
+                                <form action="{{ route('budget.item.confirm-delete.process', ['item_id' => $item['id']]) }}" method="POST" class="row g-2">
+
+                                    @csrf
+
                                     <div class="col-12 mt-3">
                                         <a href="{{ route('budget.item.view', ['item_id' => $item['id']]) }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                        <button name="submit_and_discard" type="submit" class="btn btn-sm btn-danger">Delete & Discard</button>
+                                        <button name="submit_and_discard" type="submit" class="btn btn-sm btn-danger" value="delete-and-discard">Delete & Discard</button>
                                     </div>
                                 </form>
                             </div>
@@ -71,7 +74,7 @@
                         :months="$months"
                         :pagination="$pagination"
                         :viewEnd="$view_end"
-                        :active="true"
+                        :active="$item['id']"
                         :projection="$projection"
                         :hasAccounts="$has_accounts"
                         :hasBudget="$has_budget"/>

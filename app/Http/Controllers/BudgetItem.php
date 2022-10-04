@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Budget\Item\Create;
+use App\Actions\Budget\Item\Delete;
 use App\Actions\Budget\Item\Disable;
 use App\Actions\Budget\Item\Enable;
 use Illuminate\Http\Request;
@@ -45,6 +46,35 @@ class BudgetItem extends Controller
                 'item' => $budget_item['content'],
             ]
         );
+    }
+
+    public function confirmDeleteProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Delete();
+        $result = $action(
+            $this->api,
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->route('item_id'),
+            $request->post('submit_and_discard') !== null
+        );
+
+        if ($result === 204) {
+            return redirect()
+                ->route('home')
+                ->with('status', 'item-deleted');
+        }
+
+        if ($result === 422) {
+            return redirect()
+                ->route('budget.item.confirm-delete', ['item_id' => $request->route('item_id')])
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
     }
 
     public function confirmDisable(Request $request)
@@ -99,7 +129,7 @@ class BudgetItem extends Controller
 
         if ($result === 422) {
             return redirect()
-                ->route('budget.item.confirm-disable')
+                ->route('budget.item.confirm-disable', ['item_id' => $request->route('item_id')])
                 ->withInput()
                 ->with('validation.errors', $action->getValidationErrors());
         }
@@ -159,7 +189,7 @@ class BudgetItem extends Controller
 
         if ($result === 422) {
             return redirect()
-                ->route('budget.item.confirm-enable')
+                ->route('budget.item.confirm-enable', ['item_id' => $request->route('item_id')])
                 ->withInput()
                 ->with('validation.errors', $action->getValidationErrors());
         }

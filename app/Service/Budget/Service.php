@@ -39,8 +39,8 @@ class Service
 
     public function __construct()
     {
-        $this->start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1);
-        $this->view_start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1);
+        $this->start_date = (new DateTimeImmutable('first day of this month', new DateTimeZone('UTC')))->setTime(7, 1);
+        $this->view_start_date = (new DateTimeImmutable('first day of this month', new DateTimeZone('UTC')))->setTime(7, 1);
 
         $this->default_currency = [
             'id' => 'epMqeYqPkL',

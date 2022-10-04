@@ -128,6 +128,18 @@ class Service
         );
     }
 
+    #[ArrayShape(['status' => "integer", "content" => "string"])]
+    public function deleteBudgetItem(
+        string $resource_type_id,
+        string $resource_id,
+        string $item_id
+    ): array
+    {
+        $uri = Uri::item($resource_type_id, $resource_id, $item_id);
+
+        return $this->http->delete($uri['uri']);
+    }
+
     #[ArrayShape(['status' => "integer", 'content' => "array"])]
     public function getResource(string $resource_type_id, string $resource_id, array $parameters = []): array
     {
