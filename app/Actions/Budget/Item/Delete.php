@@ -11,7 +11,7 @@ use App\Api\Service;
  * @copyright Dean Blackborough (Costs to Expect) 2018-2022
  * https://github.com/costs-to-expect/budget/blob/main/LICENSE
  */
-class Enable extends Action
+class Delete extends Action
 {
     public function __invoke(
         Service $api,
@@ -31,7 +31,7 @@ class Enable extends Action
             $resource_id,
             $item_id,
             [
-                'disabled' => false
+                'end_date' => (new \DateTimeImmutable('yesterday', new \DateTimeZone('UTC')))->format('Y-m-d')
             ]
         );
 

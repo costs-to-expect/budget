@@ -35,6 +35,8 @@ class Item
 
     protected bool $disabled;
 
+    protected DateTimeImmutable $today;
+
     /**
      * @throws \Exception
      */
@@ -45,9 +47,11 @@ class Item
         $this->account = $data['account'];
         $this->target_account = $data['target_account'];
 
+        $this->today = new \DateTimeImmutable('today', new \DateTimeZone('UTC'));
+
         $this->start_date = new \DateTimeImmutable($data['start_date'], new \DateTimeZone('UTC'));
         if ($data['end_date'] !== null) {
-            $this->end_date = new DateTimeImmutable($data['end_date'], new \DateTimeZone('UTC'));
+            $this->end_date = new \DateTimeImmutable($data['end_date'], new \DateTimeZone('UTC'));
         }
 
         $this->name = $data['name'];
@@ -108,7 +112,16 @@ class Item
         return (
             $this->frequency()->month() === $month &&
             $this->startDate() <= $end_of_active_month &&
-            ($this->endDate() === null || $this->endDate() >= $end_of_active_month)
+            (
+                $this->endDate() === null ||
+                (
+                    $this->endDate() >= $end_of_active_month ||
+                    (
+                        $this->endDate() > $start_of_active_month &&
+                        $this->endDate() > $this->today
+                    )
+                )
+            )
         );
     }
 
@@ -120,7 +133,16 @@ class Item
         return (
             in_array($month, $this->frequency()->exclusions(), true) === false &&
             $this->startDate() <= $end_of_active_month &&
-            ($this->endDate() === null || $this->endDate() >= $end_of_active_month)
+            (
+                $this->endDate() === null ||
+                (
+                    $this->endDate() >= $end_of_active_month ||
+                    (
+                        $this->endDate() > $start_of_active_month &&
+                        $this->endDate() > $this->today
+                    )
+                )
+            )
         );
     }
 

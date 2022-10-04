@@ -33,7 +33,10 @@
                                 <p>If you click delete and discard, the item will be removed entirely and is not recoverable.</p>
                                 <hr>
 
-                                <form action="{{ route('budget.item.create.process') }}" method="POST" class="row g-2">
+                                <form action="{{ route('budget.item.confirm-delete.process', ['item_id' => $item['id']]) }}" method="POST" class="row g-2">
+
+                                    @csrf
+
                                     <div class="col-12 mt-3">
                                         <a href="{{ route('budget.item.view', ['item_id' => $item['id']]) }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>

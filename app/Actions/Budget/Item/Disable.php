@@ -26,7 +26,7 @@ class Disable extends Action
             return $item_response['status'];
         }
 
-        $create_budget_item_response = $api->patchBudgetItem(
+        $patch_budget_item_response = $api->patchBudgetItem(
             $resource_type_id,
             $resource_id,
             $item_id,
@@ -35,18 +35,18 @@ class Disable extends Action
             ]
         );
 
-        if ($create_budget_item_response['status'] === 204) {
+        if ($patch_budget_item_response['status'] === 204) {
             return 204;
         }
 
-        if ($create_budget_item_response['status'] === 422) {
-            $this->message = $create_budget_item_response['content'];
-            $this->validation_errors = $create_budget_item_response['fields'];
+        if ($patch_budget_item_response['status'] === 422) {
+            $this->message = $patch_budget_item_response['content'];
+            $this->validation_errors = $patch_budget_item_response['fields'];
             return 422;
         }
 
-        $this->message = $create_budget_item_response['content'];
+        $this->message = $patch_budget_item_response['content'];
 
-        return $create_budget_item_response['status'];
+        return $patch_budget_item_response['status'];
     }
 }

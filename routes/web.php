@@ -87,6 +87,11 @@ Route::group(
             [BudgetItem::class, 'confirmDelete']
         )->name('budget.item.confirm-delete');
 
+        Route::post(
+            '/budget/item/{item_id}/confirm-delete',
+            [BudgetItem::class, 'confirmDeleteProcess']
+        )->name('budget.item.confirm-delete.process');
+
         Route::get(
             '/budget/item/{item_id}/confirm-disable',
             [BudgetItem::class, 'confirmDisable']
