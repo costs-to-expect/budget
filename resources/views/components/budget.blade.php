@@ -53,7 +53,7 @@
                 <div class="row">
                     @foreach ($__month->items() as $__item)
                         <a href="{{ route('budget.item.view', ['item_id' => $__item->id()]) }}">
-                        <div class="col-12 expense @if ($active === true && $__item->name() === 'Netflix' && $__month->name() === 'October') active shadow @endif @if($__item->disabled() === true) opacity-50 @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
+                        <div class="col-12 expense @if ($active !== null && $active === $__item->id()) active shadow @endif @if($__item->disabled() === true) opacity-50 @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
                             <div class="name text-grey">
                                 {{ $__item->name() }}
                             </div>

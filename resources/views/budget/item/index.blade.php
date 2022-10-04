@@ -119,7 +119,7 @@
                             :months="$months"
                             :pagination="$pagination"
                             :viewEnd="$view_end"
-                            :active="true"
+                            :active="$item['id']"
                             :projection="$projection"
                             :hasAccounts="$has_accounts"
                             :hasBudget="$has_budget"/>

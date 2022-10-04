@@ -16,7 +16,7 @@ class Budget extends Component
 
     private array $view_end;
 
-    private bool $active;
+    private ?string $active;
 
     private bool $projection;
 
@@ -29,7 +29,7 @@ class Budget extends Component
         array $months,
         array $pagination,
         array $viewEnd,
-        bool $active = false,
+        ?string $active = null,
         bool $projection = true,
         bool $hasAccounts = true,
         bool $hasBudget = true

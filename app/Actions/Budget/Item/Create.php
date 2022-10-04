@@ -91,7 +91,7 @@ class Create extends Action
         $payload = [
             'name' => $input['name'],
             'account' => $input['account'],
-            'target_account' => $input['target_account'] ?? null,
+            'target_account' => ($input['category'] === 'savings') ? $input['target_account'] ?? null : null,
             'description' => $input['description'] ?? null,
             'amount' => $input['amount'],
             'start_date' => $input['start_date'],
