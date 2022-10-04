@@ -17,7 +17,8 @@ class Delete extends Action
         Service $api,
         string $resource_type_id,
         string $resource_id,
-        string $item_id
+        string $item_id,
+        bool $discard = false
     ): int
     {
         $item_response = $api->getBudgetItem($resource_type_id, $resource_id, $item_id);
@@ -26,27 +27,43 @@ class Delete extends Action
             return $item_response['status'];
         }
 
-        $patch_budget_item_response = $api->patchBudgetItem(
+        if ($discard === false) {
+            $patch_budget_item_response = $api->patchBudgetItem(
+                $resource_type_id,
+                $resource_id,
+                $item_id,
+                [
+                    'end_date' => (new \DateTimeImmutable('yesterday', new \DateTimeZone('UTC')))->format('Y-m-d')
+                ]
+            );
+
+            if ($patch_budget_item_response['status'] === 204) {
+                return 204;
+            }
+
+            if ($patch_budget_item_response['status'] === 422) {
+                $this->message = $patch_budget_item_response['content'];
+                $this->validation_errors = $patch_budget_item_response['fields'];
+                return 422;
+            }
+
+            $this->message = $patch_budget_item_response['content'];
+
+            return $patch_budget_item_response['status'];
+        }
+
+        $delete_budget_item_response = $api->deleteBudgetItem(
             $resource_type_id,
             $resource_id,
-            $item_id,
-            [
-                'end_date' => (new \DateTimeImmutable('yesterday', new \DateTimeZone('UTC')))->format('Y-m-d')
-            ]
+            $item_id
         );
 
-        if ($patch_budget_item_response['status'] === 204) {
+        if ($delete_budget_item_response['status'] === 204) {
             return 204;
         }
 
-        if ($patch_budget_item_response['status'] === 422) {
-            $this->message = $patch_budget_item_response['content'];
-            $this->validation_errors = $patch_budget_item_response['fields'];
-            return 422;
-        }
+        $this->message = $delete_budget_item_response['content'];
 
-        $this->message = $patch_budget_item_response['content'];
-
-        return $patch_budget_item_response['status'];
+        return $delete_budget_item_response['status'];
     }
 }

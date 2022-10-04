@@ -57,7 +57,8 @@ class BudgetItem extends Controller
             $this->api,
             $this->resource_type_id,
             $this->resource_id,
-            $request->route('item_id')
+            $request->route('item_id'),
+            $request->post('submit_and_discard') !== null
         );
 
         if ($result === 204) {
