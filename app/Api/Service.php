@@ -153,6 +153,19 @@ class Service
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    public function patchBudgetItem(
+        string $resource_type_id,
+        string $resource_id,
+        string $item_id,
+        array $payload = []
+    ): array
+    {
+        $uri = Uri::item($resource_type_id, $resource_id, $item_id);
+
+        return $this->http->patch($uri['uri'], $payload);
+    }
+
+    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
     public function patchResource(
         string $resource_type_id,
         string $resource_id,

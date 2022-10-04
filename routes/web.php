@@ -92,6 +92,21 @@ Route::group(
             [BudgetItem::class, 'confirmDisable']
         )->name('budget.item.confirm-disable');
 
+        Route::post(
+            '/budget/item/{item_id}/confirm-disable',
+            [BudgetItem::class, 'confirmDisableProcess']
+        )->name('budget.item.confirm-disable.process');
+
+        Route::get(
+            '/budget/item/{item_id}/confirm-enable',
+            [BudgetItem::class, 'confirmEnable']
+        )->name('budget.item.confirm-enable');
+
+        Route::post(
+            '/budget/item/{item_id}/confirm-enable',
+            [BudgetItem::class, 'confirmEnableProcess']
+        )->name('budget.item.confirm-enable.process');
+
         Route::get(
             '/budget/item',
             [BudgetItem::class, 'create']

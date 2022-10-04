@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Budget\Item\Create;
+use App\Actions\Budget\Item\Disable;
+use App\Actions\Budget\Item\Enable;
 use Illuminate\Http\Request;
 
 /**
@@ -75,6 +77,94 @@ class BudgetItem extends Controller
                 'item' => $budget_item['content'],
             ]
         );
+    }
+
+    public function confirmDisableProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Disable();
+        $result = $action(
+            $this->api,
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->route('item_id')
+        );
+
+        if ($result === 204) {
+            return redirect()
+                ->route('budget.item.view', ['item_id' => $request->route('item_id')])
+                ->with('status', 'item-disabled');
+        }
+
+        if ($result === 422) {
+            return redirect()
+                ->route('budget.item.confirm-disable')
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
+    }
+
+    public function confirmEnable(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $budget = $this->setUpBudget($request);
+
+        $budget_item = $this->api->getBudgetItem(
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->route('item_id')
+        );
+
+        if ($budget_item['status'] !== 200) {
+            abort($budget_item['status'], $budget_item['content']);
+        }
+
+        return view(
+            'budget.item.confirm-enable',
+            [
+                'has_accounts' => $budget->hasAccounts(),
+                'has_budget' => $budget->hasBudget(),
+                'accounts' => $budget->accounts(),
+                'months' => $budget->months(),
+                'pagination' => $budget->paginationParameters(),
+                'view_end' => $budget->viewEndPeriod(),
+                'projection' => $budget->projection(),
+
+                'item' => $budget_item['content'],
+            ]
+        );
+    }
+
+    public function confirmEnableProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Enable();
+        $result = $action(
+            $this->api,
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->route('item_id')
+        );
+
+        if ($result === 204) {
+            return redirect()
+                ->route('budget.item.view', ['item_id' => $request->route('item_id')])
+                ->with('status', 'item-enabled');
+        }
+
+        if ($result === 422) {
+            return redirect()
+                ->route('budget.item.confirm-enable')
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
     }
 
     public function create(Request $request)
