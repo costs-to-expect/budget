@@ -106,14 +106,14 @@
                             </div>
                             <div class="col-12" data-frequency="monthly">
                                 <label for="monthly_day" class="form-label">Day of Month</label>
-                                <input type="number" class="form-control form-control-sm <x-validation-error field='monthly_day' />" id="monthly_day" name="monthly_day" placeholder="5" value="{{ old('monthly_day') }}" aria-describedby="monthly_dayHelpBlock">
+                                <input type="number" class="form-control form-control-sm <x-validation-error field='monthly_day' />" id="monthly_day" name="monthly_day" placeholder="5" value="{{ old('monthly_day', ($item['frequency']['type'] === 'monthly' ? $item['frequency']['day'] : null)) }}" aria-describedby="monthly_dayHelpBlock">
                                 <div id="monthly_dayHelpBlock" class="form-text">Please set the day of the month this typically occurs</div>
                                 <x-validation-error-message field="monthly_day" />
                             </div>
                             <div class="row">
                                 <div class="col-6" data-frequency="annually">
                                     <label for="annually_day" class="form-label">Day of Month</label>
-                                    <input type="number" class="form-control form-control-sm <x-validation-error field='annually_day' />" id="annually_day" name="annually_day" placeholder="5" value="{{ old('annually_day') }}" aria-describedby="annually_dayHelpBlock">
+                                    <input type="number" class="form-control form-control-sm <x-validation-error field='annually_day' />" id="annually_day" name="annually_day" placeholder="5" value="{{ old('annually_day', ($item['frequency']['type'] === 'annually' ? $item['frequency']['day'] : null)) }}" aria-describedby="annually_dayHelpBlock">
                                     <div id="annually_dayHelpBlock" class="form-text">Please set the day of the month this typically occurs</div>
                                     <x-validation-error-message field="annually_day" />
                                 </div>
@@ -121,18 +121,18 @@
                                     <label for="annually_month" class="form-label">Month *</label>
                                     <select id="annually_month" name="annually_month" class="form-select form-select-sm <x-validation-error field='annually_month' />">
                                         <option value="">Select month</option>
-                                        <option value="1" @if (old('annually_month') === '1') selected="selected" @endif>Jan.</option>
-                                        <option value="2" @if (old('annually_month') === '2') selected="selected" @endif>Feb.</option>
-                                        <option value="3" @if (old('annually_month') === '3') selected="selected" @endif>Mar.</option>
-                                        <option value="4" @if (old('annually_month') === '4') selected="selected" @endif>Apr.</option>
-                                        <option value="5" @if (old('annually_month') === '5') selected="selected" @endif>May.</option>
-                                        <option value="6" @if (old('annually_month') === '6') selected="selected" @endif>Jun.</option>
-                                        <option value="7" @if (old('annually_month') === '7') selected="selected" @endif>Jul.</option>
-                                        <option value="8" @if (old('annually_month') === '8') selected="selected" @endif>Aug.</option>
-                                        <option value="9" @if (old('annually_month') === '9') selected="selected" @endif>Sep.</option>
-                                        <option value="10" @if (old('annually_month') === '10') selected="selected" @endif>Oct.</option>
-                                        <option value="11" @if (old('annually_month') === '11') selected="selected" @endif>Nov.</option>
-                                        <option value="12" @if (old('annually_month') === '12') selected="selected" @endif>Dec.</option>
+                                        <option value="1" @if (old('annually_month', ($item['frequency']['type'] === 'annually' ? (string) $item['frequency']['month'] : null)) === '1') selected="selected" @endif>January</option>
+                                        <option value="2" @if (old('annually_month', ($item['frequency']['type'] === 'annually' ? (string) $item['frequency']['month'] : null)) === '2') selected="selected" @endif>February</option>
+                                        <option value="3" @if (old('annually_month', ($item['frequency']['type'] === 'annually' ? (string) $item['frequency']['month'] : null)) === '3') selected="selected" @endif>March</option>
+                                        <option value="4" @if (old('annually_month', ($item['frequency']['type'] === 'annually' ? (string) $item['frequency']['month'] : null)) === '4') selected="selected" @endif>April</option>
+                                        <option value="5" @if (old('annually_month', ($item['frequency']['type'] === 'annually' ? (string) $item['frequency']['month'] : null)) === '5') selected="selected" @endif>May</option>
+                                        <option value="6" @if (old('annually_month', ($item['frequency']['type'] === 'annually' ? (string) $item['frequency']['month'] : null)) === '6') selected="selected" @endif>June</option>
+                                        <option value="7" @if (old('annually_month', ($item['frequency']['type'] === 'annually' ? (string) $item['frequency']['month'] : null)) === '7') selected="selected" @endif>July</option>
+                                        <option value="8" @if (old('annually_month', ($item['frequency']['type'] === 'annually' ? (string) $item['frequency']['month'] : null)) === '8') selected="selected" @endif>August</option>
+                                        <option value="9" @if (old('annually_month', ($item['frequency']['type'] === 'annually' ? (string) $item['frequency']['month'] : null)) === '9') selected="selected" @endif>September</option>
+                                        <option value="10" @if (old('annually_month', ($item['frequency']['type'] === 'annually' ? (string) $item['frequency']['month'] : null)) === '10') selected="selected" @endif>October</option>
+                                        <option value="11" @if (old('annually_month', ($item['frequency']['type'] === 'annually' ? (string) $item['frequency']['month'] : null)) === '11') selected="selected" @endif>November</option>
+                                        <option value="12" @if (old('annually_month', ($item['frequency']['type'] === 'annually' ? (string) $item['frequency']['month'] : null)) === '12') selected="selected" @endif>December</option>
                                     </select>
                                     <x-validation-error-message field="annually_month" />
                                 </div>
@@ -146,7 +146,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclusion_1" name="exclusion[]" value="1" @if(is_array(old('exclusion')) && in_array('1', old('exclusion'), true)) checked="checked" @endif>
+                                        <input class="form-check-input" type="checkbox" id="exclusion_1" name="exclusion[]" value="1" @if((is_array(old('exclusion')) && in_array('1', old('exclusion'), true)) || ($item['frequency']['type'] === 'monthly' && in_array(1, $item['frequency']['exclusions']))) checked="checked" @endif>
                                         <label class="form-check-label" for="exclusion_1">
                                             January
                                         </label>
@@ -154,7 +154,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclusion_2" name="exclusion[]" value="2" @if(is_array(old('exclusion')) && in_array('2', old('exclusion'), true)) checked="checked" @endif>
+                                        <input class="form-check-input" type="checkbox" id="exclusion_2" name="exclusion[]" value="2" @if((is_array(old('exclusion')) && in_array('2', old('exclusion'), true)) || ($item['frequency']['type'] === 'monthly' && in_array(2, $item['frequency']['exclusions']))) checked="checked" @endif>
                                         <label class="form-check-label" for="exclusion_2">
                                             February
                                         </label>
@@ -162,7 +162,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclusion_3" name="exclusion[]" value="3" @if(is_array(old('exclusion')) && in_array('3', old('exclusion'), true)) checked="checked" @endif>
+                                        <input class="form-check-input" type="checkbox" id="exclusion_3" name="exclusion[]" value="3" @if((is_array(old('exclusion')) && in_array('3', old('exclusion'), true)) || ($item['frequency']['type'] === 'monthly' && in_array(3, $item['frequency']['exclusions']))) checked="checked" @endif>
                                         <label class="form-check-label" for="exclusion_3">
                                             March
                                         </label>
@@ -173,7 +173,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclusion_4" name="exclusion[]" value="4" @if(is_array(old('exclusion')) && in_array('4', old('exclusion'), true)) checked="checked" @endif>
+                                        <input class="form-check-input" type="checkbox" id="exclusion_4" name="exclusion[]" value="4" @if((is_array(old('exclusion')) && in_array('4', old('exclusion'), true)) || ($item['frequency']['type'] === 'monthly' && in_array(4, $item['frequency']['exclusions']))) checked="checked" @endif>
                                         <label class="form-check-label" for="exclusion_4">
                                             April
                                         </label>
@@ -181,7 +181,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclusion_5" name="exclusion[]" value="5" @if(is_array(old('exclusion')) && in_array('5', old('exclusion'), true)) checked="checked" @endif>
+                                        <input class="form-check-input" type="checkbox" id="exclusion_5" name="exclusion[]" value="5" @if((is_array(old('exclusion')) && in_array('5', old('exclusion'), true)) || ($item['frequency']['type'] === 'monthly' && in_array(5, $item['frequency']['exclusions']))) checked="checked" @endif>
                                         <label class="form-check-label" for="exclusion_5">
                                             May
                                         </label>
@@ -189,7 +189,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclusion_6" name="exclusion[]" value="6" @if(is_array(old('exclusion')) && in_array('6', old('exclusion'), true)) checked="checked" @endif>
+                                        <input class="form-check-input" type="checkbox" id="exclusion_6" name="exclusion[]" value="6" @if((is_array(old('exclusion')) && in_array('6', old('exclusion'), true)) || ($item['frequency']['type'] === 'monthly' && in_array(6, $item['frequency']['exclusions']))) checked="checked" @endif>
                                         <label class="form-check-label" for="exclusion_6">
                                             June
                                         </label>
@@ -200,7 +200,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclusion_7" name="exclusion[]" value="7" @if(is_array(old('exclusion')) && in_array('7', old('exclusion'), true)) checked="checked" @endif>
+                                        <input class="form-check-input" type="checkbox" id="exclusion_7" name="exclusion[]" value="7" @if((is_array(old('exclusion')) && in_array('7', old('exclusion'), true)) || ($item['frequency']['type'] === 'monthly' && in_array(7, $item['frequency']['exclusions']))) checked="checked" @endif>
                                         <label class="form-check-label" for="exclusion_7">
                                             July
                                         </label>
@@ -208,7 +208,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclusion_8" name="exclusion[]" value="8" @if(is_array(old('exclusion')) && in_array('8', old('exclusion'), true)) checked="checked" @endif>
+                                        <input class="form-check-input" type="checkbox" id="exclusion_8" name="exclusion[]" value="8" @if((is_array(old('exclusion')) && in_array('8', old('exclusion'), true)) || ($item['frequency']['type'] === 'monthly' && in_array(8, $item['frequency']['exclusions']))) checked="checked" @endif>
                                         <label class="form-check-label" for="exclusion_8">
                                             August
                                         </label>
@@ -216,7 +216,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclusion_9" name="exclusion[]" value="9" @if(is_array(old('exclusion')) && in_array('9', old('exclusion'), true)) checked="checked" @endif>
+                                        <input class="form-check-input" type="checkbox" id="exclusion_9" name="exclusion[]" value="9" @if((is_array(old('exclusion')) && in_array('9', old('exclusion'), true)) || ($item['frequency']['type'] === 'monthly' && in_array(9, $item['frequency']['exclusions']))) checked="checked" @endif>
                                         <label class="form-check-label" for="exclusion_9">
                                             September
                                         </label>
@@ -227,7 +227,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input <x-validation-error field='exclusion' />" type="checkbox" id="exclusion_10" name="exclusion[]" value="10" @if(is_array(old('exclusion')) && in_array('10', old('exclusion'), true)) checked="checked" @endif>
+                                        <input class="form-check-input <x-validation-error field='exclusion' />" type="checkbox" id="exclusion_10" name="exclusion[]" value="10" @if((is_array(old('exclusion')) && in_array('10', old('exclusion'), true)) || ($item['frequency']['type'] === 'monthly' && in_array(10, $item['frequency']['exclusions']))) checked="checked" @endif>
                                         <label class="form-check-label" for="exclusion_10">
                                             October
                                         </label>
@@ -236,7 +236,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclusion_11" name="exclusion[]" value="14" @if(is_array(old('exclusion')) && in_array('11', old('exclusion'), true)) checked="checked" @endif>
+                                        <input class="form-check-input" type="checkbox" id="exclusion_11" name="exclusion[]" value="11" @if((is_array(old('exclusion')) && in_array('11', old('exclusion'), true)) || ($item['frequency']['type'] === 'monthly' && in_array(11, $item['frequency']['exclusions']))) checked="checked" @endif>
                                         <label class="form-check-label" for="exclusion_11">
                                             November
                                         </label>
@@ -244,7 +244,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclusion_12" name="exclusion[]" value="12" @if(is_array(old('exclusion')) && in_array('12', old('exclusion'), true)) checked="checked" @endif>
+                                        <input class="form-check-input" type="checkbox" id="exclusion_12" name="exclusion[]" value="12" @if((is_array(old('exclusion')) && in_array('12', old('exclusion'), true)) || ($item['frequency']['type'] === 'monthly' && in_array(12, $item['frequency']['exclusions']))) checked="checked" @endif>
                                         <label class="form-check-label" for="exclusion_12">
                                             December
                                         </label>

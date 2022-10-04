@@ -121,18 +121,18 @@
                                     <label for="annually_month" class="form-label">Month *</label>
                                     <select id="annually_month" name="annually_month" class="form-select form-select-sm <x-validation-error field='annually_month' />">
                                         <option value="">Select month</option>
-                                        <option value="1" @if (old('annually_month') === '1') selected="selected" @endif>Jan.</option>
-                                        <option value="2" @if (old('annually_month') === '2') selected="selected" @endif>Feb.</option>
-                                        <option value="3" @if (old('annually_month') === '3') selected="selected" @endif>Mar.</option>
-                                        <option value="4" @if (old('annually_month') === '4') selected="selected" @endif>Apr.</option>
-                                        <option value="5" @if (old('annually_month') === '5') selected="selected" @endif>May.</option>
-                                        <option value="6" @if (old('annually_month') === '6') selected="selected" @endif>Jun.</option>
-                                        <option value="7" @if (old('annually_month') === '7') selected="selected" @endif>Jul.</option>
-                                        <option value="8" @if (old('annually_month') === '8') selected="selected" @endif>Aug.</option>
-                                        <option value="9" @if (old('annually_month') === '9') selected="selected" @endif>Sep.</option>
-                                        <option value="10" @if (old('annually_month') === '10') selected="selected" @endif>Oct.</option>
-                                        <option value="11" @if (old('annually_month') === '11') selected="selected" @endif>Nov.</option>
-                                        <option value="12" @if (old('annually_month') === '12') selected="selected" @endif>Dec.</option>
+                                        <option value="1" @if (old('annually_month') === '1') selected="selected" @endif>January</option>
+                                        <option value="2" @if (old('annually_month') === '2') selected="selected" @endif>February</option>
+                                        <option value="3" @if (old('annually_month') === '3') selected="selected" @endif>March</option>
+                                        <option value="4" @if (old('annually_month') === '4') selected="selected" @endif>April</option>
+                                        <option value="5" @if (old('annually_month') === '5') selected="selected" @endif>May</option>
+                                        <option value="6" @if (old('annually_month') === '6') selected="selected" @endif>June</option>
+                                        <option value="7" @if (old('annually_month') === '7') selected="selected" @endif>July</option>
+                                        <option value="8" @if (old('annually_month') === '8') selected="selected" @endif>August</option>
+                                        <option value="9" @if (old('annually_month') === '9') selected="selected" @endif>September</option>
+                                        <option value="10" @if (old('annually_month') === '10') selected="selected" @endif>October</option>
+                                        <option value="11" @if (old('annually_month') === '11') selected="selected" @endif>November</option>
+                                        <option value="12" @if (old('annually_month') === '12') selected="selected" @endif>December</option>
                                     </select>
                                     <x-validation-error-message field="annually_month" />
                                 </div>
@@ -236,7 +236,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="exclusion_11" name="exclusion[]" value="14" @if(is_array(old('exclusion')) && in_array('11', old('exclusion'), true)) checked="checked" @endif>
+                                        <input class="form-check-input" type="checkbox" id="exclusion_11" name="exclusion[]" value="11" @if(is_array(old('exclusion')) && in_array('11', old('exclusion'), true)) checked="checked" @endif>
                                         <label class="form-check-label" for="exclusion_11">
                                             November
                                         </label>
