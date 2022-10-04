@@ -97,6 +97,11 @@ Route::group(
             [BudgetItem::class, 'create']
         )->name('budget.item.create');
 
+        Route::post(
+            '/budget/item',
+            [BudgetItem::class, 'createProcess']
+        )->name('budget.item.create.process');
+
         Route::get(
             '/budget/item/{item_id}',
             [BudgetItem::class, 'index']

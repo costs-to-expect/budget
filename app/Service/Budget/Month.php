@@ -24,6 +24,7 @@ class Month
     public function __construct(
         private readonly int $month,
         private readonly int $year,
+        private readonly array $currency,
         private readonly bool $visible,
         private readonly bool $future = true
     )
@@ -34,6 +35,11 @@ class Month
     public function add(Item $item): void
     {
         $this->items[] = $item;
+    }
+
+    public function currency(): array
+    {
+        return $this->currency;
     }
 
     public function days(): int

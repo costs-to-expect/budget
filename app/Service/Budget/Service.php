@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Service\Budget;
 
+use DateInterval;
 use DateTimeImmutable;
 use DateTimeZone;
+use Exception;
+use LengthException;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -32,14 +35,14 @@ class Service
     private bool $projection = true;
 
     private array $currency;
+    private array $default_currency;
 
     public function __construct()
     {
-        $this->start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1 );
+        $this->start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1);
         $this->view_start_date = (new DateTimeImmutable('first day of this month'))->setTime(7, 1);
 
-        // Default to GBP
-        $this->currency = [
+        $this->default_currency = [
             'id' => 'epMqeYqPkL',
             'code' => 'GBP',
             'name' => 'Sterling'
@@ -65,15 +68,20 @@ class Service
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function setAccounts(array $accounts): Service
     {
-        if(count($accounts) > 3) {
-            throw new \LengthException('Too many accounts, limit three');
+        if (count($accounts) > $this->maxAccounts()) {
+            throw new LengthException('Too many accounts, the limit is ' . $this->maxAccounts());
         }
 
         foreach ($accounts as $account) {
+
+            if (isset($this->currency) === false) {
+                $this->currency = $account['currency'];
+            }
+
             $this->accounts[$account['id']] = new Account(
                 $account['id'],
                 $account['name'],
@@ -81,6 +89,10 @@ class Service
                 $account['currency'],
                 (float) $account['balance']
             );
+        }
+
+        if (isset($this->currency) === false) {
+            $this->currency = $this->default_currency;
         }
 
         return $this;
@@ -98,27 +110,114 @@ class Service
         $this->setUpMonths();
     }
 
-    public function currency() : array
+    private function setUpMonths(): void
     {
+        $date_diff = date_diff($this->start_date, $this->view_start_date);
+
+        if ($date_diff->invert === 0) {
+            for (
+                $i = 0;
+                $i < ($date_diff->y * 12) + $date_diff->m;
+                $i++
+            ) {
+                $next = $this->start_date->add(new DateInterval("P{$i}M"));
+
+                $year_int = (int)$next->format('Y');
+                $month_int = (int)$next->format('n');
+
+                $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, $this->currency(), false);
+            }
+        }
+
+        $added_to_view_start_date = 0;
+        if ($date_diff->invert === 1) {
+            $date_diff = date_diff($this->view_start_date, $this->start_date);
+
+            $period_in_months = ($date_diff->y * 12) + $date_diff->m;
+
+            for (
+                $i = 0;
+                $i < (min($period_in_months, 3));
+                $i++
+            ) {
+                $added_to_view_start_date++;
+                $next = $this->view_start_date->add(new DateInterval("P{$i}M"));
+
+                $year_int = (int)$next->format('Y');
+                $month_int = (int)$next->format('n');
+
+                if ($i === 2) {
+                    $this->projection = false; // We are not projecting as there are three past months on display
+                    $this->view_end_date = (new DateTimeImmutable(
+                        "{$year_int}-{$month_int}-01", new DateTimeZone('UTC')
+                    ))->setTime(7, 1);
+                }
+
+                $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, $this->currency(),true, false);
+            }
+        }
+
+        for ($i = 0; $i < $this->numberOfVisibleMonths() - $added_to_view_start_date; $i++) {
+            $months_to_add = $i + $added_to_view_start_date;
+
+            $next = $this->view_start_date->add(new DateInterval("P{$months_to_add}M"));
+
+            $year_int = (int)$next->format('Y');
+            $month_int = (int)$next->format('n');
+
+            $this->view_end_date = (new DateTimeImmutable(
+                "{$year_int}-{$month_int}-01", new DateTimeZone('UTC')
+            ))->setTime(7, 1);
+
+            $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, $this->currency(), true);
+        }
+    }
+
+    public function numberOfItems(): int
+    {
+        return count($this->budget_items);
+    }
+
+    public function numberOfVisibleMonths(): int
+    {
+        return 3;
+    }
+
+    public function currency(): array
+    {
+        if (isset($this->currency) === false) {
+            return $this->default_currency;
+        }
+
         return $this->currency;
     }
 
-    public function currencyId() : string
+    public function currencyId(): string
     {
         return $this->currency['id'];
     }
 
-    public function currencyCode() : string
+    public function currencyCode(): string
     {
         return $this->currency['code'];
     }
 
-    public function currencyName() : string
+    public function currencyName(): string
     {
         return $this->currency['name'];
     }
 
-    public function hasSavingsAccount() : bool
+    public function hasAccounts(): bool
+    {
+        return count($this->accounts) > 0;
+    }
+
+    public function hasBudget(): bool
+    {
+        return count($this->budget_items) > 0;
+    }
+
+    public function hasSavingsAccount(): bool
     {
         foreach ($this->accounts() as $account) {
             if ($account->type() === 'savings') {
@@ -129,11 +228,6 @@ class Service
         return false;
     }
 
-    public function account(string $id) : Account
-    {
-        return $this->accounts[$id];
-    }
-
     public function accounts(): array
     {
         return $this->accounts;
@@ -141,6 +235,10 @@ class Service
 
     public function addItem(array $data): bool
     {
+        if (count($this->budget_items) > $this->maxItems()) {
+            throw new LengthException('Too many items, the limit is ' . $this->maxItems());
+        }
+
         $this->budget_items[] = new Item($data);
 
         return true;
@@ -148,17 +246,17 @@ class Service
 
     public function paginationParameters(): array
     {
-        $earlier = $this->view_start_date->sub(new \DateInterval("P1M"));
-        $later = $this->view_start_date->add(new \DateInterval("P1M"));
+        $earlier = $this->view_start_date->sub(new DateInterval("P1M"));
+        $later = $this->view_start_date->add(new DateInterval("P1M"));
 
         return [
             'previous' => [
-                'month' => (int) $earlier->format('n'),
-                'year' => (int) $earlier->format('Y')
+                'month' => (int)$earlier->format('n'),
+                'year' => (int)$earlier->format('Y')
             ],
             'next' => [
-                'month' => (int) $later->format('n'),
-                'year' => (int) $later->format('Y')
+                'month' => (int)$later->format('n'),
+                'year' => (int)$later->format('Y')
             ]
         ];
     }
@@ -175,18 +273,23 @@ class Service
     {
         return [
             'month' => $this->view_end_date->format('F'),
-            'year' => (int) $this->view_end_date->format('Y')
+            'year' => (int)$this->view_end_date->format('Y')
         ];
+    }
+
+    public function maxItems(): int
+    {
+        return 50;
+    }
+
+    public function maxAccounts(): int
+    {
+        return 3;
     }
 
     public function months(): array
     {
         return $this->months;
-    }
-
-    public function numberOfVisibleMonths(): int
-    {
-        return 3;
     }
 
     public function assignItemsToBudget(): void
@@ -201,7 +304,6 @@ class Service
                         $this->months[$month->year() . '-' . $month->month()]->future() === true
                     ) {
                         if ($budget_item->category() === 'income') {
-
                             if (array_key_exists($budget_item->account(), $this->accounts)) {
                                 $this->accounts[$budget_item->account()]->add($budget_item->amount());
                             }
@@ -228,67 +330,8 @@ class Service
         }
     }
 
-    private function setUpMonths(): void
+    public function account(string $id): Account
     {
-        $date_diff = date_diff($this->start_date, $this->view_start_date);
-
-        if ($date_diff->invert === 0) {
-
-            for (
-                $i = 0;
-                $i < ($date_diff->y * 12) + $date_diff->m;
-                $i++
-            ) {
-                $next = $this->start_date->add(new \DateInterval("P{$i}M"));
-
-                $year_int = (int)$next->format('Y');
-                $month_int = (int)$next->format('n');
-
-                $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, false);
-            }
-        }
-
-        $added_to_view_start_date = 0;
-        if ($date_diff->invert === 1) {
-
-            $date_diff = date_diff($this->view_start_date, $this->start_date);
-
-            $period_in_months = ($date_diff->y * 12) + $date_diff->m;
-
-            for (
-                $i = 0;
-                $i < (min($period_in_months, 3));
-                $i++
-            ) {
-                $added_to_view_start_date++;
-                $next = $this->view_start_date->add(new \DateInterval("P{$i}M"));
-
-                $year_int = (int) $next->format('Y');
-                $month_int = (int) $next->format('n');
-
-                if ($i === 2) {
-                    $this->projection = false; // We are not projecting as there are three past months on display
-                    $this->view_end_date = (new DateTimeImmutable(
-                        "{$year_int}-{$month_int}-01", new DateTimeZone('UTC')))->setTime(7, 1);
-                }
-
-                $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, true, false);
-            }
-        }
-
-        for ($i = 0; $i < $this->numberOfVisibleMonths() - $added_to_view_start_date; $i++) {
-
-            $months_to_add = $i + $added_to_view_start_date;
-
-            $next = $this->view_start_date->add(new \DateInterval("P{$months_to_add}M"));
-
-            $year_int = (int) $next->format('Y');
-            $month_int = (int) $next->format('n');
-
-            $this->view_end_date = (new DateTimeImmutable(
-                "{$year_int}-{$month_int}-01", new DateTimeZone('UTC')))->setTime(7, 1);
-
-            $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, true);
-        }
+        return $this->accounts[$id];
     }
 }

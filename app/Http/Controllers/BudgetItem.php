@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Service\Budget\Service;
+use App\Actions\Budget\Item\Create;
 use Illuminate\Http\Request;
 
 /**
@@ -17,27 +17,30 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $budget = new Service();
-        if ($request->query('month') !== null && $request->query('year') !== null) {
-            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
-        }
-        $budget->setAccounts($this->accounts)
-            ->create();
+        $budget = $this->setUpBudget($request);
 
-        foreach ($this->mock_data as $budget_item) {
-            $budget->addItem($budget_item);
-        }
+        $budget_item = $this->api->getBudgetItem(
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->route('item_id')
+        );
 
-        $budget->assignItemsToBudget();
+        if ($budget_item['status'] !== 200) {
+            abort($budget_item['status'], $budget_item['content']);
+        }
 
         return view(
             'budget.item.confirm-delete',
             [
+                'has_accounts' => $budget->hasAccounts(),
+                'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
+
+                'item' => $budget_item['content'],
             ]
         );
     }
@@ -46,27 +49,30 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $budget = new Service();
-        if ($request->query('month') !== null && $request->query('year') !== null) {
-            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
-        }
-        $budget->setAccounts($this->accounts)
-            ->create();
+        $budget = $this->setUpBudget($request);
 
-        foreach ($this->mock_data as $budget_item) {
-            $budget->addItem($budget_item);
-        }
+        $budget_item = $this->api->getBudgetItem(
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->route('item_id')
+        );
 
-        $budget->assignItemsToBudget();
+        if ($budget_item['status'] !== 200) {
+            abort($budget_item['status'], $budget_item['content']);
+        }
 
         return view(
             'budget.item.confirm-disable',
             [
+                'has_accounts' => $budget->hasAccounts(),
+                'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
+
+                'item' => $budget_item['content'],
             ]
         );
     }
@@ -75,22 +81,13 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $budget = new Service();
-        if ($request->query('month') !== null && $request->query('year') !== null) {
-            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
-        }
-        $budget->setAccounts($this->accounts)
-            ->create();
-
-        foreach ($this->mock_data as $budget_item) {
-            $budget->addItem($budget_item);
-        }
-
-        $budget->assignItemsToBudget();
+        $budget = $this->setUpBudget($request);
 
         return view(
             'budget.item.create',
             [
+                'has_accounts' => $budget->hasAccounts(),
+                'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -98,36 +95,75 @@ class BudgetItem extends Controller
                 'projection' => $budget->projection(),
                 'currency' => $budget->currency(),
 
+                'max_items' => $budget->maxItems(),
+
                 'has_savings_account' => $budget->hasSavingsAccount(),
+                'number_of_items' => $budget->numberOfItems(),
             ]
         );
+    }
+
+    public function createProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Create();
+        $result = $action(
+            $this->api,
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->all()
+        );
+
+        if ($result === 201) {
+            if (array_key_exists('submit_and_return', $request->all())) {
+                return redirect()
+                    ->route('budget.item.create');
+            }
+
+            return redirect()
+                ->route('home')
+                ->with('status', 'item-added');
+        }
+
+        if ($result === 422) {
+            return redirect()
+                ->route('budget.item.create')
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
     }
 
     public function index(Request $request)
     {
         $this->bootstrap($request);
 
-        $budget = new Service();
-        if ($request->query('month') !== null && $request->query('year') !== null) {
-            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
-        }
-        $budget->setAccounts($this->accounts)
-            ->create();
+        $budget = $this->setUpBudget($request);
 
-        foreach ($this->mock_data as $budget_item) {
-            $budget->addItem($budget_item);
-        }
+        $budget_item = $this->api->getBudgetItem(
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->route('item_id')
+        );
 
-        $budget->assignItemsToBudget();
+        if ($budget_item['status'] !== 200) {
+            abort($budget_item['status'], $budget_item['content']);
+        }
 
         return view(
             'budget.item.index',
             [
+                'has_accounts' => $budget->hasAccounts(),
+                'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
+
+                'item' => $budget_item['content'],
             ]
         );
     }
@@ -136,22 +172,13 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $budget = new Service();
-        if ($request->query('month') !== null && $request->query('year') !== null) {
-            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
-        }
-        $budget->setAccounts($this->accounts)
-            ->create();
-
-        foreach ($this->mock_data as $budget_item) {
-            $budget->addItem($budget_item);
-        }
-
-        $budget->assignItemsToBudget();
+        $budget = $this->setUpBudget($request);
 
         return view(
             'budget.item.update',
             [
+                'has_accounts' => $budget->hasAccounts(),
+                'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),

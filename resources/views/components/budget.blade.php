@@ -7,15 +7,43 @@
 
     <div class="row">
         <div class="col-12 text-end">
+            @if ($has_accounts === false && $has_budget === false)
+            <a class="btn btn-sm btn-primary" href="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-easel" viewBox="0 0 16 16">
+                    <path d="M8.5 6a.5.5 0 1 0-1 0h-2A1.5 1.5 0 0 0 4 7.5v2A1.5 1.5 0 0 0 5.5 11h.473l-.447 1.342a.5.5 0 1 0 .948.316L7.027 11H7.5v1a.5.5 0 0 0 1 0v-1h.473l.553 1.658a.5.5 0 1 0 .948-.316L10.027 11h.473A1.5 1.5 0 0 0 12 9.5v-2A1.5 1.5 0 0 0 10.5 6h-2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-2z"/>
+                    <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                </svg>
+                Load Demo
+            </a>
+            @endif
+
+            @if ($has_accounts)
             <a class="btn btn-sm btn-primary" href="{{ route('budget.item.create') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                 </svg>
-                New
+                New Budget Item
             </a>
+
+            <a class="btn btn-sm btn-primary" href="{{ route('budget.account.create') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                </svg>
+                New Account
+            </a>
+            @else
+            <a class="btn btn-sm btn-primary" href="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                </svg>
+                Start
+            </a>
+            @endif
         </div>
     </div>
 
+    @if ($has_budget)
+    {{--Show the budget items--}}
     <div class="row mt-3">
         @php $counter = 0; @endphp
         @foreach ($months as $__month)
@@ -24,8 +52,8 @@
                 <div class="text-primary text-center month pb-2">{{ $__month->name() }}</div>
                 <div class="row">
                     @foreach ($__month->items() as $__item)
-                        <a href="{{ route('budget.item.view', ['item_id' => str()->slug($__item->name())]) }}">
-                        <div class="col-12 expense @if ($active === true && $__item->name() === 'Netflix' && $__month->name() === 'October') active shadow @endif @if($__item->disabled() === true) opacity-50 @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
+                        <a href="{{ route('budget.item.view', ['item_id' => $__item->id()]) }}">
+                        <div class="col-12 expense @if ($active !== null && $active === $__item->id()) active shadow @endif @if($__item->disabled() === true) opacity-50 @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
                             <div class="name text-grey">
                                 {{ $__item->name() }}
                             </div>
@@ -33,7 +61,7 @@
                                 <div class="progress-bar bg-{{ $__item->category() }}" role="progressbar" aria-label="" style="width: {{ $__item->progressBarPercentage() }}%"
                                      aria-valuenow="{{ $__item->progressBarPercentage() }}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <div class="amount text-grey"><small>&pound;</small>{{ $__item->amount() }}
+                            <div class="amount text-grey"><small><x-currency :currency="$__item->currency()" /></small>{{ $__item->amount() }}
                                 @if ($__item->disabled() === true)
                                     <small class="text-dark disabled-expense">Disabled</small>
                                 @endif
@@ -47,48 +75,29 @@
             @endif
         @endforeach
     </div>
+    @endif
 
+    @if ($has_budget)
+    {{--Show the expenditure--}}
     <div class="row text-grey mt-2 pt-2" id="expenditure">
         @foreach ($months as $__month)
             @if ($__month->visible())
             <div class="col-4 month-total">
                 <div class="fs-5 text-center text-muted">Expenditure</div>
                 <div>
-                    <small>&pound;</small>{{ $__month->totalExpense() }}
+                    <small><x-currency :currency="$__month->currency()" /></small>{{ $__month->totalExpense() }}
                 </div>
                 <div class="fs-6">
-                    Income <small>&pound;</small>{{ $__month->totalIncome() }}
+                    Income <small><x-currency :currency="$__month->currency()" /></small>{{ $__month->totalIncome() }}
                 </div>
             </div>
             @endif
         @endforeach
     </div>
+    @endif
 
-    {{--<div class="pagination justify-content-between mt-3">
-        @if ($pagination['previous'] === null)
-            <a class="btn btn-sm btn-outline-primary disabled" href="" aria-disabled="true">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                </svg>
-                Previous Quarter
-            </a>
-        @else
-            <a class="btn btn-sm btn-outline-primary" href="">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                </svg>
-                Previous Quarter
-            </a>
-        @endif
-
-        <a class="btn btn-sm btn-outline-primary" href="">
-            Next Quarter
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-            </svg>
-        </a>
-    </div>--}}
-
+    @if ($has_budget)
+    {{--Pagination for the budget--}}
     <div id="pagination" class="pagination justify-content-between mt-3">
         <div>
         @if ($pagination['previous'] === null)
@@ -122,7 +131,62 @@
             </svg>
         </a>
     </div>
+    @endif
 
+    @if ($has_budget === false)
+        <div class="row mt-3 p-3">
+            <div class="alert alert-dark mt-2" role="alert">
+                <h4 class="alert-heading">No Budget!</h4>
+                <p class="lead">You haven't started creating your Budget, as soon as you start adding
+                    your accounts and budget items, we will show your projection here.</p>
+
+                @if ($has_accounts === false)
+                    <p class="lead">If you aren't ready to start creating your Budget, you can load up a demo
+                        Budget and play around.</p>
+
+                    <p class="lead">At any point you can adopt the Demo Budget or delete it and start from scratch.</p>
+
+                    <p>The Demo Budget is in GBP, if you need your Budget to be USD or EUR, we suggest you start
+                        from scratch.</p>
+                @endif
+
+                <hr>
+                <p class="mb-0">
+                    <a class="btn btn-sm btn-primary" href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-easel" viewBox="0 0 16 16">
+                            <path d="M8.5 6a.5.5 0 1 0-1 0h-2A1.5 1.5 0 0 0 4 7.5v2A1.5 1.5 0 0 0 5.5 11h.473l-.447 1.342a.5.5 0 1 0 .948.316L7.027 11H7.5v1a.5.5 0 0 0 1 0v-1h.473l.553 1.658a.5.5 0 1 0 .948-.316L10.027 11h.473A1.5 1.5 0 0 0 12 9.5v-2A1.5 1.5 0 0 0 10.5 6h-2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-2z"/>
+                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                        </svg>
+                        Load the Demo
+                    </a>
+                    @if ($has_accounts)
+                        <a class="btn btn-sm btn-primary" href="{{ route('budget.item.create') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                            </svg>
+                            Add Budget Item
+                        </a>
+                        <a class="btn btn-sm btn-primary" href="{{ route('budget.account.create') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                            </svg>
+                            Add Account
+                        </a>
+                    @else
+                        <a class="btn btn-sm btn-primary" href="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                            </svg>
+                            Start
+                        </a>
+                    @endif
+                </p>
+            </div>
+        </div>
+    @endif
+
+    @if ($has_accounts)
+    {{--Show the balances and projections--}}
     <div class="row mt-3 balances">
         <div class="col-12">
             <h2 class="display-6 mt-3 mb-3">Your Balances</h2>
@@ -138,7 +202,7 @@
                         <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                     </svg>
                 </a>
-                <small>{{ $__account->name() }}<br /> &pound;</small>{{ number_format($__account->balance(), 2) }}
+                <small>{{ $__account->name() }}<br /> <x-currency :currency="$__account->currency()" /></small>{{ number_format($__account->balance(), 2) }}
             </div>
             @endforeach
         </div>
@@ -150,18 +214,12 @@
 
                 @foreach ($accounts as $__account)
                     <div class="balance">
-                        <small>{{ $__account->name() }}<br /> &pound;</small>{{ number_format($__account->projected(), 2) }}
+                        <small>{{ $__account->name() }}<br /> <x-currency :currency="$__account->currency()" /></small>{{ number_format($__account->projected(), 2) }}
                     </div>
                 @endforeach
             @else
                 <p class="text-muted mb-1">We can't show a Budget projection, you are reviewing your history.</p>
             @endif
-            {{--<div class="balance">
-                <small>Default &pound;</small>1500.00
-            </div>
-            <div class="balance">
-                <small>Savings &pound;</small>2546.0
-            </div>--}}
         </div>
         <div class="col-12 mt-2">
             <a class="btn btn-sm btn-primary" href="{{ route('budget.account.create') }}">
@@ -172,6 +230,7 @@
             </a>
         </div>
     </div>
+    @endif
 
     <div class="row">
         <div class="col-12">

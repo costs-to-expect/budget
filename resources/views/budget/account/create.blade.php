@@ -17,7 +17,7 @@
         <div class="col-lg-10 col-xl-9 mx-auto p-3">
 
             <div class="row">
-                <div class="col-12 col-lg-4 mx-auto p-2">
+                <div class="col-12 col-lg-5 mx-auto p-2">
                 <form action="{{ route('budget.account.create') }}" method="POST" class="row g-2">
 
                     @csrf
@@ -58,7 +58,7 @@
                     <div class="col-6 col-md-6">
                         <label for="currency_id" class="form-label">Currency *</label>
                         <select id="currency_id" name="currency_id" class="form-select form-select-sm @error('currency_id') is-invalid @enderror" required="required">
-                            <option value="{{ $currency['id'] }}" selected="selected">{{ $currency['code'] . '-' . $currency['name'] }}</option>
+                            <option value="{{ $currency['id'] }}" selected="selected">{{ $currency['code'] }} - <x-currency :currency="$currency" /></option>
                         </select>
                         @error('currency_id')
                         <div class="invalid-feedback">
@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-6 col-md-6">
                         <label for="balance" class="form-label">Balance *</label>
-                        <input type="number" class="form-control form-control-sm @error('balance') is-invalid @enderror" id="balance" name="balance" required="required" placeholder="10.99" min="0" step="0.01" value="{{ old('balance') }}">
+                        <input type="number" class="form-control form-control-sm @error('balance') is-invalid @enderror to-fixed" id="balance" name="balance" required="required" placeholder="10.99" min="0" step="0.01" value="{{ old('balance') }}" data-points="2">
                         @error('balance')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -76,30 +76,35 @@
                         @enderror
                     </div>
                     <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
+                    @if (count($accounts) < $max_accounts)
                     <div class="col-12 mt-3">
                         <a href="{{ route('home') }}" class="btn btn-dark">Cancel</a>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
+                    @endif
                 </form>
 
-                <div class="alert alert-primary alert-dismissible fade show mt-2" role="alert">
+                <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">
                     <h4 class="alert-heading">Budget Pro!</h4>
-                    <p>In Budget Pro you can have more than three accounts.</p>
-                    <p>In Budget Pro your Budget can include multiple currencies.</p>
+                    <p>In Budget Pro you can have more than {{ $max_accounts }} accounts.</p>
+                    <p>You have created {{ count($accounts) }} accounts.</p>
+                    <p>Additional, in Budget Pro your Budget can include multiple currencies.</p>
                     <hr>
                     <p class="mb-0"><a href="">Find out more</a>.</p>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
 
-                <div class="col-12 col-lg-8 p-2">
+                <div class="col-12 col-lg-7 p-2">
                     <x-budget
                         :accounts="$accounts"
                         :months="$months"
                         :pagination="$pagination"
                         :viewEnd="$view_end"
                         :active="false"
-                        :projection="$projection "/>
+                        :projection="$projection"
+                        :hasAccounts="$has_accounts"
+                        :hasBudget="$has_budget"/>
                 </div>
             </div>
 
@@ -108,5 +113,6 @@
             <x-footer />
         </div>
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
+        <script src="{{ asset('js/auto-format-numbers.js') }}" defer></script>
     </body>
 </html>

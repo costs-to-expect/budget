@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Budget\Account\Create;
-use App\Service\Budget\Service;
 use Illuminate\Http\Request;
 
 /**
@@ -18,29 +17,21 @@ class BudgetAccount extends Controller
     {
         $this->bootstrap($request);
 
-        $budget = new Service();
-        if ($request->query('month') !== null && $request->query('year') !== null) {
-            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
-        }
-        $budget->setAccounts($this->accounts)
-            ->create();
-
-        foreach ($this->mock_data as $budget_item) {
-            $budget->addItem($budget_item);
-        }
-
-        $budget->assignItemsToBudget();
+        $budget = $this->setUpBudget($request);
 
         return view(
             'budget.account.create',
             [
                 'currency' => $budget->currency(),
-
+                'has_accounts' => $budget->hasAccounts(),
+                'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
+
+                'max_accounts' => $budget->maxAccounts(),
             ]
         );
     }
@@ -63,7 +54,8 @@ class BudgetAccount extends Controller
         }
 
         if ($result === 422) {
-            return redirect()->route('budget.account.create')
+            return redirect()
+                ->route('budget.account.create')
                 ->withInput()
                 ->with('validation.errors', $action->getValidationErrors());
         }

@@ -32,238 +32,11 @@ class Controller extends BaseController
 
     protected Service $api;
 
-    protected array $mock_data;
-
     public function __construct()
     {
         $this->config = Config::get('app.config');
         $this->item_type_id = $this->config['item_type_id'];
         $this->item_subtype_id = $this->config['item_subtype_id'];
-
-        $this->mock_data = [
-            [
-                'id' => 1,
-                'name' => 'Salary',
-                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
-                'target_account' => null,
-                'description' => 'This is a description for the expense',
-                'amount' => 1866.00,
-                'currency_code' => 'GBP',
-                'category' => 'income',
-                'start_date' => '2021-01-01',
-                'end_date' => null,
-                'disabled' => false,
-                'frequency' => [
-                    'type' => 'monthly',
-                    'day' => 10,
-                    'exclusions' => []
-                ]
-            ],
-            [
-                'id' => 2,
-                'name' => 'Rent',
-                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
-                'target_account' => null,
-                'description' => 'This is a description for the expense',
-                'amount' => 850.00,
-                'currency_code' => 'GBP',
-                'category' => 'fixed',
-                'start_date' => '2021-01-01',
-                'end_date' => null,
-                'disabled' => false,
-                'frequency' => [
-                    'type' => 'monthly',
-                    'day' => 10,
-                    'exclusions' => []
-                ]
-            ],
-            [
-                'id' => 3,
-                'name' => 'Council Tax',
-                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
-                'target_account' => null,
-                'description' => 'This is a description for the expense',
-                'amount' => 163.00,
-                'currency_code' => 'GBP',
-                'category' => 'fixed',
-                'start_date' => '2021-01-01',
-                'end_date' => '2023-03-31',
-                'disabled' => false,
-                'frequency' => [
-                    'type' => 'monthly',
-                    'day' => 20,
-                    'exclusions' => [
-                        2, 3
-                    ]
-                ],
-            ],
-            [
-                'id' => 4,
-                'name' => 'Council Tax',
-                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
-                'target_account' => null,
-                'description' => 'This is a description for the expense',
-                'amount' => 170.00,
-                'currency_code' => 'GBP',
-                'category' => 'fixed',
-                'start_date' => '2023-04-01',
-                'end_date' => '2024-03-31',
-                'disabled' => false,
-                'frequency' => [
-                    'type' => 'monthly',
-                    'day' => 20,
-                    'exclusions' => [
-                        2, 3
-                    ]
-                ],
-            ],
-            [
-                'id' => 5,
-                'name' => 'Gas & Electric',
-                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
-                'target_account' => null,
-                'description' => 'This is a description for the expense',
-                'amount' => 275.00,
-                'currency_code' => 'GBP',
-                'category' => 'fixed',
-                'start_date' => '2021-01-01',
-                'end_date' => '2023-12-31',
-                'disabled' => false,
-                'frequency' => [
-                    'type' => 'monthly',
-                    'day' => 15,
-                    'exclusions' => []
-                ],
-            ],
-            [
-                'id' => 6,
-                'name' => 'Guitar Lessons',
-                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
-                'target_account' => null,
-                'description' => 'This is a description for the expense',
-                'amount' => 25.00,
-                'currency_code' => 'GBP',
-                'category' => 'flexible',
-                'start_date' => '2021-01-01',
-                'end_date' => '2023-12-31',
-                'disabled' => false,
-                'frequency' => [
-                    'type' => 'monthly',
-                    'day' => 15,
-                    'exclusions' => []
-                ],
-            ],
-            [
-                'id' => 7,
-                'name' => 'Holiday Savings',
-                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
-                'target_account' => 'cffe9168-fba3-4544-9ca4-2fb0a14b6486',
-                'description' => 'This is a description for the expense',
-                'amount' => 150.00,
-                'currency_code' => 'GBP',
-                'category' => 'savings',
-                'start_date' => '2021-01-01',
-                'end_date' => '2023-12-31',
-                'disabled' => false,
-                'frequency' => [
-                    'type' => 'monthly',
-                    'day' => 15,
-                    'exclusions' => []
-                ],
-            ],
-            [
-                'id' => 8,
-                'name' => 'TV, Phone & Internet',
-                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
-                'target_account' => null,
-                'description' => 'This is a description for the expense',
-                'amount' => 75.00,
-                'currency_code' => 'GBP',
-                'category' => 'flexible',
-                'start_date' => '2021-01-01',
-                'end_date' => '2023-12-31',
-                'disabled' => false,
-                'frequency' => [
-                    'type' => 'monthly',
-                    'day' => 15,
-                    'exclusions' => []
-                ],
-            ],
-            [
-                'id' => 9,
-                'name' => 'School Uniform',
-                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
-                'target_account' => null,
-                'description' => 'This is a description for the expense',
-                'amount' => 45.00,
-                'currency_code' => 'GBP',
-                'category' => 'flexible',
-                'start_date' => '2022-09-01',
-                'end_date' => '2023-12-31',
-                'disabled' => true,
-                'frequency' => [
-                    'type' => 'annually',
-                    'day' => 15,
-                    'month' => 9,
-                    'exclusions' => []
-                ],
-            ],
-            [
-                'id' => 10,
-                'name' => 'Netflix',
-                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
-                'target_account' => null,
-                'description' => 'This is a description for the expense',
-                'amount' => 16.99,
-                'currency_code' => 'GBP',
-                'category' => 'flexible',
-                'start_date' => '2021-10-15',
-                'end_date' => '2023-12-31',
-                'disabled' => false,
-                'frequency' => [
-                    'type' => 'monthly',
-                    'day' => 10,
-                    'exclusions' => []
-                ]
-            ],
-            [
-                'id' => 11,
-                'name' => 'Disney +',
-                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
-                'target_account' => null,
-                'description' => 'This is a description for the expense',
-                'amount' => 16.99,
-                'currency_code' => 'GBP',
-                'category' => 'flexible',
-                'start_date' => '2022-10-05',
-                'end_date' => null,
-                'disabled' => true,
-                'frequency' => [
-                    'type' => 'monthly',
-                    'day' => 5,
-                    'exclusions' => []
-                ]
-            ],
-            [
-                'id' => 12,
-                'name' => 'Car Insurance',
-                'account' => '5f9eb62b-4618-403f-9743-a15d44dd9826',
-                'target_account' => null,
-                'description' => 'This is a description for the expense',
-                'amount' => 625.00,
-                'currency_code' => 'GBP',
-                'category' => 'fixed',
-                'start_date' => '2022-11-01',
-                'end_date' => null,
-                'disabled' => false,
-                'frequency' => [
-                    'type' => 'annually',
-                    'day' => 3,
-                    'month' => 11,
-                    'exclusions' => []
-                ]
-            ]
-        ];
     }
 
     protected function bootstrap(Request $request)
@@ -327,5 +100,42 @@ class Controller extends BaseController
         } else {
             abort($resource_types['status'], $resource_types['content']);
         }
+    }
+
+    protected function getBudgetItems(): array
+    {
+        $response = $this->api->getBudgetItems(
+            $this->resource_type_id,
+            $this->resource_id,
+            [
+                'limit' => 50,
+                'sort' => 'amount:desc|created:asc'
+            ]
+        );
+        if ($response['status'] !== 200) {
+            abort($response['status'], $response['content']);
+        }
+
+        return $response['content'];
+    }
+
+    protected function setUpBudget(Request $request): \App\Service\Budget\Service
+    {
+        $budget_items = $this->getBudgetItems();
+
+        $budget = new \App\Service\Budget\Service();
+        if ($request->query('month') !== null && $request->query('year') !== null) {
+            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
+        }
+        $budget->setAccounts($this->accounts)
+            ->create();
+
+        foreach ($budget_items as $budget_item) {
+            $budget->addItem($budget_item);
+        }
+
+        $budget->assignItemsToBudget();
+
+        return $budget;
     }
 }

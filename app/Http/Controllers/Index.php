@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Service\Budget\Service;
 use Illuminate\Http\Request;
 
 /**
@@ -18,24 +17,15 @@ class Index extends Controller
     {
         $this->bootstrap($request);
 
-        $budget = new Service();
-        if ($request->query('month') !== null && $request->query('year') !== null) {
-            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
-        }
-        $budget->setAccounts($this->accounts)
-            ->create();
-
-        foreach ($this->mock_data as $budget_item) {
-            $budget->addItem($budget_item);
-        }
-
-        $budget->assignItemsToBudget();
+        $budget = $this->setUpBudget($request);
 
         return view(
             'home',
             [
                 'status' => session()->get('status'),
 
+                'has_accounts' => $budget->hasAccounts(),
+                'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
