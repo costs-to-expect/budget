@@ -18,7 +18,7 @@
 
             <div class="row">
                 <div class="col-12 col-lg-5 mx-auto p-2">
-                <form action="" method="POST" class="row g-2">
+                <form action="{{ route('budget.account.update.process', ['account_id' => $account->id()]) }}" method="POST" class="row g-2">
 
                     @csrf
 
@@ -57,7 +57,7 @@
                     </div>
                     <div class="col-6 col-md-6">
                         <label for="balance" class="form-label">Balance *</label>
-                        <input type="number" class="form-control form-control-sm @error('balance') is-invalid @enderror to-fixed" id="balance" name="balance" required="required" placeholder="10.99" min="0" step="0.01" value="{{ old('balance', $account->balance()) }}" data-points="2">
+                        <input type="number" class="form-control form-control-sm @error('balance') is-invalid @enderror to-fixed" id="balance" name="balance" required="required" placeholder="10.99" min="0" step="0.01" value="{{ old('balance', number_format($account->balance(), 2, '.', '')) }}" data-points="2">
                         @error('balance')
                         <div class="invalid-feedback">
                             {{ $message }}

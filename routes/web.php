@@ -70,6 +70,7 @@ Route::group(
             [Index::class, 'home']
         )->name('home');
 
+
         // Budget account management
         Route::get(
             '/budget/account',
@@ -85,6 +86,12 @@ Route::group(
             '/budget/account/{account_id}/edit',
             [BudgetAccount::class, 'update']
         )->name('budget.account.update');
+
+        Route::post(
+            '/budget/account/{account_id}/edit',
+            [BudgetAccount::class, 'updateProcess']
+        )->name('budget.account.update.process');
+
 
         // Budget item management
         Route::get(
@@ -137,10 +144,11 @@ Route::group(
             [BudgetItem::class, 'update']
         )->name('budget.item.update');
 
-        Route::get(
+        Route::post(
             '/budget/item/{item_id}/edit',
             [BudgetItem::class, 'updateProcess']
         )->name('budget.item.update.process');
+
 
         // Account management
         Route::get(
