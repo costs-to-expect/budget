@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Actions\Budget\Item;
 
 use App\Actions\Action;
+use App\Actions\Helper;
 use App\Api\Service;
 
 /**
@@ -54,30 +55,7 @@ class Create extends Action
             return 422;
         }
 
-        $frequency = [ 'type' => $input['frequency_option'] ];
-        if ($frequency['type'] === 'monthly') {
-            $frequency['exclusions'] = [];
-            if ($input['monthly_day'] !== null) {
-                $frequency['day'] = (int) $input['monthly_day'];
-            } else {
-                $frequency['day'] = null;
-            }
-
-            if (array_key_exists('exclusion', $input)) {
-                foreach ($input['exclusion'] as $__month) {
-                    $frequency['exclusions'][] = (int) $__month;
-                }
-            }
-        }
-
-        if ($frequency['type'] === 'annually') {
-            if ($input['annually_day'] !== null) {
-                $frequency['day'] = (int) $input['annually_day'];
-            } else {
-                $frequency['day'] = null;
-            }
-            $frequency['month'] = (int) $input['annually_month'];
-        }
+        $frequency = Helper::createFrequencyArray($input);
 
         try {
             $frequency_json = json_encode($frequency, JSON_THROW_ON_ERROR);
