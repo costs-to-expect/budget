@@ -161,6 +161,7 @@ class BudgetTest extends TestCase
                 'type' => 'expense',
                 'id' => $this->faker()->uuid(),
                 'name' => 'Default',
+                'description' => null,
                 'balance' => 1254.36,
             ]
         ]);
@@ -180,6 +181,7 @@ class BudgetTest extends TestCase
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
             'name' => $this->faker->name(),
+            'description' => null,
             'balance' => 1254.36,
         ];
         $account_2 = [
@@ -191,6 +193,7 @@ class BudgetTest extends TestCase
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
             'name' => $this->faker->name(),
+            'description' => null,
             'balance' => 1254.36,
         ];
         $account_3 = [
@@ -202,6 +205,7 @@ class BudgetTest extends TestCase
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
             'name' => $this->faker->name(),
+            'description' => null,
             'balance' => 1254.36,
         ];
 
@@ -223,6 +227,7 @@ class BudgetTest extends TestCase
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
             'name' => $this->faker->name(),
+            'description' => null,
             'balance' => 1254.36,
         ];
         $account_2 = [
@@ -234,6 +239,7 @@ class BudgetTest extends TestCase
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
             'name' => $this->faker->name(),
+            'description' => null,
             'balance' => 1254.36,
         ];
         $account_3 = [
@@ -245,6 +251,7 @@ class BudgetTest extends TestCase
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
             'name' => $this->faker->name(),
+            'description' => null,
             'balance' => 1254.36,
         ];
         $account_4 = [
@@ -256,6 +263,7 @@ class BudgetTest extends TestCase
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
             'name' => $this->faker->name(),
+            'description' => null,
             'balance' => 1254.36,
         ];
 
@@ -278,6 +286,7 @@ class BudgetTest extends TestCase
             'type' => 'expense',
             'id' => $uuid,
             'name' => 'Default',
+            'description' => null,
             'balance' => 1254.36,
         ];
 

@@ -24,6 +24,7 @@ class BudgetItemTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => 1254.36,
         ];
 
@@ -79,6 +80,7 @@ class BudgetItemTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => 1254.36,
         ];
 
@@ -135,6 +137,7 @@ class BudgetItemTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => 1254.36,
         ];
 
@@ -191,6 +194,7 @@ class BudgetItemTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => 1254.36,
         ];
 
@@ -250,6 +254,7 @@ class BudgetItemTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => 1254.36,
         ];
 
@@ -305,6 +310,7 @@ class BudgetItemTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => 1254.36,
         ];
 
@@ -361,6 +367,7 @@ class BudgetItemTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => 1254.36,
         ];
 
@@ -416,6 +423,7 @@ class BudgetItemTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => 1254.36,
         ];
 
@@ -475,6 +483,7 @@ class BudgetItemTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => 1254.36,
         ];
 
@@ -530,6 +539,7 @@ class BudgetItemTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => 1254.36,
         ];
 
