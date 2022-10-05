@@ -18,16 +18,16 @@
 
             <div class="row">
                 <div class="col-12 col-lg-5 mx-auto p-2">
-                <form action="{{ route('budget.account.create') }}" method="POST" class="row g-2">
+                <form action="" method="POST" class="row g-2">
 
                     @csrf
 
                     <div class="col-12">
-                        <h2 class="display-6 mt-3 mb-3">New Account</h2>
+                        <h2 class="display-6 mt-3 mb-3">Edit Account</h2>
                     </div>
                     <div class="col-6 col-md-6">
                         <label for="name" class="form-label">Name *</label>
-                        <input type="text" class="form-control form-control-sm @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required="required" placeholder="Debit">
+                        <input type="text" class="form-control form-control-sm @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $account->name()) }}" required="required" placeholder="Debit">
                         @error('name')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -37,8 +37,8 @@
                     <div class="col-6 col-md-6">
                         <label for="type" class="form-label">Account Type *</label>
                         <select id="type" name="type" class="form-select form-select-sm @error('type') is-invalid @enderror">
-                            <option value="expense" @if (old('type') === 'expense') selected="selected" @endif>Expense</option>
-                            <option value="savings" @if (old('type') === 'savings') selected="selected" @endif>Savings</option>
+                            <option value="expense" @if (old('type', $account->type()) === 'expense') selected="selected" @endif>Expense</option>
+                            <option value="savings" @if (old('type', $account->type()) === 'savings') selected="selected" @endif>Savings</option>
                         </select>
                         @error('type')
                         <div class="invalid-feedback">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-12">
                         <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control form-control-sm @error('description') is-invalid @enderror" id="description" name="description" placeholder="An optional description of the account">{{ old('description') }}</textarea>
+                        <textarea class="form-control form-control-sm @error('description') is-invalid @enderror" id="description" name="description" placeholder="An optional description of the account">{{ old('description', $account->description()) }}</textarea>
                         @error('description')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -56,19 +56,8 @@
                         @enderror
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="currency_id" class="form-label">Currency *</label>
-                        <select id="currency_id" name="currency_id" class="form-select form-select-sm @error('currency_id') is-invalid @enderror" required="required">
-                            <option value="{{ $currency['id'] }}" selected="selected">{{ $currency['code'] }} - <x-currency :currency="$currency" /></option>
-                        </select>
-                        @error('currency_id')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="col-6 col-md-6">
                         <label for="balance" class="form-label">Balance *</label>
-                        <input type="number" class="form-control form-control-sm @error('balance') is-invalid @enderror to-fixed" id="balance" name="balance" required="required" placeholder="10.99" min="0" step="0.01" value="{{ old('balance') }}" data-points="2">
+                        <input type="number" class="form-control form-control-sm @error('balance') is-invalid @enderror to-fixed" id="balance" name="balance" required="required" placeholder="10.99" min="0" step="0.01" value="{{ old('balance', $account->balance()) }}" data-points="2">
                         @error('balance')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -76,12 +65,10 @@
                         @enderror
                     </div>
                     <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
-                    @if (count($accounts) < $max_accounts)
                     <div class="col-12 mt-3">
                         <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                         <button type="submit" class="btn btn-sm btn-primary">Save</button>
                     </div>
-                    @endif
                 </form>
 
                 <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">

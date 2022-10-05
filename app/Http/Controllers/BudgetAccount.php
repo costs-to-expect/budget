@@ -62,4 +62,34 @@ class BudgetAccount extends Controller
 
         abort($result, $action->getMessage());
     }
+
+    public function update(Request $request, $account_id)
+    {
+        $this->bootstrap($request);
+
+        $budget = $this->setUpBudget($request);
+
+        $accounts = $budget->accounts();
+        if (array_key_exists($account_id, $accounts) === false) {
+            abort(404);
+        }
+
+        return view(
+            'budget.account.update',
+            [
+                'currency' => $budget->currency(),
+                'has_accounts' => $budget->hasAccounts(),
+                'has_budget' => $budget->hasBudget(),
+                'accounts' => $budget->accounts(),
+                'months' => $budget->months(),
+                'pagination' => $budget->paginationParameters(),
+                'view_end' => $budget->viewEndPeriod(),
+                'projection' => $budget->projection(),
+
+                'account' => $accounts[$account_id],
+
+                'max_accounts' => $budget->maxAccounts(),
+            ]
+        );
+    }
 }

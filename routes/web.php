@@ -81,6 +81,11 @@ Route::group(
             [BudgetAccount::class, 'createProcess']
         )->name('budget.account.create.process');
 
+        Route::get(
+            '/budget/account/{account_id}/edit',
+            [BudgetAccount::class, 'update']
+        )->name('budget.account.update');
+
         // Budget item management
         Route::get(
             '/budget/item/{item_id}/confirm-delete',
@@ -132,7 +137,7 @@ Route::group(
             [BudgetItem::class, 'update']
         )->name('budget.item.update');
 
-        Route::post(
+        Route::get(
             '/budget/item/{item_id}/edit',
             [BudgetItem::class, 'updateProcess']
         )->name('budget.item.update.process');

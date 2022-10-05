@@ -21,6 +21,7 @@ class Account
         private readonly string $type,
         private readonly array $currency,
         float $start,
+        private readonly ?string $description = null
     )
     {
         $this->balance = $start;
@@ -55,6 +56,11 @@ class Account
     public function currencyName() : string
     {
         return $this->currency['name'];
+    }
+
+    public function description() : ?string
+    {
+        return $this->description;
     }
 
     public function id(): string
