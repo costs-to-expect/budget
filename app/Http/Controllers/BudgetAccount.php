@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Budget\Account\Create;
+use App\Actions\Budget\Account\Update;
 use Illuminate\Http\Request;
 
 /**
@@ -56,6 +57,64 @@ class BudgetAccount extends Controller
         if ($result === 422) {
             return redirect()
                 ->route('budget.account.create')
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
+    }
+
+    public function update(Request $request, $account_id)
+    {
+        $this->bootstrap($request);
+
+        $budget = $this->setUpBudget($request);
+
+        $accounts = $budget->accounts();
+        if (array_key_exists($account_id, $accounts) === false) {
+            abort(404);
+        }
+
+        return view(
+            'budget.account.update',
+            [
+                'currency' => $budget->currency(),
+                'has_accounts' => $budget->hasAccounts(),
+                'has_budget' => $budget->hasBudget(),
+                'accounts' => $budget->accounts(),
+                'months' => $budget->months(),
+                'pagination' => $budget->paginationParameters(),
+                'view_end' => $budget->viewEndPeriod(),
+                'projection' => $budget->projection(),
+
+                'account' => $accounts[$account_id],
+
+                'max_accounts' => $budget->maxAccounts(),
+            ]
+        );
+    }
+
+    public function updateProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Update();
+        $result = $action(
+            $this->api,
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->route('account_id'),
+            $request->only(['name', 'type', 'description', 'balance'])
+        );
+
+        if ($result === 204) {
+            return redirect()->route('home')
+                ->with('status', 'account-updated');
+        }
+
+        if ($result === 422) {
+            return redirect()
+                ->route('budget.account.update')
                 ->withInput()
                 ->with('validation.errors', $action->getValidationErrors());
         }

@@ -87,7 +87,8 @@ class Service
                 $account['name'],
                 $account['type'],
                 $account['currency'],
-                (float) $account['balance']
+                (float) $account['balance'],
+                $account['description']
             );
         }
 

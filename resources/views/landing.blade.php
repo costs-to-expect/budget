@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Budgeting by Costs to Expect">
     <meta name="author" content="Dean Blackborough">
-    <title>Budget: Costs to Expect</title>
+    <title>Budget by Costs to Expect</title>
 
     <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
@@ -29,7 +29,7 @@
 
 <header class="site-header sticky-top py-1">
     <nav class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 text-center" href="https://api.costs-to-expect.com" aria-label="Product">
+        <a class="py-2 text-center" href="{{ route('landing') }}" aria-label="Product">
             <img src="{{ asset('images/logo.png') }}" alt="Costs to Expect" width="48" height="48" />
         </a>
     </nav>
