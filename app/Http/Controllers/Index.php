@@ -39,4 +39,21 @@ class Index extends Controller
     {
         return view('landing');
     }
+
+    public function start(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $currencies_response = $this->api->getCurrencies();
+        if ($currencies_response['status'] !== 200) {
+            abort(404, 'Cannot fetch the currencies from the API');
+        }
+
+        return view(
+            'budget.start',
+            [
+                'currencies' => $currencies_response['content']
+            ]
+        );
+    }
 }

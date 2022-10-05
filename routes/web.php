@@ -70,6 +70,11 @@ Route::group(
             [Index::class, 'home']
         )->name('home');
 
+        Route::get(
+            '/start',
+            [Index::class, 'start']
+        )->name('start');
+
 
         // Budget account management
         Route::get(

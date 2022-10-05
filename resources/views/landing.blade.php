@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Budgeting by Costs to Expect">
     <meta name="author" content="Dean Blackborough">
-    <title>Budget: Costs to Expect</title>
+    <title>Budget by Costs to Expect</title>
 
     <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
