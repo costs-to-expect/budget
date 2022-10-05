@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Actions\Budget\Start;
 use Illuminate\Http\Request;
 
 /**
@@ -49,11 +50,49 @@ class Index extends Controller
             abort(404, 'Cannot fetch the currencies from the API');
         }
 
+        // Show GBP first
+        $currencies = [];
+        $currencies[0] = [];
+        foreach ($currencies_response['content'] as $currency) {
+            if ($currency['code'] === 'GBP') {
+                $currencies[0] = $currency;
+            } else {
+                $currencies[] = $currency;
+            }
+        }
+
         return view(
             'budget.start',
             [
-                'currencies' => $currencies_response['content']
+                'currencies' => $currencies
             ]
         );
+    }
+
+    public function startProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Start();
+        $result = $action(
+            $this->api,
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->only(['name', 'type', 'description', 'currency_id', 'balance'])
+        );
+
+        if ($result === 204) {
+            return redirect()->route('home')
+                ->with('status', 'account-added');
+        }
+
+        if ($result === 422) {
+            return redirect()
+                ->route('start')
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
     }
 }

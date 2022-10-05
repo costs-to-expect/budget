@@ -1,10 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Actions\Budget\Account;
+namespace App\Actions\Budget;
 
 use App\Actions\Action;
-use App\Actions\Budget;
 use App\Api\Service;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;

@@ -75,6 +75,11 @@ Route::group(
             [Index::class, 'start']
         )->name('start');
 
+        Route::post(
+            '/start',
+            [Index::class, 'startProcess']
+        )->name('start.process');
+
 
         // Budget account management
         Route::get(

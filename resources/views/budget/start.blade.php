@@ -24,7 +24,7 @@
                     <p>After adding an account, you will need to add your first budget item.</p>
                 </div>
 
-                <form action="" method="POST" class="row g-2">
+                <form action="{{ route('start.process') }}" method="POST" class="row g-2">
 
                     @csrf
 
@@ -80,6 +80,11 @@
                         @enderror
                     </div>
                     <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
+                    <div class="col-12 mt-3">
+                        <button type="submit" class="btn btn-sm btn-primary">
+                            Start
+                        </button>
+                    </div>
                 </form>
             </div>
 
