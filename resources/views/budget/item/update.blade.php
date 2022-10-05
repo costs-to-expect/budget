@@ -18,7 +18,7 @@
 
             <div class="row">
                 <div class="col-12 col-lg-5 mx-auto p-2">
-                    <form action="" method="POST" class="row g-2">
+                    <form action="{{ route('budget.item.update.process', ['item_id' => $item['id']]) }}" method="POST" class="row g-2">
 
                         @csrf
 

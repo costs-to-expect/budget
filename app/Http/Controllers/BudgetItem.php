@@ -7,6 +7,7 @@ use App\Actions\Budget\Item\Create;
 use App\Actions\Budget\Item\Delete;
 use App\Actions\Budget\Item\Disable;
 use App\Actions\Budget\Item\Enable;
+use App\Actions\Budget\Item\Update;
 use Illuminate\Http\Request;
 
 /**
@@ -321,5 +322,34 @@ class BudgetItem extends Controller
                 'item' => $budget_item['content'],
             ]
         );
+    }
+
+    public function updateProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Update();
+        $result = $action(
+            $this->api,
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->route('item_id'),
+            $request->all()
+        );
+
+        if ($result === 204) {
+            return redirect()
+                ->route('budget.item.view', ['item_id' => $request->route('item_id')])
+                ->with('status', 'item-updated');
+        }
+
+        if ($result === 422) {
+            return redirect()
+                ->route('budget.item.update', ['item_id' => $request->route('item_id')])
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
     }
 }
