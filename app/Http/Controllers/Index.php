@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Actions\Budget\AdoptDemo;
+use App\Actions\Budget\Demo;
 use App\Actions\Budget\Start;
 use Illuminate\Http\Request;
 
@@ -14,6 +16,60 @@ use Illuminate\Http\Request;
  */
 class Index extends Controller
 {
+    public function adoptDemoProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new AdoptDemo();
+        $result = $action(
+            $this->api,
+            $this->resource_type_id,
+            $this->resource_id
+        );
+
+        if ($result === 204) {
+            return redirect()->route('home')
+                ->with('status', 'demo-adopted');
+        }
+
+        abort($result, $action->getMessage());
+    }
+
+    public function demo(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $budget = $this->setUpBudget($request);
+        if ($budget->hasAccounts() === true || $budget->hasBudget() === true) {
+            return redirect()->route('home');
+        }
+
+        return view(
+            'budget.demo',
+            [
+                'loading' => $request->query('loading') !== null,
+            ]
+        );
+    }
+
+    public function demoProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Demo();
+        $result = $action(
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->cookie($this->config['cookie_bearer'])
+        );
+
+        if ($result === true) {
+            return redirect()->route('demo', ['loading' => true]);
+        }
+
+        return redirect()->route('home');
+    }
+
     public function home(Request $request)
     {
         $this->bootstrap($request);
@@ -24,6 +80,7 @@ class Index extends Controller
             'home',
             [
                 'status' => session()->get('status'),
+                'demo' => $this->demo,
 
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
@@ -94,5 +151,12 @@ class Index extends Controller
         }
 
         abort($result, $action->getMessage());
+    }
+
+    public function isDemoLoaded(Request $request)
+    {
+        $this->bootstrap($request);
+
+        return response()->json(['demo' => $this->demo]);
     }
 }

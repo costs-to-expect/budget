@@ -119,14 +119,12 @@
     @if ($has_budget === false)
         <div class="row mt-3 p-3">
             <div class="alert alert-dark mt-2" role="alert">
-                <h4 class="alert-heading">Let's Go!</h4>
+                <h4 class="alert-heading">Let's Begin!</h4>
                 @if ($has_accounts === false)
                     <p class="lead">If you aren't ready to start creating your Budget, you can load up our demo
                         Budget and play around with the App.</p>
 
                     <p class="lead">When you are ready, you can start with your own Budget.</p>
-
-                    <p>The Demo Budget is in GBP, when you start you get to set your currency, GBP, USD or EUR.</p>
                 @else
                     <p class="lead">Add a budget item, once done we will show your projection.</p>
 
@@ -149,7 +147,7 @@
                             Add Account
                         </a>
                     @else
-                        <a class="btn btn-sm btn-primary" href="{{ route('start') }}">
+                        <a class="btn btn-sm btn-primary" href="{{ route('demo') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-easel" viewBox="0 0 16 16">
                                 <path d="M8.5 6a.5.5 0 1 0-1 0h-2A1.5 1.5 0 0 0 4 7.5v2A1.5 1.5 0 0 0 5.5 11h.473l-.447 1.342a.5.5 0 1 0 .948.316L7.027 11H7.5v1a.5.5 0 0 0 1 0v-1h.473l.553 1.658a.5.5 0 1 0 .948-.316L10.027 11h.473A1.5 1.5 0 0 0 12 9.5v-2A1.5 1.5 0 0 0 10.5 6h-2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-2z"/>
                                 <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>

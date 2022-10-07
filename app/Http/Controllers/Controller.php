@@ -29,6 +29,7 @@ class Controller extends BaseController
     protected ?string $resource_type_id = null;
     protected ?string $resource_id = null;
     protected array $accounts = [];
+    protected bool $demo = false;
 
     protected Service $api;
 
@@ -63,8 +64,14 @@ class Controller extends BaseController
                             $this->accounts = [];
                         }
 
-                        if (is_array($data) && array_key_exists('accounts', $data) === true) {
-                            $this->accounts = $data['accounts'];
+                        if (is_array($data)) {
+                            if(array_key_exists('accounts', $data) === true) {
+                                $this->accounts = $data['accounts'];
+                            }
+
+                            if(array_key_exists('demo', $data) === true) {
+                                $this->demo = true;
+                            }
                         }
 
                         return true;

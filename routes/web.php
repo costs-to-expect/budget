@@ -71,6 +71,26 @@ Route::group(
         )->name('home');
 
         Route::get(
+            '/demo',
+            [Index::class, 'demo']
+        )->name('demo');
+
+        Route::post(
+            '/demo',
+            [Index::class, 'demoProcess']
+        )->name('demo.process');
+
+        Route::post(
+            '/adopt-demo',
+            [Index::class, 'adoptDemoProcess']
+        )->name('demo.adopt.process');
+
+        Route::get(
+            '/is-demo-loaded',
+            [Index::class, 'isDemoLoaded']
+        )->name('demo.is-loaded');
+
+        Route::get(
             '/start',
             [Index::class, 'start']
         )->name('start');

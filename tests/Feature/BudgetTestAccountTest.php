@@ -27,6 +27,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_balance
         ];
 
@@ -85,6 +86,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_balance
         ];
 
@@ -143,6 +145,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_balance
         ];
 
@@ -201,6 +204,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_balance
         ];
 
@@ -260,6 +264,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_balance
         ];
 
@@ -319,6 +324,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_balance
         ];
 
@@ -378,6 +384,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_balance
         ];
 
@@ -436,6 +443,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_balance
         ];
 
@@ -494,6 +502,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_balance
         ];
 
@@ -552,6 +561,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_balance
         ];
 
@@ -611,6 +621,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_balance
         ];
 
@@ -670,6 +681,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_balance
         ];
 
@@ -729,6 +741,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_balance
         ];
 
@@ -787,6 +800,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_balance
         ];
 
@@ -849,6 +863,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $default_account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_account_balance
         ];
         $savings_account = [
@@ -860,6 +875,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'savings',
             'id' => $savings_account_id,
             'name' => 'Savings',
+            'description' => null,
             'balance' => $starting_saving_balance
         ];
 
@@ -926,6 +942,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $default_account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_account_balance
         ];
         $savings_account = [
@@ -937,6 +954,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'savings',
             'id' => $savings_account_id,
             'name' => 'Savings',
+            'description' => null,
             'balance' => $starting_saving_balance
         ];
 
@@ -1005,6 +1023,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $default_account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_account_balance
         ];
         $savings_account = [
@@ -1016,6 +1035,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'savings',
             'id' => $savings_account_id,
             'name' => 'Savings',
+            'description' => null,
             'balance' => $starting_saving_balance
         ];
 
@@ -1082,6 +1102,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $default_account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_account_balance
         ];
         $savings_account = [
@@ -1093,6 +1114,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'savings',
             'id' => $savings_account_id,
             'name' => 'Savings',
+            'description' => null,
             'balance' => $starting_saving_balance
         ];
 
@@ -1160,6 +1182,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $default_account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_account_balance
         ];
         $savings_account = [
@@ -1171,6 +1194,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'savings',
             'id' => $savings_account_id,
             'name' => 'Savings',
+            'description' => null,
             'balance' => $starting_saving_balance
         ];
 
@@ -1240,6 +1264,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'expense',
             'id' => $default_account_id,
             'name' => 'Default',
+            'description' => null,
             'balance' => $starting_account_balance
         ];
         $savings_account = [
@@ -1251,6 +1276,7 @@ class BudgetTestAccountTest extends TestCase
             'type' => 'savings',
             'id' => $savings_account_id,
             'name' => 'Savings',
+            'description' => null,
             'balance' => $starting_saving_balance
         ];
 
