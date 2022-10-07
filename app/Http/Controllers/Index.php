@@ -61,6 +61,7 @@ class Index extends Controller
             'home',
             [
                 'status' => session()->get('status'),
+                'demo' => $this->demo,
 
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),

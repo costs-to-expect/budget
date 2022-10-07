@@ -125,8 +125,6 @@
                         Budget and play around with the App.</p>
 
                     <p class="lead">When you are ready, you can start with your own Budget.</p>
-
-                    <p>The Demo Budget is in GBP, when you start you get to set your currency, GBP, USD or EUR.</p>
                 @else
                     <p class="lead">Add a budget item, once done we will show your projection.</p>
 
