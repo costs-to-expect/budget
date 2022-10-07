@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Actions\Budget\AdoptDemo;
 use App\Actions\Budget\Demo;
 use App\Actions\Budget\Start;
 use Illuminate\Http\Request;
@@ -15,6 +16,25 @@ use Illuminate\Http\Request;
  */
 class Index extends Controller
 {
+    public function adoptDemoProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new AdoptDemo();
+        $result = $action(
+            $this->api,
+            $this->resource_type_id,
+            $this->resource_id
+        );
+
+        if ($result === 204) {
+            return redirect()->route('home')
+                ->with('status', 'demo-adopted');
+        }
+
+        abort($result, $action->getMessage());
+    }
+
     public function demo(Request $request)
     {
         $this->bootstrap($request);

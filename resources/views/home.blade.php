@@ -25,7 +25,7 @@
                         <p class="lead">This demo is specific to you, when you are ready, you can click the
                             adopt button below to exit demo mode.</p>
                         <hr>
-                        <form action="" method="POST" class="row g-2">
+                        <form action="{{ route('demo.adopt.process') }}" method="POST" class="row g-2">
                             @csrf
                             <div class="col-12 mt-3">
                                 <button type="submit" class="btn btn-sm btn-primary">

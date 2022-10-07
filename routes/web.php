@@ -80,6 +80,11 @@ Route::group(
             [Index::class, 'demoProcess']
         )->name('demo.process');
 
+        Route::post(
+            '/adopt-demo',
+            [Index::class, 'adoptDemoProcess']
+        )->name('demo.adopt.process');
+
         Route::get(
             '/is-demo-loaded',
             [Index::class, 'isDemoLoaded']
