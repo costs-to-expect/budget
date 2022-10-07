@@ -38,7 +38,6 @@ class Index extends Controller
 
         $action = new Demo();
         $result = $action(
-            $this->api,
             $this->resource_type_id,
             $this->resource_id,
             $request->cookie($this->config['cookie_bearer'])
