@@ -23,11 +23,20 @@
                     <p class="lead">It will take us a minute or two to load the demo, please bear with
                         us whilst we set everything up.</p>
 
+                    @if ($loading === true)
+                    <p class="lead text-primary">
+                        We are loading the Demo data, as soon as we are done we will let you know,
+                        everything should be ready within a minute or so.
+                    </p>
+                    @else
                     <hr>
+                    @endif
 
-                    <form action="" method="POST" class="row g-2">
+                    <form action="{{ route('demo.process') }}" method="POST" class="row g-2">
 
                         @csrf
+
+                        @if ($loading === false)
 
                         <div class="col-12 mt-3">
                             <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
@@ -35,6 +44,7 @@
                                 Load Demo
                             </button>
                         </div>
+                        @endif
                     </form>
                 </div>
             </div>

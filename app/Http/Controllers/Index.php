@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Actions\Budget\Demo;
 use App\Actions\Budget\Start;
 use Illuminate\Http\Request;
 
@@ -26,8 +27,28 @@ class Index extends Controller
         return view(
             'budget.demo',
             [
+                'loading' => $request->query('loading') !== null,
             ]
         );
+    }
+
+    public function demoProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Demo();
+        $result = $action(
+            $this->api,
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->cookie($this->config['cookie_bearer'])
+        );
+
+        if ($result === true) {
+            return redirect()->route('demo', ['loading' => true]);
+        }
+
+        return redirect()->route('home');
     }
 
     public function home(Request $request)

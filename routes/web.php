@@ -75,6 +75,11 @@ Route::group(
             [Index::class, 'demo']
         )->name('demo');
 
+        Route::post(
+            '/demo',
+            [Index::class, 'demoProcess']
+        )->name('demo.process');
+
         Route::get(
             '/start',
             [Index::class, 'start']
