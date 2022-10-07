@@ -14,6 +14,22 @@ use Illuminate\Http\Request;
  */
 class Index extends Controller
 {
+    public function demo(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $budget = $this->setUpBudget($request);
+        if ($budget->hasAccounts() === true || $budget->hasBudget() === true) {
+            return redirect()->route('home');
+        }
+
+        return view(
+            'budget.demo',
+            [
+            ]
+        );
+    }
+
     public function home(Request $request)
     {
         $this->bootstrap($request);

@@ -71,6 +71,11 @@ Route::group(
         )->name('home');
 
         Route::get(
+            '/demo',
+            [Index::class, 'demo']
+        )->name('demo');
+
+        Route::get(
             '/start',
             [Index::class, 'start']
         )->name('start');
