@@ -338,7 +338,9 @@ class LoadDemo implements ShouldQueue
             );
 
             if ($create_budget_item_response['status'] !== 201) {
-                throw new \Exception('Unable to create the ' . $budget_item_payload['name'] . ' demo budget item');
+                throw new \Exception('Unable to create the ' . $budget_item_payload['name'] .
+                    ' demo budget item, returned error ' . $create_budget_item_response['content'] . ' return code ' .
+                    $create_budget_item_response['status']);
             }
         }
     }
