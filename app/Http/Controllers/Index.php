@@ -132,4 +132,11 @@ class Index extends Controller
 
         abort($result, $action->getMessage());
     }
+
+    public function isDemoLoaded(Request $request)
+    {
+        $this->bootstrap($request);
+
+        return response()->json(['demo' => $this->demo]);
+    }
 }

@@ -274,7 +274,7 @@
 
                     @if ($number_of_items > ($max_items - 10))
                     <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">
-                        <h4 class="alert-heading">Budget Pro!</h4>
+                        <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
                         <p>In Budget Pro you are allowed to have more than {{ $max_items }} items on your Budget.</p>
                         <p>You have {{ $number_of_items }} budget items.</p>
                         <hr>
@@ -284,7 +284,7 @@
                     @endif
 
                     <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">
-                        <h4 class="alert-heading">Budget Pro!</h4>
+                        <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
                         <p>In Budget Pro we include additional frequency options, daily, weekly, fortnights etc.</p>
                         <p>Additionally, we have more complicated exclusion options.</p>
                         <hr>

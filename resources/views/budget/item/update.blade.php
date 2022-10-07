@@ -260,7 +260,7 @@
                     </form>
 
                     <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">
-                        <h4 class="alert-heading">Budget Pro!</h4>
+                        <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
                         <p>In Budget Pro we support multi-edit.</p>
                         <p>You can update all your budget items on a single page.</p>
                         <hr>

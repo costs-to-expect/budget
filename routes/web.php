@@ -81,6 +81,11 @@ Route::group(
         )->name('demo.process');
 
         Route::get(
+            '/is-demo-loaded',
+            [Index::class, 'isDemoLoaded']
+        )->name('demo.is-loaded');
+
+        Route::get(
             '/start',
             [Index::class, 'start']
         )->name('start');
