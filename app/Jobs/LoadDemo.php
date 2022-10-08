@@ -25,6 +25,7 @@ class LoadDemo implements ShouldQueue
     private string $resource_id;
     private string $bearer;
     private string $currency_id;
+    private array $currency;
 
     public function __construct(
         string $resource_type_id,
@@ -103,13 +104,18 @@ class LoadDemo implements ShouldQueue
     private function createAccounts(Service $api): array
     {
         // Fetch the requested currency
+        $currency_response = $api->getCurrency($this->currency_id);
+        if ($currency_response['status'] !== 200) {
+            throw new \Exception('Unable to fetch the currency, cannot create accounts');
+        }
 
+        $this->currency = $currency_response['content'];
 
         $debit = [
             'currency' => [
-                'id' => 'epMqeYqPkL',
-                'code' => 'GBP',
-                'name' => 'Sterling'
+                'id' => $this->currency['id'],
+                'code' => $this->currency['code'],
+                'name' => $this->currency['name']
             ],
             'type' => 'expense',
             'id' => Str::uuid()->toString(),
@@ -119,9 +125,9 @@ class LoadDemo implements ShouldQueue
         ];
         $savings = [
             'currency' => [
-                'id' => 'epMqeYqPkL',
-                'code' => 'GBP',
-                'name' => 'Sterling'
+                'id' => $this->currency['id'],
+                'code' => $this->currency['code'],
+                'name' => $this->currency['name']
             ],
             'type' => 'savings',
             'id' => Str::uuid()->toString(),
@@ -209,7 +215,7 @@ class LoadDemo implements ShouldQueue
                 'amount' => '1866.00',
                 'start_date' => '2020-01-01',
                 'end_date' => null,
-                'currency_id' => 'epMqeYqPkL',
+                'currency_id' => $this->currency['id'],
                 'category' => 'income',
                 'frequency' => $monthly_frequency_json
             ],
@@ -221,7 +227,7 @@ class LoadDemo implements ShouldQueue
                 'amount' => '125.00',
                 'start_date' => '2020-01-01',
                 'end_date' => null,
-                'currency_id' => 'epMqeYqPkL',
+                'currency_id' => $this->currency['id'],
                 'category' => 'savings',
                 'frequency' => $monthly_frequency_json
             ],
@@ -233,7 +239,7 @@ class LoadDemo implements ShouldQueue
                 'amount' => '775.00',
                 'start_date' => '2020-01-01',
                 'end_date' => null,
-                'currency_id' => 'epMqeYqPkL',
+                'currency_id' => $this->currency['id'],
                 'category' => 'fixed',
                 'frequency' => $monthly_frequency_json
             ],
@@ -245,7 +251,7 @@ class LoadDemo implements ShouldQueue
                 'amount' => '163.00',
                 'start_date' => '2020-01-01',
                 'end_date' => null,
-                'currency_id' => 'epMqeYqPkL',
+                'currency_id' => $this->currency['id'],
                 'category' => 'fixed',
                 'frequency' => $frequency_council_tax_json
             ],
@@ -257,7 +263,7 @@ class LoadDemo implements ShouldQueue
                 'amount' => '525.00',
                 'start_date' => '2020-01-01',
                 'end_date' => null,
-                'currency_id' => 'epMqeYqPkL',
+                'currency_id' => $this->currency['id'],
                 'category' => 'fixed',
                 'frequency' => $frequency_car_insurance_json
             ],
@@ -269,7 +275,7 @@ class LoadDemo implements ShouldQueue
                 'amount' => '420.60',
                 'start_date' => '2020-01-01',
                 'end_date' => null,
-                'currency_id' => 'epMqeYqPkL',
+                'currency_id' => $this->currency['id'],
                 'category' => 'fixed',
                 'frequency' => $frequency_water_json
             ],
@@ -281,7 +287,7 @@ class LoadDemo implements ShouldQueue
                 'amount' => '15.99',
                 'start_date' => '2020-01-01',
                 'end_date' => null,
-                'currency_id' => 'epMqeYqPkL',
+                'currency_id' => $this->currency['id'],
                 'category' => 'flexible',
                 'frequency' => $monthly_frequency_json
             ],
@@ -293,7 +299,7 @@ class LoadDemo implements ShouldQueue
                 'amount' => '5.99',
                 'start_date' => '2020-01-01',
                 'end_date' => null,
-                'currency_id' => 'epMqeYqPkL',
+                'currency_id' => $this->currency['id'],
                 'category' => 'flexible',
                 'frequency' => $monthly_frequency_json
             ],
@@ -305,7 +311,7 @@ class LoadDemo implements ShouldQueue
                 'amount' => '100.00',
                 'start_date' => '2020-01-01',
                 'end_date' => null,
-                'currency_id' => 'epMqeYqPkL',
+                'currency_id' => $this->currency['id'],
                 'category' => 'flexible',
                 'frequency' => $monthly_frequency_json
             ],
@@ -317,7 +323,7 @@ class LoadDemo implements ShouldQueue
                 'amount' => '75.00',
                 'start_date' => '2020-01-01',
                 'end_date' => null,
-                'currency_id' => 'epMqeYqPkL',
+                'currency_id' => $this->currency['id'],
                 'category' => 'fixed',
                 'frequency' => $monthly_frequency_json
             ],
@@ -329,7 +335,7 @@ class LoadDemo implements ShouldQueue
                 'amount' => '275.00',
                 'start_date' => '2020-01-01',
                 'end_date' => null,
-                'currency_id' => 'epMqeYqPkL',
+                'currency_id' => $this->currency['id'],
                 'category' => 'fixed',
                 'frequency' => $monthly_frequency_json
             ],
