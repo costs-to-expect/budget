@@ -44,9 +44,26 @@ class Index extends Controller
             return redirect()->route('home');
         }
 
+        $currencies_response = $this->api->getCurrencies();
+        if ($currencies_response['status'] !== 200) {
+            abort(404, 'Cannot fetch the currencies from the API');
+        }
+
+        // Show GBP first
+        $currencies = [];
+        $currencies[0] = [];
+        foreach ($currencies_response['content'] as $currency) {
+            if ($currency['code'] === 'GBP') {
+                $currencies[0] = $currency;
+            } else {
+                $currencies[] = $currency;
+            }
+        }
+
         return view(
             'budget.demo',
             [
+                'currencies' => $currencies,
                 'loading' => $request->query('loading') !== null,
             ]
         );
@@ -60,7 +77,8 @@ class Index extends Controller
         $result = $action(
             $this->resource_type_id,
             $this->resource_id,
-            $request->cookie($this->config['cookie_bearer'])
+            $request->cookie($this->config['cookie_bearer']),
+            $request->input('currency_id')
         );
 
         if ($result === true) {

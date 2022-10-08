@@ -16,10 +16,11 @@ class Demo extends Action
     public function __invoke(
         string $resource_type_id,
         string $resource_id,
-        string $bearer_id
+        string $bearer_id,
+        string $currency_id
     ): bool
     {
-        LoadDemo::dispatch($resource_type_id, $resource_id, $bearer_id);
+        LoadDemo::dispatch($resource_type_id, $resource_id, $bearer_id, $currency_id);
 
         return true;
     }

@@ -24,16 +24,19 @@ class LoadDemo implements ShouldQueue
     private string $resource_type_id;
     private string $resource_id;
     private string $bearer;
+    private string $currency_id;
 
     public function __construct(
         string $resource_type_id,
         string $resource_id,
-        string $bearer
+        string $bearer,
+        string $currency_id
     )
     {
         $this->resource_type_id = $resource_type_id;
         $this->resource_id = $resource_id;
         $this->bearer = $bearer;
+        $this->currency_id = $currency_id;
     }
 
     public function handle()
@@ -99,6 +102,9 @@ class LoadDemo implements ShouldQueue
 
     private function createAccounts(Service $api): array
     {
+        // Fetch the requested currency
+
+
         $debit = [
             'currency' => [
                 'id' => 'epMqeYqPkL',

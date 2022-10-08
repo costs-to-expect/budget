@@ -24,13 +24,16 @@
                         us whilst we set everything up.</p>
 
                     @if ($loading === true)
-                    <p class="lead text-primary">
-                        We are loading the Demo data, as soon as we are done we will let you know,
-                        everything should be ready within a minute or so.
+                    <p class="lead text-primary demo-loading">
+                        <span class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading the demo data...</span>
+                        </span>
+                        We are loading your Demo data, as soon as we are done we will let you know,
+                        everything should be ready in less than a minute.
                     </p>
 
                     <p class="lead text-primary d-none continue-to-demo">
-                        We have loaded the demo, click the button to start playing with App.
+                        We are done, click the button to start setting up your Budget.
                         <a class="btn btn-sm btn-primary" href="{{ route('home') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-piggy-bank" viewBox="0 0 16 16">
                                 <path d="M5 6.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm1.138-1.496A6.613 6.613 0 0 1 7.964 4.5c.666 0 1.303.097 1.893.273a.5.5 0 0 0 .286-.958A7.602 7.602 0 0 0 7.964 3.5c-.734 0-1.441.103-2.102.292a.5.5 0 1 0 .276.962z"/>
@@ -48,6 +51,21 @@
                         @csrf
 
                         @if ($loading === false)
+
+                        <div class="col-6">
+                            <label for="currency_id" class="form-label">Currency</label>
+                            <select id="currency_id" name="currency_id" class="form-select form-select-sm @error('currency_id') is-invalid @enderror" required="required" aria-describedby="currency_idHelpBlock">
+                                @foreach ($currencies as $__currency)
+                                    <option value="{{ $__currency['id'] }}" @if (old('currency_id') !== null && old('currency_id') === $__currency['id']) selected="selected" @endif>{{ $__currency['code'] }} - <x-currency :currency="$__currency" /></option>
+                                @endforeach
+                            </select>
+                            <div id="currency_idHelpBlock" class="form-text">Please choose the currency for your Budget, GBP, USD or EUR.</div>
+                            @error('currency_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
 
                         <div class="col-12 mt-3">
                             <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
