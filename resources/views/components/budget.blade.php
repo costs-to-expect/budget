@@ -1,7 +1,7 @@
 <div class="budget">
     <div class="row">
         <div class="col-12">
-            <h2 class="display-6 mt-3 mb-3">Your Budget</h2>
+            <h2 class="display-5 mt-3 mb-3">Your Budget</h2>
         </div>
     </div>
 

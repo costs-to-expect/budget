@@ -17,6 +17,9 @@
                         <a class="nav-link @if($active === 'home') active @endif" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link @if($active === 'faqs') active @endif" href="{{ route('faqs') }}">FAQs</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link @if($active === 'account') active @endif" href="{{ route('account.index') }}">Account</a>
                     </li>
                     <li class="nav-item">

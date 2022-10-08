@@ -70,6 +70,11 @@ Route::group(
             [Index::class, 'home']
         )->name('home');
 
+        Route::view(
+            '/faqs',
+            'faqs'
+        )->name('faqs');
+
         Route::get(
             '/demo',
             [Index::class, 'demo']
