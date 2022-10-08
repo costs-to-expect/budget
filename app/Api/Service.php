@@ -73,6 +73,14 @@ class Service
         return $this->http->get($uri['uri']);
     }
 
+    #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    public function getCurrency(string $currency_id): array
+    {
+        $uri = Uri::currency($currency_id);
+
+        return $this->http->get($uri['uri']);
+    }
+
     #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
     public function createBudgetItem(string $resource_type_id, string $resource_id, array $payload): array
     {
