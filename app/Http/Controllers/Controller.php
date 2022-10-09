@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Api\Service;
+use App\Models\PaidBudgetItem;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -137,6 +138,14 @@ class Controller extends BaseController
 
         $budget->setAccounts($this->accounts)
             ->create();
+
+        $paid_budget_items = (new PaidBudgetItem())->getPaidBudgetItems(
+            $this->resource_id,
+            $budget->nowYear(),
+            $budget->nowMonth()
+        );
+
+        $budget->setPaidBudgetItems($paid_budget_items);
 
         foreach ($budget_items as $budget_item) {
             $budget->addItem($budget_item);

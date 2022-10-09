@@ -36,7 +36,7 @@
                 <div class="row">
                     @foreach ($__month->items() as $__item)
                         <a href="{{ route('budget.item.view', ['item_id' => $__item->id()]) }}">
-                        <div class="col-12 expense @if ($active !== null && $active === $__item->id()) active shadow @endif @if($__item->disabled() === true) opacity-50 @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
+                        <div class="col-12 expense @if ($active !== null && $active === $__item->id()) active shadow @endif @if($__item->disabled() === true || ($__month->now() === true && $__item->paid() === true)) opacity-50 @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
                             <div class="name text-grey">
                                 {{ $__item->name() }}
                             </div>
@@ -47,6 +47,9 @@
                             <div class="amount text-grey"><small><x-currency :currency="$__item->currency()" /></small>{{ $__item->amount() }}
                                 @if ($__item->disabled() === true)
                                     <small class="text-dark disabled-expense">(Disabled)</small>
+                                @endif
+                                @if ($__month->now() === true && $__item->paid() === true)
+                                    <small class="text-dark paid-expense">(Paid)</small>
                                 @endif
                             </div>
                         </div>
