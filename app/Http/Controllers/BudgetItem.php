@@ -284,6 +284,11 @@ class BudgetItem extends Controller
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
 
+                'now_month' => $budget->nowMonth(),
+                'now_year' => $budget->nowMonth(),
+                'now' => $request->query('now' ) === '1',
+                'is_paid' => ($request->query('now' ) === '1' && in_array($request->route('item_id'), $budget->paidItems(), true)),
+
                 'item' => $budget_item['content'],
             ]
         );

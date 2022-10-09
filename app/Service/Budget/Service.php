@@ -292,6 +292,11 @@ class Service
         return true;
     }
 
+    public function paidItems(): array
+    {
+        return $this->paid_items;
+    }
+
     public function paginationParameters(): array
     {
         $earlier = $this->view_start_date->sub(new DateInterval("P1M"));

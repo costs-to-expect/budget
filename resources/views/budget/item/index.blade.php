@@ -25,6 +25,30 @@
                             </h2>
                         </div>
 
+                        @if ($now === true)
+                            <div class="col-12">
+                                @if ($is_paid === false)
+
+                                    <p class="lead">Title</p>
+                                    <p>Description</p>
+                                    {{--Replace with forms--}}
+                                    <a href="" class="btn btn-sm btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
+                                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
+                                            <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
+                                        </svg>
+                                        Mark as Paid
+                                    </a>
+                                @else
+                                    <a href="" class="btn btn-sm btn-primary">
+                                        Mark as Not Paid
+                                    </a>
+                                @endif
+
+                                <hr />
+                            </div>
+                        @endif
+
                         <x-budget-item :accounts="$accounts" :item="$item" />
 
                         <div class="col-12">

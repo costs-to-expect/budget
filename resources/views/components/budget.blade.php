@@ -31,16 +31,16 @@
         @php $counter = 0; @endphp
         @foreach ($months as $__month)
             @if ($__month->visible())
-            <div class="col-4 @if($counter === 1) border-start border-end border-primary border-opacity-50 @endif">
+            <div class="col-4 @if($counter === 1) border-start border-end border-primary border-opacity-50 @endif @if($__month->now()) bg-light @endif">
                 <div class="text-primary text-center month pb-2">{{ $__month->name() }}</div>
                 <div class="row">
                     @foreach ($__month->items() as $__item)
-                        <a href="{{ route('budget.item.view', ['item_id' => $__item->id()]) }}">
+                        <a href="{{ route('budget.item.view', ['item_id' => $__item->id(), 'now' => $__month->now()]) }}">
                         <div class="col-12 expense @if ($active !== null && $active === $__item->id()) active shadow @endif @if($__item->disabled() === true || ($__month->now() === true && $__item->paid() === true)) opacity-50 @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
                             <div class="name text-grey">
                                 {{ $__item->name() }}
                             </div>
-                            <div class="progress">
+                            <div class="progress @if($__month->now()) border border-grey border-1 @endif">
                                 <div class="progress-bar bg-{{ $__item->category() }}" role="progressbar" aria-label="" style="width: {{ $__item->progressBarPercentage() }}%"
                                      aria-valuenow="{{ $__item->progressBarPercentage() }}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
