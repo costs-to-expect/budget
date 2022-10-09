@@ -44,8 +44,8 @@
                         for the current month and based on that we give you future projections.</p>
 
                     <h3 class="display-6 mt-3 mb-3">What is the workflow?</h3>
-                    <p class="lead">There are two steps to the workflow, set you current account balances,
-                        mark any relevant budget items in the current month as paid. Once we know your balances
+                    <p class="lead">There are two steps to the workflow, one, set you current account balances,
+                        two, mark any relevant budget items in the current month as paid. Once we know your balances
                         and everything else that is going to come in/out, we can calculate your future
                         projections.</p>
 
