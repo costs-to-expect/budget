@@ -28,24 +28,34 @@
                         @if ($now === true)
                             <div class="col-12">
                                 @if ($is_paid === false)
+                                    <div class="alert alert-dark mt-2" role="alert">
+                                        <h4 class="alert-heading">Mark as Paid</h4>
+                                        <p>If you mark this budget item as paid for this month, it will be ignored
+                                            for the projection, the assumption being your account balances
+                                            include this deduction.</p>
+                                        <hr>
 
-                                    <p class="lead">Title</p>
-                                    <p>Description</p>
-                                    {{--Replace with forms--}}
-                                    <a href="" class="btn btn-sm btn-primary">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
-                                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
-                                            <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
-                                        </svg>
-                                        Mark as Paid
-                                    </a>
+                                        <form action="" method="POST" class="row g-2">
+                                            @csrf
+                                            <div class="col-12 mt-2">
+                                                <button type="submit" class="btn btn-sm btn-dark">Mark as Paid</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 @else
-                                    <a href="" class="btn btn-sm btn-primary">
-                                        Mark as Not Paid
-                                    </a>
-                                @endif
+                                    <div class="alert alert-dark mt-2" role="alert">
+                                        <h4 class="alert-heading">Mark as Not Paid</h4>
+                                        <p>Reset the budget item, it will return to being included in projection calculations.</p>
+                                        <hr>
 
-                                <hr />
+                                        <form action="" method="POST" class="row g-2">
+                                            @csrf
+                                            <div class="col-12 mt-2">
+                                                <button type="submit" class="btn btn-sm btn-dark">Mark as Not Paid</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                @endif
                             </div>
                         @endif
 

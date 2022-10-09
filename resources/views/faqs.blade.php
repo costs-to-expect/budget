@@ -43,6 +43,12 @@
                     <p class="lead">You define your Budget, tell us your balances, mark what has been paid
                         for the current month and based on that we give you future projections.</p>
 
+                    <h3 class="display-6 mt-3 mb-3">What is the workflow?</h3>
+                    <p class="lead">There are two steps to the workflow, set you current account balances,
+                        mark any relevant budget items in the current month as paid. Once we know your balances
+                        and everything else that is going to come in/out, we can calculate your future
+                        projections.</p>
+
                     <h3 class="display-6 mt-3 mb-3">Will Budget stay free?</h3>
                     <p class="lead">For as long as possible, Budget is/will be funded by the Costs to Expect API
                         and upon release, Budget Pro. We have no intention of monetising Budget*.</p>
