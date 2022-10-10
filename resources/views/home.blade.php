@@ -26,7 +26,7 @@
                             adopt button below to exit demo mode.</p>
                         <hr />
                         <h4 class="alert-heading">How does it work?</h4>
-                        <p class="lead">There are two steps to the workflow, one, set you current account balances,
+                        <p class="lead">There are two steps to the workflow, one, set your current account balances,
                             two, mark any relevant budget items in the current month as paid. Once we know your balances
                             and everything else that is going to come in/out, we can calculate your future
                             projections.</p>
