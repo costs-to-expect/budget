@@ -23,6 +23,12 @@
                         generate your projections.</p>
                     <p class="lead">After adding an account, you will need to add your first budget item.</p>
 
+                    <h4 class="alert-heading">Do You Need Help?</h4>
+                    <p class="lead">We have two sections which detail how our App works, check out
+                        our <a href="{{ route('getting-started') }}">Getting Started</a> section to understand
+                        how to add items to your Budget and checkout our <a href="{{ route('workflow') }}">Workflow</a> section to
+                        understand how we generate your projections.</p>
+
                     <hr>
 
                     <form action="{{ route('start.process') }}" method="POST" class="row g-2">
