@@ -75,6 +75,11 @@ Route::group(
             'faqs'
         )->name('faqs');
 
+        Route::view(
+            '/workflow',
+            'workflow'
+        )->name('workflow');
+
         Route::get(
             '/demo',
             [Index::class, 'demo']
