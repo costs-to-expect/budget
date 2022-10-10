@@ -3,12 +3,15 @@
 namespace App\Jobs;
 
 use App\Api\Service;
+use App\Notifications\Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Throwable;
 
@@ -55,14 +58,22 @@ class LoadDemo implements ShouldQueue
 
     public function failed(Throwable $exception): void
     {
-
+        Notification::route('mail', Config::get('app.config.exception_notification_email'))
+            ->notify(new Exception(
+                    $exception->getCode(),
+                    $exception->getMessage(),
+                    $exception->getFile(),
+                    $exception->getLine(),
+                    $exception->getTraceAsString()
+                )
+            );
     }
 
     private function confirmNoBudgetSetup(Service $api): void
     {
         $resource = $api->getResource($this->resource_type_id, $this->resource_id);
         if ($resource['status'] !== 200) {
-            throw new \Exception('Unable to fetch the resource, no Budget account');
+            $this->fail(new \Exception('Unable to fetch the resource, no Budget account'));
         }
 
         $accounts = [];
@@ -80,7 +91,7 @@ class LoadDemo implements ShouldQueue
             ]
         );
         if ($budget_items_response['status'] !== 200) {
-            throw new \Exception('Unable to fetch the budget item collection, guessing no Budget account');
+            $this->fail(new \Exception('Unable to fetch the budget item collection, guessing no Budget account'));
         }
 
         $budget_items = $budget_items_response['content'];
@@ -97,7 +108,7 @@ class LoadDemo implements ShouldQueue
         $budget->assignItemsToBudget();
 
         if ($budget->hasAccounts() === true || $budget->hasBudget() === true) {
-            throw new \Exception('User has some form of Budget setup, aborting');
+            $this->fail(new \Exception('User has some form of Budget setup, aborting'));
         }
     }
 
@@ -106,7 +117,7 @@ class LoadDemo implements ShouldQueue
         // Fetch the requested currency
         $currency_response = $api->getCurrency($this->currency_id);
         if ($currency_response['status'] !== 200) {
-            throw new \Exception('Unable to fetch the currency, cannot create accounts');
+            $this->fail(new \Exception('Unable to fetch the currency, cannot create accounts'));
         }
 
         $this->currency = $currency_response['content'];
@@ -144,7 +155,7 @@ class LoadDemo implements ShouldQueue
         try {
             $data = json_encode($payload, JSON_THROW_ON_ERROR);
         } catch (\JsonException $e) {
-            throw new \JsonException($e->getMessage());
+            $this->fail($e);
         }
 
         $patch_resource_response = $api->patchResource(
@@ -154,7 +165,7 @@ class LoadDemo implements ShouldQueue
         );
 
         if ($patch_resource_response['status'] !== 204) {
-            throw new \Exception('Unable to patch the resource and create the demo accounts');
+            $this->fail(new \Exception('Unable to patch the resource and create the demo accounts'));
         }
 
         return [$debit['id'], $savings['id']];
@@ -170,7 +181,7 @@ class LoadDemo implements ShouldQueue
         try {
             $monthly_frequency_json = json_encode($monthly_frequency, JSON_THROW_ON_ERROR);
         } catch(\JsonException $e) {
-            throw new \JsonException($e->getMessage());
+            $this->fail($e);
         }
 
         $frequency_council_tax = [
@@ -181,7 +192,7 @@ class LoadDemo implements ShouldQueue
         try {
             $frequency_council_tax_json = json_encode($frequency_council_tax, JSON_THROW_ON_ERROR);
         } catch(\JsonException $e) {
-            throw new \JsonException($e->getMessage());
+            $this->fail($e);
         }
 
         $frequency_car_insurance = [
@@ -192,7 +203,7 @@ class LoadDemo implements ShouldQueue
         try {
             $frequency_car_insurance_json = json_encode($frequency_car_insurance, JSON_THROW_ON_ERROR);
         } catch(\JsonException $e) {
-            throw new \JsonException($e->getMessage());
+            $this->fail($e);
         }
 
         $frequency_water = [
@@ -203,7 +214,7 @@ class LoadDemo implements ShouldQueue
         try {
             $frequency_water_json = json_encode($frequency_water, JSON_THROW_ON_ERROR);
         } catch(\JsonException $e) {
-            throw new \JsonException($e->getMessage());
+            $this->fail($e);
         }
 
         $budget_items = [
@@ -356,9 +367,9 @@ class LoadDemo implements ShouldQueue
                     $error_suffix = ' - ' . json_encode($create_budget_item_response['fields']);
                 }
 
-                throw new \Exception('Unable to create the ' . $budget_item_payload['name'] .
+                $this->fail(new \Exception('Unable to create the ' . $budget_item_payload['name'] .
                     ' demo budget item, returned error ' . $create_budget_item_response['content'] . ' return code ' .
-                    $create_budget_item_response['status'] . $error_suffix);
+                    $create_budget_item_response['status'] . $error_suffix));
             }
         }
     }
@@ -367,7 +378,7 @@ class LoadDemo implements ShouldQueue
     {
         $resource_response = $api->getResource($this->resource_type_id, $this->resource_id);
         if ($resource_response['status'] !== 200) {
-            throw new \Exception('Unable to fetch the resource from the API');
+            $this->fail(new \Exception('Unable to fetch the resource from the API'));
         }
 
         $data = $resource_response['content']['data'];
@@ -375,7 +386,7 @@ class LoadDemo implements ShouldQueue
         try {
             $payload = json_encode($data, JSON_THROW_ON_ERROR);
         } catch (\JsonException $e) {
-            throw new \JsonException($e->getMessage());
+            $this->fail($e);
         }
 
         $patch_resource_response = $api->patchResource(
@@ -385,7 +396,7 @@ class LoadDemo implements ShouldQueue
         );
 
         if ($patch_resource_response['status'] !== 204) {
-            throw new \Exception('Unable to set the demo flag');
+            $this->fail(new \Exception('Unable to set the demo flag'));
         }
     }
 }
