@@ -37,10 +37,18 @@ class Service
     private array $currency;
     private array $default_currency;
 
+    private int $now_month;
+    private int $now_year;
+
+    private array $paid_items = [];
+
     public function __construct()
     {
         $this->start_date = (new DateTimeImmutable('first day of this month', new DateTimeZone('UTC')))->setTime(7, 1);
         $this->view_start_date = (new DateTimeImmutable('first day of this month', new DateTimeZone('UTC')))->setTime(7, 1);
+
+        $this->now_year = (int) $this->start_date->format('Y');
+        $this->now_month = (int) $this->start_date->format('n');
 
         $this->default_currency = [
             'id' => 'epMqeYqPkL',
@@ -54,6 +62,9 @@ class Service
         $this->start_date = $start_date;
         $this->view_start_date = $start_date;
 
+        $this->now_year = (int) $this->start_date->format('Y');
+        $this->now_month = (int) $this->start_date->format('n');
+
         return $this;
     }
 
@@ -63,6 +74,13 @@ class Service
             "{$year}-{$month}-01",
             new DateTimeZone('UTC')
         ))->setTime(7, 1);
+
+        return $this;
+    }
+
+    public function setPaidBudgetItems(array $paid_items): Service
+    {
+        $this->paid_items = $paid_items;
 
         return $this;
     }
@@ -126,7 +144,13 @@ class Service
                 $year_int = (int)$next->format('Y');
                 $month_int = (int)$next->format('n');
 
-                $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, $this->currency(), false);
+                $this->months[$year_int . '-' . $month_int] = new Month(
+                    $month_int,
+                    $year_int,
+                    $this->currency(),
+                    false,
+                    ($this->now_year === $year_int && $this->now_month === $month_int)
+                );
             }
         }
 
@@ -154,7 +178,14 @@ class Service
                     ))->setTime(7, 1);
                 }
 
-                $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, $this->currency(),true, false);
+                $this->months[$year_int . '-' . $month_int] = new Month(
+                    $month_int,
+                    $year_int,
+                    $this->currency(),
+                    true,
+                    ($this->now_year === $year_int && $this->now_month === $month_int),
+                    false
+                );
             }
         }
 
@@ -170,8 +201,24 @@ class Service
                 "{$year_int}-{$month_int}-01", new DateTimeZone('UTC')
             ))->setTime(7, 1);
 
-            $this->months[$year_int . '-' . $month_int] = new Month($month_int, $year_int, $this->currency(), true);
+            $this->months[$year_int . '-' . $month_int] = new Month(
+                $month_int,
+                $year_int,
+                $this->currency(),
+                true,
+                ($this->now_year === $year_int && $this->now_month === $month_int)
+            );
         }
+    }
+
+    public function nowMonth(): int
+    {
+        return $this->now_month;
+    }
+
+    public function nowYear(): int
+    {
+        return $this->now_year;
     }
 
     public function numberOfItems(): int
@@ -245,6 +292,11 @@ class Service
         return true;
     }
 
+    public function paidItems(): array
+    {
+        return $this->paid_items;
+    }
+
     public function paginationParameters(): array
     {
         $earlier = $this->view_start_date->sub(new DateInterval("P1M"));
@@ -298,18 +350,24 @@ class Service
         foreach ($this->months as $month) {
             foreach ($this->budget_items as $budget_item) {
                 if ($budget_item->activeForMonth($month->days(), $month->month(), $month->year()) === true) {
+
+                    if ($month->now() === true && in_array($budget_item->id(), $this->paid_items, true)) {
+                        $budget_item = clone $budget_item;
+                        $budget_item->setPaid(true);
+                    }
+
                     $this->months[$month->year() . '-' . $month->month()]->add($budget_item);
 
                     if (
                         $budget_item->disabled() === false &&
                         $this->months[$month->year() . '-' . $month->month()]->future() === true
                     ) {
-                        if ($budget_item->category() === 'income') {
+                        if ($budget_item->category() === 'income' && $budget_item->paid() === false) {
                             if (array_key_exists($budget_item->account(), $this->accounts)) {
                                 $this->accounts[$budget_item->account()]->add($budget_item->amount());
                             }
                         } else {
-                            if ($budget_item->category() === 'savings') {
+                            if ($budget_item->category() === 'savings' && $budget_item->paid() === false) {
                                 if (
                                     array_key_exists($budget_item->account(), $this->accounts) &&
                                     array_key_exists($budget_item->targetAccount(), $this->accounts)
@@ -320,7 +378,7 @@ class Service
                                     );
                                 }
                             } else {
-                                if (array_key_exists($budget_item->account(), $this->accounts)) {
+                                if (array_key_exists($budget_item->account(), $this->accounts) && $budget_item->paid() === false) {
                                     $this->accounts[$budget_item->account()]->sub($budget_item->amount());
                                 }
                             }

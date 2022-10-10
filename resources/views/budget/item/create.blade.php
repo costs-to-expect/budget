@@ -23,7 +23,7 @@
                         @csrf
 
                         <div class="col-12">
-                            <h2 class="display-6 mt-3 mb-3">New</h2>
+                            <h2 class="display-5 mt-3 mb-3">New</h2>
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="name" class="form-label">Name *</label>

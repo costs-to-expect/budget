@@ -24,7 +24,14 @@
                         <p class="lead">You are in Demo Mode and are free to play with all the features.</p>
                         <p class="lead">This demo is specific to you, when you are ready, you can click the
                             adopt button below to exit demo mode.</p>
-                        <hr>
+                        <hr />
+                        <h4 class="alert-heading">How does it work?</h4>
+                        <p class="lead">There are two steps to the workflow, one, set you current account balances,
+                            two, mark any relevant budget items in the current month as paid. Once we know your balances
+                            and everything else that is going to come in/out, we can calculate your future
+                            projections.</p>
+
+                        <hr />
                         <form action="{{ route('demo.adopt.process') }}" method="POST" class="row g-2">
                             @csrf
                             <div class="col-12 mt-3">

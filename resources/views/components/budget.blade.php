@@ -1,7 +1,7 @@
 <div class="budget">
     <div class="row">
         <div class="col-12">
-            <h2 class="display-6 mt-3 mb-3">Your Budget</h2>
+            <h2 class="display-5 mt-3 mb-3">Your Budget</h2>
         </div>
     </div>
 
@@ -31,22 +31,25 @@
         @php $counter = 0; @endphp
         @foreach ($months as $__month)
             @if ($__month->visible())
-            <div class="col-4 @if($counter === 1) border-start border-end border-primary border-opacity-50 @endif">
+            <div class="col-4 @if($counter === 1) border-start border-end border-primary border-opacity-50 @endif @if($__month->now()) bg-light @endif">
                 <div class="text-primary text-center month pb-2">{{ $__month->name() }}</div>
                 <div class="row">
                     @foreach ($__month->items() as $__item)
-                        <a href="{{ route('budget.item.view', ['item_id' => $__item->id()]) }}">
-                        <div class="col-12 expense @if ($active !== null && $active === $__item->id()) active shadow @endif @if($__item->disabled() === true) opacity-50 @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
+                        <a href="{{ route('budget.item.view', ['item_id' => $__item->id(), 'now' => $__month->now()]) }}">
+                        <div class="col-12 expense @if ($active !== null && $active === $__item->id()) active shadow @endif @if($__item->disabled() === true || ($__month->now() === true && $__item->paid() === true)) opacity-50 @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
                             <div class="name text-grey">
                                 {{ $__item->name() }}
                             </div>
-                            <div class="progress">
+                            <div class="progress @if($__month->now()) border border-grey border-1 @endif">
                                 <div class="progress-bar bg-{{ $__item->category() }}" role="progressbar" aria-label="" style="width: {{ $__item->progressBarPercentage() }}%"
                                      aria-valuenow="{{ $__item->progressBarPercentage() }}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <div class="amount text-grey"><small><x-currency :currency="$__item->currency()" /></small>{{ $__item->amount() }}
                                 @if ($__item->disabled() === true)
                                     <small class="text-dark disabled-expense">(Disabled)</small>
+                                @endif
+                                @if ($__month->now() === true && $__item->paid() === true)
+                                    <small class="text-dark paid-expense">(Paid)</small>
                                 @endif
                             </div>
                         </div>
@@ -237,6 +240,20 @@
                     Top up the savings account, the more the better
                 </li>
             </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h2 class="display-6 mt-5">Need Help?</h2>
+        </div>
+        <div class="col-12">
+            <p class="lead">If you are unsure how this page works, please consult our
+                <a href="{{ route('faqs') }}">FAQs</a>, hopefully we will have an answer to your questions.
+            If you have a question that is not covered by our FAQs, please reach out to us on
+                <a href="https://twitter.com/coststoexpect">Twitter</a> or
+                via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>, we will respond
+                as soon as we can.</p>
         </div>
     </div>
 </div>

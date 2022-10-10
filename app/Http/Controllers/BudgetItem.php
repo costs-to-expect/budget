@@ -7,6 +7,8 @@ use App\Actions\Budget\Item\Create;
 use App\Actions\Budget\Item\Delete;
 use App\Actions\Budget\Item\Disable;
 use App\Actions\Budget\Item\Enable;
+use App\Actions\Budget\Item\SetAsNotPaid;
+use App\Actions\Budget\Item\SetAsPaid;
 use App\Actions\Budget\Item\Update;
 use Illuminate\Http\Request;
 
@@ -284,9 +286,56 @@ class BudgetItem extends Controller
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
 
+                'now_month' => $budget->nowMonth(),
+                'now_year' => $budget->nowYear(),
+                'now' => $request->query('now' ) === '1',
+                'is_paid' => ($request->query('now' ) === '1' && in_array($request->route('item_id'), $budget->paidItems(), true)),
+
                 'item' => $budget_item['content'],
             ]
         );
+    }
+
+    public function setAsNotPaidProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new SetAsNotPaid();
+        $result = $action(
+            $this->resource_id,
+            (int) $request->post('year'),
+            (int) $request->post('month'),
+            $request->route('item_id')
+        );
+
+        if ($result === 204) {
+            return redirect()
+                ->route('budget.item.view', ['item_id' => $request->route('item_id'), 'now'=>1])
+                ->with('status', 'item-marked-as-not-paid');
+        }
+
+        abort($result, $action->getMessage());
+    }
+
+    public function setAsPaidProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new SetAsPaid();
+        $result = $action(
+            $this->resource_id,
+            (int) $request->post('year'),
+            (int) $request->post('month'),
+            $request->route('item_id')
+        );
+
+        if ($result === 201) {
+            return redirect()
+                ->route('budget.item.view', ['item_id' => $request->route('item_id'), 'now'=>1])
+                ->with('status', 'item-marked-as-paid');
+        }
+
+        abort($result, $action->getMessage());
     }
 
     public function update(Request $request)

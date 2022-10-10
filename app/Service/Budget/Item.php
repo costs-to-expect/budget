@@ -37,6 +37,8 @@ class Item
 
     protected DateTimeImmutable $today;
 
+    protected bool $paid = false;
+
     /**
      * @throws \Exception
      */
@@ -196,9 +198,19 @@ class Item
         return $this->name;
     }
 
+    public function paid(): bool
+    {
+        return $this->paid;
+    }
+
     public function progressBarPercentage(): int
     {
         return (new ProgressBar($this->amount))->percentage();
+    }
+
+    public function setPaid(bool $paid): void
+    {
+        $this->paid = $paid;
     }
 
     public function startDate(): DateTimeImmutable

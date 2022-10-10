@@ -20,7 +20,7 @@
                 <div class="col-12 col-lg-5 mx-auto p-2">
                     <div class="row budget-item g-3">
                         <div class="col-12">
-                            <h2 class="display-6 mt-3 mb-3">
+                            <h2 class="display-5 mt-3 mb-3">
                                 Budget Item
                             </h2>
                         </div>

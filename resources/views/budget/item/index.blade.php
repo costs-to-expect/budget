@@ -20,10 +20,52 @@
                 <div class="col-12 col-lg-5 mx-auto p-2">
                     <div class="row budget-item g-3">
                         <div class="col-12">
-                            <h2 class="display-6 mt-3 mb-3">
+                            <h2 class="display-5 mt-3 mb-3">
                                 Budget Item
                             </h2>
                         </div>
+
+                        @if ($now === true)
+                            <div class="col-12">
+                                @if ($is_paid === false)
+                                    <div class="alert alert-dark mt-2" role="alert">
+                                        <h4 class="alert-heading">Mark as Paid</h4>
+                                        <p>If you mark this budget item as paid for this month, it will be ignored
+                                            for the projection, the assumption being your account balances
+                                            include this deduction.</p>
+                                        <hr>
+
+                                        <form action="{{ route('budget.item.set-as-paid.process', ['item_id' => $item['id']]) }}" method="POST" class="row g-2">
+                                            @csrf
+
+                                            <input type="hidden" name="year" value="{{ $now_year }}"/>
+                                            <input type="hidden" name="month" value="{{ $now_month }}"/>
+
+                                            <div class="col-12 mt-2">
+                                                <button type="submit" class="btn btn-sm btn-dark">Mark as Paid</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                @else
+                                    <div class="alert alert-dark mt-2" role="alert">
+                                        <h4 class="alert-heading">Mark as Not Paid</h4>
+                                        <p>Reset the budget item, it will return to being included in projection calculations.</p>
+                                        <hr>
+
+                                        <form action="{{ route('budget.item.set-as-not-paid.process', ['item_id' => $item['id']]) }}" method="POST" class="row g-2">
+                                            @csrf
+
+                                            <input type="hidden" name="year" value="{{ $now_year }}"/>
+                                            <input type="hidden" name="month" value="{{ $now_month }}"/>
+
+                                            <div class="col-12 mt-2">
+                                                <button type="submit" class="btn btn-sm btn-dark">Mark as Not Paid</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
 
                         <x-budget-item :accounts="$accounts" :item="$item" />
 

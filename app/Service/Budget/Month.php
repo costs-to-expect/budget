@@ -26,6 +26,7 @@ class Month
         private readonly int $year,
         private readonly array $currency,
         private readonly bool $visible,
+        private readonly bool $now = false,
         private readonly bool $future = true
     )
     {
@@ -70,6 +71,11 @@ class Month
     public function name(): string
     {
         return $this->date->format('F');
+    }
+
+    public function now(): bool
+    {
+        return $this->now;
     }
 
     public function totalExpense(): float
