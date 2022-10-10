@@ -7,16 +7,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class Exception extends Notification
+class Exception extends Notification implements ShouldQueue
 {
     use Queueable;
 
     public function __construct(
-        private readonly int $code,
-        private readonly string $message,
-        private readonly string $file,
-        private readonly int $line,
-        private readonly string $trace,
+        public readonly int $code,
+        public readonly string $message,
+        public readonly string $file,
+        public readonly int $line,
+        public readonly string $trace,
     )
     {
         //
@@ -45,11 +45,11 @@ class Exception extends Notification
             ->greeting('Oops')
             ->subject('Budget: An exception has been thrown')
             ->line('An exception has been thrown on Budget, details below.')
-            ->line('- Code: ' . $this->code)
-            ->line('- Message: ' . $this->message)
-            ->line('- File: ' . $this->file)
-            ->line('- Line: ' . $this->line)
-            ->line('- Trace string: ' . $this->trace);
+            ->line('Code: ' . $this->code)
+            ->line('Message: ' . $this->message)
+            ->line('File: ' . $this->file)
+            ->line('Line: ' . $this->line)
+            ->line('Trace string: ' . $this->trace);
     }
 
     /**
