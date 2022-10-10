@@ -35,8 +35,12 @@
                                             include this deduction.</p>
                                         <hr>
 
-                                        <form action="" method="POST" class="row g-2">
+                                        <form action="{{ route('budget.item.set-as-paid.process', ['item_id' => $item['id']]) }}" method="POST" class="row g-2">
                                             @csrf
+
+                                            <input type="hidden" name="year" value="{{ $now_year }}"/>
+                                            <input type="hidden" name="month" value="{{ $now_month }}"/>
+
                                             <div class="col-12 mt-2">
                                                 <button type="submit" class="btn btn-sm btn-dark">Mark as Paid</button>
                                             </div>
@@ -48,8 +52,12 @@
                                         <p>Reset the budget item, it will return to being included in projection calculations.</p>
                                         <hr>
 
-                                        <form action="" method="POST" class="row g-2">
+                                        <form action="{{ route('budget.item.set-as-not-paid.process', ['item_id' => $item['id']]) }}" method="POST" class="row g-2">
                                             @csrf
+
+                                            <input type="hidden" name="year" value="{{ $now_year }}"/>
+                                            <input type="hidden" name="month" value="{{ $now_month }}"/>
+
                                             <div class="col-12 mt-2">
                                                 <button type="submit" class="btn btn-sm btn-dark">Mark as Not Paid</button>
                                             </div>

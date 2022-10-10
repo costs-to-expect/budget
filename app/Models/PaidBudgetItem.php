@@ -11,8 +11,10 @@ use Illuminate\Database\Eloquent\Model;
  * @copyright Dean Blackborough (Costs to Expect) 2018-2022
  * https://github.com/costs-to-expect/yahtzee/blob/main/LICENSE
  *
- * @property string $token
- * @property string $email
+ * @property string $resource_id
+ * @property int $year
+ * @property int $month
+ * @property string $budget_item_id
  */
 class PaidBudgetItem extends Model
 {

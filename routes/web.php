@@ -159,6 +159,16 @@ Route::group(
             [BudgetItem::class, 'confirmEnableProcess']
         )->name('budget.item.confirm-enable.process');
 
+        Route::post(
+            '/budget/item/{item_id}/set-as-paid',
+            [BudgetItem::class, 'setAsPaidProcess']
+        )->name('budget.item.set-as-paid.process');
+
+        Route::post(
+            '/budget/item/{item_id}/set-as-not-paid',
+            [BudgetItem::class, 'setAsNotPaidProcess']
+        )->name('budget.item.set-as-not-paid.process');
+
         Route::get(
             '/budget/item',
             [BudgetItem::class, 'create']
