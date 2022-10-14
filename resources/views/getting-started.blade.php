@@ -52,7 +52,7 @@
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="{{ asset('images/workflow/balances.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                    <img src="{{ asset('images/getting-started/new-account.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Image of the new account form" width="700" height="500" loading="lazy">
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Step 1: Add your accounts</h1>
@@ -65,7 +65,7 @@
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="{{ asset('images/workflow/set-as-paid.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                    <img src="{{ asset('images/getting-started/new-budget-item.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Image of the new budget item form" width="700" height="500" loading="lazy">
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Step 2: Add Your budget Items</h1>
@@ -78,7 +78,7 @@
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="{{ asset('images/workflow/projections.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                    <img src="{{ asset('images/getting-started/exclusions.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Set exclusions for budget items" width="700" height="500" loading="lazy">
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Step 3: Set Exclusions</h1>

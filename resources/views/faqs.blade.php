@@ -76,6 +76,14 @@
                     <p class="lead">Check out or <a href="{{ route('workflow') }}">Workflow</a>
                     section for more detail.</p>
 
+                    <h3 class="display-6 mt-3 mb-3">Can I disable a budget item?</h3>
+                    <p class="lead">Yes, you can disable budget items. They will remain visible on
+                        your budget, but they will not be included in any calculations when we generate your
+                        projections.</p>
+
+                    <p class="lead">Check out or <a href="{{ route('workflow') }}">Workflow</a>
+                        section for more detail.</p>
+
                     <h3 class="display-6 mt-3 mb-3">Will Budget stay free?</h3>
                     <p class="lead">For as long as possible, Budget is/will be funded by the Costs to Expect API
                         and upon release, Budget Pro. We have no intention of monetising Budget*.</p>
@@ -103,7 +111,7 @@
                     <h3 class="display-6 mt-3 mb-3">Can I give you bank account details?</h3>
                     <p class="lead">Down the road, yes, a long term goal for Budget Pro is adding Open Banking support so
                         we can provide a more accurate projection and not need you to tell us what your balance is
-                        and what expense you have to pay.</p>
+                        and what expenses you have left to pay.</p>
 
                     <h3 class="display-6 mt-3 mb-3">What is Budget Pro?</h3>
                     <p class="lead">Budget Pro is the upgraded version of Budget, it includes sharing,
