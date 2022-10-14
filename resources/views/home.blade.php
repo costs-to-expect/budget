@@ -21,15 +21,15 @@
                 <div class="col-12 mx-auto p-2">
                     <div class="alert alert-dark mt-2" role="alert">
                         <h4 class="alert-heading">Demo Mode</h4>
-                        <p class="lead">You are in Demo Mode and are free to play with all the features.</p>
+                        <p class="lead">You are viewing your Demo and are free to play with all the features.</p>
                         <p class="lead">This demo is specific to you, when you are ready, you can click the
                             adopt button below to exit demo mode.</p>
                         <hr />
-                        <h4 class="alert-heading">How does it work?</h4>
-                        <p class="lead">There are two steps to the workflow, one, set your current account balances,
-                            two, mark any relevant budget items in the current month as paid. Once we know your balances
-                            and everything else that is going to come in/out, we can calculate your future
-                            projections.</p>
+                        <h4 class="alert-heading">Do You Need Help?</h4>
+                        <p class="lead">We have two sections which detail how our App works, check out
+                            our <a href="{{ route('getting-started') }}">Getting Started</a> section to understand
+                            how to add items to your Budget and checkout our <a href="{{ route('workflow') }}">Workflow</a> section to
+                            understand how we generate your projections.</p>
 
                         <hr />
                         <form action="{{ route('demo.adopt.process') }}" method="POST" class="row g-2">

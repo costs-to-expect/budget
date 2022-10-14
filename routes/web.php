@@ -56,6 +56,20 @@ Route::get(
     [Authentication::class, 'signOut']
 )->name('sign-out');
 
+Route::view(
+    '/workflow',
+    'workflow'
+)->name('workflow');
+
+Route::view(
+    '/getting-started',
+    'getting-started'
+)->name('getting-started');
+
+Route::view(
+    '/faqs',
+    'faqs'
+)->name('faqs');
 
 Route::group(
     [
@@ -69,11 +83,6 @@ Route::group(
             '/home',
             [Index::class, 'home']
         )->name('home');
-
-        Route::view(
-            '/faqs',
-            'faqs'
-        )->name('faqs');
 
         Route::get(
             '/demo',

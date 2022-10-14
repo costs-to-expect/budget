@@ -127,11 +127,23 @@
                     <p class="lead">If you aren't ready to start creating your Budget, you can load up our demo
                         Budget and play around with the App.</p>
 
-                    <p class="lead">When you are ready, you can start with your own Budget.</p>
+                    <p class="lead">When you are comfortable, you can adopt the demo and make it yours.</p>
+
+                    <h4 class="alert-heading">How Does it All Work?</h4>
+                    <p class="lead">We have two sections which detail how our App works, check out
+                        our <a href="{{ route('getting-started') }}">Getting Started</a> section to understand
+                        how to add items to your Budget and checkout our <a href="{{ route('workflow') }}">Workflow</a> section to
+                        understand how we generate your projections.</p>
                 @else
                     <p class="lead">Add a budget item, once done we will show your projection.</p>
 
-                    <p>If you want to, you can add another account, necessary if you plan to project your savings.</p>
+                    <p class="lead">If you want to, you can add another account, necessary if you plan to project your savings.</p>
+
+                    <h4 class="alert-heading">How Does it All Work?</h4>
+                    <p class="lead">We have two sections which detail how our App works, check out
+                        our <a href="{{ route('getting-started') }}">Getting Started</a> section to understand
+                        how to add items to your Budget and checkout our <a href="{{ route('workflow') }}">Workflow</a> section to
+                        understand how we generate your projections.</p>
                 @endif
 
                 <hr>
@@ -250,7 +262,9 @@
         <div class="col-12">
             <p class="lead">If you are unsure how this page works, please consult our
                 <a href="{{ route('faqs') }}">FAQs</a>, hopefully we will have an answer to your questions.
-            If you have a question that is not covered by our FAQs, please reach out to us on
+            </p>
+            <p class="lead">If you have a question that is not covered by our
+                <a href="{{ route('faqs') }}">FAQs</a>, please reach out to us on
                 <a href="https://twitter.com/coststoexpect">Twitter</a> or
                 via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>, we will respond
                 as soon as we can.</p>

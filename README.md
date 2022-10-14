@@ -1,21 +1,47 @@
 # Budget by Costs to Expect
 
-## Overview
+## A budgeting tool so easy to use, it’s child play!
 
-Budgeting, powered by the Costs to Expect API.
+A free, open source budgeting tool powered by the Costs to Expect API. This tool is designed to help you 
+budget for your next big purchase, or just to help you keep track of your spending. It’s easy to use, and it’s 
+free!
+
+Check out our [site](https://budget.costs-to-expect.com) for more information.
+
+Our [FAQs](https://budget.costs-to-expect.com/faqs), [Getting Started](https://budget.costs-to-expect.com/getting-started) 
+and [Workflow](https://budget.costs-to-expect.com/workflow) pages should cover most of your questions, but if you 
+have any, please don't hesitate to contact us.
+
+## Simple
+
+Our overview is so clear and simple, a child could manage your budget. We wouldn’t recommend it, but you get the idea.
+
+![Budget overview](/public/images/budget.png)
+
+## Projections
+
+Simply input your income and outgoings to see projected balances and savings for the months and years ahead. Handy, right?
+
+![Budget overview](/public/images/projections.png)
+
+## Exclusions
+
+We understand that not all expenses are monthly - we provide the tools to set exclusions, ensuring your budget is completely customisable and up-to-date.
+
+![Budget overview](/public/images/exclusions.png)
 
 ## Set up
 
 I'm going to assume you are using Docker, if not, you should be able to work out what you need to run for your 
-development setup.
+development setup from the steps below.
 
-Go to the project root directory and run the below.
+Go to the project root directory and run the below commands:
 
-### Environment
-
-* $ `docker network create costs.network` *
-* $ `docker compose build`
-* $ `docker compose up`
+```bash
+$ `docker network create costs.network` *
+$ `docker compose build`
+$ `docker compose up`
+```
 
 *We include a network for local development purposes, I need to connect to a local version of the Costs to Expect
 API, You probably don't need this so remove the network section from your docker compose file and don't create the
@@ -25,5 +51,6 @@ network.
 
 We include a suite of tests for the Budget service, run them as below.
 
-* $ `docker exec costs.budget.app vendor/bin/phpunit tests/`
-
+```bash
+$ `docker exec costs.budget.app vendor/bin/phpunit tests/`
+```

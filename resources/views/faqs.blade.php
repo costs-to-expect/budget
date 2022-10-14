@@ -9,10 +9,31 @@
         <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
         <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
         <link href="{{ asset('css/theme.css') }}" rel="stylesheet"/>
+        <style>
+            .container {
+                max-width: 960px;
+            }
+
+            .site-header {
+                background-color: #000000;
+                -webkit-backdrop-filter: saturate(180%) blur(20px);
+                backdrop-filter: saturate(180%) blur(20px);
+            }
+        </style>
     </head>
     <body>
 
+        @auth
         <x-offcanvas active="faqs"/>
+        @else
+        <header class="site-header sticky-top py-1">
+            <nav class="container d-flex flex-column flex-md-row justify-content-between">
+                <a class="py-2 text-center" href="{{ route('landing') }}" aria-label="Product">
+                    <img src="{{ asset('images/logo.png') }}" alt="Costs to Expect" width="48" height="48" />
+                </a>
+            </nav>
+        </header>
+        @endauth
 
         <div class="col-lg-8 mx-auto p-3">
 
@@ -39,15 +60,29 @@
                     <p class="lead">Budget is so simple to use your child could manage your Budget, did
                         we mention it is free?</p>
 
-                    <h3 class="display-6 mt-3 mb-3">How does it work?</h3>
+                    <h3 class="display-6 mt-3 mb-3">How do I setup my Budget?</h3>
                     <p class="lead">You define your Budget, tell us your balances, mark what has been paid
                         for the current month and based on that we give you future projections.</p>
+
+                    <p class="lead">Check out or <a href="{{ route('getting-started') }}">Getting Started</a>
+                        section for more detail.</p>
 
                     <h3 class="display-6 mt-3 mb-3">What is the workflow?</h3>
                     <p class="lead">There are two steps to the workflow, one, set your current account balances,
                         two, mark any relevant budget items in the current month as paid. Once we know your balances
                         and everything else that is going to come in/out, we can calculate your future
                         projections.</p>
+
+                    <p class="lead">Check out or <a href="{{ route('workflow') }}">Workflow</a>
+                    section for more detail.</p>
+
+                    <h3 class="display-6 mt-3 mb-3">Can I disable a budget item?</h3>
+                    <p class="lead">Yes, you can disable budget items. They will remain visible on
+                        your budget, but they will not be included in any calculations when we generate your
+                        projections.</p>
+
+                    <p class="lead">Check out or <a href="{{ route('workflow') }}">Workflow</a>
+                        section for more detail.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Will Budget stay free?</h3>
                     <p class="lead">For as long as possible, Budget is/will be funded by the Costs to Expect API
@@ -76,7 +111,7 @@
                     <h3 class="display-6 mt-3 mb-3">Can I give you bank account details?</h3>
                     <p class="lead">Down the road, yes, a long term goal for Budget Pro is adding Open Banking support so
                         we can provide a more accurate projection and not need you to tell us what your balance is
-                        and what expense you have to pay.</p>
+                        and what expenses you have left to pay.</p>
 
                     <h3 class="display-6 mt-3 mb-3">What is Budget Pro?</h3>
                     <p class="lead">Budget Pro is the upgraded version of Budget, it includes sharing,

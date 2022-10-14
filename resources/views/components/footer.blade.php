@@ -1,6 +1,13 @@
 <footer class="container py-5">
     <div class="row">
         <div class="col-12 col-md">
+            <h5>Help</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="link-primary" href="{{ route('getting-started') }}">Getting Started</a></li>
+                <li><a class="link-primary" href="{{ route('workflow') }}">Workflow</a></li>
+                <li><a class="link-primary" href="{{ route('faqs') }}">FAQs</a></li>
+            </ul>
+
             <small class="d-block mb-3 text-muted">&copy; 2018-{{ date('Y') }} Dean Blackborough</small>
             <small class="d-block mb-3 text-muted">{{ $version }} released {{ $release_date }}</small>
             <small class="d-block mb-3 text-muted">
