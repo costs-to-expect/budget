@@ -37,7 +37,7 @@
                 <div class="text-primary text-center month pb-2">{{ $__month->name() }}</div>
                 <div class="row">
                     @foreach ($__month->items() as $__item)
-                        <a href="{{ route('budget.item.view', ['item_id' => $__item->id(), 'now' => $__month->now(), 'item_year' => $__month->year(), 'item_month' => $__month->month()]) }}">
+                        <a href="{{ route('budget.item.view', ['item_id' => $__item->id(), 'now' => $__month->now(), 'item-year' => $__month->year(), 'item-month' => $__month->month()]) }}">
                         <div class="col-12 expense @if ($active !== null && $active === $__item->id()) active shadow @endif @if($__item->disabled() === true || ($__month->now() === true && $__item->paid() === true)) opacity-50 @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
                             <div class="name text-grey">
                                 {{ $__item->name() }}

@@ -71,8 +71,8 @@ class BudgetItem extends Controller
 
                 'item' => $budget_item['content'],
 
-                'item_year' => (int) $request->query('item_year', $budget->nowYear()),
-                'item_month' => (int) $request->query('item_month', $budget->nowMonth()),
+                'item_year' => (int) $request->query('item-year', $budget->nowYear()),
+                'item_month' => (int) $request->query('item-month', $budget->nowMonth()),
             ]
         );
     }
@@ -135,8 +135,8 @@ class BudgetItem extends Controller
 
                 'item' => $budget_item['content'],
 
-                'item_year' => (int) $request->query('item_year', $budget->nowYear()),
-                'item_month' => (int) $request->query('item_month', $budget->nowMonth()),
+                'item_year' => (int) $request->query('item-year', $budget->nowYear()),
+                'item_month' => (int) $request->query('item-month', $budget->nowMonth()),
             ]
         );
     }
@@ -198,8 +198,8 @@ class BudgetItem extends Controller
 
                 'item' => $budget_item['content'],
 
-                'item_year' => (int) $request->query('item_year', $budget->nowYear()),
-                'item_month' => (int) $request->query('item_month', $budget->nowMonth()),
+                'item_year' => (int) $request->query('item-year', $budget->nowYear()),
+                'item_month' => (int) $request->query('item-month', $budget->nowMonth()),
             ]
         );
     }
@@ -308,8 +308,9 @@ class BudgetItem extends Controller
         }
 
         $action = $request->query('action');
-        $item_year = (int) $request->query('item_year', $budget->nowYear());
-        $item_month = (int) $request->query('item_month', $budget->nowMonth());
+        $item_year = (int) $request->query('item-year', $budget->nowYear());
+        $item_month = (int) $request->query('item-month', $budget->nowMonth());
+
         $adjust_date = null;
         if ($action === 'adjust') {
             $adjust_date = (new \DateTimeImmutable("{$item_year}-{$item_month}-01", new \DateTimeZone('UTC')))->setTime(7, 1);
@@ -417,8 +418,8 @@ class BudgetItem extends Controller
 
                 'item' => $budget_item['content'],
 
-                'item_year' => (int) $request->query('item_year', $budget->nowYear()),
-                'item_month' => (int) $request->query('item_month', $budget->nowMonth()),
+                'item_year' => (int) $request->query('item-year', $budget->nowYear()),
+                'item_month' => (int) $request->query('item-month', $budget->nowMonth()),
             ]
         );
     }
