@@ -81,8 +81,10 @@
                         your budget, but they will not be included in any calculations when we generate your
                         projections.</p>
 
-                    <p class="lead">Check out or <a href="{{ route('workflow') }}">Workflow</a>
-                        section for more detail.</p>
+                    <h3 class="display-6 mt-3 mb-3">Can I adjust the amount of a budget item?</h3>
+                    <p class="lead">Yes, you can adjust the amount of a budget item on an adhoc basic by
+                        using the "adjust amount" amount button. Select the relevant budget item and enter the
+                        new amount for the chosen month, your projections will automatically update.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Will Budget stay free?</h3>
                     <p class="lead">For as long as possible, Budget is/will be funded by the Costs to Expect API
