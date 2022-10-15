@@ -365,6 +365,15 @@ class Service
                         $budget_item->setPaid(true);
                     }
 
+                    if (
+                        array_key_exists($budget_item->id(), $this->adjustments) === true &&
+                        array_key_exists($month->year(), $this->adjustments[$budget_item->id()]) === true &&
+                        array_key_exists($month->month(), $this->adjustments[$budget_item->id()][$month->year()]) === true
+                    ) {
+                        $budget_item = clone $budget_item;
+                        $budget_item->setAdjustment($this->adjustments[$budget_item->id()][$month->year()][$month->month()]);
+                    }
+
                     $this->months[$month->year() . '-' . $month->month()]->add($budget_item);
 
                     if (
