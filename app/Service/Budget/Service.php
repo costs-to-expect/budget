@@ -42,6 +42,8 @@ class Service
 
     private array $paid_items = [];
 
+    private array $adjustments = [];
+
     public function __construct()
     {
         $this->start_date = (new DateTimeImmutable('first day of this month', new DateTimeZone('UTC')))->setTime(7, 1);
@@ -113,6 +115,13 @@ class Service
         if (isset($this->currency) === false) {
             $this->currency = $this->default_currency;
         }
+
+        return $this;
+    }
+
+    public function setAdjustments(array $adjustments): Service
+    {
+        $this->adjustments = $adjustments;
 
         return $this;
     }

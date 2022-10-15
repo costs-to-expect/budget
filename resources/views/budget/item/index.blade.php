@@ -96,7 +96,7 @@
                                     </div>
                                 </form>
 
-                                <form action="" method="POST" class="row g-2 mt-3">
+                                <form action="{{ route('budget.item.reset.process', ['item_id' => $item['id'], 'item_year' => $item_year, 'item_month' => $item_month]) }}" method="POST" class="row g-2 mt-3">
                                     @csrf
                                     <h4 class="alert-heading">Reset</h4>
 
@@ -162,6 +162,22 @@
                             :projection="$projection"
                             :hasAccounts="$has_accounts"
                             :hasBudget="$has_budget"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="display-6 mt-5">Need Help?</h2>
+                </div>
+                <div class="col-12">
+                    <p class="lead">If you are unsure how this page works, please consult our
+                        <a href="{{ route('faqs') }}">FAQs</a>, hopefully we will have an answer to your questions.
+                    </p>
+                    <p class="lead">If you have a question that is not covered by our
+                        <a href="{{ route('faqs') }}">FAQs</a>, please reach out to us on
+                        <a href="https://twitter.com/coststoexpect">Twitter</a> or
+                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>, we will respond
+                        as soon as we can.</p>
                 </div>
             </div>
 

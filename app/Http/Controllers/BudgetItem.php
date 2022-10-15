@@ -8,6 +8,7 @@ use App\Actions\Budget\Item\Create;
 use App\Actions\Budget\Item\Delete;
 use App\Actions\Budget\Item\Disable;
 use App\Actions\Budget\Item\Enable;
+use App\Actions\Budget\Item\Reset;
 use App\Actions\Budget\Item\SetAsNotPaid;
 use App\Actions\Budget\Item\SetAsPaid;
 use App\Actions\Budget\Item\Update;
@@ -342,6 +343,27 @@ class BudgetItem extends Controller
                 'adjust_date' => $adjust_date
             ]
         );
+    }
+
+    public function resetProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Reset();
+        $result = $action(
+            $this->resource_id,
+            (int) $request->route('item_year'),
+            (int) $request->route('item_month'),
+            $request->route('item_id')
+        );
+
+        if ($result === 204) {
+            return redirect()
+                ->route('budget.item.view', ['item_id' => $request->route('item_id')])
+                ->with('status', 'item-reset');
+        }
+
+        abort($result, $action->getMessage());
     }
 
     public function setAsNotPaidProcess(Request $request)

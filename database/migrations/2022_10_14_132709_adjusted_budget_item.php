@@ -9,6 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('adjusted_budget_item', static function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('resource_id');
             $table->string('budget_item_id');
             $table->unsignedInteger('year');
@@ -16,7 +17,6 @@ return new class extends Migration
             $table->decimal('amount',12, 2);
             $table->timestamps();
 
-            $table->primary(['resource_id', 'budget_item_id', 'year', 'month'], 'adjusted_budget_item_primary');
             $table->index('resource_id');
             $table->index('budget_item_id');
             $table->index('year');

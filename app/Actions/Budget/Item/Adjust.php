@@ -37,11 +37,20 @@ class Adjust extends Action
             ]
         )->validate();
 
-        $model = new AdjustedBudgetItem();
-        $model->resource_id = $resource_id;
-        $model->budget_item_id = $budget_item_id;
-        $model->year = $year;
-        $model->month = $month;
+        $model = AdjustedBudgetItem::query()
+            ->where('resource_id', '=', $resource_id)
+            ->where('year', '=', $year)
+            ->where('month', '=', $month)
+            ->where('budget_item_id', '=', $budget_item_id)
+            ->first();
+
+        if ($model === null) {
+            $model = new AdjustedBudgetItem();
+            $model->resource_id = $resource_id;
+            $model->budget_item_id = $budget_item_id;
+            $model->year = $year;
+            $model->month = $month;
+        }
         $model->amount = $input['amount'];
 
         try {
@@ -50,6 +59,8 @@ class Adjust extends Action
             return 201;
         } catch (\Exception $e) {
             $this->message = $e->getMessage();
+
+            echo $e->getMessage(); die;
 
             return 500;
         }
