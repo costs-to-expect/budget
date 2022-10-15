@@ -22,6 +22,21 @@ class AdjustedBudgetItem extends Model
 {
     protected $table = 'adjusted_budget_item';
 
+    public function getAdjustment(string $resource_id, int $year, int $month, string $budget_item_id): ?float
+    {
+        $adjustment = $this->where('resource_id', $resource_id)
+            ->where('year', $year)
+            ->where('month', $month)
+            ->where('budget_item_id', $budget_item_id)
+            ->first();
+
+        if ($adjustment === null) {
+            return null;
+        }
+
+        return (float) $adjustment->amount;
+    }
+
     public function getAdjustments(string $resource_id): array
     {
         $result = self::query()

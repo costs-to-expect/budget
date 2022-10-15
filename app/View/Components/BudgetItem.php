@@ -10,18 +10,21 @@ class BudgetItem extends Component
     private array $accounts;
     private int $item_year;
     private int $item_month;
+    private ?float $adjusted_amount;
 
     public function __construct(
         array $accounts,
         array $item,
         int $itemYear,
-        int $itemMonth
+        int $itemMonth,
+        float $adjustedAmount = null
     )
     {
         $this->item = $item;
         $this->accounts = $accounts;
         $this->item_year = $itemYear;
         $this->item_month = $itemMonth;
+        $this->adjusted_amount = $adjustedAmount;
 
         $this->item['start_date'] = new \DateTimeImmutable($this->item['start_date'], new \DateTimeZone('UTC'));
         $this->item['end_date'] = ($this->item['end_date'] !== null) ? new \DateTimeImmutable($this->item['end_date'], new \DateTimeZone('UTC')) : null;
@@ -44,6 +47,8 @@ class BudgetItem extends Component
                 'item' => $this->item,
                 'item_year' => $this->item_year,
                 'item_month' => $this->item_month,
-            ]);
+                'adjusted_amount' => $this->adjusted_amount,
+            ]
+        );
     }
 }

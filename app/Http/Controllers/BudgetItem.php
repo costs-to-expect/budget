@@ -12,6 +12,7 @@ use App\Actions\Budget\Item\Reset;
 use App\Actions\Budget\Item\SetAsNotPaid;
 use App\Actions\Budget\Item\SetAsPaid;
 use App\Actions\Budget\Item\Update;
+use App\Models\AdjustedBudgetItem;
 use Illuminate\Http\Request;
 
 /**
@@ -59,6 +60,16 @@ class BudgetItem extends Controller
             abort($budget_item['status'], $budget_item['content']);
         }
 
+        $item_year = (int) $request->query('item-year', $budget->nowYear());
+        $item_month = (int) $request->query('item-month', $budget->nowMonth());
+
+        $adjusted_amount = (new AdjustedBudgetItem())->getAdjustment(
+            $this->resource_id,
+            $item_year,
+            $item_month,
+            $request->route('item_id')
+        );
+
         return view(
             'budget.item.confirm-delete',
             [
@@ -71,6 +82,7 @@ class BudgetItem extends Controller
                 'projection' => $budget->projection(),
 
                 'item' => $budget_item['content'],
+                'adjusted_amount' => $adjusted_amount,
 
                 'item_year' => (int) $request->query('item-year', $budget->nowYear()),
                 'item_month' => (int) $request->query('item-month', $budget->nowMonth()),
@@ -123,6 +135,16 @@ class BudgetItem extends Controller
             abort($budget_item['status'], $budget_item['content']);
         }
 
+        $item_year = (int) $request->query('item-year', $budget->nowYear());
+        $item_month = (int) $request->query('item-month', $budget->nowMonth());
+
+        $adjusted_amount = (new AdjustedBudgetItem())->getAdjustment(
+            $this->resource_id,
+            $item_year,
+            $item_month,
+            $request->route('item_id')
+        );
+
         return view(
             'budget.item.confirm-disable',
             [
@@ -135,6 +157,7 @@ class BudgetItem extends Controller
                 'projection' => $budget->projection(),
 
                 'item' => $budget_item['content'],
+                'adjusted_amount' => $adjusted_amount,
 
                 'item_year' => (int) $request->query('item-year', $budget->nowYear()),
                 'item_month' => (int) $request->query('item-month', $budget->nowMonth()),
@@ -186,6 +209,16 @@ class BudgetItem extends Controller
             abort($budget_item['status'], $budget_item['content']);
         }
 
+        $item_year = (int) $request->query('item-year', $budget->nowYear());
+        $item_month = (int) $request->query('item-month', $budget->nowMonth());
+
+        $adjusted_amount = (new AdjustedBudgetItem())->getAdjustment(
+            $this->resource_id,
+            $item_year,
+            $item_month,
+            $request->route('item_id')
+        );
+
         return view(
             'budget.item.confirm-enable',
             [
@@ -198,6 +231,7 @@ class BudgetItem extends Controller
                 'projection' => $budget->projection(),
 
                 'item' => $budget_item['content'],
+                'adjusted_amount' => $adjusted_amount,
 
                 'item_year' => (int) $request->query('item-year', $budget->nowYear()),
                 'item_month' => (int) $request->query('item-month', $budget->nowMonth()),
@@ -318,6 +352,13 @@ class BudgetItem extends Controller
             $adjust_date = $adjust_date->format('F Y');
         }
 
+        $adjusted_amount = (new AdjustedBudgetItem())->getAdjustment(
+            $this->resource_id,
+            $item_year,
+            $item_month,
+            $request->route('item_id')
+        );
+
         return view(
             'budget.item.index',
             [
@@ -335,6 +376,7 @@ class BudgetItem extends Controller
                 'is_paid' => ($request->query('now' ) === '1' && in_array($request->route('item_id'), $budget->paidItems(), true)),
 
                 'item' => $budget_item['content'],
+                'adjusted_amount' => $adjusted_amount,
 
                 'item_year' => $item_year,
                 'item_month' => $item_month,

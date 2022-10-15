@@ -34,7 +34,16 @@
 </div>
 <div class="col-12">
     <div class="label">Amount & Type</div>
-    <small><x-currency :currency="$item['currency']" /></small>{{ number_format($item['amount'], 2) }}
+    <small><x-currency :currency="$item['currency']" /></small>
+    @if ($adjusted_amount === null)
+    {{ number_format($item['amount'], 2) }}
+    @else
+    {{ number_format($adjusted_amount, 2) }}
+    <del>
+    <small><x-currency :currency="$item['currency']" /></small>
+    {{ number_format($item['amount'], 2) }}
+    </del>
+    @endif
     <span class="ps-2"><x-category :category="$item['category']" /></span>
 </div>
 <div class="col-12">

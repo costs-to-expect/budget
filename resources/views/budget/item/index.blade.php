@@ -82,7 +82,7 @@
 
                                     <div class="col-6">
                                         <label for="amount" class="form-label">Adjusted Amount</label>
-                                        <input type="number" class="form-control form-control-sm @error('amount') is-invalid @enderror to-fixed" id="amount" name="amount" required="required" placeholder="{{ $item['amount'] }}" min="0" step="0.01" value="{{ old('amount', $item['amount']) }}" data-points="2">
+                                        <input type="number" class="form-control form-control-sm @error('amount') is-invalid @enderror to-fixed" id="amount" name="amount" required="required" placeholder="10.99" min="0" step="0.01" value="{{ old('amount', (($adjusted_amount === null) ? $item['amount'] : number_format($adjusted_amount, 2, '.', ''))) }}" data-points="2">
                                         @error('amount')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -96,6 +96,7 @@
                                     </div>
                                 </form>
 
+                                @if ($adjusted_amount !== null)
                                 <form action="{{ route('budget.item.reset.process', ['item_id' => $item['id'], 'item_year' => $item_year, 'item_month' => $item_month]) }}" method="POST" class="row g-2 mt-3">
                                     @csrf
                                     <h4 class="alert-heading">Reset</h4>
@@ -108,11 +109,12 @@
                                         </button>
                                     </div>
                                 </form>
+                                @endif
                             </div>
                         </div>
                         @endif
 
-                        <x-budget-item :accounts="$accounts" :item="$item" :itemYear="$item_year" :itemMonth="$item_month" />
+                        <x-budget-item :accounts="$accounts" :item="$item" :itemYear="$item_year" :itemMonth="$item_month" :adjustedAmount="$adjusted_amount" />
 
                         <div class="col-12">
                             <div class="btn-group" role="group">
@@ -154,14 +156,14 @@
 
                 <div class="col-12 col-lg-7 p-2">
                     <x-budget
-                            :accounts="$accounts"
-                            :months="$months"
-                            :pagination="$pagination"
-                            :viewEnd="$view_end"
-                            :active="$item['id']"
-                            :projection="$projection"
-                            :hasAccounts="$has_accounts"
-                            :hasBudget="$has_budget"/>
+                        :accounts="$accounts"
+                        :months="$months"
+                        :pagination="$pagination"
+                        :viewEnd="$view_end"
+                        :active="$item['id']"
+                        :projection="$projection"
+                        :hasAccounts="$has_accounts"
+                        :hasBudget="$has_budget" />
                 </div>
             </div>
 

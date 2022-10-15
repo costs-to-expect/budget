@@ -45,7 +45,7 @@
                             </div>
                         </div>
 
-                        <x-budget-item :accounts="$accounts" :item="$item" :itemYear="$item_year" :itemMonth="$item_month" />
+                        <x-budget-item :accounts="$accounts" :item="$item" :itemYear="$item_year" :itemMonth="$item_month" :adjustedAmount="$adjusted_amount" />
 
                         <div class="col-12">
                             <div class="btn-group" role="group">
@@ -72,14 +72,14 @@
 
                 <div class="col-12 col-lg-7 p-2">
                     <x-budget
-                            :accounts="$accounts"
-                            :months="$months"
-                            :pagination="$pagination"
-                            :viewEnd="$view_end"
-                            :active="$item['id']"
-                            :projection="$projection"
-                            :hasAccounts="$has_accounts"
-                            :hasBudget="$has_budget"/>
+                        :accounts="$accounts"
+                        :months="$months"
+                        :pagination="$pagination"
+                        :viewEnd="$view_end"
+                        :active="$item['id']"
+                        :projection="$projection"
+                        :hasAccounts="$has_accounts"
+                        :hasBudget="$has_budget"/>
                 </div>
             </div>
 
