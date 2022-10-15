@@ -95,6 +95,19 @@
                                         <button type="submit" class="btn btn-sm btn-dark">Save</button>
                                     </div>
                                 </form>
+
+                                <form action="" method="POST" class="row g-2 mt-3">
+                                    @csrf
+                                    <h4 class="alert-heading">Reset</h4>
+
+                                    <p>Reset the budget item to the original amount of <strong><small><x-currency :currency="$item['currency']" /></small>{{ $item['amount'] }}</strong>.</p>
+
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-sm btn-dark">
+                                            Reset to <x-currency :currency="$item['currency']" />{{ $item['amount'] }}
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         @endif
