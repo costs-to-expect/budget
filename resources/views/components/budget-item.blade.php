@@ -34,7 +34,8 @@
 </div>
 <div class="col-12">
     <div class="label">Amount & Type</div>
-    <small><x-currency :currency="$item['currency']" /></small>{{ number_format($item['amount'], 2) }} <x-category :category="$item['category']" />
+    <small><x-currency :currency="$item['currency']" /></small>{{ number_format($item['amount'], 2) }}
+    <span class="ps-2"><x-category :category="$item['category']" /></span>
 </div>
 
 @if ($item['frequency']['type'] === 'monthly')

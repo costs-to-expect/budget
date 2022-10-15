@@ -139,6 +139,11 @@ Route::group(
 
         // Budget item management
         Route::get(
+            '/budget/item/{item_id}/adjust',
+            [BudgetItem::class, 'adjustProcess']
+        )->name('budget.item.adjust.process');
+
+        Route::get(
             '/budget/item/{item_id}/confirm-delete',
             [BudgetItem::class, 'confirmDelete']
         )->name('budget.item.confirm-delete');
