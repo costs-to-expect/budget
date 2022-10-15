@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Actions\Budget\Item\Adjust;
 use App\Actions\Budget\Item\Create;
 use App\Actions\Budget\Item\Delete;
 use App\Actions\Budget\Item\Disable;
@@ -19,6 +20,28 @@ use Illuminate\Http\Request;
  */
 class BudgetItem extends Controller
 {
+    public function adjustProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Adjust();
+        $result = $action(
+            $this->resource_id,
+            (int) $request->post('year'),
+            (int) $request->post('month'),
+            $request->route('item_id'),
+            $request->only(['amount'])
+        );
+
+        if ($result === 201) {
+            return redirect()
+                ->route('budget.item.view', ['item_id' => $request->route('item_id'), 'now'=>1])
+                ->with('status', 'item-adjusted');
+        }
+
+        abort($result, $action->getMessage());
+    }
+
     public function confirmDelete(Request $request)
     {
         $this->bootstrap($request);
