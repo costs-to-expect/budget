@@ -139,7 +139,7 @@ Route::group(
 
         // Budget item management
         Route::get(
-            '/budget/item/{item_id}/adjust',
+            '/budget/item/{item_id}/adjust/{item_year}/{item_month}',
             [BudgetItem::class, 'adjustProcess']
         )->name('budget.item.adjust.process');
 

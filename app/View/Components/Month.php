@@ -6,12 +6,10 @@ use Illuminate\View\Component;
 
 class Month extends Component
 {
-    private int $month;
     private string $name;
 
     public function __construct(int $month)
     {
-        $this->month = $month;
         $this->name = match ($month) {
             2 => 'February',
             3 => 'March',

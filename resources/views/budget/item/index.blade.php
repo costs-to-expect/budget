@@ -25,7 +25,7 @@
                             </h2>
                         </div>
 
-                        @if ($now === true)
+                        @if ($action === null && $now === true)
                             <div class="col-12">
                                 @if ($is_paid === false)
                                     <div class="alert alert-dark mt-2" role="alert">
@@ -67,7 +67,39 @@
                             </div>
                         @endif
 
-                        <x-budget-item :accounts="$accounts" :item="$item" />
+                        @if ($action === 'adjust' && $item_month !== null && $item_year !== null)
+                        <div class="col-12">
+                            <div class="alert alert-dark mt-2" role="alert">
+                                <h4 class="alert-heading">Adjust</h4>
+                                <p>You can adjust the amount of this budget item for <strong>{{ $adjust_date }}</strong>
+                                    using  the form below, your projection will immediately update to reflect the
+                                    adjustment.</p>
+                                <hr>
+
+                                <form action="{{ route('budget.item.adjust.process', ['item_id' => $item['id'], 'item_year' => $item_year, 'item_month' => $item_month]) }}" method="POST" class="row g-2">
+
+                                    @csrf
+
+                                    <div class="col-6">
+                                        <label for="amount" class="form-label">Adjusted Amount</label>
+                                        <input type="number" class="form-control form-control-sm @error('amount') is-invalid @enderror to-fixed" id="amount" name="amount" required="required" placeholder="{{ $item['amount'] }}" min="0" step="0.01" value="{{ old('amount', $item['amount']) }}" data-points="2">
+                                        @error('amount')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-12 mt-3">
+                                        <a href="{{ route('budget.item.view', ['item_id' => $item['id']]) }}" class="btn btn-sm btn-outline-primary">Cancel</a>
+                                        <button type="submit" class="btn btn-sm btn-dark">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        @endif
+
+                        <x-budget-item :accounts="$accounts" :item="$item" :itemYear="$item_year" :itemMonth="$item_month" />
 
                         <div class="col-12">
                             <div class="btn-group" role="group">
@@ -125,5 +157,6 @@
             <x-footer />
         </div>
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
+        <script src="{{ asset('js/auto-format-numbers.js') }}" defer></script>
     </body>
 </html>

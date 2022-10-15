@@ -27,8 +27,8 @@ class BudgetItem extends Controller
         $action = new Adjust();
         $result = $action(
             $this->resource_id,
-            (int) $request->post('year'),
-            (int) $request->post('month'),
+            (int) $request->route('item_year'),
+            (int) $request->route('item_month'),
             $request->route('item_id'),
             $request->only(['amount'])
         );
@@ -70,6 +70,9 @@ class BudgetItem extends Controller
                 'projection' => $budget->projection(),
 
                 'item' => $budget_item['content'],
+
+                'item_year' => (int) $request->query('item_year', $budget->nowYear()),
+                'item_month' => (int) $request->query('item_month', $budget->nowMonth()),
             ]
         );
     }
@@ -131,6 +134,9 @@ class BudgetItem extends Controller
                 'projection' => $budget->projection(),
 
                 'item' => $budget_item['content'],
+
+                'item_year' => (int) $request->query('item_year', $budget->nowYear()),
+                'item_month' => (int) $request->query('item_month', $budget->nowMonth()),
             ]
         );
     }
@@ -191,6 +197,9 @@ class BudgetItem extends Controller
                 'projection' => $budget->projection(),
 
                 'item' => $budget_item['content'],
+
+                'item_year' => (int) $request->query('item_year', $budget->nowYear()),
+                'item_month' => (int) $request->query('item_month', $budget->nowMonth()),
             ]
         );
     }
@@ -298,6 +307,15 @@ class BudgetItem extends Controller
             abort($budget_item['status'], $budget_item['content']);
         }
 
+        $action = $request->query('action');
+        $item_year = (int) $request->query('item_year', $budget->nowYear());
+        $item_month = (int) $request->query('item_month', $budget->nowMonth());
+        $adjust_date = null;
+        if ($action === 'adjust') {
+            $adjust_date = (new \DateTimeImmutable("{$item_year}-{$item_month}-01", new \DateTimeZone('UTC')))->setTime(7, 1);
+            $adjust_date = $adjust_date->format('F Y');
+        }
+
         return view(
             'budget.item.index',
             [
@@ -315,6 +333,12 @@ class BudgetItem extends Controller
                 'is_paid' => ($request->query('now' ) === '1' && in_array($request->route('item_id'), $budget->paidItems(), true)),
 
                 'item' => $budget_item['content'],
+
+                'item_year' => $item_year,
+                'item_month' => $item_month,
+
+                'action' => $action,
+                'adjust_date' => $adjust_date
             ]
         );
     }
@@ -392,6 +416,9 @@ class BudgetItem extends Controller
                 'has_savings_account' => $budget->hasSavingsAccount(),
 
                 'item' => $budget_item['content'],
+
+                'item_year' => (int) $request->query('item_year', $budget->nowYear()),
+                'item_month' => (int) $request->query('item_month', $budget->nowMonth()),
             ]
         );
     }

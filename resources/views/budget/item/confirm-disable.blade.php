@@ -45,7 +45,7 @@
                             </div>
                         </div>
 
-                        <x-budget-item :accounts="$accounts" :item="$item" />
+                        <x-budget-item :accounts="$accounts" :item="$item" :itemYear="$item_year" :itemMonth="$item_month" />
 
                         <div class="col-12">
                             <div class="btn-group" role="group">
