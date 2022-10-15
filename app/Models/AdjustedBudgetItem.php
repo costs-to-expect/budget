@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * https://github.com/costs-to-expect/yahtzee/blob/main/LICENSE
  *
  * @property string $resource_id
+ * @property string $budget_item_id
  * @property int $year
  * @property int $month
  * @property float $amount

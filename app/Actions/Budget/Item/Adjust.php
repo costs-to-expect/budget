@@ -39,6 +39,7 @@ class Adjust extends Action
 
         $model = new AdjustedBudgetItem();
         $model->resource_id = $resource_id;
+        $model->budget_item_id = $budget_item_id;
         $model->year = $year;
         $model->month = $month;
         $model->amount = $input['amount'];
