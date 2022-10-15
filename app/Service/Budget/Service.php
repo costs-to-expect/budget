@@ -42,6 +42,8 @@ class Service
 
     private array $paid_items = [];
 
+    private array $adjustments = [];
+
     public function __construct()
     {
         $this->start_date = (new DateTimeImmutable('first day of this month', new DateTimeZone('UTC')))->setTime(7, 1);
@@ -113,6 +115,13 @@ class Service
         if (isset($this->currency) === false) {
             $this->currency = $this->default_currency;
         }
+
+        return $this;
+    }
+
+    public function setAdjustments(array $adjustments): Service
+    {
+        $this->adjustments = $adjustments;
 
         return $this;
     }
@@ -354,6 +363,15 @@ class Service
                     if ($month->now() === true && in_array($budget_item->id(), $this->paid_items, true)) {
                         $budget_item = clone $budget_item;
                         $budget_item->setPaid(true);
+                    }
+
+                    if (
+                        array_key_exists($budget_item->id(), $this->adjustments) === true &&
+                        array_key_exists($month->year(), $this->adjustments[$budget_item->id()]) === true &&
+                        array_key_exists($month->month(), $this->adjustments[$budget_item->id()][$month->year()]) === true
+                    ) {
+                        $budget_item = clone $budget_item;
+                        $budget_item->setAdjustment($this->adjustments[$budget_item->id()][$month->year()][$month->month()]);
                     }
 
                     $this->months[$month->year() . '-' . $month->month()]->add($budget_item);

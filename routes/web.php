@@ -138,6 +138,16 @@ Route::group(
 
 
         // Budget item management
+        Route::post(
+            '/budget/item/{item_id}/adjust/{item_year}/{item_month}',
+            [BudgetItem::class, 'adjustProcess']
+        )->name('budget.item.adjust.process');
+
+        Route::post(
+            '/budget/item/{item_id}/reset/{item_year}/{item_month}',
+            [BudgetItem::class, 'resetProcess']
+        )->name('budget.item.reset.process');
+
         Route::get(
             '/budget/item/{item_id}/confirm-delete',
             [BudgetItem::class, 'confirmDelete']

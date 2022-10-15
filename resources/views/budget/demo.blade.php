@@ -31,15 +31,6 @@
                         We are loading the data for your demo, as soon as we are done we will let you know,
                         everything should be ready in less than a minute.
                     </p>
-
-                    <p class="lead text-primary d-none continue-to-demo">
-                        We are done, click the button to start customising your Budget.
-                        <a class="btn btn-sm btn-primary" href="{{ route('home') }}">
-                            Continue to Budget
-                        </a>
-                    </p>
-                    @else
-                    <hr>
                     @endif
 
                     <form action="{{ route('demo.process') }}" method="POST" class="row g-2">
@@ -72,6 +63,15 @@
                         @endif
                     </form>
                 </div>
+
+                @if ($loading === true)
+                <p class="lead text-primary d-none continue-to-demo">
+                    We are done, click the button to start customising your Budget.
+                    <a class="btn btn-sm btn-outline-primary" href="{{ route('home') }}">
+                        Continue to Budget
+                    </a>
+                </p>
+                @endif
             </div>
 
             <x-requests />

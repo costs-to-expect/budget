@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Api\Service;
+use App\Models\AdjustedBudgetItem;
 use App\Models\PaidBudgetItem;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -145,7 +146,10 @@ class Controller extends BaseController
             $budget->nowMonth()
         );
 
+        $adjustments = (new AdjustedBudgetItem())->getAdjustments($this->resource_id);
+
         $budget->setPaidBudgetItems($paid_budget_items);
+        $budget->setAdjustments($adjustments);
 
         foreach ($budget_items as $budget_item) {
             $budget->addItem($budget_item);

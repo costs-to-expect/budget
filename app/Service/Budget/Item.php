@@ -23,6 +23,7 @@ class Item
     protected ?DateTimeImmutable $end_date = null;
 
     protected float $amount;
+    protected float $original_amount;
     protected array $currency;
 
     protected Period $frequency;
@@ -38,6 +39,8 @@ class Item
     protected DateTimeImmutable $today;
 
     protected bool $paid = false;
+
+    protected bool $has_adjustment = false;
 
     /**
      * @throws \Exception
@@ -60,6 +63,7 @@ class Item
         $this->description = $data['description'];
 
         $this->amount = (float) $data['amount'];
+        $this->original_amount = $this->amount;
         $this->currency = $data['currency'];
 
         if ($data['frequency']['type'] === 'monthly') {
@@ -188,6 +192,11 @@ class Item
         return $this->frequency;
     }
 
+    public function hasAdjustment(): bool
+    {
+        return $this->has_adjustment;
+    }
+
     public function id(): string
     {
         return $this->id;
@@ -198,6 +207,11 @@ class Item
         return $this->name;
     }
 
+    public function originalAmount(): float
+    {
+        return $this->original_amount;
+    }
+
     public function paid(): bool
     {
         return $this->paid;
@@ -206,6 +220,13 @@ class Item
     public function progressBarPercentage(): int
     {
         return (new ProgressBar($this->amount))->percentage();
+    }
+
+    public function setAdjustment(float $adjustment): void
+    {
+        $this->has_adjustment = true;
+        $this->original_amount = $this->amount;
+        $this->amount = $adjustment;
     }
 
     public function setPaid(bool $paid): void
