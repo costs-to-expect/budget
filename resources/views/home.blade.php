@@ -50,10 +50,9 @@
                 :months="$months"
                 :pagination="$pagination"
                 :viewEnd="$view_end"
-                :active="false"
                 :projection="$projection"
                 :hasAccounts="$has_accounts"
-                :hasBudget="$has_budget"/>
+                :hasBudget="$has_budget" />
 
             <div class="row">
                 <div class="col-12">
