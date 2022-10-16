@@ -12,6 +12,75 @@ class BudgetTestAccountTest extends TestCase
 {
     use WithFaker;
 
+    public function testAdjustedBudgetItemCorrectlyHandledInProjections(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 1000, 5000);
+        $budget_item_amount = $this->faker->randomFloat(2, 10, 1000);
+
+        $account = [
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
+            'type' => 'expense',
+            'id' => $account_id,
+            'name' => 'Default',
+            'description' => null,
+            'balance' => $starting_balance
+        ];
+
+        $budget_item_id = $this->faker->uuid();
+        $adjustments = [
+            $budget_item_id => [
+                2020 => [
+                    9 => $budget_item_amount * 2
+                ]
+            ]
+        ];
+
+        $service = new Service();
+        $service->setNow(
+            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->setAdjustments($adjustments);
+        $service->create();
+        $service->addItem(
+            [
+                'id' => $budget_item_id,
+                'name' => 'Expense',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
+                'category' => 'expense',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => []
+                ]
+            ]
+        );
+
+        $service->assignItemsToBudget();
+
+        $this->assertEquals(
+            round($starting_balance - ($budget_item_amount * 4), 2),
+            $service->account($account_id)->projected()
+        );
+    }
+
     public function testMonthlyIncomeAddedToBalance(): void
     {
         $account_id = $this->faker->uuid();
@@ -365,6 +434,124 @@ class BudgetTestAccountTest extends TestCase
 
         $this->assertEquals(
             round($starting_balance + ($budget_item_amount * 2), 2),
+            $service->account($account_id)->projected()
+        );
+    }
+
+    public function testDeletedExpenseNotIncludedInProjectionsAfterEndDate(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 1000, 5000);
+        $budget_item_amount = $this->faker->randomFloat(2, 10, 1000);
+
+        $account = [
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
+            'type' => 'expense',
+            'id' => $account_id,
+            'name' => 'Default',
+            'description' => null,
+            'balance' => $starting_balance
+        ];
+
+        $service = new Service();
+        $service->setNow(
+            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->create();
+        $service->addItem(
+            [
+                'id' => $this->faker->uuid(),
+                'name' => 'Expense',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
+                'category' => 'expense',
+                'start_date' => '2020-08-01',
+                'end_date' => '2020-09-30',
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => []
+                ]
+            ]
+        );
+
+        $service->assignItemsToBudget();
+
+        $this->assertEquals(
+            round($starting_balance - ($budget_item_amount * 2), 2),
+            $service->account($account_id)->projected()
+        );
+    }
+
+    public function testDisabledExpenseNotIncludedInProjections(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 1000, 5000);
+        $budget_item_amount = $this->faker->randomFloat(2, 10, 1000);
+
+        $account = [
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
+            'type' => 'expense',
+            'id' => $account_id,
+            'name' => 'Default',
+            'description' => null,
+            'balance' => $starting_balance
+        ];
+
+        $service = new Service();
+        $service->setNow(
+            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->create();
+        $service->addItem(
+            [
+                'id' => $this->faker->uuid(),
+                'name' => 'Expense',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
+                'category' => 'expense',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => true,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => []
+                ]
+            ]
+        );
+
+        $service->assignItemsToBudget();
+
+        $this->assertEquals(
+            round($starting_balance, 2),
             $service->account($account_id)->projected()
         );
     }
@@ -1323,6 +1510,68 @@ class BudgetTestAccountTest extends TestCase
         $this->assertEquals(
             round($starting_saving_balance + ($savings_item_amount * 2), 2),
             $service->account($savings_account_id)->projected()
+        );
+    }
+
+    public function testPaidExpenseNotIncludedInProjections(): void
+    {
+        $account_id = $this->faker->uuid();
+        $starting_balance = $this->faker->randomFloat(2, 1000, 5000);
+        $budget_item_amount = $this->faker->randomFloat(2, 10, 1000);
+
+        $account = [
+            'currency' => [
+                'id' => 1,
+                'code' => 'GBP',
+                'name' => 'Sterling'
+            ],
+            'type' => 'expense',
+            'id' => $account_id,
+            'name' => 'Default',
+            'description' => null,
+            'balance' => $starting_balance
+        ];
+
+        $budget_item_id = $this->faker->uuid();
+
+        $service = new Service();
+        $service->setNow(
+            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
+        );
+        $service->setAccounts([$account]);
+        $service->setPaidBudgetItems([$budget_item_id]);
+        $service->create();
+        $service->addItem(
+            [
+                'id' => $budget_item_id,
+                'name' => 'Expense',
+                'account' => $account_id,
+                'target_account' => null,
+                'description' => 'This is a description for the expense',
+                'amount' => $budget_item_amount,
+                "currency" => [
+                    "id" => "epMqeYqPkL",
+                    "name" => "Sterling",
+                    "code" => "GBP",
+                    "uri" => "/v3/currencies/epMqeYqPkL",
+                ],
+                'category' => 'expense',
+                'start_date' => '2020-08-01',
+                'end_date' => null,
+                'disabled' => false,
+                'frequency' => [
+                    'type' => 'monthly',
+                    'day' => 10,
+                    'exclusions' => []
+                ]
+            ]
+        );
+
+        $service->assignItemsToBudget();
+
+        $this->assertEquals(
+            round($starting_balance - ($budget_item_amount * 2), 2),
+            $service->account($account_id)->projected()
         );
     }
 }
