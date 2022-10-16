@@ -9,3 +9,4 @@ yarn-error.log
 .idea
 .docker/mysql/data
 public/node_modules
+.phpunit.cache/test-results

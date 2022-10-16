@@ -275,10 +275,12 @@
                         :months="$months"
                         :pagination="$pagination"
                         :viewEnd="$view_end"
-                        :active="$item['id']"
                         :projection="$projection"
                         :hasAccounts="$has_accounts"
-                        :hasBudget="$has_budget"/>
+                        :hasBudget="$has_budget"
+                        :active_item="$item['id']"
+                        :active_item_year="$item_year"
+                        :active_item_month="$item_month" />
                 </div>
             </div>
 

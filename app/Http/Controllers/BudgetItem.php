@@ -37,7 +37,14 @@ class BudgetItem extends Controller
 
         if ($result === 201) {
             return redirect()
-                ->route('budget.item.view', ['item_id' => $request->route('item_id'), 'now'=>1])
+                ->route(
+                    'budget.item.view',
+                    [
+                        'item_id' => $request->route('item_id'),
+                        'item-year' => (int) $request->route('item_year'),
+                        'item-month' => (int) $request->route('item_month'),
+                    ]
+                )
                 ->with('status', 'item-adjusted');
         }
 
@@ -401,7 +408,14 @@ class BudgetItem extends Controller
 
         if ($result === 204) {
             return redirect()
-                ->route('budget.item.view', ['item_id' => $request->route('item_id')])
+                ->route(
+                    'budget.item.view',
+                    [
+                        'item_id' => $request->route('item_id'),
+                        'item-year' => (int) $request->route('item_year'),
+                        'item-month' => (int) $request->route('item_month'),
+                    ]
+                )
                 ->with('status', 'item-reset');
         }
 
