@@ -7,7 +7,7 @@
 
     <div class="row">
         <div class="col-12 text-end">
-            @if ($has_accounts)
+            @if ($has_accounts && $has_budget)
             <div class="btn-group" role="group">
                 <a class="btn btn-sm btn-outline-primary" href="{{ route('budget.item.create') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -126,26 +126,20 @@
             <div class="alert alert-dark mt-2" role="alert">
                 <h4 class="alert-heading">Let's Begin!</h4>
                 @if ($has_accounts === false)
-                    <p class="lead">If you aren't ready to start creating your Budget, you can load up our demo
-                        Budget and play around with the App.</p>
+                    <p class="lead">To get started, select start below, you will be asked to create your
+                        first account and select the currency for your Budget.</p>
 
-                    <p class="lead">When you are comfortable, you can adopt the demo and make it yours.</p>
+                    <h4 class="alert-heading">I want to see Budget in action</h4>
 
-                    <h4 class="alert-heading">How Does it All Work?</h4>
-                    <p class="lead">We have two sections which detail how our App works, check out
-                        our <a href="{{ route('getting-started') }}">Getting Started</a> section to understand
-                        how to add items to your Budget and checkout our <a href="{{ route('workflow') }}">Workflow</a> section to
-                        understand how we generate your projections.</p>
+                    <p class="lead">If you would like to see how everything works, select Load demo, this
+                        will create a Budget in your currency of choice and let you explore our App.</p>
+
+                    <p class="lead">When you are comfortable, you can adopt the demo or reset your
+                        <a href="{{ route('account.index') }}">account</a> and start fresh.</p>
                 @else
-                    <p class="lead">Add a budget item, once done we will show your projection.</p>
+                    <p class="lead">Add a budget item, we will then show your projection.</p>
 
-                    <p class="lead">If you want to, you can add another account, necessary if you plan to project your savings.</p>
-
-                    <h4 class="alert-heading">How Does it All Work?</h4>
-                    <p class="lead">We have two sections which detail how our App works, check out
-                        our <a href="{{ route('getting-started') }}">Getting Started</a> section to understand
-                        how to add items to your Budget and checkout our <a href="{{ route('workflow') }}">Workflow</a> section to
-                        understand how we generate your projections.</p>
+                    <p class="lead">If you want to, you can add another account, this is necessary if you plan to project your savings.</p>
                 @endif
             </div>
             <p class="mb-0">
