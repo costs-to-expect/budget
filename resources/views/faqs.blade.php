@@ -53,90 +53,89 @@
             <div class="row">
                 <div class="col-12">
                     <h3 class="display-6 mt-3 mb-3">What is Budget?</h3>
-                    <p class="lead">Budget is a free, open source budgeting tool powered by the
-                        Costs to Expect API.
+                    <p class="lead">Budget is a <strong>free</strong>, open source budgeting tool powered
+                        by the Costs to Expect API. In three simple steps, it enables you to manage your
+                        budget and see projections for the future.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Why Budget?</h3>
-                    <p class="lead">Budget is so simple to use your child could manage your Budget, did
-                        we mention it is free?</p>
+                    <p class="lead">Our overview is so clear and simple, a child could manage your budget.
+                        We wouldn't recommend it but you get the idea.
+                        Did we mention that it’s free?!</p>
 
                     <h3 class="display-6 mt-3 mb-3">How do I setup my Budget?</h3>
-                    <p class="lead">You define your Budget, tell us your balances, mark what has been paid
-                        for the current month and based on that we give you future projections.</p>
+                    <p class="lead">Setting up your Budget is simple. Start by inputting your balances and expenses.
+                        Mark which expenses have been paid for the month. We’ll give you projections for the months ahead.
+                        It's that easy. Keep track of your budget and build your savings.</p>
 
-                    <p class="lead">Check out or <a href="{{ route('getting-started') }}">Getting Started</a>
+                    <p class="lead">Check out our <a href="{{ route('getting-started') }}">Getting Started</a>
                         section for more detail.</p>
 
                     <h3 class="display-6 mt-3 mb-3">What is the workflow?</h3>
-                    <p class="lead">There are two steps to the workflow, one, set your current account balances,
-                        two, mark any relevant budget items in the current month as paid. Once we know your balances
-                        and everything else that is going to come in/out, we can calculate your future
-                        projections.</p>
+                    <p class="lead">The workflow explains the simple steps you need to take each time you review
+                        your Budget.</p>
 
-                    <p class="lead">Check out or <a href="{{ route('workflow') }}">Workflow</a>
-                    section for more detail.</p>
+                    <p class="lead">Check out our <a href="{{ route('workflow') }}">Workflow</a>
+                        section for more detail.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Can I disable a budget item?</h3>
-                    <p class="lead">Yes, you can disable budget items. They will remain visible on
-                        your budget, but they will not be included in any calculations when we generate your
-                        projections.</p>
+                    <p class="lead">Yes, you can disable budget items by toggling them off/on again. When a budget
+                        item is disabled, it will remain visible on your budget but it will not be used in any of
+                        your projection calculations.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Can I adjust the amount of a budget item?</h3>
-                    <p class="lead">Yes, you can adjust the amount of a budget item on an adhoc basic by
-                        using the "adjust amount" amount button. Select the relevant budget item and enter the
-                        new amount for the chosen month, your projections will automatically update.</p>
+                    <p class="lead">Yes, you can adjust the amount of a budget item on an adhoc basis by using the
+                        "adjust amount" button. Select the relevant budget item and enter the new amount for the
+                        chosen month - your projections will automatically update.</p>
 
-                    <h3 class="display-6 mt-3 mb-3">Will Budget stay free?</h3>
-                    <p class="lead">For as long as possible, Budget is/will be funded by the Costs to Expect API
-                        and upon release, Budget Pro. We have no intention of monetising Budget*.</p>
-
-                    <p class="small text-muted">We reserve the right to change this if sheer number of users make this
-                        unviable for us (But we promise to do our best!)</p>
+                    <h3 class="display-6 mt-3 mb-3">Will Budget always be free?</h3>
+                    <p class="lead">Budget is currently free and funded by the Costs to Expect API. We have no
+                        intention of monetising Budget. However, we reserve the right to change this if sheer numbers
+                        of users make it unviable for us to fund it. (But we promise to do our best!)</p>
 
                     <h3 class="display-6 mt-3 mb-3">How do I delete my account?</h3>
-                    <p class="lead">If you want to <a href="{{ route('account.index') }}">delete</a> your account, please go to the account section,
-                        we have multiple data deletion options</p>
-
-                    <h3 class="display-6 mt-3 mb-3">Will you update Budget after your release Budget Pro?</h3>
-                    <p class="lead">Yes, both Budget and Budget Pro will receive regular updates, we
-                        have an extensive list of upgrades we want to deliver for both Apps.</p>
-
-                    <h3 class="display-6 mt-3 mb-3">Do you use Budget?</h3>
-                    <p class="lead">Yes, however, once we release Budget Pro will be use that.
-                        We continuously ensure we can manage our Budget with this version. We designed Budget to
-                        account for our needs, if it can't manage our needs it is unlikely to work for anyone else.</p>
+                    <p class="lead">We hope this isn't a question you'll ask but should you want to delete your account,
+                        please go to "<a href="{{ route('account.index') }}">Your Account</a>" where we have multiple
+                        data deletion options which are quick and easy.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Do I need to give you my bank account details?</h3>
-                    <p class="lead">No, Budget is a projection base budget tool, you tell us your balance and
-                        based on your defined Budget we give you financial projections.</p>
+                    <p class="lead">No. Budget is a projection based budget tool - you tell us your balance and based
+                        on your defined Budget, we'll provide you with your financial projections.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Can I give you bank account details?</h3>
-                    <p class="lead">Down the road, yes, a long term goal for Budget Pro is adding Open Banking support so
-                        we can provide a more accurate projection and not need you to tell us what your balance is
-                        and what expenses you have left to pay.</p>
+                    <p class="lead">Down the road, a long term goal for the next version of Budget(Budget Pro), is
+                        adding Open Banking support so we can provide a more accurate projection. We won't need you
+                        to tell us what your balance is or what expenses you have left to pay.</p>
 
                     <h3 class="display-6 mt-3 mb-3">What is Budget Pro?</h3>
-                    <p class="lead">Budget Pro is the upgraded version of Budget, it includes sharing,
-                        multiple budgets and many other extra features.</p>
+                    <p class="lead">Budget Pro is the upgraded version of Budget. It includes sharing, multiple
+                        budgets as well many other extra features. It will be subject to a monthly subscription fee.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Will I be able to upgrade to Budget Pro?</h3>
-                    <p class="lead">Yes, upon release you will be able to upgrade to Budget Pro if you want to,
-                        that is actually our preferred route. Your Budget will appear in Budget Pro and you will
-                        access to all the new toys.</p>
+                    <p class="lead">Yes, upon release you will be able to upgrade to Budget Pro if you want to. Your
+                        Budget will appear in Budget Pro and you will have access to all the new features.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Will I be able to downgrade from Budget Pro?</h3>
-                    <p class="lead">We don't know yet but the goal is yes. Some data may need to be adjusted
-                        during the downgrade but no data will be lost.</p>
+                    <p class="lead">We don't know yet but the goal is yes. Some data may need to be adjusted during
+                        the downgrade but no data will be lost.</p>
 
                     <h3 class="display-6 mt-3 mb-3">When will Budget Pro release?</h3>
-                    <p class="lead">We don't know yet, out goal is six months after the official release of Budget
-                        but there is no fixed date.</p>
+                    <p class="lead">We don't have a fixed release date but we're aiming for the first quarter of 2023.</p>
 
-                    <h3 class="display-6 mt-3 mb-3">I need help?</h3>
+                    <h3 class="display-6 mt-3 mb-3">Will you update Budget after you release Budget Pro?</h3>
+                    <p class="lead">Yes, both Budget and Budget Pro will receive regular updates and we have an
+                        extensive list of upgrades planned for both Apps.</p>
+
+                    <h3 class="display-6 mt-3 mb-3">Do you use Budget yourself?</h3>
+                    <p class="lead">We firmly believe in using our own products. Budget has been developed, built
+                        and tested using our own budgeting needs and we continuously ensure that we can manage our
+                        Budget with this version. We understand that if Budget can't manage our needs, it's
+                        unlikely to work for anyone else.</p>
+
+                    <h3 class="display-6 mt-3 mb-3">What if I need further help?</h3>
                     <p class="lead">If you need help, please reach out to us on
                         <a href="https://twitter.com/coststoexpect">Twitter</a> or
-                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>, we will respond
-                        as soon as we can.</p>
+                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>, we'll get back to
+                        you as soon as we can.</p>
                 </div>
 
             </div>
