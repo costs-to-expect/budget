@@ -31,4 +31,64 @@ class Account extends Controller
             ]
         );
     }
+
+    public function reset(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $user = $this->api->getAuthUser();
+
+        if ($user['status'] !== 200) {
+
+            // @todo Send a notification about the error
+            abort(404, 'Unable to fetch your account information from the API');
+        }
+
+        return view(
+            'account.reset',
+            [
+                'user' => $user['content']
+            ]
+        );
+    }
+
+    public function deleteAccount(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $user = $this->api->getAuthUser();
+
+        if ($user['status'] !== 200) {
+
+            // @todo Send a notification about the error
+            abort(404, 'Unable to fetch your account information from the API');
+        }
+
+        return view(
+            'account.delete-account',
+            [
+                'user' => $user['content']
+            ]
+        );
+    }
+
+    public function deleteBudgetAccount(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $user = $this->api->getAuthUser();
+
+        if ($user['status'] !== 200) {
+
+            // @todo Send a notification about the error
+            abort(404, 'Unable to fetch your account information from the API');
+        }
+
+        return view(
+            'account.delete-budget-account',
+            [
+                'user' => $user['content']
+            ]
+        );
+    }
 }

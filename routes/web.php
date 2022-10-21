@@ -219,5 +219,20 @@ Route::group(
             '/account',
             [Account::class, 'index']
         )->name('account.index');
+
+        Route::get(
+            '/account/reset',
+            [Account::class, 'reset']
+        )->name('account.reset');
+
+        Route::get(
+            '/account/delete-budget-account',
+            [Account::class, 'deleteBudgetAccount']
+        )->name('account.delete-budget-account');
+
+        Route::get(
+            '/account/delete-account',
+            [Account::class, 'deleteAccount']
+        )->name('account.delete-account');
     }
 );

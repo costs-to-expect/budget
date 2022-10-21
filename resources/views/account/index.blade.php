@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Budget by Costs to Expect - Simplified Budgeting">
         <meta name="author" content="Dean Blackborough">
-        <title>Budget: Home</title>
+        <title>Budget: Manage Account</title>
         <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
         <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
         <link href="{{ asset('css/theme.css') }}" rel="stylesheet"/>
@@ -17,11 +17,17 @@
         <div class="col-lg-8 mx-auto p-3">
 
             <main>
-                <h2>Your account</h2>
+                <h2 class="display-4 mt-3 mb-3">Manage Account</h2>
 
-                <p class="load">Manage your account details below.</p>
+                <p class="lead">You can manage your account below, this includes resetting your Budget and
+                    deleting your Costs to Expect account.
+                </p>
 
-                <ul class="list-group list-group-flush">
+                <h2 class="display-5">Account</h2>
+
+                <p class="lead">Update your profile and password using the options below.</p>
+
+                <ul class="list-group list-group-flush mb-3">
                     <li class="list-group-item">
                         <strong>Name</strong>: {{ $user['name'] }}
                     </li>
@@ -30,41 +36,34 @@
                     </li>
                 </ul>
 
-                <h3 class="mt-5">Delete 'Budget' account</h3>
+                <h2 class="display-5">Reset Budget</h2>
 
-                <p class="lead">This will delete all your Budgets and any other data specific to the
-                    Budget App.</p>
+                <p class="lead">This will reset your Budget account, it will be like you have just registered,
+                    please review the tables below to see what will be deleted and what will remain.</p>
 
-                <p>Please review the tables below to see what will be deleted and what will remain.</p>
+                <h3 class="display-6">Data that will be deleted</h3>
 
-                <h4>Data that will be deleted</h4>
-
-                <p>All the data listed in this table will be deleted.</p>
+                <p>All the data listed in the following table will be deleted.</p>
 
                 <div class="table-responsive">
-                    <table class="table table-dark">
+                    <table class="table table-sm">
                         <thead>
-                        <tr>
-                            <th scope="col">Content</th>
+                        <tr class="bg-dark text-light">
+                            <th scope="col">Data type</th>
                             <th scope="col">Description</th>
-                            <th scope="col">Location</th>
+                            <th scope="col">Data location</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td>Budgets</td>
-                            <td>All your budgets</td>
+                            <td>Budget</td>
+                            <td>Your Budget definition and budget items</td>
                             <td>API</td>
                         </tr>
                         <tr>
                             <td>Related data</td>
-                            <td>Categories, limits, ranges, anything related to your budgets</td>
-                            <td>Budget & API</td>
-                        </tr>
-                        <tr>
-                            <td>Logs</td>
-                            <td>Recorded changes for undo etc.</td>
-                            <td>API</td>
+                            <td>Paid budget item definitions and adjusted budget item values</td>
+                            <td>Budget</td>
                         </tr>
                         <tr>
                             <td>Sessions</td>
@@ -75,53 +74,125 @@
                     </table>
                 </div>
 
-                <h4>Data that will be not deleted</h4>
+                <h3 class="display-6">Data that will be not deleted</h3>
 
-                <p>All the data listed in this table will remain.</p>
+                <p>All the data listed in the following table will remain.</p>
 
                 <div class="table-responsive">
-                    <table class="table table-dark">
+                    <table class="table table-sm">
                         <thead>
-                        <tr>
-                            <th scope="col">Content</th>
+                        <tr class="bg-dark text-light">
+                            <th scope="col">Data type</th>
                             <th scope="col">Description</th>
-                            <th scope="col">Location</th>
+                            <th scope="col">Data location</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>Account</td>
-                            <td>Your Costs to Expect account, one account for all our Apps</td>
+                            <td>Your Costs to Expect account, you use one account across all our Apps</td>
                             <td>API</td>
                         </tr>
                         <tr>
-                            <td>Other App data</td>
-                            <td>Your will still have access to all the other Costs to Expect Apps and
-                                none of your data will be touched</td>
+                            <td>Other Apps</td>
+                            <td>Your will still have access to all the Costs to Expect Apps and
+                                none of your data will be touched.</td>
                             <td>API & Relevant Apps</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <a href="#" class="btn btn-sm btn-danger disabled" disabled="disabled">Delete Budget Account (Coming soon(tm))</a>
+                <a href="{{ route('account.reset') }}" class="btn btn-sm btn-outline-danger">Reset</a>
 
-                <h3 class="mt-5">Delete Costs to Expect account</h3>
+                <h2 class="display-5 pt-5">Delete Budget Account</h2>
 
-                <p class="lead">This will delete your Costs to Expect account and accounts in all
-                    our other Apps, Budget, Expense, Yatzy, Yahtzee etc.</p>
+                <p class="lead">This will delete your Budget account, it will be like you never registered
+                    on Budget, please review the tables below to see what will be deleted and what
+                    will remain.</p>
 
-                <p>Please review the table below to see what will be deleted, nothing will remain.</p>
+                <h3 class="display-6">Data that will be deleted</h3>
 
-                <h4>Data that will be deleted</h4>
+                <p>All the data listed in the following table will be deleted.</p>
 
                 <div class="table-responsive">
-                    <table class="table table-dark">
+                    <table class="table table-sm">
                         <thead>
-                        <tr>
-                            <th scope="col">Content</th>
+                        <tr class="bg-dark text-light">
+                            <th scope="col">Data type</th>
                             <th scope="col">Description</th>
-                            <th scope="col">Location</th>
+                            <th scope="col">Data location</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Budget</td>
+                            <td>Your Budget definition and budget items</td>
+                            <td>API</td>
+                        </tr>
+                        <tr>
+                            <td>Budget Account</td>
+                            <td>Your Budget account</td>
+                            <td>API</td>
+                        </tr>
+                        <tr>
+                            <td>Related data</td>
+                            <td>Paid budget item definitions and adjusted budget item values</td>
+                            <td>Budget</td>
+                        </tr>
+                        <tr>
+                            <td>Sessions</td>
+                            <td>Session information</td>
+                            <td>Budget</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="display-6">Data that will be not deleted</h3>
+
+                <p>All the data listed in the following table will remain.</p>
+
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                        <tr class="bg-dark text-light">
+                            <th scope="col">Data type</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Data location</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Account</td>
+                            <td>Your Costs to Expect account, you use one account across all our Apps</td>
+                            <td>API</td>
+                        </tr>
+                        <tr>
+                            <td>Other Apps</td>
+                            <td>Your will still have access to all the Costs to Expect Apps and
+                                none of your data will be touched.</td>
+                            <td>API & Relevant Apps</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <a href="{{ route('account.delete-budget-account') }}" class="btn btn-sm btn-outline-danger">Delete Budget Account</a>
+
+                <h2 class="display-5 pt-5">Delete Account</h2>
+
+                <p class="lead">This will delete your Costs to Expect account, all your data will be
+                    removed across our entire service. Please review the following table to see what will be
+                    deleted, nothing will remain.</p>
+
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                        <tr class="bg-dark text-light">
+                            <th scope="col">Data type</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Data location</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -131,18 +202,31 @@
                             <td>API</td>
                         </tr>
                         <tr>
-                            <td>Data</td>
-                            <td>All the data we have stored will be deleted</td>
-                            <td>API & all our Apps</td>
+                            <td>API</td>
+                            <td>All your data</td>
+                            <td>API</td>
+                        </tr>
+                        <tr>
+                            <td>Budget</td>
+                            <td>Any data that exists</td>
+                            <td>Budget</td>
+                        </tr>
+                        <tr>
+                            <td>Yahtzee</td>
+                            <td>Any data that exists</td>
+                            <td>Yahtzee</td>
+                        </tr>
+                        <tr>
+                            <td>Yatzy</td>
+                            <td>Any data that exists</td>
+                            <td>Yatzy</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <a href="#" class="btn btn-sm btn-danger disabled" disabled="disabled" >Delete Account (Coming Soon(tm))</a>
+                <a href="{{ route('account.delete-account') }}" class="btn btn-sm btn-outline-danger">Delete Account</a>
             </main>
-
-            <x-requests />
 
             <x-footer />
         </div>
