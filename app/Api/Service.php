@@ -210,4 +210,37 @@ class Service
             ]
         );
     }
+
+    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    public function requestBudgetAccountDelete(
+        string $resource_type_id,
+        array $payload = []
+    ): array
+    {
+        $uri = Uri::requestResourceTypeDelete($resource_type_id);
+
+        return $this->http->post($uri['uri'], $payload);
+    }
+
+    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    public function requestDelete(
+        array $payload = []
+    ): array
+    {
+        $uri = Uri::requestDelete();
+
+        return $this->http->post($uri['uri'], $payload);
+    }
+
+    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    public function requestReset(
+        string $resource_type_id,
+        string $resource_id,
+        array $payload = []
+    ): array
+    {
+        $uri = Uri::requestResourceDelete($resource_type_id, $resource_id);
+
+        return $this->http->post($uri['uri'], $payload);
+    }
 }

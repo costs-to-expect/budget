@@ -69,7 +69,7 @@
                     <p>It will take a few seconds to process the request, you will be signed out.</p>
                     <hr>
 
-                    <form action="" method="POST" class="row g-2">
+                    <form action="{{ route('account.delete-account.process') }}" method="POST" class="row g-2">
 
                         @csrf
 

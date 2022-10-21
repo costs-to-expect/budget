@@ -225,14 +225,29 @@ Route::group(
             [Account::class, 'reset']
         )->name('account.reset');
 
+        Route::post(
+            '/account/reset',
+            [Account::class, 'resetProcess']
+        )->name('account.reset.process');
+
         Route::get(
             '/account/delete-budget-account',
             [Account::class, 'deleteBudgetAccount']
         )->name('account.delete-budget-account');
 
+        Route::post(
+            '/account/delete-budget-account',
+            [Account::class, 'deleteBudgetAccountProcess']
+        )->name('account.delete-budget-account.process');
+
         Route::get(
             '/account/delete-account',
             [Account::class, 'deleteAccount']
         )->name('account.delete-account');
+
+        Route::post(
+            '/account/delete-account',
+            [Account::class, 'deleteAccountProcess']
+        )->name('account.delete-account.process');
     }
 );
