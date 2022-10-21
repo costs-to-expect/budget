@@ -26,14 +26,13 @@ class Registered extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject('Budget: Registration Complete')
             ->greeting('Hi Budgeteer!')
-            ->line('Thank you for creating an account on Budget.')
-            ->line('When you sign-in to Budget you will be able to start building your budget and view our examples.')
-            ->line('Budget is powered by the Costs to Expect API, your account is usable across all of our services.')
-            ->line('If you registered in error or want to delete your account, just access the account section of out App.')
-            ->line('If you want to download your data*, you can do that in the account section as well, you have full control of your data.')
+            ->line('Thank you for creating an account with Budget.')
+            ->line('When you sign-in to Budget, you will be able to play with our demonstration budgets and build your own budget from scratch.')
+            ->line('Budget is powered by the Costs to Expect API and your account is usable across all of our services.')
+            ->line('If you registered in error or want to delete your account, just access "Your Account" within the App and click on one of the delete options.')
+            ->line('If you want to download your data please reach out to us, we haven\'t yet had time to build the feature.')
             ->action('Sign-in', url('/sign-in'))
-            ->line('Again, Thank you for choosing Budget, we hope it helps!')
-            ->line('* Feature coming soon(tm)');
+            ->line('Thanks again for choosing Budget, we hope it helps!');
     }
 
     public function toArray($notifiable)
