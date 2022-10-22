@@ -214,4 +214,15 @@ class Uri
             'name' => 'Resource types'
         ];
     }
+
+    #[ArrayShape(['uri' => "string", 'name' => "string"])]
+    public static function updateProfile(): array
+    {
+        $uri = '/' . self::VERSION . '/auth/update-profile';
+
+        return [
+            'uri' => $uri,
+            'name' => 'Update Profile'
+        ];
+    }
 }

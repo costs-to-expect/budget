@@ -259,5 +259,15 @@ Route::group(
             '/account/change-password',
             [Authentication::class, 'changePasswordProcess']
         )->name('account.change-password.process');
+
+        Route::get(
+            '/account/update-profile',
+            [Authentication::class, 'updateProfile']
+        )->name('account.update-profile');
+
+        Route::post(
+            '/account/update-profile',
+            [Authentication::class, 'updateProfileProcess']
+        )->name('account.update-profile.process');
     }
 );

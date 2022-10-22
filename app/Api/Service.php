@@ -257,4 +257,18 @@ class Service
 
         return $this->http->post($uri['uri'], $payload);
     }
+
+    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    public function updateProfile(array $payload): array
+    {
+        $uri = Uri::updateProfile();
+
+        return $this->http->post(
+            $uri['uri'],
+            [
+                'email' => $payload['email'],
+                'name' => $payload['name']
+            ]
+        );
+    }
 }

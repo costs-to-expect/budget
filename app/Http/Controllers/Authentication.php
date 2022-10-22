@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Account\ChangePassword;
+use App\Actions\Account\UpdateProfile;
 use App\Api\Service;
 use App\Models\PartialRegistration;
 use App\Notifications\CreatePassword;
@@ -52,8 +53,6 @@ class Authentication extends Controller
             return redirect()->route('account.index')
                 ->with('status', 'password-changed');
         }
-
-        var_dump($action->getValidationErrors());
 
         if ($result === 422) {
             return redirect()
@@ -219,5 +218,48 @@ class Authentication extends Controller
         Auth::guard()->logout();
 
         return redirect()->route('landing');
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $user = $this->api->getAuthUser();
+
+        if ($user['status'] !== 200) {
+            abort(404, 'Unable to fetch your account information from the API');
+        }
+
+        return view(
+            'authentication.update-profile',
+            [
+                'user' => $user
+            ]
+        );
+    }
+
+    public function updateProfileProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new UpdateProfile();
+        $result = $action(
+            $this->api,
+            $request->only(['name', 'email'])
+        );
+
+        if ($result === 204) {
+            return redirect()->route('account.index')
+                ->with('status', 'profile-updated');
+        }
+
+        if ($result === 422) {
+            return redirect()
+                ->route('account.update-profile')
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
     }
 }
