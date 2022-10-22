@@ -33,6 +33,17 @@ class Uri
     }
 
     #[ArrayShape(['uri' => "string", 'name' => "string"])]
+    public static function changePassword(): array
+    {
+        $uri = '/' . self::VERSION . '/auth/update-password';
+
+        return [
+            'uri' => $uri,
+            'name' => 'Change Password'
+        ];
+    }
+
+    #[ArrayShape(['uri' => "string", 'name' => "string"])]
     public static function createPassword(string $token, string $email): array
     {
         $uri = '/' . self::VERSION . '/auth/create-password?token=' .

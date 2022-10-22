@@ -249,5 +249,15 @@ Route::group(
             '/account/delete-account',
             [Account::class, 'deleteAccountProcess']
         )->name('account.delete-account.process');
+
+        Route::get(
+            '/account/change-password',
+            [Authentication::class, 'changePassword']
+        )->name('account.change-password');
+
+        Route::post(
+            '/account/change-password',
+            [Authentication::class, 'changePasswordProcess']
+        )->name('account.change-password.process');
     }
 );

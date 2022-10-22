@@ -27,12 +27,26 @@
 
                 <p class="lead">Update your profile and password using the options below.</p>
 
+                @if ($status === 'password-changed')
+                    <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                        <h4 class="alert-heading">Password changed!</h4>
+                        <p>Your password has been changed.</p>
+                        <p class="mb-0">Don't forgot, you will need to use the new password across all our Apps,
+                            you have one account for the entire Costs to Expect service.</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 <ul class="list-group list-group-flush mb-3">
                     <li class="list-group-item">
                         <strong>Name</strong>: {{ $user['name'] }}
                     </li>
                     <li class="list-group-item">
                         <strong>Email</strong>: {{ $user['email'] }}
+                    </li>
+                    <li class="list-group-item">
+                        <a href="" class="btn btn-sm btn-outline-primary">Update Profile</a>
+                        <a href="{{ route('account.change-password') }}" class="btn btn-sm btn-outline-primary">Change Password</a>
                     </li>
                 </ul>
 
