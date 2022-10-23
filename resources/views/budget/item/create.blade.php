@@ -275,23 +275,25 @@
                     </form>
 
                     @if ($number_of_items > ($max_items - 10))
-                    <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">
-                        <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
-                        <p>In Budget Pro you are allowed to have more than {{ $max_items }} items on your Budget.</p>
-                        <p>You have {{ $number_of_items }} budget items.</p>
-                        <hr>
-                        <p class="mb-0"><a href="">Find out more</a>.</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <div class="p-2">
+                        <div class="alert alert-primary fade show mt-3" role="alert">
+                            <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
+                            <p>In Budget Pro you will be able to have more than {{ $max_items }} items on your Budget.</p>
+                            <p>You have {{ $number_of_items }} budget items.</p>
+                            <hr>
+                            <p class="mb-0"><a href="">Find out more</a>.</p>
+                        </div>
                     </div>
                     @endif
 
-                    <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">
-                        <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
-                        <p>In Budget Pro we include additional frequency options, daily, weekly, fortnights etc.</p>
-                        <p>Additionally, we have more complicated exclusion options.</p>
-                        <hr>
-                        <p class="mb-0"><a href="">Find out more</a>.</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <div class="p-2">
+                        <div class="alert alert-primary fade show mt-3" role="alert">
+                            <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
+                            <p>In Budget Pro we include additional frequency options, daily, weekly, fortnights etc.</p>
+                            <p>Additionally, we have more complicated exclusion options.</p>
+                            <hr>
+                            <p class="mb-0"><a href="">Find out more</a>.</p>
+                        </div>
                     </div>
                 </div>
 
