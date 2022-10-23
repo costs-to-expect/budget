@@ -40,7 +40,7 @@ class BudgetTestAccountTest extends TestCase
             ]
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -100,7 +100,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -159,7 +159,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -218,7 +218,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -277,7 +277,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -337,7 +337,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -397,7 +397,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -457,7 +457,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -516,7 +516,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -575,7 +575,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -634,7 +634,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -693,7 +693,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -752,7 +752,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -812,7 +812,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -872,7 +872,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -932,7 +932,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -991,7 +991,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -1066,7 +1066,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_saving_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -1145,7 +1145,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_saving_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -1226,7 +1226,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_saving_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -1305,7 +1305,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_saving_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -1385,7 +1385,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_saving_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -1467,7 +1467,7 @@ class BudgetTestAccountTest extends TestCase
             'balance' => $starting_saving_balance
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -1534,7 +1534,7 @@ class BudgetTestAccountTest extends TestCase
 
         $budget_item_id = $this->faker->uuid();
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );

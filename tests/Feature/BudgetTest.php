@@ -15,7 +15,7 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonths(): void
     {
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->create();
 
         $this->assertCount(3, $service->months());
@@ -23,7 +23,7 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonthsWhenStartDateSet(): void
     {
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -34,7 +34,7 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonthsWithYearWrap(): void
     {
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-11-01", new DateTimeZone('UTC'))
         );
@@ -46,7 +46,7 @@ class BudgetTest extends TestCase
 
         $this->assertCount(3, $service->months());
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-12-01", new DateTimeZone('UTC'))
         );
@@ -61,7 +61,7 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonthsPagintionOneMonth(): void
     {
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-12-01", new DateTimeZone('UTC'))
         );
@@ -78,7 +78,7 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonthsPaginationWrapsFutureYear(): void
     {
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-12-01", new DateTimeZone('UTC'))
         );
@@ -95,7 +95,7 @@ class BudgetTest extends TestCase
 
     public function testVewEndDate(): void
     {
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -107,7 +107,7 @@ class BudgetTest extends TestCase
 
     public function testVewEndDateWithPagination(): void
     {
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
         );
@@ -120,7 +120,7 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonthsVisibility(): void
     {
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->create();
 
         $this->assertCount(3, $service->months());
@@ -132,7 +132,7 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonthsVisibilityWithPagination(): void
     {
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2022-08-01", new DateTimeZone('UTC'))
         );
@@ -150,7 +150,7 @@ class BudgetTest extends TestCase
 
     public function testAccountCreated(): void
     {
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setAccounts([
             [
                 'currency' => [
@@ -209,7 +209,7 @@ class BudgetTest extends TestCase
             'balance' => 1254.36,
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setAccounts([$account_1, $account_2, $account_3]);
         $service->create();
 
@@ -267,7 +267,7 @@ class BudgetTest extends TestCase
             'balance' => 1254.36,
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
 
         $this->expectException(LengthException::class);
         $service->setAccounts([$account_1, $account_2, $account_3, $account_4]);
@@ -290,7 +290,7 @@ class BudgetTest extends TestCase
             'balance' => 1254.36,
         ];
 
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setAccounts([$account]);
         $service->create();
 
@@ -300,7 +300,7 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonthsWhenViewingThePast(): void
     {
-        $service = new Service();
+        $service = new Service(new DateTimeZone('UTC'));
         $service->setNow(
             new DateTimeImmutable("2022-08-01", new DateTimeZone('UTC'))
         );

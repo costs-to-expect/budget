@@ -132,7 +132,7 @@ class Controller extends BaseController
     {
         $budget_items = $this->getBudgetItems();
 
-        $budget = new \App\Service\Budget\Service();
+        $budget = new \App\Service\Budget\Service(new \DateTimeZone('UTC'));
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
         }
