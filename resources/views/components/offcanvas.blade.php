@@ -29,6 +29,12 @@
                         <a class="nav-link @if($active === 'account') active @endif" href="{{ route('account.index') }}">Account</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link @if($active === 'account.update-profile') active @endif" href="{{ route('account.update-profile') }}">Update Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @if($active === 'account.change-password') active @endif" href="{{ route('account.change-password') }}">Change Password</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('sign-out') }}">Sign-out</a>
                     </li>
                 </ul>

@@ -37,7 +37,14 @@
                 <div class="text-primary text-center month pb-2">{{ $__month->name() }}</div>
                 <div class="row">
                     @foreach ($__month->items() as $__item)
-                        <a href="{{ route('budget.item.view', ['item_id' => $__item->id(), 'now' => $__month->now(), 'item-year' => $__month->year(), 'item-month' => $__month->month()]) }}">
+                        <a href="{{ route(
+                                'budget.item.view', [
+                                    'item_id' => $__item->id(),
+                                    'item-year' => $__month->year(),
+                                    'item-month' => $__month->month(),
+                                    'month'=>  $__month->month(),
+                                    'year'=> $__month->year()
+                                ]) }}">
                         <div class="col-12 expense @if ($active_item === $__item->id() && $__month->year() === $active_item_year && $__month->month() === $active_item_month) active shadow @endif @if($__item->disabled() === true || ($__month->now() === true && $__item->paid() === true)) opacity-50 @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
                             <div class="name text-grey">
                                 {{ $__item->name() }}
@@ -46,7 +53,7 @@
                                 <div class="progress-bar bg-{{ $__item->category() }}" role="progressbar" aria-label="" style="width: {{ $__item->progressBarPercentage() }}%"
                                      aria-valuenow="{{ $__item->progressBarPercentage() }}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <div class="amount text-grey"><small><x-currency :currency="$__item->currency()" /></small>{{ $__item->amount() }}
+                            <div class="amount text-grey"><small><x-currency :currency="$__item->currency()" /></small>{{ number_format($__item->amount(), 2) }}
                                 @if ($__item->disabled() === true)
                                     <small class="text-dark disabled-expense">(Disabled)</small>
                                 @endif
@@ -96,13 +103,30 @@
                 Previous
             </a>
         @else
-            <a class="btn btn-sm btn-outline-primary" href="{{ route('home', [...$pagination['previous'], ...['#expenditure']]) }}">
+            <a class="btn btn-sm btn-outline-primary"
+               href="{{ route(
+                    $pagination['selected']['item'] === null ? 'home' : 'budget.item.view' ,
+                    [
+                        'item_id' => $pagination['selected']['item'],
+                        'item-year' => $pagination['selected']['year'],
+                        'item-month' => $pagination['selected']['month'],
+                        ...$pagination['previous']
+                    ]
+                ) }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
                 </svg>
                 Previous
             </a>
-            <a class="btn btn-sm btn-outline-primary" href="{{ route('home') }}">
+            <a class="btn btn-sm btn-outline-primary"
+               href="{{ route(
+                    $pagination['selected']['item'] === null ? 'home' : 'budget.item.view' ,
+                    [
+                        'item_id' => $pagination['selected']['item'],
+                        'item-year' => $pagination['selected']['year'],
+                        'item-month' => $pagination['selected']['month']
+                    ]
+                ) }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar4-event" viewBox="0 0 16 16">
                     <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
                     <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
@@ -112,7 +136,16 @@
         @endif
         </div>
 
-        <a class="btn btn-sm btn-outline-primary" href="{{ route('home', [...$pagination['next'], ...['#expenditure']]) }}">
+        <a class="btn btn-sm btn-outline-primary"
+           href="{{ route(
+                    $pagination['selected']['item'] === null ? 'home' : 'budget.item.view' ,
+                    [
+                        'item_id' => $pagination['selected']['item'],
+                        'item-year' => $pagination['selected']['year'],
+                        'item-month' => $pagination['selected']['month'],
+                        ...$pagination['next']
+                    ]
+                ) }}">
             Next
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>

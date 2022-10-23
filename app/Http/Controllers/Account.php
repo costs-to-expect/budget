@@ -31,7 +31,8 @@ class Account extends Controller
         return view(
             'account.index',
             [
-                'user' => $user['content']
+                'user' => $user['content'],
+                'status' => session('status'),
             ]
         );
     }

@@ -8,12 +8,16 @@ class ValidationErrorMessage extends Component
 {
     private array $errors;
 
-    public function __construct(string $field)
+    public function __construct(string $field, bool $oldStyle = false)
     {
         $errors = session()->get('validation.errors');
 
         if (is_array($errors) && array_key_exists($field, $errors) === true) {
-            $this->errors = $errors[$field]['errors'];
+            if ($oldStyle === true) {
+                $this->errors = $errors[$field];
+            } else {
+                $this->errors = $errors[$field]['errors'];
+            }
         } else {
             $this->errors = [];
         }

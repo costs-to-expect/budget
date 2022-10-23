@@ -31,6 +31,7 @@
                                 <p>If you are sure you want to delete this item please use one of the options below.</p>
                                 <p>If you click delete, we will set the end date for the item to today, it will be recoverable.</p>
                                 <p>If you click delete and discard, the item will be removed entirely and is not recoverable.</p>
+                                <p><strong>All instances</strong> of this budget items will be deleted.</p>
                                 <hr>
 
                                 <form action="{{ route('budget.item.confirm-delete.process', ['item_id' => $item['id']]) }}" method="POST" class="row g-2">

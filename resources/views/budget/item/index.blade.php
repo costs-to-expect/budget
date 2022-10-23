@@ -25,7 +25,7 @@
                             </h2>
                         </div>
 
-                        @if ($action === null && $now === true)
+                        @if ($action === null && $item_month === $now_month && $item_year === $now_year)
                             <div class="col-12">
                                 @if ($is_paid === false)
                                     <div class="alert alert-dark mt-2" role="alert">

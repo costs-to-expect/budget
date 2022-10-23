@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Actions\Account\ChangePassword;
+use App\Actions\Account\UpdateProfile;
 use App\Api\Service;
 use App\Models\PartialRegistration;
 use App\Notifications\CreatePassword;
@@ -19,6 +21,49 @@ use Illuminate\Support\Facades\Notification;
  */
 class Authentication extends Controller
 {
+    public function changePassword(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $user = $this->api->getAuthUser();
+
+        if ($user['status'] !== 200) {
+            abort(404, 'Unable to fetch your account information from the API');
+        }
+
+        return view(
+            'authentication.change-password',
+            [
+                'user' => $user
+            ]
+        );
+    }
+
+    public function changePasswordProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new ChangePassword();
+        $result = $action(
+            $this->api,
+            $request->only(['password', 'password_confirmation'])
+        );
+
+        if ($result === 204) {
+            return redirect()->route('account.index')
+                ->with('status', 'password-changed');
+        }
+
+        if ($result === 422) {
+            return redirect()
+                ->route('account.change-password')
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
+    }
+
     public function createPassword(Request $request)
     {
         $token = null;
@@ -173,5 +218,48 @@ class Authentication extends Controller
         Auth::guard()->logout();
 
         return redirect()->route('landing');
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $user = $this->api->getAuthUser();
+
+        if ($user['status'] !== 200) {
+            abort(404, 'Unable to fetch your account information from the API');
+        }
+
+        return view(
+            'authentication.update-profile',
+            [
+                'user' => $user
+            ]
+        );
+    }
+
+    public function updateProfileProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new UpdateProfile();
+        $result = $action(
+            $this->api,
+            $request->only(['name', 'email'])
+        );
+
+        if ($result === 204) {
+            return redirect()->route('account.index')
+                ->with('status', 'profile-updated');
+        }
+
+        if ($result === 422) {
+            return redirect()
+                ->route('account.update-profile')
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
     }
 }

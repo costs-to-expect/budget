@@ -43,11 +43,20 @@ class Service
     private array $paid_items = [];
 
     private array $adjustments = [];
+    private array $selected = [
+        'item' => null,
+        'month' => null,
+        'year' => null,
+    ];
 
-    public function __construct()
+    private DateTimeZone $timezone;
+
+    public function __construct(DateTimeZone $timezone)
     {
-        $this->start_date = (new DateTimeImmutable('first day of this month', new DateTimeZone('UTC')))->setTime(7, 1);
-        $this->view_start_date = (new DateTimeImmutable('first day of this month', new DateTimeZone('UTC')))->setTime(7, 1);
+        $this->timezone = $timezone;
+
+        $this->start_date = (new DateTimeImmutable('first day of this month', $this->timezone))->setTime(7, 1);
+        $this->view_start_date = (new DateTimeImmutable('first day of this month', $this->timezone))->setTime(7, 1);
 
         $this->now_year = (int) $this->start_date->format('Y');
         $this->now_month = (int) $this->start_date->format('n');
@@ -74,7 +83,7 @@ class Service
     {
         $this->view_start_date = (new DateTimeImmutable(
             "{$year}-{$month}-01",
-            new DateTimeZone('UTC')
+            $this->timezone
         ))->setTime(7, 1);
 
         return $this;
@@ -83,6 +92,17 @@ class Service
     public function setPaidBudgetItems(array $paid_items): Service
     {
         $this->paid_items = $paid_items;
+
+        return $this;
+    }
+
+    public function setSelected(string $item, int $month, int $year): Service
+    {
+        $this->selected = [
+            'item' => $item,
+            'month' => $month,
+            'year' => $year
+        ];
 
         return $this;
     }
@@ -154,6 +174,7 @@ class Service
                 $month_int = (int)$next->format('n');
 
                 $this->months[$year_int . '-' . $month_int] = new Month(
+                    $this->timezone,
                     $month_int,
                     $year_int,
                     $this->currency(),
@@ -183,11 +204,12 @@ class Service
                 if ($i === 2) {
                     $this->projection = false; // We are not projecting as there are three past months on display
                     $this->view_end_date = (new DateTimeImmutable(
-                        "{$year_int}-{$month_int}-01", new DateTimeZone('UTC')
+                        "{$year_int}-{$month_int}-01", $this->timezone
                     ))->setTime(7, 1);
                 }
 
                 $this->months[$year_int . '-' . $month_int] = new Month(
+                    $this->timezone,
                     $month_int,
                     $year_int,
                     $this->currency(),
@@ -207,10 +229,11 @@ class Service
             $month_int = (int)$next->format('n');
 
             $this->view_end_date = (new DateTimeImmutable(
-                "{$year_int}-{$month_int}-01", new DateTimeZone('UTC')
+                "{$year_int}-{$month_int}-01", $this->timezone
             ))->setTime(7, 1);
 
             $this->months[$year_int . '-' . $month_int] = new Month(
+                $this->timezone,
                 $month_int,
                 $year_int,
                 $this->currency(),
@@ -296,7 +319,7 @@ class Service
             throw new LengthException('Too many items, the limit is ' . $this->maxItems());
         }
 
-        $this->budget_items[] = new Item($data);
+        $this->budget_items[] = new Item($data, $this->timezone);
 
         return true;
     }
@@ -319,7 +342,8 @@ class Service
             'next' => [
                 'month' => (int)$later->format('n'),
                 'year' => (int)$later->format('Y')
-            ]
+            ],
+            'selected' => $this->selected
         ];
     }
 

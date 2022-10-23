@@ -24,7 +24,9 @@
 
                         <div class="col-12">
                             <h2 class="display-5 mt-3 mb-3">Edit</h2>
+                            <h5>Changes will affect all instances</h5>
                         </div>
+
                         <div class="col-6 col-md-6">
                             <label for="name" class="form-label">Name *</label>
                             <input type="text" class="form-control form-control-sm <x-validation-error field='name' />" id="name" name="name" value="{{ old('name', $item['name']) }}" placeholder="Rent">
