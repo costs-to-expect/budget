@@ -96,7 +96,7 @@ class LoadDemo implements ShouldQueue
 
         $budget_items = $budget_items_response['content'];
 
-        $budget = new \App\Service\Budget\Service();
+        $budget = new \App\Service\Budget\Service(new \DateTimeZone('UTC'));
         $budget
             ->setAccounts($accounts)
             ->create();
