@@ -78,7 +78,7 @@ class Item
             );
         }
 
-        if ($data['frequency']['type'] === 'annually') {
+        if ($data['frequency']['type'] === 'annually' || $data['frequency']['type'] === 'one-off') {
             $this->frequency = new Annually(
                 $data['frequency']['day'] ?? 15,
                 $data['frequency']['month']
@@ -109,6 +109,7 @@ class Item
             case 'monthly':
                 return $this->activeForMonthMonthlyItem($days, $month, $year);
             case 'annually':
+            case 'one-off':
                 return $this->activeForMonthAnnualItem($days, $month, $year);
             default:
                 abort(500, 'Unknown frequency type');

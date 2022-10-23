@@ -5,6 +5,7 @@ namespace App\Actions\Budget\Item;
 
 use App\Actions\Action;
 use App\Api\Service;
+use DateTimeZone;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -15,6 +16,7 @@ class Delete extends Action
 {
     public function __invoke(
         Service $api,
+        DateTimeZone $timezone,
         string $resource_type_id,
         string $resource_id,
         string $item_id,
@@ -33,7 +35,7 @@ class Delete extends Action
                 $resource_id,
                 $item_id,
                 [
-                    'end_date' => (new \DateTimeImmutable('yesterday', new \DateTimeZone('UTC')))->format('Y-m-d')
+                    'end_date' => (new \DateTimeImmutable('yesterday', $timezone))->format('Y-m-d')
                 ]
             );
 

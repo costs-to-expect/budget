@@ -49,7 +49,7 @@
                             <input type="date" class="form-control form-control-sm <x-validation-error field='start_date' />" id="start_date" name="start_date" value="{{ old('start_date', now()->toDateString()) }}">
                             <x-validation-error-message field="start_date" />
                         </div>
-                        <div class="col-6 col-md-6">
+                        <div class="col-6 col-md-6" data-frequency="one-off">
                             <label for="end_date" class="form-label">End Date</label>
                             <input type="date" class="form-control form-control-sm <x-validation-error field='end_date' />" id="end_date" name="end_date" value="{{ old('end_date') }}">
                             <x-validation-error-message field="end_date" />
@@ -100,6 +100,7 @@
                                 <select id="frequency_option" name="frequency_option" class="form-select form-select-sm <x-validation-error field='frequency_option' />" aria-describedby="frequency_optionHelpBlock">
                                     <option value="monthly" @if (old('frequency_option') === 'monthly') selected="selected" @endif>Monthly</option>
                                     <option value="annually" @if (old('frequency_option') === 'annually') selected="selected" @endif>Annually</option>
+                                    <option value="one-off" @if (old('frequency_option') === 'one-off') selected="selected" @endif>One-Off</option>
                                 </select>
                                 <p id="frequency_optionHelpBlock" class="form-text">Please choose how often this item should repeat on your budget.</p>
                                 <x-validation-error-message field="frequency_option" />

@@ -14,6 +14,7 @@ use App\Actions\Budget\Item\SetAsPaid;
 use App\Actions\Budget\Item\Update;
 use App\Models\AdjustedBudgetItem;
 use Illuminate\Http\Request;
+use DateTimeZone;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -104,6 +105,7 @@ class BudgetItem extends Controller
         $action = new Delete();
         $result = $action(
             $this->api,
+            $this->timezone,
             $this->resource_type_id,
             $this->resource_id,
             $request->route('item_id'),
@@ -307,6 +309,7 @@ class BudgetItem extends Controller
         $action = new Create();
         $result = $action(
             $this->api,
+            $this->timezone,
             $this->resource_type_id,
             $this->resource_id,
             $request->all()
@@ -355,7 +358,7 @@ class BudgetItem extends Controller
 
         $adjust_date = null;
         if ($action === 'adjust') {
-            $adjust_date = (new \DateTimeImmutable("{$item_year}-{$item_month}-01", new \DateTimeZone('UTC')))->setTime(7, 1);
+            $adjust_date = (new \DateTimeImmutable("{$item_year}-{$item_month}-01", $this->timezone))->setTime(7, 1);
             $adjust_date = $adjust_date->format('F Y');
         }
 
@@ -516,6 +519,7 @@ class BudgetItem extends Controller
         $action = new Update();
         $result = $action(
             $this->api,
+            $this->timezone,
             $this->resource_type_id,
             $this->resource_id,
             $request->route('item_id'),

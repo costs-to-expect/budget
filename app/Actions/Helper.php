@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
+use DateTimeZone;
+
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
  * @copyright Dean Blackborough (Costs to Expect) 2018-2022
@@ -10,7 +12,7 @@ namespace App\Actions;
  */
 class Helper
 {
-    public static function createFrequencyArray($input): array
+    public static function createFrequencyArray($input, DateTimeZone $timezone): array
     {
         $frequency = [ 'type' => $input['frequency_option'] ];
         if ($frequency['type'] === 'monthly') {
@@ -35,6 +37,12 @@ class Helper
                 $frequency['day'] = null;
             }
             $frequency['month'] = (int) $input['annually_month'];
+        }
+
+        if ($frequency['type'] === 'one-off') {
+            $start_date = new \DateTimeImmutable($input['start_date'], $timezone);
+            $frequency['day'] = null;
+            $frequency['month'] = (int) $start_date->format('n');
         }
 
         ksort($frequency);

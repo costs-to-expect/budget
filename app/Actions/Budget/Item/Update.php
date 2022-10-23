@@ -6,6 +6,7 @@ namespace App\Actions\Budget\Item;
 use App\Actions\Action;
 use App\Actions\Helper;
 use App\Api\Service;
+use DateTimeZone;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -16,6 +17,7 @@ class Update extends Action
 {
     public function __invoke(
         Service $api,
+        DateTimeZone $timezone,
         string $resource_type_id,
         string $resource_id,
         string $item_id,
@@ -53,7 +55,13 @@ class Update extends Action
         }
 
         // Check the frequency
-        $frequency = Helper::createFrequencyArray($input);
+        $frequency = Helper::createFrequencyArray($input, $timezone);
+
+        if ($frequency['type'] === 'one-off') {
+            $end_date = (new \DateTimeImmutable('first day of next month', $timezone))->setTime(7, 1);
+            $payload['end_date'] = $end_date->format('Y-m-d');
+        }
+
         ksort($item['frequency']);
         if ($frequency !== $item['frequency']) {
             $payload['frequency'] = $frequency;
