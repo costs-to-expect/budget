@@ -22,14 +22,8 @@
                     <div class="alert alert-dark mt-2" role="alert">
                         <h4 class="alert-heading">Demo Mode</h4>
                         <p class="lead">You are viewing your Demo and are free to play with all the features.</p>
-                        <p class="lead">This demo is specific to you, when you are ready, you can click the
-                            adopt button below to exit demo mode.</p>
-                        <hr />
-                        <h4 class="alert-heading">Do You Need Help?</h4>
-                        <p class="lead">We have two sections which detail how our App works, check out
-                            our <a href="{{ route('getting-started') }}">Getting Started</a> section to understand
-                            how to add items to your Budget and checkout our <a href="{{ route('workflow') }}">Workflow</a> section to
-                            understand how we generate your projections.</p>
+                        <p class="lead">This demo is specific to you. When you are ready click the
+                            "Adopt Demo" button to take ownership of this Budget.</p>
 
                         <hr />
                         <form action="{{ route('demo.adopt.process') }}" method="POST" class="row g-2">
@@ -42,6 +36,13 @@
                         </form>
                     </div>
                 </div>
+            </div>
+            @endif
+
+            @if ($has_budget === true && $has_accounts === true)
+            <div class="alert alert-dark mt-2" role="alert">
+                <h4 class="alert-heading">Up to Date?</h4>
+                <p class="mb-0">Have you updated your account balances?</p>
             </div>
             @endif
 
@@ -59,14 +60,15 @@
                     <h2 class="display-6 mt-5">Need Help?</h2>
                 </div>
                 <div class="col-12">
-                    <p class="lead">If you are unsure how this page works, please consult our
-                        <a href="{{ route('faqs') }}">FAQs</a>, hopefully we will have an answer to your questions.
+                    <p class="lead">If you are unsure how our App works, please consult our
+                        <a href="{{ route('faqs') }}">FAQs</a>. Hopefully we will have an answer
+                        to your question.
                     </p>
                     <p class="lead">If you have a question that is not covered by our
                         <a href="{{ route('faqs') }}">FAQs</a>, please reach out to us on
                         <a href="https://twitter.com/coststoexpect">Twitter</a> or
-                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>, we will respond
-                        as soon as we can.</p>
+                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>.
+                        We will respond as soon as we can.</p>
                 </div>
             </div>
 

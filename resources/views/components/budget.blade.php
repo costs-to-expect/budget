@@ -165,7 +165,7 @@
                     <p class="lead">To get started select "Start" below. We will ask you to create your
                         first account and select the currency you would like use.</p>
 
-                    <h4 class="alert-heading">I want to see Budget in action</h4>
+                    <h4 class="alert-heading">I Want To See Budget In Action</h4>
 
                     <p class="lead">If you would like to see how everything works, select "Load Demo", We will
                         create a Demo Budget in your currency of choice and you can explore how our Apps works.</p>

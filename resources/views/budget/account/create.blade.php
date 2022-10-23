@@ -87,9 +87,9 @@
                 <div class="p-2">
                     <div class="alert alert-primary fade show mt-3" role="alert">
                         <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
-                        <p>In Budget Pro you will be able to have more than {{ $max_accounts }} accounts.</p>
-                        <p>You have created {{ count($accounts) }} accounts.</p>
-                        <p>Additional, in Budget Pro your Budget can include multiple currencies.</p>
+                        <p>In Budget Pro there is no limit to the number of accounts you can add.</p>
+                        <p>You have created <strong>{{ count($accounts) }}</strong>, the maximum for Budget is <strong>{{ $max_accounts }}</strong>.</p>
+                        <p>Additionally, in Budget Pro your Budget can include multiple currencies.</p>
                         <hr>
                         <p class="mb-0"><a href="">Find out more</a>.</p>
                     </div>

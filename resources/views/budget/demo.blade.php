@@ -66,7 +66,7 @@
 
                 @if ($loading === true)
                 <p class="lead text-primary d-none continue-to-demo">
-                    We are done, click the "Continue" button to start exploring.
+                    We're done! Click the "Continue" button to start exploring.
                     <a class="btn btn-sm btn-outline-primary" href="{{ route('home') }}">
                         Continue
                     </a>

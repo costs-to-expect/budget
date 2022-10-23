@@ -28,10 +28,10 @@
                         <div class="col-12">
                             <div class="alert alert-dark mt-2" role="alert">
                                 <h4 class="alert-heading">Disable</h4>
-                                <p>If you are sure you want to disable this budget item please click the button below.</p>
-                                <p>When you disable a budget item, it will still display on your Budget, but it won't
+                                <p>If you are sure you want to disable this budget item please click the "Disable" button below.</p>
+                                <p>When you disable a budget item, it will still display on your Budget but it won't
                                     be included in any projections.</p>
-                                <p><strong>All instances</strong> of this budget items will be disabled.</p>
+                                <p><strong>All instances</strong> of this budget item will be disabled.</p>
                                 <hr>
 
                                 <form action="{{ route('budget.item.confirm-disable.process', ['item_id' => $item['id']]) }}" method="POST" class="row g-2">
@@ -91,14 +91,15 @@
                     <h2 class="display-6 mt-5">Need Help?</h2>
                 </div>
                 <div class="col-12">
-                    <p class="lead">If you are unsure how this page works, please consult our
-                        <a href="{{ route('faqs') }}">FAQs</a>, hopefully we will have an answer to your questions.
+                    <p class="lead">If you are unsure how our App works, please consult our
+                        <a href="{{ route('faqs') }}">FAQs</a>. Hopefully we will have an answer
+                        to your question.
                     </p>
                     <p class="lead">If you have a question that is not covered by our
                         <a href="{{ route('faqs') }}">FAQs</a>, please reach out to us on
                         <a href="https://twitter.com/coststoexpect">Twitter</a> or
-                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>, we will respond
-                        as soon as we can.</p>
+                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>.
+                        We will respond as soon as we can.</p>
                 </div>
             </div>
 
