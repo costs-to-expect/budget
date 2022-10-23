@@ -84,14 +84,15 @@
                     @endif
                 </form>
 
-                <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">
-                    <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
-                    <p>In Budget Pro you can have more than {{ $max_accounts }} accounts.</p>
-                    <p>You have created {{ count($accounts) }} accounts.</p>
-                    <p>Additional, in Budget Pro your Budget can include multiple currencies.</p>
-                    <hr>
-                    <p class="mb-0"><a href="">Find out more</a>.</p>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <div class="p-2">
+                    <div class="alert alert-primary fade show mt-3" role="alert">
+                        <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
+                        <p>In Budget Pro you will be able to have more than {{ $max_accounts }} accounts.</p>
+                        <p>You have created {{ count($accounts) }} accounts.</p>
+                        <p>Additional, in Budget Pro your Budget can include multiple currencies.</p>
+                        <hr>
+                        <p class="mb-0"><a href="">Find out more</a>.</p>
+                    </div>
                 </div>
             </div>
 

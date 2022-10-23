@@ -35,11 +35,14 @@ class Controller extends BaseController
 
     protected Service $api;
 
+    protected $timezone;
+
     public function __construct()
     {
         $this->config = Config::get('app.config');
         $this->item_type_id = $this->config['item_type_id'];
         $this->item_subtype_id = $this->config['item_subtype_id'];
+        $this->timezone = new \DateTimeZone('UTC');
     }
 
     protected function bootstrap(Request $request)
@@ -132,7 +135,7 @@ class Controller extends BaseController
     {
         $budget_items = $this->getBudgetItems();
 
-        $budget = new \App\Service\Budget\Service(new \DateTimeZone('UTC'));
+        $budget = new \App\Service\Budget\Service($this->timezone);
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
         }

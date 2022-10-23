@@ -6,6 +6,7 @@ namespace App\Actions\Budget\Item;
 use App\Actions\Action;
 use App\Actions\Helper;
 use App\Api\Service;
+use DateTimeZone;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -16,15 +17,16 @@ class Create extends Action
 {
     public function __invoke(
         Service $api,
+        DateTimeZone $timezone,
         string $resource_type_id,
         string $resource_id,
         array $input
     ): int
     {
         if (array_key_exists('frequency_option', $input) === true) {
-            if (in_array($input['frequency_option'], ['monthly', 'annually']) === false) {
+            if (in_array($input['frequency_option'], ['monthly', 'annually', 'one-off']) === false) {
                 $this->validation_errors['frequency_option']['errors'] = [
-                    'The frequency need to be set to monthly or annually'
+                    'The frequency need to be set to monthly, annually or one-off'
                 ];
             }
 
@@ -55,7 +57,12 @@ class Create extends Action
             return 422;
         }
 
-        $frequency = Helper::createFrequencyArray($input);
+        $frequency = Helper::createFrequencyArray($input, $timezone);
+
+        if ($frequency['type'] === 'one-off') {
+            $end_date = (new \DateTimeImmutable('first day of next month', $timezone))->setTime(7, 1);
+            $input['end_date'] = $end_date->format('Y-m-d');
+        }
 
         try {
             $frequency_json = json_encode($frequency, JSON_THROW_ON_ERROR);

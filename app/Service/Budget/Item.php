@@ -6,6 +6,7 @@ namespace App\Service\Budget;
 
 use App\Service\Budget\Frequency\Annually;
 use App\Service\Budget\Frequency\Monthly;
+use App\Service\Budget\Frequency\OneOff;
 use App\Service\Budget\Frequency\Period;
 use DateTimeImmutable;
 use DateTimeZone;
@@ -85,6 +86,12 @@ class Item
             );
         }
 
+        if ($data['frequency']['type'] === 'one-off') {
+            $this->frequency = new OneOff(
+                $data['frequency']['month']
+            );
+        }
+
         $this->category = $data['category'];
 
         $this->disabled = $data['disabled'];
@@ -110,6 +117,8 @@ class Item
                 return $this->activeForMonthMonthlyItem($days, $month, $year);
             case 'annually':
                 return $this->activeForMonthAnnualItem($days, $month, $year);
+            case 'one-off':
+                return $this->activeForOneOffItem($days, $month, $year);
             default:
                 abort(500, 'Unknown frequency type');
         }
@@ -133,6 +142,17 @@ class Item
                     )
                 )
             )
+        );
+    }
+
+    private function activeForOneOffItem(int $days, int $month, int $year): bool
+    {
+        $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", $this->timezone);
+
+        return (
+            $this->frequency()->month() === $month &&
+            $this->startDate() <= $end_of_active_month &&
+            $this->endDate() > $end_of_active_month
         );
     }
 

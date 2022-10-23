@@ -25,13 +25,19 @@
     {{ $item['description'] ?? 'None set' }}
 </div>
 <div class="col-6">
+    @if ($item['frequency']['type'] !== 'one-off')
     <div class="label">Start Date</div>
+    @else
+    <div class="label">Due Date</div>
+    @endif
     {{ $item['start_date']->format('d/m/Y') }}
 </div>
+@if ($item['frequency']['type'] !== 'one-off')
 <div class="col-6">
     <div class="label">End Date</div>
     {{ ($item['end_date'] !== null) ? $item['end_date']->format('d/m/Y') : 'None set' }}
 </div>
+@endif
 <div class="col-12">
     <div class="label">Amount & Type</div>
     <small><x-currency :currency="$item['currency']" /></small>
@@ -67,6 +73,13 @@
     <div class="col-12">
         <div class="label">Frequency</div>
         Annually @if ($item['frequency']['day'] !== null) around the <x-ordinal :day="$item['frequency']['day']" /> of <x-month :month="$item['frequency']['month']" /> @else in <x-month :month="$item['frequency']['month']" /> @endif
+    </div>
+@endif
+
+@if ($item['frequency']['type'] === 'one-off')
+    <div class="col-12">
+        <div class="label">Frequency</div>
+        One-Off, due on {{ $item['start_date']->format('d/m/Y') }}
     </div>
 @endif
 

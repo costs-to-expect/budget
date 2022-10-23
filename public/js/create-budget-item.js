@@ -10,11 +10,27 @@
             document.querySelectorAll('[data-frequency="monthly"]').forEach(element => {
                 element.style.display = 'block';
             });
-        } else {
+            document.querySelectorAll('[data-frequency="one-off"]').forEach(element => {
+                element.style.display = 'block';
+            });
+        } else if (value_of_select === 'annually') {
             document.querySelectorAll('[data-frequency="annually"]').forEach(element => {
                 element.style.display = 'block';
             });
             document.querySelectorAll('[data-frequency="monthly"]').forEach(element => {
+                element.style.display = 'none';
+            });
+            document.querySelectorAll('[data-frequency="one-off"]').forEach(element => {
+                element.style.display = 'block';
+            });
+        } else {
+            document.querySelectorAll('[data-frequency="annually"]').forEach(element => {
+                element.style.display = 'none';
+            });
+            document.querySelectorAll('[data-frequency="monthly"]').forEach(element => {
+                element.style.display = 'none';
+            });
+            document.querySelectorAll('[data-frequency="one-off"]').forEach(element => {
                 element.style.display = 'none';
             });
         }

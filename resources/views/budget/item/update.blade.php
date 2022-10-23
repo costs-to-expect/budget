@@ -46,12 +46,22 @@
                             <textarea class="form-control form-control-sm <x-validation-error field='description' />" id="description" name="description" placeholder="An optional description of the expense/income">{{ old('description', $item['description']) }}</textarea>
                             <x-validation-error-message field="description" />
                         </div>
+                        <div class="col-12">
+                            <label for="frequency_option" class="form-label">Repeats *</label>
+                            <select id="frequency_option" name="frequency_option" class="form-select form-select-sm <x-validation-error field='frequency_option' />" aria-describedby="frequency_optionHelpBlock">
+                                <option value="monthly" @if (old('frequency_option', $item['frequency']['type']) === 'monthly') selected="selected" @endif>Monthly</option>
+                                <option value="annually" @if (old('frequency_option', $item['frequency']['type']) === 'annually') selected="selected" @endif>Annually</option>
+                                <option value="one-off" @if (old('frequency_option', $item['frequency']['type']) === 'one-off') selected="selected" @endif>One-Off</option>
+                            </select>
+                            <p id="frequency_optionHelpBlock" class="form-text">Please choose how often this item should repeat on your budget.</p>
+                            <x-validation-error-message field="frequency_option" />
+                        </div>
                         <div class="col-6 col-md-6">
                             <label for="start_date" class="form-label">Start Date *</label>
                             <input type="date" class="form-control form-control-sm <x-validation-error field='start_date' />" id="start_date" name="start_date" value="{{ old('start_date', $item['start_date']) }}">
                             <x-validation-error-message field="start_date" />
                         </div>
-                        <div class="col-6 col-md-6">
+                        <div class="col-6 col-md-6" data-frequency="one-off">
                             <label for="end_date" class="form-label">End Date</label>
                             <input type="date" class="form-control form-control-sm <x-validation-error field='end_date' />" id="end_date" name="end_date" value="{{ old('end_date', $item['end_date']) }}">
                             <x-validation-error-message field="end_date" />
@@ -96,22 +106,14 @@
                             <x-validation-error-message field="target_account" />
                         </div>
                         <fieldset>
-                            <legend class="col-form-label col-12 text-primary">Frequency</legend>
-                            <div class="col-12">
-                                <label for="frequency_option" class="form-label">Repeats *</label>
-                                <select id="frequency_option" name="frequency_option" class="form-select form-select-sm <x-validation-error field='frequency_option' />" aria-describedby="frequency_optionHelpBlock">
-                                    <option value="monthly" @if (old('frequency_option', $item['frequency']['type']) === 'monthly') selected="selected" @endif>Monthly</option>
-                                    <option value="annually" @if (old('frequency_option', $item['frequency']['type']) === 'annually') selected="selected" @endif>Annually</option>
-                                </select>
-                                <p id="frequency_optionHelpBlock" class="form-text">Please choose how often this item should repeat on your budget.</p>
-                                <x-validation-error-message field="frequency_option" />
-                            </div>
+                            <legend class="col-form-label col-12 text-primary" data-frequency="monthly">Frequency Options</legend>
                             <div class="col-12" data-frequency="monthly">
                                 <label for="monthly_day" class="form-label">Day of Month</label>
                                 <input type="number" class="form-control form-control-sm <x-validation-error field='monthly_day' />" id="monthly_day" name="monthly_day" placeholder="5" value="{{ old('monthly_day', ($item['frequency']['type'] === 'monthly' ? $item['frequency']['day'] : null)) }}" aria-describedby="monthly_dayHelpBlock">
                                 <div id="monthly_dayHelpBlock" class="form-text">Please set the day of the month this typically occurs</div>
                                 <x-validation-error-message field="monthly_day" />
                             </div>
+                            <legend class="col-form-label col-12 text-primary" data-frequency="annually">Frequency Options</legend>
                             <div class="row">
                                 <div class="col-6" data-frequency="annually">
                                     <label for="annually_day" class="form-label">Day of Month</label>
@@ -261,13 +263,14 @@
                         </div>
                     </form>
 
-                    <div class="alert alert-primary alert-dismissible fade show mt-5" role="alert">
-                        <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
-                        <p>In Budget Pro we support multi-edit.</p>
-                        <p>You can update all your budget items on a single page.</p>
-                        <hr>
-                        <p class="mb-0"><a href="">Find out more</a>.</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <div class="p-2">
+                        <div class="alert alert-primary fade show mt-3" role="alert">
+                            <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
+                            <p>In Budget Pro we will support multi-edit.</p>
+                            <p>You will be able to update all your budget items on a single page.</p>
+                            <hr>
+                            <p class="mb-0"><a href="">Find out more</a>.</p>
+                        </div>
                     </div>
                 </div>
 
