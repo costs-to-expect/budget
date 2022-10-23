@@ -19,32 +19,25 @@
 
                 <div class="alert alert-dark mt-2" role="alert">
                     <h4 class="alert-heading">Let's Begin</h4>
-                    <p class="lead">To get started, add an account, we need a starting balance to be able to
-                        generate your projections.</p>
-                    <p class="lead">After adding an account, you will need to add your first budget item.</p>
-
-                    <h4 class="alert-heading">Do You Need Help?</h4>
-                    <p class="lead">We have two sections which detail how our App works, check out
-                        our <a href="{{ route('getting-started') }}">Getting Started</a> section to understand
-                        how to add items to your Budget and checkout our <a href="{{ route('workflow') }}">Workflow</a> section to
-                        understand how we generate your projections.</p>
-
-                    <hr>
+                    <p class="lead">
+                        Setting up your Budget is simple. Start by inputting an account and the balance.</p>
+                    <p class="lead">When this is complete you can start creating your Budget.</p>
 
                     <form action="{{ route('start.process') }}" method="POST" class="row g-2">
 
                         @csrf
 
-                        <div class="col-6 col-md-6">
+                        <div class="col-12 col-md-6">
                             <label for="name" class="form-label">Name *</label>
                             <input type="text" class="form-control form-control-sm @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required="required" placeholder="Debit">
+                            <input type="hidden" name="type" value="expense" />
                             @error('name')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
-                        <div class="col-6 col-md-6">
+                        {{--<div class="col-6 col-md-6">
                             <label for="type" class="form-label">Account Type *</label>
                             <select id="type" name="type" class="form-select form-select-sm @error('type') is-invalid @enderror">
                                 <option value="expense" @if (old('type') === 'expense') selected="selected" @endif>Expense</option>
@@ -54,7 +47,7 @@
                                 {{ $message }}
                             </div>
                             @enderror
-                        </div>
+                        </div>--}}
                         <div class="col-12">
                             <label for="description" class="form-label">Description</label>
                             <textarea class="form-control form-control-sm @error('description') is-invalid @enderror" id="description" name="description" placeholder="An optional description of the account">{{ old('description') }}</textarea>
@@ -90,10 +83,27 @@
                         <div class="col-12 mt-3">
                             <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                             <button type="submit" class="btn btn-sm btn-primary">
-                                Start
+                                Save
                             </button>
                         </div>
                     </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="display-6 mt-5">Need Help?</h2>
+                </div>
+                <div class="col-12">
+                    <p class="lead">If you are unsure how our App works, please consult our
+                        <a href="{{ route('faqs') }}">FAQs</a>. Hopefully we will have an answer
+                        to your question.
+                    </p>
+                    <p class="lead">If you have a question that is not covered by our
+                        <a href="{{ route('faqs') }}">FAQs</a>, please reach out to us on
+                        <a href="https://twitter.com/coststoexpect">Twitter</a> or
+                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>.
+                        We will respond as soon as we can.</p>
                 </div>
             </div>
 

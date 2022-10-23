@@ -19,8 +19,8 @@
 
                 <div class="alert alert-dark mt-2" role="alert">
                     <h4 class="alert-heading">Demo</h4>
-                    <p class="lead">To load the demo, click the button below.</p>
-                    <p class="lead">It will take us a minute or two to load the demo, please bear with
+                    <p class="lead">To load the demo, click the "Load" button below.</p>
+                    <p class="lead">It will take us a minute or two, please bear with
                         us whilst we set everything up.</p>
 
                     @if ($loading === true)
@@ -28,8 +28,8 @@
                         <span class="spinner-border" role="status">
                             <span class="visually-hidden">Loading the demo data...</span>
                         </span>
-                        We are loading the data for your demo, as soon as we are done we will let you know,
-                        everything should be ready in less than a minute.
+                        We are loading the data now, as soon as we are done we will let you know.
+                        Everything should be ready in less than a minute.
                     </p>
                     @endif
 
@@ -39,8 +39,8 @@
 
                         @if ($loading === false)
 
-                        <div class="col-6">
-                            <label for="currency_id" class="form-label">Currency</label>
+                        <div class="col-12 col-md-6">
+                            <label for="currency_id" class="form-label">Your Currency</label>
                             <select id="currency_id" name="currency_id" class="form-select form-select-sm @error('currency_id') is-invalid @enderror" required="required" aria-describedby="currency_idHelpBlock">
                                 @foreach ($currencies as $__currency)
                                     <option value="{{ $__currency['id'] }}" @if (old('currency_id') !== null && old('currency_id') === $__currency['id']) selected="selected" @endif>{{ $__currency['code'] }} - <x-currency :currency="$__currency" /></option>
@@ -66,9 +66,9 @@
 
                 @if ($loading === true)
                 <p class="lead text-primary d-none continue-to-demo">
-                    We are done, click the button to start customising your Budget.
+                    We're done! Click the "Continue" button to start exploring.
                     <a class="btn btn-sm btn-outline-primary" href="{{ route('home') }}">
-                        Continue to Budget
+                        Continue
                     </a>
                 </p>
                 @endif

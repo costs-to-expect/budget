@@ -30,9 +30,11 @@
                                 @if ($is_paid === false)
                                     <div class="alert alert-dark mt-2" role="alert">
                                         <h4 class="alert-heading">Mark as Paid</h4>
-                                        <p>If you mark this budget item as paid for this month, it will be ignored
-                                            for the projection, the assumption being your account balances
-                                            include this deduction.</p>
+                                        <p>When you mark this budget item as paid, your projection will
+                                            immediately be updated.</p>
+
+                                        <p>Your current balance needs to be updated each time you sign-in
+                                            in order to ensure our projections are accurate.</p>
                                         <hr>
 
                                         <form action="{{ route('budget.item.set-as-paid.process', ['item_id' => $item['id']]) }}" method="POST" class="row g-2">
@@ -48,8 +50,8 @@
                                     </div>
                                 @else
                                     <div class="alert alert-dark mt-2" role="alert">
-                                        <h4 class="alert-heading">Mark as Not Paid</h4>
-                                        <p>Reset the budget item, it will return to being included in projection calculations.</p>
+                                        <h4 class="alert-heading">Mark as Unpaid</h4>
+                                        <p>If you have marked this budget item as paid in error, you can reset it by clicking the "Mark as Unpaid" button below.</p>
                                         <hr>
 
                                         <form action="{{ route('budget.item.set-as-not-paid.process', ['item_id' => $item['id']]) }}" method="POST" class="row g-2">
@@ -59,7 +61,7 @@
                                             <input type="hidden" name="month" value="{{ $now_month }}"/>
 
                                             <div class="col-12 mt-2">
-                                                <button type="submit" class="btn btn-sm btn-dark">Mark as Not Paid</button>
+                                                <button type="submit" class="btn btn-sm btn-dark">Mark as Unpaid</button>
                                             </div>
                                         </form>
                                     </div>
@@ -72,7 +74,7 @@
                             <div class="alert alert-dark mt-2" role="alert">
                                 <h4 class="alert-heading">Adjust</h4>
                                 <p>You can adjust the amount of this budget item for <strong>{{ $adjust_date }}</strong>
-                                    using  the form below, your projection will immediately update to reflect the
+                                    using the form below. Your projection will immediately update to reflect the
                                     adjustment.</p>
                                 <hr>
 
@@ -174,14 +176,15 @@
                     <h2 class="display-6 mt-5">Need Help?</h2>
                 </div>
                 <div class="col-12">
-                    <p class="lead">If you are unsure how this page works, please consult our
-                        <a href="{{ route('faqs') }}">FAQs</a>, hopefully we will have an answer to your questions.
+                    <p class="lead">If you are unsure how our App works, please consult our
+                        <a href="{{ route('faqs') }}">FAQs</a>. Hopefully we will have an answer
+                        to your question.
                     </p>
                     <p class="lead">If you have a question that is not covered by our
                         <a href="{{ route('faqs') }}">FAQs</a>, please reach out to us on
                         <a href="https://twitter.com/coststoexpect">Twitter</a> or
-                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>, we will respond
-                        as soon as we can.</p>
+                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>.
+                        We will respond as soon as we can.</p>
                 </div>
             </div>
 

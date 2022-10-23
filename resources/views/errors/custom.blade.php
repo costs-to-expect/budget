@@ -47,8 +47,8 @@
                     <h3 class="display-6 mt-3 mb-3">I need help?</h3>
                     <p class="lead">If you need help, please reach out to us on
                         <a href="https://twitter.com/coststoexpect">Twitter</a> or
-                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>, we will respond
-                        as soon as we can.</p>
+                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>.
+                        We will respond as soon as we can.</p>
                 </div>
 
             </div>

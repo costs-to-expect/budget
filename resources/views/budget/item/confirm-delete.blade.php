@@ -28,10 +28,10 @@
                         <div class="col-12">
                             <div class="alert alert-danger mt-2" role="alert">
                                 <h4 class="alert-heading">Delete</h4>
-                                <p>If you are sure you want to delete this item please use one of the options below.</p>
-                                <p>If you click delete, we will set the end date for the item to today, it will be recoverable.</p>
-                                <p>If you click delete and discard, the item will be removed entirely and is not recoverable.</p>
-                                <p><strong>All instances</strong> of this budget items will be deleted.</p>
+                                <p>If you are sure you want to delete this budget item, please use one of the options below.</p>
+                                <p>If you click "Delete", we will set the end date for the item to today and it will be recoverable.</p>
+                                <p>If you click "Delete & Discard", the item will be removed entirely and will not be recoverable.</p>
+                                <p><strong>All instances</strong> of this budget item will be deleted.</p>
                                 <hr>
 
                                 <form action="{{ route('budget.item.confirm-delete.process', ['item_id' => $item['id']]) }}" method="POST" class="row g-2">
@@ -91,14 +91,15 @@
                     <h2 class="display-6 mt-5">Need Help?</h2>
                 </div>
                 <div class="col-12">
-                    <p class="lead">If you are unsure how this page works, please consult our
-                        <a href="{{ route('faqs') }}">FAQs</a>, hopefully we will have an answer to your questions.
+                    <p class="lead">If you are unsure how our App works, please consult our
+                        <a href="{{ route('faqs') }}">FAQs</a>. Hopefully we will have an answer
+                        to your question.
                     </p>
                     <p class="lead">If you have a question that is not covered by our
                         <a href="{{ route('faqs') }}">FAQs</a>, please reach out to us on
                         <a href="https://twitter.com/coststoexpect">Twitter</a> or
-                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>, we will respond
-                        as soon as we can.</p>
+                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>.
+                        We will respond as soon as we can.</p>
                 </div>
             </div>
 
