@@ -31,6 +31,7 @@
                                 <p>If you are sure you want to disable this budget item please click the button below.</p>
                                 <p>When you disable a budget item, it will still display on your Budget, but it won't
                                     be included in any projections.</p>
+                                <p><strong>All instances</strong> of this budget items will be disabled.</p>
                                 <hr>
 
                                 <form action="{{ route('budget.item.confirm-disable.process', ['item_id' => $item['id']]) }}" method="POST" class="row g-2">
