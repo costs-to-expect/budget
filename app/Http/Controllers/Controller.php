@@ -137,6 +137,18 @@ class Controller extends BaseController
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
         }
 
+        if (
+            $request->route('item_id') !== null &&
+            $request->query('item-month') !== null &&
+            $request->query('item-year') !== null
+        ) {
+            $budget->setSelected(
+                $request->route('item_id'),
+                (int) $request->query('item-month'),
+                (int) $request->query('item-year')
+            );
+        }
+
         $budget->setAccounts($this->accounts)
             ->create();
 

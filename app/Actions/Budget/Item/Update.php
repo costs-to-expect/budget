@@ -64,6 +64,17 @@ class Update extends Action
             return 204;
         }
 
+        if (array_key_exists('frequency', $payload)) {
+            try {
+                $payload['frequency'] = json_encode($payload['frequency'], JSON_THROW_ON_ERROR);
+            } catch (\JsonException $e) {
+                $this->validation_errors['frequency_option']['errors'] = [
+                    'The frequency settings could not be encoded to JSON, please try again'
+                ];
+                return 422;
+            }
+        }
+
         $patch_budget_item_response = $api->patchBudgetItem(
             $resource_type_id,
             $resource_id,

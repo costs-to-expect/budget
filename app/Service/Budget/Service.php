@@ -43,6 +43,11 @@ class Service
     private array $paid_items = [];
 
     private array $adjustments = [];
+    private array $selected = [
+        'item' => null,
+        'month' => null,
+        'year' => null,
+    ];
 
     public function __construct()
     {
@@ -83,6 +88,17 @@ class Service
     public function setPaidBudgetItems(array $paid_items): Service
     {
         $this->paid_items = $paid_items;
+
+        return $this;
+    }
+
+    public function setSelected(string $item, int $month, int $year): Service
+    {
+        $this->selected = [
+            'item' => $item,
+            'month' => $month,
+            'year' => $year
+        ];
 
         return $this;
     }
@@ -319,7 +335,8 @@ class Service
             'next' => [
                 'month' => (int)$later->format('n'),
                 'year' => (int)$later->format('Y')
-            ]
+            ],
+            'selected' => $this->selected
         ];
     }
 

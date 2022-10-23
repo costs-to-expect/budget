@@ -379,8 +379,7 @@ class BudgetItem extends Controller
 
                 'now_month' => $budget->nowMonth(),
                 'now_year' => $budget->nowYear(),
-                'now' => $request->query('now' ) === '1',
-                'is_paid' => ($request->query('now' ) === '1' && in_array($request->route('item_id'), $budget->paidItems(), true)),
+                'is_paid' => in_array($request->route('item_id'), $budget->paidItems(), true),
 
                 'item' => $budget_item['content'],
                 'adjusted_amount' => $adjusted_amount,
@@ -436,7 +435,11 @@ class BudgetItem extends Controller
 
         if ($result === 204) {
             return redirect()
-                ->route('budget.item.view', ['item_id' => $request->route('item_id'), 'now'=>1])
+                ->route('budget.item.view', [
+                    'item_id' => $request->route('item_id'),
+                    'item-month'=> (int) $request->post('month'),
+                    'item-yar' => (int) $request->post('year'),
+                ])
                 ->with('status', 'item-marked-as-not-paid');
         }
 
@@ -457,7 +460,11 @@ class BudgetItem extends Controller
 
         if ($result === 201) {
             return redirect()
-                ->route('budget.item.view', ['item_id' => $request->route('item_id'), 'now'=>1])
+                ->route('budget.item.view', [
+                    'item_id' => $request->route('item_id'),
+                    'item-month'=> (int) $request->post('month'),
+                    'item-yar' => (int) $request->post('year'),
+                ])
                 ->with('status', 'item-marked-as-paid');
         }
 
