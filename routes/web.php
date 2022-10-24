@@ -213,6 +213,11 @@ Route::group(
             [BudgetItem::class, 'updateProcess']
         )->name('budget.item.update.process');
 
+        Route::get(
+            '/budget/items',
+            [BudgetItem::class, 'list']
+        )->name('budget.item.list');
+
 
         // Account management
         Route::get(

@@ -396,6 +396,17 @@ class BudgetItem extends Controller
         );
     }
 
+    public function list(Request $request)
+    {
+        $this->bootstrap($request);
+
+        return view(
+            'budget.item.list',
+            [
+            ]
+        );
+    }
+
     public function resetProcess(Request $request)
     {
         $this->bootstrap($request);
