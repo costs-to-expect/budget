@@ -252,22 +252,22 @@ Route::group(
 
         Route::get(
             '/account/change-password',
-            [Authentication::class, 'changePassword']
+            [Account::class, 'changePassword']
         )->name('account.change-password');
 
         Route::post(
             '/account/change-password',
-            [Authentication::class, 'changePasswordProcess']
+            [Account::class, 'changePasswordProcess']
         )->name('account.change-password.process');
 
         Route::get(
             '/account/update-profile',
-            [Authentication::class, 'updateProfile']
+            [Account::class, 'updateProfile']
         )->name('account.update-profile');
 
         Route::post(
             '/account/update-profile',
-            [Authentication::class, 'updateProfileProcess']
+            [Account::class, 'updateProfileProcess']
         )->name('account.update-profile.process');
     }
 );
