@@ -259,9 +259,9 @@
 
                             @if (count($accounts) > 0)
                                 @if ($number_of_items < $max_items)
+                                <button type="submit" class="btn btn-sm btn-dark">Save</button>
+                                <button name="submit_and_return" type="submit" class="btn btn-sm btn-dark">Save & Add Another</button>
                                 <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
-                                <button type="submit" class="btn btn-sm btn-primary">Save</button>
-                                <button name="submit_and_return" type="submit" class="btn btn-sm btn-primary">Save & Add Another</button>
                                 @endif
                             @else
                             <div class="alert alert-dark show mt-2" role="alert">

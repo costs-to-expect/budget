@@ -78,8 +78,8 @@
                     <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
                     @if (count($accounts) < $max_accounts)
                     <div class="col-12 mt-3">
+                        <button type="submit" class="btn btn-sm btn-dark">Save</button>
                         <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
-                        <button type="submit" class="btn btn-sm btn-primary">Save</button>
                     </div>
                     @endif
                 </form>

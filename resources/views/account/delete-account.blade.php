@@ -74,8 +74,8 @@
                         @csrf
 
                         <div class="col-12 mt-3">
-                            <a href="{{ route('account.index') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            <a href="{{ route('account.index') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                         </div>
                     </form>
                 </div>

@@ -42,7 +42,7 @@ class Controller extends BaseController
         $this->config = Config::get('app.config');
         $this->item_type_id = $this->config['item_type_id'];
         $this->item_subtype_id = $this->config['item_subtype_id'];
-        $this->timezone = new \DateTimeZone('UTC');
+        $this->timezone = new \DateTimeZone(Config::get('app.config.timezone'));
     }
 
     protected function bootstrap(Request $request)

@@ -17,15 +17,15 @@
         <div class="col-lg-8 mx-auto p-3">
 
             <main>
-                <h2 class="display-4 mt-3 mb-3">Manage Account</h2>
+                <h2 class="display-4 mt-3 mb-3">Your Account</h2>
 
-                <p class="lead">You can manage your account below, this includes resetting your Budget and
-                    deleting your Costs to Expect account.
+                <p class="lead">You can manage your account below, this includes resetting your Budget,
+                    deleting your data and account and updating your username and email address.
                 </p>
 
-                <h2 class="display-5">Account</h2>
+                <h2 class="display-5">User</h2>
 
-                <p class="lead">Update your profile and password using the options below.</p>
+                <p class="lead">Update your name, email and password using the options below.</p>
 
                 @if ($status === 'password-changed')
                     <div class="alert alert-dark alert-dismissible fade show" role="alert">

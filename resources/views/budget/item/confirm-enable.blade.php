@@ -38,8 +38,8 @@
                                     @csrf
 
                                     <div class="col-12 mt-3">
-                                    <a href="{{ route('budget.item.view', ['item_id' => $item['id']]) }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                                     <button type="submit" class="btn btn-sm btn-dark">Enable</button>
+                                        <a href="{{ route('budget.item.view', ['item_id' => $item['id']]) }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                                     </div>
                                 </form>
                             </div>

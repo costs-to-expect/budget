@@ -20,7 +20,7 @@
                     <h2 class="display-5 mt-3 mb-3">Change Password</h2>
 
                     <p class="lead">Change your password with the Costs to Expect service, if you change
-                        your password here you will need to use this new password in all our Apps.
+                        your password here you will need to use your new password in all our Apps.
                     </p>
                 </div>
             </div>
@@ -52,8 +52,8 @@
                             </div>
 
                             <div class=col-12">
-                                <a href="{{ route('account.index') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                                 <button type="submit" class="btn btn-sm btn-dark">Save</button>
+                                <a href="{{ route('account.index') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                             </div>
                         </form>
                     </div>
