@@ -52,8 +52,8 @@
                             </div>
 
                             <div class=col-12">
-                                <a href="{{ route('account.index') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                                 <button type="submit" class="btn btn-sm btn-dark">Save</button>
+                                <a href="{{ route('account.index') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                             </div>
                         </form>
                     </div>

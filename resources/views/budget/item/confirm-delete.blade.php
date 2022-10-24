@@ -39,9 +39,9 @@
                                     @csrf
 
                                     <div class="col-12 mt-3">
-                                        <a href="{{ route('budget.item.view', ['item_id' => $item['id']]) }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                         <button name="submit_and_discard" type="submit" class="btn btn-sm btn-danger" value="delete-and-discard">Delete & Discard</button>
+                                        <a href="{{ route('budget.item.view', ['item_id' => $item['id']]) }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                                     </div>
                                 </form>
                             </div>

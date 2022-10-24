@@ -258,8 +258,8 @@
                         </fieldset>
                         <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
                         <div class="col-12 mt-3">
+                            <button type="submit" class="btn btn-sm btn-dark">Save</button>
                             <a href="{{ route('budget.item.view', ['item_id' => $item['id']]) }}" class="btn btn-sm btn-outline-primary">Cancel</a>
-                            <button type="submit" class="btn btn-sm btn-primary">Save</button>
                         </div>
                     </form>
 

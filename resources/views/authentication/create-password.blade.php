@@ -62,9 +62,7 @@
                 </div>
                 <input type="hidden" name="token" value="{{ old('token', $token) }}" />
                 <input type="hidden" name="email" value="{{ old('email', $email) }}" />
-                @env('local')
                 <button type="submit" class="btn btn-primary w-100">Set Password</button>
-                @endenv
             </form>
         </div>
     </div>
