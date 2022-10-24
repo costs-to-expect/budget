@@ -13,4 +13,5 @@ return [
     'version' => 'v0.16.0',
     'release_date' => '23rd October 2022',
     'exception_notification_email' => env('EXCEPTION_NOTIFICATION_EMAIL'),
+    'timezone' => 'UTC' // We can allow users to override this later
 ];

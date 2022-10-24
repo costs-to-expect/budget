@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\View\Component;
 
 class BudgetItem extends Component
@@ -26,8 +27,8 @@ class BudgetItem extends Component
         $this->item_month = $itemMonth;
         $this->adjusted_amount = $adjustedAmount;
 
-        $this->item['start_date'] = new \DateTimeImmutable($this->item['start_date'], new \DateTimeZone('UTC'));
-        $this->item['end_date'] = ($this->item['end_date'] !== null) ? new \DateTimeImmutable($this->item['end_date'], new \DateTimeZone('UTC')) : null;
+        $this->item['start_date'] = new \DateTimeImmutable($this->item['start_date'], new \DateTimeZone(Config::get('app.config.timezone')));
+        $this->item['end_date'] = ($this->item['end_date'] !== null) ? new \DateTimeImmutable($this->item['end_date'], new \DateTimeZone(Config::get('app.config.timezone'))) : null;
         if (
             $this->item['frequency']['type'] === 'monthly' &&
             is_array($this->item['frequency']['exclusions']) &&
