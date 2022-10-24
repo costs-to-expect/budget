@@ -46,7 +46,7 @@
                     <label for="password" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control @if($errors !== null && array_key_exists('password', $errors)) is-invalid @endif" id="password" aria-describedby="password-help" required value="" />
                     <div id="password-help" class="form-text">Please enter your password, <em>we will check this
-                            against the encrypted value in our database</em>.</div>
+                            against the hashed value in our database</em>.</div>
                     @if($errors !== null && array_key_exists('password', $errors))
                         <div class="invalid-feedback">
                             @foreach ($errors['password'] as $error)

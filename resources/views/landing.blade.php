@@ -41,9 +41,10 @@
             <h1 class="display-4 fw-normal">Budget</h1>
             <h2 class="display-5">A budgeting tool so easy to use, it’s child play!</h2>
             <p class="lead fw-normal">A free, open source budgeting tool powered by the <a href="https://api.costs-to-expect.com">Costs to Expect API</a>.</p>
-            <p class="lead fw-normal">In early development, we expect to have our v1.00.0 ready
-                before spring 2023, our Beta will be ready before the end of the year.</p>
-            <a class="btn btn-outline-primary"><span class="badge text-bg-income">Beta</span> Coming Soon </a>
+            <p class="lead fw-normal"><span class="badge rounded-pill text-bg-income">Beta</span> Official release due at the start of January 2023.</p>
+            <p class="text-muted"><small>You are free to register now but there be a bug or two until the official release.</small></p>
+            <a href="{{ route('register.view') }}" class="btn btn-outline-primary">Register</a>
+            <a href="{{ route('sign-in.view') }}" class="btn btn-outline-primary">Sign-in</a>
         </div>
     </div>
 
@@ -55,7 +56,7 @@
                     We wouldn’t recommend it, but you get the idea.</p>
             </div>
             <div class="bg-light shadow-sm mx-auto"
-                 style="width: 80%; height: 448px; border-radius: 21px 21px 0 0;">
+                 style="width: 80%; height: 448px; border-radius: 6px 6px 0 0;">
                 <img src="{{ asset('images/overview.png') }}" width="275" height="" alt="Budget overview screen, expense for each month" />
             </div>
         </div>
@@ -66,7 +67,7 @@
                     and years ahead. Handy, right?</p>
             </div>
             <div class="bg-dark shadow-sm mx-auto"
-                 style="width: 80%; height: 448px; border-radius: 21px 21px 0 0;">
+                 style="width: 80%; height: 448px; border-radius: 6px 6px 0 0;">
                 <img src="{{ asset('images/projections.png') }}" width="275" height="" alt="Budget overview screen, expense for each month" />
             </div>
         </div>
@@ -76,23 +77,23 @@
         <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 py-3">
                 <h2 class="display-5">Open Source</h2>
-                <p class="lead">Budget and the API powering it are open source. That means we're not hiding anything -
+                <p class="lead">Budget and the API are open source. That means we're not hiding anything -
                     you are always free to see how your data is transmitted and saved.</p>
             </div>
             <div class="bg-light shadow-sm mx-auto"
-                 style="width: 80%; height: 335px; border-radius: 21px 21px 0 0;">
-                <img src="{{ asset('images/open.png') }}" width="275" height="" alt="Budget & the Costs to Expect API are Open Source" />
+                 style="width: 80%; height: 253px; border-radius: 6px 6px 0 0;">
+                <img src="{{ asset('images/open-source.png') }}" width="256" height="" alt="Budget & the Costs to Expect API are Open Source" />
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 p-3">
                 <h2 class="display-5">Powerful</h2>
-                <p class="lead">The Costs to Expect API is incredibly powerful - we designed it knowing we were going
-                    to use it for a variety of different tools.</p>
+                <p class="lead">The Costs to Expect API is powerful - we designed it knowing we were going
+                    to use it for a variety of different projects.</p>
             </div>
             <div class="bg-dark shadow-sm mx-auto"
-                 style="width: 80%; height: 335px; border-radius: 21px 21px 0 0;">
-                <img src="{{ asset('images/api.png') }}" width="275" height="" alt="The Costs to Expect API powers all our Apps" />
+                 style="width: 80%; height: 253px; border-radius: 6px 6px 0 0;">
+                <img src="{{ asset('images/api.png') }}" width="256" height="" alt="The Costs to Expect API powers all our Apps" />
             </div>
         </div>
     </div>
@@ -105,7 +106,7 @@
                     expenses can be as complex as you like.</p>
             </div>
             <div class="bg-light shadow-sm mx-auto"
-                 style="width: 80%; height: 400px; border-radius: 21px 21px 0 0;">
+                 style="width: 80%; height: 400px; border-radius: 6px 6px 0 0;">
                 <img src="{{ asset('images/detail.png') }}" width="275" height="" alt="Budget overview screen, expense for each month" />
             </div>
         </div>
@@ -116,7 +117,7 @@
                     ensuring your budget is completely customisable and up-to-date.</p>
             </div>
             <div class="bg-dark shadow-sm mx-auto"
-                 style="width: 80%; height: 400px; border-radius: 21px 21px 0 0;">
+                 style="width: 80%; height: 400px; border-radius: 6px 6px 0 0;">
                 <img src="{{ asset('images/exclusions.png') }}" width="275" height="" alt="Budget overview screen, expense for each month" />
             </div>
         </div>

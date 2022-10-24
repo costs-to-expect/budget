@@ -62,9 +62,7 @@
                         </div>
                     @endif
                 </div>
-                @env('local')
                 <button type="submit" class="btn btn-primary w-100">Register</button>
-                @endenv
             </form>
         </div>
     </div>
