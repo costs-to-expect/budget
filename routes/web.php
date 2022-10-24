@@ -268,6 +268,6 @@ Route::group(
         Route::post(
             '/account/update-profile',
             [Authentication::class, 'updateProfileProcess']
-        )->name('account.update-profile.process~');
+        )->name('account.update-profile.process');
     }
 );
