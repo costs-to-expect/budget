@@ -281,7 +281,7 @@
                             <p>In Budget Pro you will be able to have more than {{ $max_items }} items on your Budget.</p>
                             <p>You can create another {{ $max_items - $number_of_items }} budget items.</p>
                             <hr>
-                            <p class="mb-0"><a href="">Find out more</a>.</p>
+                            <p class="mb-0"><a href="{{ route('version-compare') }}">Find out more</a>.</p>
                         </div>
                     </div>
                     @endif
@@ -292,7 +292,7 @@
                             <p>In Budget Pro we include additional frequency options, daily, weekly, fortnights etc.</p>
                             <p>Additionally, we have more complicated exclusion options.</p>
                             <hr>
-                            <p class="mb-0"><a href="">Find out more</a>.</p>
+                            <p class="mb-0"><a href="{{ route('version-compare') }}">Find out more</a>.</p>
                         </div>
                     </div>
                 </div>

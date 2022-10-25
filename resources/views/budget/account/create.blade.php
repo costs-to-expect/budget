@@ -91,7 +91,7 @@
                         <p>You have created <strong>{{ count($accounts) }}</strong>, the maximum for Budget is <strong>{{ $max_accounts }}</strong>.</p>
                         <p>Additionally, in Budget Pro your Budget can include multiple currencies.</p>
                         <hr>
-                        <p class="mb-0"><a href="">Find out more</a>.</p>
+                        <p class="mb-0"><a href="{{ route('version-compare') }}">Find out more</a>.</p>
                     </div>
                 </div>
             </div>

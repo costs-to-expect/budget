@@ -269,7 +269,7 @@
                             <p>In Budget Pro we will support multi-edit.</p>
                             <p>You will be able to update all your budget items on a single page.</p>
                             <hr>
-                            <p class="mb-0"><a href="">Find out more</a>.</p>
+                            <p class="mb-0"><a href="{{ route('version-compare') }}">Find out more</a>.</p>
                         </div>
                     </div>
                 </div>
