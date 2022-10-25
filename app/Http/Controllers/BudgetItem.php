@@ -396,6 +396,23 @@ class BudgetItem extends Controller
         );
     }
 
+    public function list(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $budget = new \App\Service\Budget\Service($this->timezone);
+        $budget->setAccounts($this->accounts)
+            ->create();
+
+        return view(
+            'budget.item.list',
+            [
+                'accounts' => $budget->accounts(),
+                'items' => $this->getBudgetItems()
+            ]
+        );
+    }
+
     public function resetProcess(Request $request)
     {
         $this->bootstrap($request);

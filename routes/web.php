@@ -71,6 +71,11 @@ Route::view(
     'faqs'
 )->name('faqs');
 
+Route::view(
+    '/version-compare',
+    'version-compare'
+)->name('version-compare');
+
 Route::group(
     [
         'middleware' => [
@@ -212,6 +217,11 @@ Route::group(
             '/budget/item/{item_id}/edit',
             [BudgetItem::class, 'updateProcess']
         )->name('budget.item.update.process');
+
+        Route::get(
+            '/budget/items',
+            [BudgetItem::class, 'list']
+        )->name('budget.item.list');
 
 
         // Account management

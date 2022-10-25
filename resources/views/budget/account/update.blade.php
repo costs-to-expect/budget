@@ -78,7 +78,7 @@
                         <p>You have created {{ count($accounts) }} accounts.</p>
                         <p>Additional, in Budget Pro your Budget can include multiple currencies.</p>
                         <hr>
-                        <p class="mb-0"><a href="">Find out more</a>.</p>
+                        <p class="mb-0"><a href="{{ route('version-compare') }}">Find out more</a>.</p>
                     </div>
                 </div>
             </div>

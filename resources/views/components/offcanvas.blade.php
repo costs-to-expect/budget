@@ -14,7 +14,13 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link @if($active === 'home') active @endif" href="{{ route('home') }}">Home</a>
+                        <a class="nav-link @if($active === 'home') active @endif" href="{{ route('home') }}">Your Budget</a>
+
+                        <ul class="navbar-nav justify-content-end flex-grow-1 ps-4 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link @if($active === 'budget.item.list') active @endif" href="{{ route('budget.item.list') }}">Budget Items</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link @if($active === 'getting-started') active @endif" href="{{ route('getting-started') }}">Getting Started</a>
