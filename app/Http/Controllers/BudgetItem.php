@@ -403,6 +403,7 @@ class BudgetItem extends Controller
         return view(
             'budget.item.list',
             [
+                'items' => $this->getBudgetItems()
             ]
         );
     }

@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class TwitterCard extends Component
+class Help extends Component
 {
     public function __construct()
     {
@@ -13,6 +13,6 @@ class TwitterCard extends Component
 
     public function render()
     {
-        return view('components.twitter-card');
+        return view('components.help');
     }
 }
