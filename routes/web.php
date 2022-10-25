@@ -71,6 +71,11 @@ Route::view(
     'faqs'
 )->name('faqs');
 
+Route::view(
+    '/version-compare',
+    'version-compare'
+)->name('version-compare');
+
 Route::group(
     [
         'middleware' => [

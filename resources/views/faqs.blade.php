@@ -112,6 +112,8 @@
                     <p class="lead">Budget Pro is the upgraded version of Budget. It includes sharing, multiple
                         budgets as well many other extra features. It will be subject to a monthly subscription fee.</p>
 
+                    <p class="lead">Please review our <a href="{{ route('version-compare') }}">versions matrix</a> to see how Budget and Budget Pro compare.</p>
+
                     <h3 class="display-6 mt-3 mb-3">Will I be able to upgrade to Budget Pro?</h3>
                     <p class="lead">Yes, upon release you will be able to upgrade to Budget Pro if you want to. Your
                         Budget will appear in Budget Pro and you will have access to all the new features.</p>
@@ -121,11 +123,15 @@
                         the downgrade but no data will be lost.</p>
 
                     <h3 class="display-6 mt-3 mb-3">When will Budget Pro release?</h3>
-                    <p class="lead">We don't have a fixed release date but we're aiming for the first quarter of 2023.</p>
+                    <p class="lead">We don't have a fixed release date but we're aiming for the first half of 2023.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Will you update Budget after you release Budget Pro?</h3>
                     <p class="lead">Yes, both Budget and Budget Pro will receive regular updates and we have an
                         extensive list of upgrades planned for both Apps.</p>
+
+                    <h3 class="display-6 mt-3 mb-3">Will Budget Pro be open source?</h3>
+                    <p class="lead">No, Budget Pro will not be an open source product. It is a completely separate
+                        App to Budget.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Do you use Budget yourself?</h3>
                     <p class="lead">We firmly believe in using our own products. Budget has been developed, built

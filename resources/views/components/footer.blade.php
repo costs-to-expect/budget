@@ -6,6 +6,7 @@
                 <li><a class="link-primary" href="{{ route('getting-started') }}">Getting Started</a></li>
                 <li><a class="link-primary" href="{{ route('workflow') }}">Workflow</a></li>
                 <li><a class="link-primary" href="{{ route('faqs') }}">FAQs</a></li>
+                <li><a class="link-primary" href="{{ route('version-compare') }}">Compare Versions</a></li>
             </ul>
 
             <small class="d-block mb-3 text-muted">&copy; 2018-{{ date('Y') }} Dean Blackborough</small>
