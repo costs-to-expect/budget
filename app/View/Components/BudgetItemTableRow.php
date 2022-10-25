@@ -9,11 +9,15 @@ class BudgetItemTableRow extends Component
 {
     protected array $accounts;
     protected array $item;
+    protected int $year;
+    protected int $month;
 
-    public function __construct(array $accounts, array $item)
+    public function __construct(array $accounts, array $item, int $year, int $month)
     {
         $this->accounts = $accounts;
         $this->item = $item;
+        $this->year = $year;
+        $this->month = $month;
 
         $this->item['start_date'] = new \DateTimeImmutable($this->item['start_date'], new \DateTimeZone(Config::get('app.config.timezone')));
         $this->item['end_date'] = ($this->item['end_date'] !== null) ? new \DateTimeImmutable($this->item['end_date'], new \DateTimeZone(Config::get('app.config.timezone'))) : null;
@@ -33,6 +37,18 @@ class BudgetItemTableRow extends Component
         if ($this->item['end_date'] !== null && $this->item['end_date'] < new \DateTimeImmutable('now', new \DateTimeZone(Config::get('app.config.timezone')))) {
             $this->item['status'] = 'Deleted/Expired';
         }
+
+        // URI params for the "View on Budget button"
+        // Params for monthly items (need to take exclusions into account, go to the next possible instance, or last instance if no next instance)
+        // Params for annual items (need to go to the next possible instance, or the last if no next instance)
+        // Params for one-off items (need to just go to the item)
+
+        // Enable, simple turns on the budget item and returns to the list
+
+        // Maybe we need a discard item button as well but that is annoying as we need the confirmation
+
+        // We should think about showing the number of created items as a count and how many more can be created
+        // Another way to upsell to Budget Pro, or at least help people work within the limit of 35
     }
 
     public function render()
@@ -42,6 +58,8 @@ class BudgetItemTableRow extends Component
             [
                 'account' => $this->accounts[$this->item['account']],
                 'item' => $this->item,
+                'year' => $this->year,
+                'month' => $this->month,
             ]
         );
     }

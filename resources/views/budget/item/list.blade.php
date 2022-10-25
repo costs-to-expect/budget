@@ -43,7 +43,7 @@
                         </thead>
                         <tbody class="table-group-divider">
                             @foreach ($items as $__item)
-                            <x-budget-item-table-row :item="$__item" :accounts="$accounts"/>
+                            <x-budget-item-table-row :item="$__item" :accounts="$accounts" :year="$now_year" :month="$now_month"/>
                             @endforeach
                         </tbody>
                     </table>

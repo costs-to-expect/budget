@@ -408,7 +408,9 @@ class BudgetItem extends Controller
             'budget.item.list',
             [
                 'accounts' => $budget->accounts(),
-                'items' => $this->getBudgetItems()
+                'items' => $this->getBudgetItems(),
+                'now_year' => $budget->nowYear(),
+                'now_month' => $budget->nowMonth()
             ]
         );
     }
