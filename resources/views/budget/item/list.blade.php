@@ -34,66 +34,14 @@
                                 <th scope="col">Amount</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Frequency</th>
+                                <th scope="col">Exclusions</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
                             @foreach ($items as $__item)
-                            <tr>
-                                <td>{{ $__item['name'] }}</td>
-                                <td><x-currency :currency="$__item['currency']" />{{ number_format($__item['amount'], 2) }}</td>
-                                <td><x-category :category="$__item['category']" /></td>
-                                <td>
-                                    @if ($__item['frequency']['type'] === 'monthly')
-                                        <div class="col-12">
-                                            Monthly @if ($__item['frequency']['day'] !== null) around the <x-ordinal :day="$__item['frequency']['day']" /> of the month. @endif
-                                        </div>
-                                    @endif
-
-                                    @if ($__item['frequency']['type'] === 'annually')
-                                        <div class="col-12">
-                                            Annually @if ($__item['frequency']['day'] !== null) around the <x-ordinal :day="$__item['frequency']['day']" /> of <x-month :month="$__item['frequency']['month']" /> @else in <x-month :month="$__item['frequency']['month']" /> @endif
-                                        </div>
-                                    @endif
-
-                                    @if ($__item['frequency']['type'] === 'one-off')
-                                        <div class="col-12">
-                                            One-Off, due on {{ $__item['start_date']->format('d/m/Y') }}
-                                        </div>
-                                    @endif
-                                </td>
-                                <td>Active</td>
-                                <td>
-                                    <a class="btn btn-sm btn-outline-primary" data-bs-toggle="collapse" href="#collapse{{ $__item['id'] }}" role="button" aria-expanded="false" aria-controls="collapse{{ $__item['id'] }}">
-                                        More...
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="collapse" id="collapse{{ $__item['id'] }}">
-                                <td colspan="6">
-                                    <table class="table table-sm table-borderless mb-0">
-                                        <thead>
-                                        <tr class="bg-grey text-light">
-                                            <th scope="col">Start Date</th>
-                                            <th scope="col">End Date</th>
-                                            <th scope="col">Account</th>
-                                            <th scope="col">Description</th>
-                                            <th scope="col">Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody class="table-group-divider">
-                                        <tr>
-                                            <td>{{ $__item['start_date'] }}</td>
-                                            <td>None Set</td>
-                                            <td>Debit</td>
-                                            <td>None Set</td>
-                                            <td>Restore|View on Budget</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
+                            <x-budget-item-table-row :item="$__item" :accounts="$accounts"/>
                             @endforeach
                         </tbody>
                     </table>
