@@ -19,9 +19,11 @@
                 <div class="col-12">
                     <h2 class="display-4 mt-3 mb-3">Budget Items</h2>
 
-                    <p class="lead">All you budget items are listed below, this is the definition of
-                        your budget items, to see them in context you need to visit your
-                        <a href="{{ route('home') }}">Budget</a>.</p>
+                    <p class="lead">All your budget items are listed below, click on "More" to see
+                        the details for each budget item.</p>
+
+                    <p class="lead">If you need to restore a deleted (not discarded) budget item.
+                        you can use the "Restore" button.</p>
                 </div>
             </div>
 

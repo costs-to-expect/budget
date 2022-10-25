@@ -42,7 +42,7 @@
             <h2 class="display-5">A budgeting tool so easy to use, it’s child play!</h2>
             <p class="lead fw-normal">A free, open source budgeting tool powered by the <a href="https://api.costs-to-expect.com">Costs to Expect API</a>.</p>
             <p class="lead fw-normal"><span class="badge rounded-pill text-bg-income">Beta</span> Official release due at the start of January 2023.</p>
-            <p class="text-muted"><small>You are free to register now but there be a bug or two until the official release.</small></p>
+            <p class="text-muted"><small>You are free to register now but there may be a bug or two until the official release.</small></p>
             <a href="{{ route('register.view') }}" class="btn btn-outline-primary">Register</a>
             <a href="{{ route('sign-in.view') }}" class="btn btn-outline-primary">Sign-in</a>
         </div>

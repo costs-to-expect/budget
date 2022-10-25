@@ -19,7 +19,7 @@
             <main>
                 <h2 class="display-4">Delete Account</h2>
 
-                <p class="lead">This will delete your Costs to Expect account, all your data will be
+                <p class="lead">This will delete your Costs to Expect account. All your data will be
                     removed across our entire service. Please review the following table to see what will be
                     deleted, nothing will remain.</p>
 

@@ -19,7 +19,7 @@
                 <div class="col-12">
                     <h2 class="display-5 mt-3 mb-3">Change Password</h2>
 
-                    <p class="lead">Change your password with the Costs to Expect service, if you change
+                    <p class="lead">Change your password with the Costs to Expect service. If you change
                         your password here you will need to use your new password in all our Apps.
                     </p>
                 </div>
