@@ -19,8 +19,8 @@
             <main>
                  <h2 class="display-4">Reset Budget</h2>
 
-                <p class="lead">This will reset your Budget account, it will be like you have just registered,
-                    please review the tables below to see what will be deleted and what will remain.</p>
+                <p class="lead">If you reset your account, the Budget you have created and any related data
+                    will be remove. Use this if you want to start afresh.</p>
 
                 <h3 class="display-6">Data that will be deleted</h3>
 
@@ -38,17 +38,12 @@
                         <tbody>
                         <tr>
                             <td>Budget</td>
-                            <td>Your Budget definition and budget items</td>
+                            <td>Your Budget and all budget items</td>
                             <td>API</td>
                         </tr>
                         <tr>
                             <td>Related data</td>
-                            <td>Paid budget item definitions and adjusted budget item values</td>
-                            <td>Budget</td>
-                        </tr>
-                        <tr>
-                            <td>Sessions</td>
-                            <td>Session information</td>
+                            <td>Paid budget item states and adjusted budget item values</td>
                             <td>Budget</td>
                         </tr>
                         </tbody>
@@ -77,7 +72,7 @@
                         <tr>
                             <td>Other Apps</td>
                             <td>Your will still have access to all the Costs to Expect Apps and
-                                none of your data will be touched.</td>
+                                none of your data in our other apps will be affected.</td>
                             <td>API & Relevant Apps</td>
                         </tr>
                         </tbody>

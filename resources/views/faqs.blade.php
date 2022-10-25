@@ -112,7 +112,7 @@
                     <p class="lead">Budget Pro is the upgraded version of Budget. It includes sharing, multiple
                         budgets as well many other extra features. It will be subject to a monthly subscription fee.</p>
 
-                    <p class="lead">Please review our <a href="{{ route('version-compare') }}">versions matrix</a> to see how Budget and Budget Pro compare.</p>
+                    <p class="lead">Please review our <a href="{{ route('version-compare') }}">Versions Matrix</a> to see how Budget and Budget Pro compare.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Will I be able to upgrade to Budget Pro?</h3>
                     <p class="lead">Yes, upon release you will be able to upgrade to Budget Pro if you want to. Your

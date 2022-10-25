@@ -5,7 +5,7 @@
         <p class="lead">This App relies on the <a href="https://api.costs-to-expect.com">Costs to Expect API</a>.
             The API is Open Source, in keeping with that, we show all the requests we make against the API below.</p>
         <p>The table below details all the GET and OPTIONS requests that were made to the API during the page load.
-            The responses from those requests is what we used to generate the content for this page.</p>
+            The responses from those requests are what we used to generate the content for this page.</p>
         <p>Your <abbr title="Access token for the API">Bearer</abbr> token was included with each
             of the requests; the response from each request is personal to you.</p>
     </div>

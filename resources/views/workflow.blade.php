@@ -42,8 +42,8 @@
                 <div class="col-12">
                     <h2 class="display-4 mt-3 mb-3">How It Works</h2>
 
-                    <p class="lead">Once you have added all your expenses and income to your Budget, there
-                        are two parts to the workflow, check below to see how it works.
+                    <p class="lead">Once you have added all your income and expenses to your Budget, there
+                        are two parts to the workflow. Check below to see how it works.
                     </p>
 
                     <p class="lead">Learn how to define your Budget with our <a href="{{ route('getting-started') }}">Getting Started</a> page.</p>
@@ -69,9 +69,9 @@
                     <img src="{{ asset('images/workflow/set-as-paid.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Images of the set as paid button and description text" width="700" height="500" loading="lazy">
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Step 2: Set as Paid</h1>
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Step 2: Mark as Paid</h1>
                     <p class="lead">For the current month, we need to know which items have already been
-                        accounted for, click into the budget item and "Set as paid".</p>
+                        accounted for. Select the budget item and "Mark as Paid".</p>
                 </div>
             </div>
         </div>

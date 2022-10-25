@@ -42,11 +42,11 @@
                 <div class="col-12">
                     <h2 class="display-4 mt-3 mb-3">Budget and Budget Pro</h2>
 
-                    <p class="lead">Budget Pro is in development, we hope to have it released within the first
-                        half of 2023, please review the table below to see how Budget and Budget Pro compare
+                    <p class="lead">Budget Pro is in development and we hope to have it released within the first
+                        half of 2023. Please review the table below to see how Budget and Budget Pro compare
                     </p>
 
-                    <p class="lead mb-0">The tables below detail some of the features planned from Budget Pro.</p>
+                    <p class="lead mb-0">The tables below detail some of the features planned for Budget Pro.</p>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
                             </tr>
                             <tr>
                                 <th scope="row">Number of Budget Items</th>
-                                <td>30</td>
+                                <td>35</td>
                                 <td>Unlimited</td>
                             </tr>
                             </tbody>
@@ -122,6 +122,11 @@
             <div class="row">
                 <div class="col-12">
                     <h3 class="display-6 mt-3 mb-3">General Features</h3>
+
+                    <p class="lead">We can't guarantee every feature will be available upon release. If a feature
+                        has an asterisk * next to it, it might not be in the initial release but
+                        be assured we will be working on it.
+                    </p>
                 </div>
                 <div class="col-12">
                     <div class="table-responsive">
@@ -155,12 +160,12 @@
                                 <td>Yes</td>
                             </tr>
                             <tr>
-                                <th scope="row">Copy a Budget</th>
+                                <th scope="row">Copy a Budget *</th>
                                 <td>No</td>
                                 <td>Yes <span class="text-muted small">Copy an entire Budget</span></td>
                             </tr>
                             <tr>
-                                <th scope="row">Copy Budget Items</th>
+                                <th scope="row">Copy Budget Items *</th>
                                 <td>No</td>
                                 <td>Yes <span class="text-muted small">Useful for faster data entry</span></td>
                             </tr>
@@ -200,7 +205,7 @@
                                 <td>Search on any field</td>
                             </tr>
                             <tr>
-                                <th scope="row">Multiple Edit</th>
+                                <th scope="row">Multiple Edit *</th>
                                 <td>No</td>
                                 <td>Yes</td>
                             </tr>
@@ -215,7 +220,8 @@
                     <h3 class="display-6 mt-3 mb-3">Viewing Features</h3>
 
                     <p class="lead">We can't guarantee every feature will be available upon release. If a feature
-                        is highlighted, it will be in the initial release, the rest will arrive as soon as possible.
+                        has an asterisk * next to it, it might not be in the initial release but
+                        be assured we will be working on it.
                     </p>
                 </div>
                 <div class="col-12">
@@ -229,28 +235,28 @@
                             </tr>
                             </thead>
                             <tbody class="table-group-divider">
-                            <tr class="table-light">
+                            <tr>
                                 <th scope="row">Set Timezone</th>
                                 <td>No</td>
                                 <td>Yes</td>
                             </tr>
-                            <tr class="table-light">
+                            <tr>
                                 <th scope="row">Set Date Format</th>
                                 <td>No</td>
                                 <td>Yes</td>
                             </tr>
                             <tr>
-                                <th scope="row">Define Colours for Categories</th>
+                                <th scope="row">Define Colours for Categories *</th>
                                 <td>No</td>
                                 <td>Yes</td>
                             </tr>
-                            <tr class="table-light">
+                            <tr>
                                 <th scope="row">Number of Visible Months on Budget</th>
                                 <td>3</td>
                                 <td>3, 6, or 12</td>
                             </tr>
                             <tr>
-                                <th scope="row">Customise Expense Bars</th>
+                                <th scope="row">Customise Expense Bars *</th>
                                 <td>No</td>
                                 <td>Yes</td>
                             </tr>
