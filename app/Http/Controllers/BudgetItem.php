@@ -413,9 +413,7 @@ class BudgetItem extends Controller
     {
         $this->bootstrap($request);
 
-        $budget = new \App\Service\Budget\Service($this->timezone);
-        $budget->setAccounts($this->accounts)
-            ->create();
+        $budget = $this->setUpBudget($request);
 
         return view(
             'budget.item.list',
@@ -423,7 +421,9 @@ class BudgetItem extends Controller
                 'accounts' => $budget->accounts(),
                 'items' => $this->getBudgetItems(),
                 'now_year' => $budget->nowYear(),
-                'now_month' => $budget->nowMonth()
+                'now_month' => $budget->nowMonth(),
+                'max_items' => $budget->maxItems(),
+                'number_of_items' => $budget->numberOfItems(),
             ]
         );
     }
