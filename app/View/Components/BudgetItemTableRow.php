@@ -31,7 +31,7 @@ class BudgetItemTableRow extends Component
         }
 
         $this->item['status'] = 'Active';
-        if ($this->item['disabled'] === 1) {
+        if ($this->item['disabled'] === true) {
             $this->item['status'] = 'Disabled';
         }
         if ($this->item['end_date'] !== null && $this->item['end_date'] < new \DateTimeImmutable('now', new \DateTimeZone(Config::get('app.config.timezone')))) {

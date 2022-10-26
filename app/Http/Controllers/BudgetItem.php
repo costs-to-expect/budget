@@ -9,6 +9,7 @@ use App\Actions\Budget\Item\Delete;
 use App\Actions\Budget\Item\Disable;
 use App\Actions\Budget\Item\Enable;
 use App\Actions\Budget\Item\Reset;
+use App\Actions\Budget\Item\Restore;
 use App\Actions\Budget\Item\SetAsNotPaid;
 use App\Actions\Budget\Item\SetAsPaid;
 use App\Actions\Budget\Item\Update;
@@ -187,6 +188,12 @@ class BudgetItem extends Controller
         );
 
         if ($result === 204) {
+            if ($request->query('return') === 'list') {
+                return redirect()
+                    ->route('budget.item.list', ['item_id' => $request->route('item_id')])
+                    ->with('status', 'item-disabled');
+            }
+
             return redirect()
                 ->route('budget.item.view', ['item_id' => $request->route('item_id')])
                 ->with('status', 'item-disabled');
@@ -261,9 +268,15 @@ class BudgetItem extends Controller
         );
 
         if ($result === 204) {
+            if ($request->query('return') === 'list') {
+                return redirect()
+                    ->route('budget.item.list', ['item_id' => $request->route('item_id')])
+                    ->with('status', 'item-enabled');
+            }
+
             return redirect()
-                ->route('budget.item.view', ['item_id' => $request->route('item_id')])
-                ->with('status', 'item-enabled');
+                    ->route('budget.item.view', ['item_id' => $request->route('item_id')])
+                    ->with('status', 'item-enabled');
         }
 
         if ($result === 422) {
@@ -438,6 +451,27 @@ class BudgetItem extends Controller
                     ]
                 )
                 ->with('status', 'item-reset');
+        }
+
+        abort($result, $action->getMessage());
+    }
+
+    public function restoreProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Restore();
+        $result = $action(
+            $this->api,
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->route('item_id')
+        );
+
+        if ($result === 204) {
+            return redirect()
+                ->route('budget.item.list')
+                ->with('status', 'item-restored');
         }
 
         abort($result, $action->getMessage());

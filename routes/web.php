@@ -153,6 +153,11 @@ Route::group(
             [BudgetItem::class, 'resetProcess']
         )->name('budget.item.reset.process');
 
+        Route::post(
+            '/budget/item/{item_id}/restore',
+            [BudgetItem::class, 'restoreProcess']
+        )->name('budget.item.restore.process');
+
         Route::get(
             '/budget/item/{item_id}/confirm-delete',
             [BudgetItem::class, 'confirmDelete']
