@@ -41,13 +41,30 @@
                                     <div class="col-12 mt-3">
                                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                         <button name="submit_and_discard" type="submit" class="btn btn-sm btn-danger" value="delete-and-discard">Delete & Discard</button>
-                                        <a href="{{ route('budget.item.view', ['item_id' => $item['id']]) }}" class="btn btn-sm btn-outline-primary">Cancel</a>
+                                        <a href="{{ route(
+                                            'budget.item.view',
+                                            [
+                                                'item_id' => $item['id'],
+                                                'year' => $selected_now_year,
+                                                'month' => $selected_now_month,
+                                                'item-year' => $item_year,
+                                                'item-month' => $item_month
+                                            ]
+                                        ) }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                                     </div>
                                 </form>
                             </div>
                         </div>
 
-                        <x-budget-item :accounts="$accounts" :item="$item" :itemYear="$item_year" :itemMonth="$item_month" :adjustedAmount="$adjusted_amount" />
+                        <x-budget-item
+                            :accounts="$accounts"
+                            :item="$item"
+                            :itemYear="$item_year"
+                            :itemMonth="$item_month"
+                            :nowYear="$selected_now_year"
+                            :nowMonth="$selected_now_month"
+                            :adjustedAmount="$adjusted_amount"
+                        />
 
                         <div class="col-12">
                             <div class="btn-group" role="group">

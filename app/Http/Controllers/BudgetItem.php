@@ -93,6 +93,9 @@ class BudgetItem extends Controller
                 'item' => $budget_item['content'],
                 'adjusted_amount' => $adjusted_amount,
 
+                'selected_now_month' => $request->query('month', $budget->nowMonth()),
+                'selected_now_year' => $request->query('year', $budget->nowYear()),
+
                 'item_year' => (int) $request->query('item-year', $budget->nowYear()),
                 'item_month' => (int) $request->query('item-month', $budget->nowMonth()),
             ]
@@ -168,6 +171,9 @@ class BudgetItem extends Controller
 
                 'item' => $budget_item['content'],
                 'adjusted_amount' => $adjusted_amount,
+
+                'selected_now_month' => $request->query('month', $budget->nowMonth()),
+                'selected_now_year' => $request->query('year', $budget->nowYear()),
 
                 'item_year' => (int) $request->query('item-year', $budget->nowYear()),
                 'item_month' => (int) $request->query('item-month', $budget->nowMonth()),
@@ -248,6 +254,9 @@ class BudgetItem extends Controller
 
                 'item' => $budget_item['content'],
                 'adjusted_amount' => $adjusted_amount,
+
+                'selected_now_month' => $request->query('month', $budget->nowMonth()),
+                'selected_now_year' => $request->query('year', $budget->nowYear()),
 
                 'item_year' => (int) $request->query('item-year', $budget->nowYear()),
                 'item_month' => (int) $request->query('item-month', $budget->nowMonth()),
@@ -396,6 +405,9 @@ class BudgetItem extends Controller
                 'now_month' => $budget->nowMonth(),
                 'now_year' => $budget->nowYear(),
                 'is_paid' => in_array($request->route('item_id'), $budget->paidItems(), true),
+
+                'selected_now_month' => $request->query('month', $budget->nowMonth()),
+                'selected_now_year' => $request->query('year', $budget->nowYear()),
 
                 'item' => $budget_item['content'],
                 'adjusted_amount' => $adjusted_amount,
@@ -558,6 +570,9 @@ class BudgetItem extends Controller
                 'has_savings_account' => $budget->hasSavingsAccount(),
 
                 'item' => $budget_item['content'],
+
+                'selected_now_month' => $request->query('month', $budget->nowMonth()),
+                'selected_now_year' => $request->query('year', $budget->nowYear()),
 
                 'item_year' => (int) $request->query('item-year', $budget->nowYear()),
                 'item_month' => (int) $request->query('item-month', $budget->nowMonth()),
