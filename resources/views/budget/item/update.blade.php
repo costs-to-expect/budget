@@ -259,7 +259,16 @@
                         <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
                         <div class="col-12 mt-3">
                             <button type="submit" class="btn btn-sm btn-dark">Save</button>
-                            <a href="{{ route('budget.item.view', ['item_id' => $item['id']]) }}" class="btn btn-sm btn-outline-primary">Cancel</a>
+                            <a href="{{ route(
+                                'budget.item.view',
+                                [
+                                    'item_id' => $item['id'],
+                                    'year' => $selected_now_year,
+                                    'month' => $selected_now_month,
+                                    'item-year' => $item_year,
+                                    'item-month' => $item_month
+                                ]
+                            ) }}" class="btn btn-sm btn-outline-primary">Cancel</a>
                         </div>
                     </form>
 

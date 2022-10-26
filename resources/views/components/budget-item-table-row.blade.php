@@ -23,19 +23,16 @@
                                 </td>
                                 <td>
                                     @if ($item['frequency']['type'] === 'monthly' && array_key_exists('exclusions', $item))
-                                        <div class="col-12">
-                                            <div class="label">Exclusions</div>
-                                            Not required: {{ $item['exclusions'] }}
-                                        </div>
+                                        {{ $item['exclusions'] }}
                                     @else
                                         None
                                     @endif
                                 </td>
                                 <td>
-                                    {{ $item['status'] }}
+                                    <strong>{{ $item['status'] }}</strong>
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-outline-primary" data-bs-toggle="collapse" href="#collapse{{ $item['id'] }}" role="button" aria-expanded="false" aria-controls="collapse{{ $item['id'] }}">
+                                    <a class="btn btn-sm btn-outline-dark" data-bs-toggle="collapse" href="#collapse{{ $item['id'] }}" role="button" aria-expanded="false" aria-controls="collapse{{ $item['id'] }}">
                                         More...
                                     </a>
                                 </td>
@@ -49,7 +46,7 @@
                                             <th scope="col">End Date</th>
                                             <th scope="col">Account</th>
                                             <th scope="col">Description</th>
-                                            <th scope="col">Actions</th>
+                                            <th scope="col">&nbsp;</th>
                                         </tr>
                                         </thead>
                                         <tbody class="table-group-divider">
@@ -71,14 +68,29 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($item['status'] === 'Active')
-                                                    <a href="" class="btn btn-sm btn-outline-primary">View on Budget</a>
-                                                @elseif ($item['status'] === 'Disabled')
-                                                    <a href="" class="btn btn-sm btn-dark">Activate</a>
+                                                @if ($item['status'] === 'Disabled')
+                                                    <form action="{{ route('budget.item.confirm-enable.process', ['item_id' => $item['id'], 'return'=>'list']) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-dark">Enable</button>
+                                                    </form>
                                                 @elseif ($item['status'] === 'Deleted/Expired')
-                                                    <a href="" class="btn btn-sm btn-dark">Restore</a>
+                                                    <form action="{{ route('budget.item.restore.process', ['item_id' => $item['id']]) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-dark">Restore</button>
+                                                    </form>
                                                 @else
-                                                    <a href="" class="btn btn-sm btn-outline-primary">View on Budget</a>
+                                                    <form action="{{ route('budget.item.confirm-disable.process', ['item_id' => $item['id'], 'return'=>'list']) }}" method="POST" class="text-end">
+                                                        @csrf
+                                                        <a href="{{ route('budget.item.view', [
+                                                        'item_id' => $item['id'],
+                                                        'item-year' => $item['uri']['item-year'],
+                                                        'item-month' => $item['uri']['item-month'],
+                                                        'month'=>  $item['uri']['month'],
+                                                        'year'=> $item['uri']['year']]
+                                                        ) }}"
+                                                           class="btn btn-sm btn-outline-primary">View on Budget</a>
+                                                        <button type="submit" class="btn btn-sm btn-dark">Disable</button>
+                                                    </form>
                                                 @endif
                                             </td>
                                         </tr>

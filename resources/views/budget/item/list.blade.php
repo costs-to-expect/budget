@@ -27,28 +27,46 @@
                 </div>
             </div>
 
-            <div class="col-12">
-                <div class="table-responsive">
-                    <table class="table table-sm">
-                        <thead>
-                            <tr class="bg-dark text-light">
-                                <th scope="col">Name</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Frequency</th>
-                                <th scope="col">Exclusions</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">&nbsp;</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-group-divider">
-                            @foreach ($items as $__item)
-                            <x-budget-item-table-row :item="$__item" :accounts="$accounts"/>
-                            @endforeach
-                        </tbody>
-                    </table>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr class="bg-dark text-light">
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Frequency</th>
+                                    <th scope="col">Exclusions</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                @foreach ($items as $__item)
+                                <x-budget-item-table-row :item="$__item" :accounts="$accounts" :year="$now_year" :month="$now_month"/>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+
+            @if ($number_of_items > 10)
+            <div class="row">
+                <div class="col-12">
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" role="progressbar" aria-label="Items limit" style="width: {{ ($number_of_items / $max_items) * 100 }}%" aria-valuenow="{{ $number_of_items }}" aria-valuemin="0" aria-valuemax="{{ $max_items }}"></div>
+                    </div>
+
+                    <p class="lead">
+                        You have created {{ $number_of_items }} budget items, the limit is {{ $max_items }},
+                        you can create another {{ $max_items - $number_of_items }}.</p>
+
+                    <p class="lead">In <a href="{{ route('version-compare') }}">Budget Pro</a>, there will be no limit to the number of budget items you can create.</p>
+                </div>
+            </div>
+            @endif
 
             <x-help />
 
