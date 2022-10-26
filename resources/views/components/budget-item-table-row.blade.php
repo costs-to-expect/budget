@@ -72,7 +72,14 @@
                                             </td>
                                             <td>
                                                 @if ($item['status'] === 'Active')
-                                                    <a href="" class="btn btn-sm btn-outline-primary">View on Budget</a>
+                                                    <a href="{{ route('budget.item.view', [
+                                                        'item_id' => $item['id'],
+                                                        'item-year' => $item['uri']['year'],
+                                                        'item-month' => $item['uri']['month'],
+                                                        'month'=>  $item['uri']['month'],
+                                                        'year'=> $item['uri']['year']]
+                                                        ) }}"
+                                                       class="btn btn-sm btn-outline-primary">View on Budget</a>
                                                 @elseif ($item['status'] === 'Disabled')
                                                     <a href="" class="btn btn-sm btn-dark">Activate</a>
                                                 @elseif ($item['status'] === 'Deleted/Expired')

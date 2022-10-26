@@ -38,6 +38,24 @@ class BudgetItemTableRow extends Component
             $this->item['status'] = 'Deleted/Expired';
         }
 
+        $this->item['uri'] = [
+            'item_id' => $this->item['id'],
+            'month' => $month,
+            'year' => $year
+        ];/*
+
+        if ($this->item['status'] === 'Active') {
+
+            if ($this->item['frequency']['type'] === 'monthly') {
+                if (in_array($uri_params['month'], $this->item['exclusions'], true)) {
+                    // Find the previous free month
+
+                }
+            }
+        }*/
+
+
+
         // URI params for the "View on Budget button"
         // Params for monthly items (need to take exclusions into account, go to the next possible instance, or last instance if no next instance)
         // Params for annual items (need to go to the next possible instance, or the last if no next instance)
