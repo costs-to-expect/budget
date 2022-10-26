@@ -23,10 +23,7 @@
                                 </td>
                                 <td>
                                     @if ($item['frequency']['type'] === 'monthly' && array_key_exists('exclusions', $item))
-                                        <div class="col-12">
-                                            <div class="label">Exclusions</div>
-                                            Not required: {{ $item['exclusions'] }}
-                                        </div>
+                                        {{ $item['exclusions'] }}
                                     @else
                                         None
                                     @endif
@@ -74,8 +71,8 @@
                                                 @if ($item['status'] === 'Active')
                                                     <a href="{{ route('budget.item.view', [
                                                         'item_id' => $item['id'],
-                                                        'item-year' => $item['uri']['year'],
-                                                        'item-month' => $item['uri']['month'],
+                                                        'item-year' => $item['uri']['item-year'],
+                                                        'item-month' => $item['uri']['item-month'],
                                                         'month'=>  $item['uri']['month'],
                                                         'year'=> $item['uri']['year']]
                                                         ) }}"

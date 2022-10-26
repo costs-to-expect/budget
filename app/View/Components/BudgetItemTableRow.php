@@ -41,32 +41,57 @@ class BudgetItemTableRow extends Component
         $this->item['uri'] = [
             'item_id' => $this->item['id'],
             'month' => $month,
-            'year' => $year
-        ];/*
+            'year' => $year,
+            'item-month' => $month,
+            'item-year' => $year
+        ];
 
         if ($this->item['status'] === 'Active') {
 
-            if ($this->item['frequency']['type'] === 'monthly') {
-                if (in_array($uri_params['month'], $this->item['exclusions'], true)) {
-                    // Find the previous free month
+            // Look for exclusions, select the next free month
+            if (
+                $this->item['frequency']['type'] === 'monthly' &&
+                in_array($this->item['uri']['month'], $this->item['frequency']['exclusions'], true)
+            ) {
+                for($i = $this->item['uri']['month'] + 1; $i < 13; $i++) {
+                    if (in_array($i, $this->item['frequency']['exclusions'], true) === false) {
+                        $this->item['uri']['month'] = $i;
+                        $this->item['uri']['item-month'] = $i;
+                        break;
+                    }
+                }
 
+                $this->item['uri']['year']++;
+                $this->item['uri']['item-year']++;
+
+                for($i = 1; $i < 13; $i++) {
+                    if (in_array($i, $this->item['frequency']['exclusions'], true) === false) {
+                        $this->item['uri']['month'] = $i;
+                        $this->item['uri']['item-month'] = $i;
+                        break;
+                    }
                 }
             }
-        }*/
 
+            if ($this->item['frequency']['type'] === 'annually') {
+                $this->item['uri']['item-month'] = $this->item['frequency']['month'];
+                $this->item['uri']['month'] = $this->item['frequency']['month'];
+                if ($this->item['frequency']['month'] < $month) {
+                    $this->item['uri']['year']++;
+                    $this->item['uri']['item-year']++;
+                }
+            }
 
-
-        // URI params for the "View on Budget button"
-        // Params for monthly items (need to take exclusions into account, go to the next possible instance, or last instance if no next instance)
-        // Params for annual items (need to go to the next possible instance, or the last if no next instance)
-        // Params for one-off items (need to just go to the item)
-
-        // Enable, simple turns on the budget item and returns to the list
-
-        // Maybe we need a discard item button as well but that is annoying as we need the confirmation
-
-        // We should think about showing the number of created items as a count and how many more can be created
-        // Another way to upsell to Budget Pro, or at least help people work within the limit of 35
+            if ($this->item['frequency']['type'] === 'one-off') {
+                $this->item['uri']['item-month'] = $this->item['frequency']['month'];
+                $this->item['uri']['item-year'] = $this->item['frequency']['year'];
+                $this->item['uri']['month'] = $this->item['frequency']['month'];
+                if ($this->item['frequency']['month'] < $month) {
+                    $this->item['uri']['year']++;
+                    $this->item['uri']['item-year']++;
+                }
+            }
+        }
     }
 
     public function render()
