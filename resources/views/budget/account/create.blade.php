@@ -108,7 +108,7 @@
                 </div>
             </div>
 
-            <x-requests />
+            <x-requests :requests="$requests" />
 
             <x-footer />
         </div>

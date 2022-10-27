@@ -15,16 +15,27 @@ class Http
 {
     private $client;
 
+    private array $stats = [];
+
     public function __construct(?string $bearer = null)
     {
         if ($bearer === null) {
-            $this->client = \Illuminate\Support\Facades\Http::withHeaders(
-                $this->defaultHeaders()
-            );
+            $this->client = \Illuminate\Support\Facades\Http::withHeaders($this->defaultHeaders())
+                ->withOptions(
+                    ['on_stats' => function (\GuzzleHttp\TransferStats $stats) {
+                        $this->stats[] = $stats->getTransferTime();
+                    }]
+                );
         } else {
-            $this->client = \Illuminate\Support\Facades\Http::withToken($bearer)->withHeaders(
-                $this->defaultHeaders()
-            );
+            $this->client = \Illuminate\Support\Facades\Http::withToken($bearer)
+                ->withOptions(
+                    ['on_stats' => function (\GuzzleHttp\TransferStats $stats) {
+                        $this->stats[] = $stats->getTransferTime();
+                    }]
+                )
+                ->withHeaders(
+                    $this->defaultHeaders()
+                );
         }
     }
 
@@ -56,7 +67,8 @@ class Http
             200 => [
                 'status' => $response->status(),
                 'content' => $response->json(),
-                'headers' => $response->headers()
+                'headers' => $response->headers(),
+                'time' => (int) ($response->transferStats->getTransferTime() * 1000),
             ],
             404 => [
                 'status' => 404,

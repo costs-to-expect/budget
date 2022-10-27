@@ -33,6 +33,8 @@ class BudgetAccount extends Controller
                 'projection' => $budget->projection(),
 
                 'max_accounts' => $budget->maxAccounts(),
+
+                'requests' => $this->api->requests(),
             ]
         );
     }
@@ -90,6 +92,8 @@ class BudgetAccount extends Controller
                 'account' => $accounts[$account_id],
 
                 'max_accounts' => $budget->maxAccounts(),
+
+                'requests' => $this->api->requests(),
             ]
         );
     }

@@ -65,6 +65,8 @@ class Index extends Controller
             [
                 'currencies' => $currencies,
                 'loading' => $request->query('loading') !== null,
+
+                'requests' => $this->api->requests(),
             ]
         );
     }
@@ -106,7 +108,9 @@ class Index extends Controller
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
                 'view_end' => $budget->viewEndPeriod(),
-                'projection' => $budget->projection()
+                'projection' => $budget->projection(),
+
+                'requests' => $this->api->requests(),
             ]
         );
     }
@@ -139,7 +143,9 @@ class Index extends Controller
         return view(
             'budget.start',
             [
-                'currencies' => $currencies
+                'currencies' => $currencies,
+
+                'requests' => $this->api->requests(),
             ]
         );
     }

@@ -12,16 +12,20 @@ use Illuminate\View\Component;
  */
 class Requests extends Component
 {
-    public function __construct()
+    private array $requests;
+
+    public function __construct(array $requests)
     {
-        //
+        $this->requests = $requests;
     }
 
     public function render()
     {
         return view(
             'components.requests',
-            []
+            [
+                'requests' => $this->requests
+            ]
         );
     }
 }

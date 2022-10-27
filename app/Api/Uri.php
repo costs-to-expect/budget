@@ -28,7 +28,7 @@ class Uri
     {
         return [
             'uri' => '/' . self::VERSION . '/auth/user',
-            'name' => 'User'
+            'name' => 'User Details'
         ];
     }
 
@@ -183,7 +183,7 @@ class Uri
 
         return [
             'uri' => $uri,
-            'name' => 'Resource'
+            'name' => 'Budget Resource'
         ];
     }
 
@@ -197,7 +197,7 @@ class Uri
 
         return [
             'uri' => $uri,
-            'name' => 'Resources'
+            'name' => 'Budget Resources'
         ];
     }
 
@@ -211,7 +211,7 @@ class Uri
 
         return [
             'uri' => $uri,
-            'name' => 'Resource types'
+            'name' => 'Budget Resource Types'
         ];
     }
 

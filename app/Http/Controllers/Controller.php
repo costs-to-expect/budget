@@ -37,6 +37,8 @@ class Controller extends BaseController
 
     protected $timezone;
 
+    protected array $budget_items = [];
+
     public function __construct()
     {
         $this->config = Config::get('app.config');
@@ -133,7 +135,7 @@ class Controller extends BaseController
 
     protected function setUpBudget(Request $request): \App\Service\Budget\Service
     {
-        $budget_items = $this->getBudgetItems();
+        $this->budget_items = $this->getBudgetItems();
 
         $budget = new \App\Service\Budget\Service($this->timezone);
         if ($request->query('month') !== null && $request->query('year') !== null) {
@@ -166,7 +168,7 @@ class Controller extends BaseController
         $budget->setPaidBudgetItems($paid_budget_items);
         $budget->setAdjustments($adjustments);
 
-        foreach ($budget_items as $budget_item) {
+        foreach ($this->budget_items as $budget_item) {
             $budget->addItem($budget_item);
         }
 
