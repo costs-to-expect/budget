@@ -18,6 +18,8 @@ class Service
     private string $item_type_id;
     private string $item_subtype_id;
 
+    private array $requests = [];
+
     public function __construct(string $bearer = null)
     {
         $this->http = new Http($bearer);
@@ -46,7 +48,13 @@ class Service
     {
         $uri = Uri::authUser();
 
-        return $this->http->get($uri['uri']);
+        $response = $this->http->get($uri['uri']);
+
+        if ($response['status'] === 200) {
+            $this->requests[] = array_merge($uri, ['time' => $response['time']]);
+        }
+
+        return $response;
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array"])]
@@ -54,7 +62,13 @@ class Service
     {
         $uri = Uri::item($resource_type_id, $resource_id, $item_id);
 
-        return $this->http->get($uri['uri']);
+        $response = $this->http->get($uri['uri']);
+
+        if ($response['status'] === 200) {
+            $this->requests[] = array_merge($uri, ['time' => $response['time']]);
+        }
+
+        return $response;
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array"])]
@@ -62,7 +76,13 @@ class Service
     {
         $uri = Uri::items($resource_type_id, $resource_id, $parameters);
 
-        return $this->http->get($uri['uri']);
+        $response = $this->http->get($uri['uri']);
+
+        if ($response['status'] === 200) {
+            $this->requests[] = array_merge($uri, ['time' => $response['time']]);
+        }
+
+        return $response;
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array"])]
@@ -70,7 +90,13 @@ class Service
     {
         $uri = Uri::currencies();
 
-        return $this->http->get($uri['uri']);
+        $response = $this->http->get($uri['uri']);
+
+        if ($response['status'] === 200) {
+            $this->requests[] = array_merge($uri, ['time' => $response['time']]);
+        }
+
+        return $response;
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array"])]
@@ -78,7 +104,13 @@ class Service
     {
         $uri = Uri::currency($currency_id);
 
-        return $this->http->get($uri['uri']);
+        $response = $this->http->get($uri['uri']);
+
+        if ($response['status'] === 200) {
+            $this->requests[] = array_merge($uri, ['time' => $response['time']]);
+        }
+
+        return $response;
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
@@ -167,7 +199,13 @@ class Service
     {
         $uri = Uri::resource($resource_type_id, $resource_id, $parameters);
 
-        return $this->http->get($uri['uri'], true);
+        $response = $this->http->get($uri['uri']);
+
+        if ($response['status'] === 200) {
+            $this->requests[] = array_merge($uri, ['time' => $response['time']]);
+        }
+
+        return $response;
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array"])]
@@ -175,7 +213,13 @@ class Service
     {
         $uri = Uri::resources($resource_type_id, $parameters);
 
-        return $this->http->get($uri['uri'], true);
+        $response = $this->http->get($uri['uri']);
+
+        if ($response['status'] === 200) {
+            $this->requests[] = array_merge($uri, ['time' => $response['time']]);
+        }
+
+        return $response;
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array"])]
@@ -183,7 +227,13 @@ class Service
     {
         $uri = Uri::resourceTypes($parameters);
 
-        return $this->http->get($uri['uri'], true);
+        $response = $this->http->get($uri['uri']);
+
+        if ($response['status'] === 200) {
+            $this->requests[] = array_merge($uri, ['time' => $response['time']]);
+        }
+
+        return $response;
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
@@ -256,6 +306,11 @@ class Service
         $uri = Uri::requestResourceDelete($resource_type_id, $resource_id);
 
         return $this->http->post($uri['uri'], $payload);
+    }
+
+    public function requests(): array
+    {
+        return $this->requests;
     }
 
     #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]

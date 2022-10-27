@@ -32,24 +32,44 @@
                                     <strong>{{ $item['status'] }}</strong>
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-outline-dark" data-bs-toggle="collapse" href="#collapse{{ $item['id'] }}" role="button" aria-expanded="false" aria-controls="collapse{{ $item['id'] }}">
-                                        More...
-                                    </a>
+                                    @if ($item['status'] === 'Disabled')
+                                        <form action="{{ route('budget.item.confirm-enable.process', ['item_id' => $item['id'], 'return'=>'list']) }}" method="POST" class="text-end">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-dark">Enable</button>
+                                        </form>
+                                    @elseif ($item['status'] === 'Deleted/Expired')
+                                        <form action="{{ route('budget.item.restore.process', ['item_id' => $item['id']]) }}" method="POST" class="text-end">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-dark">Restore</button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('budget.item.confirm-disable.process', ['item_id' => $item['id'], 'return'=>'list']) }}" method="POST" class="text-end">
+                                            @csrf
+                                            <a href="{{ route('budget.item.view', [
+                                                        'item_id' => $item['id'],
+                                                        'item-year' => $item['uri']['item-year'],
+                                                        'item-month' => $item['uri']['item-month'],
+                                                        'month'=>  $item['uri']['month'],
+                                                        'year'=> $item['uri']['year']]
+                                                        ) }}"
+                                               class="btn btn-sm btn-outline-primary mb-1">View on Budget</a><br />
+                                            <button type="submit" class="btn btn-sm btn-dark">Disable</button>
+                                        </form>
+                                    @endif
                                 </td>
                             </tr>
-                            <tr class="collapse" id="collapse{{ $item['id'] }}">
+                            <tr class="pb-3 mb-3 border-bottom">
                                 <td colspan="7">
                                     <table class="table table-sm table-borderless mb-0">
                                         <thead>
-                                        <tr class="bg-grey text-light">
+                                        <tr>
                                             <th scope="col">Start Date</th>
                                             <th scope="col">End Date</th>
                                             <th scope="col">Account</th>
                                             <th scope="col">Description</th>
-                                            <th scope="col">&nbsp;</th>
                                         </tr>
                                         </thead>
-                                        <tbody class="table-group-divider">
+                                        <tbody>
                                         <tr>
                                             <td>{{ $item['start_date']->format('d/m/Y') }}</td>
                                             <td>
@@ -65,32 +85,6 @@
                                                     {{ Str::limit($item['description'], 35) }}
                                                 @else
                                                     None set
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($item['status'] === 'Disabled')
-                                                    <form action="{{ route('budget.item.confirm-enable.process', ['item_id' => $item['id'], 'return'=>'list']) }}" method="POST">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-sm btn-dark">Enable</button>
-                                                    </form>
-                                                @elseif ($item['status'] === 'Deleted/Expired')
-                                                    <form action="{{ route('budget.item.restore.process', ['item_id' => $item['id']]) }}" method="POST">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-sm btn-dark">Restore</button>
-                                                    </form>
-                                                @else
-                                                    <form action="{{ route('budget.item.confirm-disable.process', ['item_id' => $item['id'], 'return'=>'list']) }}" method="POST" class="text-end">
-                                                        @csrf
-                                                        <a href="{{ route('budget.item.view', [
-                                                        'item_id' => $item['id'],
-                                                        'item-year' => $item['uri']['item-year'],
-                                                        'item-month' => $item['uri']['item-month'],
-                                                        'month'=>  $item['uri']['month'],
-                                                        'year'=> $item['uri']['year']]
-                                                        ) }}"
-                                                           class="btn btn-sm btn-outline-primary">View on Budget</a>
-                                                        <button type="submit" class="btn btn-sm btn-dark">Disable</button>
-                                                    </form>
                                                 @endif
                                             </td>
                                         </tr>

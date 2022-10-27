@@ -300,7 +300,7 @@
 
             <x-help />
 
-            <x-requests />
+            <x-requests :requests="$requests" />
 
             <x-footer />
         </div>

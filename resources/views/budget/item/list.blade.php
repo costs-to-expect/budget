@@ -29,8 +29,15 @@
 
             <div class="row">
                 <div class="col-12">
+                    <div class="row mb-2">
+                        <div class="col-12 col-md-4 col-lg-3">
+                            <input type="text" name="table-filter" class="form-control form-control sm table-filter" data-table="budget-items" placeholder="Filter budget items.." />
+                        </div>
+                    </div>
+
                     <div class="table-responsive">
-                        <table class="table table-sm">
+                        <table class="table table-sm table-borderless budget-items">
+                            <caption>Every budget item you have defined, included deleted and expired</caption>
                             <thead>
                                 <tr class="bg-dark text-light">
                                     <th scope="col">Name</th>
@@ -42,7 +49,7 @@
                                     <th scope="col">&nbsp;</th>
                                 </tr>
                             </thead>
-                            <tbody class="table-group-divider">
+                            <tbody>
                                 @foreach ($items as $__item)
                                 <x-budget-item-table-row :item="$__item" :accounts="$accounts" :year="$now_year" :month="$now_month"/>
                                 @endforeach
@@ -70,11 +77,12 @@
 
             <x-help />
 
-            <x-requests />
+            <x-requests :requests="$requests" />
 
             <x-footer />
         </div>
 
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
+        <script src="{{ asset('js/table-filter.js') }}" defer></script>
     </body>
 </html>

@@ -98,6 +98,8 @@ class BudgetItem extends Controller
 
                 'item_year' => (int) $request->query('item-year', $budget->nowYear()),
                 'item_month' => (int) $request->query('item-month', $budget->nowMonth()),
+
+                'requests' => $this->api->requests(),
             ]
         );
     }
@@ -177,6 +179,8 @@ class BudgetItem extends Controller
 
                 'item_year' => (int) $request->query('item-year', $budget->nowYear()),
                 'item_month' => (int) $request->query('item-month', $budget->nowMonth()),
+
+                'requests' => $this->api->requests(),
             ]
         );
     }
@@ -260,6 +264,8 @@ class BudgetItem extends Controller
 
                 'item_year' => (int) $request->query('item-year', $budget->nowYear()),
                 'item_month' => (int) $request->query('item-month', $budget->nowMonth()),
+
+                'requests' => $this->api->requests(),
             ]
         );
     }
@@ -320,6 +326,8 @@ class BudgetItem extends Controller
 
                 'max_items' => $budget->maxItems(),
                 'number_of_items' => $budget->numberOfItems(),
+
+                'requests' => $this->api->requests(),
             ]
         );
     }
@@ -416,7 +424,9 @@ class BudgetItem extends Controller
                 'item_month' => $item_month,
 
                 'action' => $action,
-                'adjust_date' => $adjust_date
+                'adjust_date' => $adjust_date,
+
+                'requests' => $this->api->requests(),
             ]
         );
     }
@@ -431,11 +441,13 @@ class BudgetItem extends Controller
             'budget.item.list',
             [
                 'accounts' => $budget->accounts(),
-                'items' => $this->getBudgetItems(),
+                'items' => $this->budget_items,
                 'now_year' => $budget->nowYear(),
                 'now_month' => $budget->nowMonth(),
                 'max_items' => $budget->maxItems(),
                 'number_of_items' => $budget->numberOfItems(),
+
+                'requests' => $this->api->requests(),
             ]
         );
     }
@@ -576,6 +588,8 @@ class BudgetItem extends Controller
 
                 'item_year' => (int) $request->query('item-year', $budget->nowYear()),
                 'item_month' => (int) $request->query('item-month', $budget->nowMonth()),
+
+                'requests' => $this->api->requests(),
             ]
         );
     }
