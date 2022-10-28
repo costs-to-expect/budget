@@ -33,7 +33,7 @@
 <header class="site-header sticky-top py-1">
     <nav class="container d-flex flex-column flex-md-row justify-content-between">
         <a class="py-2 text-center" href="{{ route('landing') }}" aria-label="Product">
-            <img src="{{ asset('images/logo.png') }}" alt="Costs to Expect" width="48" height="48" />
+            <img src="{{ asset('images/logo.png') }}" alt="Costs to Expect Logo" width="48" height="48" title="Costs to Expect" />
         </a>
     </nav>
 </header>
@@ -47,8 +47,8 @@
                 <a href="https://github.com/costs-to-expect/api">Costs to Expect API</a>.</p>
             <p class="lead fw-normal"><span class="badge rounded-pill text-bg-income">Beta</span> Official release due at the start of January 2023.</p>
             <p class="text-muted"><small>You are free to register now but there may be a bug or two until the official release.</small></p>
-            <a href="{{ route('register.view') }}" class="btn btn-outline-primary">Register</a>
-            <a href="{{ route('sign-in.view') }}" class="btn btn-outline-primary">Sign-in</a>
+            <a href="{{ route('register.view') }}" class="btn btn-outline-primary" title="Register an account with Costs to Expect">Register</a>
+            <a href="{{ route('sign-in.view') }}" class="btn btn-outline-primary" title="Sign in with your Costs to Expect account">Sign-in</a>
         </div>
     </div>
 
@@ -61,7 +61,7 @@
             </div>
             <div class="bg-light shadow-sm mx-auto"
                  style="width: 80%; height: 448px; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/overview.png') }}" width="275" height="" alt="Budget overview screen, expense for each month" />
+                <img src="{{ asset('images/overview.png') }}" width="275" height="" alt="Budget overview screen, shows expenses for each month" />
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -72,7 +72,7 @@
             </div>
             <div class="bg-dark shadow-sm mx-auto"
                  style="width: 80%; height: 448px; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/projections.png') }}" width="275" height="" alt="Budget overview screen, expense for each month" />
+                <img src="{{ asset('images/projections.png') }}" width="275" height="" alt="Budget overview screen, shows projections for each account" />
             </div>
         </div>
     </div>
@@ -86,7 +86,7 @@
             </div>
             <div class="bg-light shadow-sm mx-auto"
                  style="width: 80%; height: 253px; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/open-source.png') }}" width="256" height="" alt="Budget & the Costs to Expect API are Open Source" />
+                <img src="{{ asset('images/open-source.png') }}" width="256" height="" alt="Budget & the Costs to Expect API are Open Source, MIT License" />
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -97,7 +97,7 @@
             </div>
             <div class="bg-dark shadow-sm mx-auto"
                  style="width: 80%; height: 253px; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/api.png') }}" width="256" height="" alt="The Costs to Expect API powers all our Apps" />
+                <img src="{{ asset('images/api.png') }}" width="256" height="" alt="The Costs to Expect API is powerful and powers all our Apps" />
             </div>
         </div>
     </div>
@@ -111,7 +111,7 @@
             </div>
             <div class="bg-light shadow-sm mx-auto"
                  style="width: 80%; height: 400px; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/detail.png') }}" width="275" height="" alt="Budget overview screen, expense for each month" />
+                <img src="{{ asset('images/detail.png') }}" width="275" height="" alt="Budget detail screen, show expense details" />
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -122,7 +122,7 @@
             </div>
             <div class="bg-dark shadow-sm mx-auto"
                  style="width: 80%; height: 400px; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/exclusions.png') }}" width="275" height="" alt="Budget overview screen, expense for each month" />
+                <img src="{{ asset('images/exclusions.png') }}" width="275" height="" alt="Budget exclusions screen, show that monthly exclusions can be set for monthly expenses" />
             </div>
         </div>
     </div>

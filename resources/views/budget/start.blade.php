@@ -37,17 +37,6 @@
                             </div>
                             @enderror
                         </div>
-                        {{--<div class="col-6 col-md-6">
-                            <label for="type" class="form-label">Account Type *</label>
-                            <select id="type" name="type" class="form-select form-select-sm @error('type') is-invalid @enderror">
-                                <option value="expense" @if (old('type') === 'expense') selected="selected" @endif>Expense</option>
-                            </select>
-                            @error('type')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>--}}
                         <div class="col-12">
                             <label for="description" class="form-label">Description</label>
                             <textarea class="form-control form-control-sm @error('description') is-invalid @enderror" id="description" name="description" placeholder="An optional description of the account">{{ old('description') }}</textarea>
@@ -81,10 +70,10 @@
                         </div>
                         <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
                         <div class="col-12 mt-3">
-                            <button type="submit" class="btn btn-sm btn-primary">
+                            <button type="submit" class="btn btn-sm btn-primary" title="Create my budget">
                                 Save
                             </button>
-                            <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
+                            <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary" title="Cancel, don't create budget">Cancel</a>
                         </div>
                     </form>
                 </div>

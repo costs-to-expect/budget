@@ -29,7 +29,7 @@
                         <form action="{{ route('demo.adopt.process') }}" method="POST" class="row g-2">
                             @csrf
                             <div class="col-12 mt-3">
-                                <button type="submit" class="btn btn-sm btn-primary">
+                                <button type="submit" class="btn btn-sm btn-primary" title="Take ownership of the demo budget">
                                     Adopt Demo
                                 </button>
                             </div>

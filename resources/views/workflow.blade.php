@@ -31,7 +31,7 @@
         <header class="site-header sticky-top py-1">
             <nav class="container d-flex flex-column flex-md-row justify-content-between">
                 <a class="py-2 text-center" href="{{ route('landing') }}" aria-label="Product">
-                    <img src="{{ asset('images/logo.png') }}" alt="Costs to Expect" width="48" height="48" />
+                    <img src="{{ asset('images/logo.png') }}" alt="Costs to Expect Logo" width="48" height="48" title="Costs to Expect" />
                 </a>
             </nav>
         </header>
@@ -46,7 +46,7 @@
                         are two parts to the workflow. Check below to see how it works.
                     </p>
 
-                    <p class="lead">Learn how to define your Budget with our <a href="{{ route('getting-started') }}">Getting Started</a> page.</p>
+                    <p class="lead">Learn how to define your Budget with our <a href="{{ route('getting-started') }}" title="Visit our Getting Started page">Getting Started</a> page.</p>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="{{ asset('images/workflow/balances.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Image of account balances" width="700" height="500" loading="lazy">
+                    <img src="{{ asset('images/workflow/balances.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Shot of account balances and edit icons" width="700" height="500" loading="lazy">
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Step 1: Update Your balances</h1>
@@ -66,7 +66,7 @@
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="{{ asset('images/workflow/set-as-paid.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Images of the set as paid button and description text" width="700" height="500" loading="lazy">
+                    <img src="{{ asset('images/workflow/set-as-paid.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Image of the set as paid button and description of action" width="700" height="500" loading="lazy">
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Step 2: Mark as Paid</h1>

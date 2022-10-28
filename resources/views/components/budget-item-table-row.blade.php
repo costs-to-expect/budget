@@ -35,12 +35,12 @@
                                     @if ($item['status'] === 'Disabled')
                                         <form action="{{ route('budget.item.confirm-enable.process', ['item_id' => $item['id'], 'return'=>'list']) }}" method="POST" class="text-end">
                                             @csrf
-                                            <button type="submit" class="btn btn-sm btn-dark">Enable</button>
+                                            <button type="submit" class="btn btn-sm btn-dark" title="Enable budget item">Enable</button>
                                         </form>
                                     @elseif ($item['status'] === 'Deleted/Expired')
                                         <form action="{{ route('budget.item.restore.process', ['item_id' => $item['id']]) }}" method="POST" class="text-end">
                                             @csrf
-                                            <button type="submit" class="btn btn-sm btn-dark">Restore</button>
+                                            <button type="submit" class="btn btn-sm btn-dark" title="Restore budget item">Restore</button>
                                         </form>
                                     @else
                                         <form action="{{ route('budget.item.confirm-disable.process', ['item_id' => $item['id'], 'return'=>'list']) }}" method="POST" class="text-end">
@@ -52,8 +52,8 @@
                                                         'month'=>  $item['uri']['month'],
                                                         'year'=> $item['uri']['year']]
                                                         ) }}"
-                                               class="btn btn-sm btn-outline-primary mb-1">View on Budget</a><br />
-                                            <button type="submit" class="btn btn-sm btn-dark">Disable</button>
+                                               class="btn btn-sm btn-outline-primary mb-1" title="View budget item on Your Budget">View on Budget</a><br />
+                                            <button type="submit" class="btn btn-sm btn-dark" title="Disable budget item">Disable</button>
                                         </form>
                                     @endif
                                 </td>

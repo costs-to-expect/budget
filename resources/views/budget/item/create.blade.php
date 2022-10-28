@@ -259,16 +259,16 @@
 
                             @if (count($accounts) > 0)
                                 @if ($number_of_items < $max_items)
-                                <button type="submit" class="btn btn-sm btn-dark">Save</button>
-                                <button name="submit_and_return" type="submit" class="btn btn-sm btn-dark">Save & Add Another</button>
-                                <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
+                                <button type="submit" class="btn btn-sm btn-dark" title="Add budget item">Save</button>
+                                <button name="submit_and_return" type="submit" class="btn btn-sm btn-dark" title="Add budget item and then add another">Save & Add Another</button>
+                                <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary" title="Return to Your Budget">Cancel</a>
                                 @endif
                             @else
                             <div class="alert alert-dark show mt-2" role="alert">
                                 <h4 class="alert-heading">No accounts!</h4>
-                                <p>You can't add a Budget item until you have added at least account, please create an account.</p>
+                                <p>You can't add a Budget item until you have added at least one account, please create an account.</p>
                                 <hr>
-                                <p class="mb-0"><a href="{{ route('budget.account.create') }}">New account</a>.</p>
+                                <p class="mb-0"><a href="{{ route('budget.account.create') }}" title="Add an account">New account</a>.</p>
                             </div>
                             @endif
                         </div>
@@ -281,7 +281,7 @@
                             <p>In Budget Pro you will be able to have more than {{ $max_items }} items on your Budget.</p>
                             <p>You can create another {{ $max_items - $number_of_items }} budget items.</p>
                             <hr>
-                            <p class="mb-0"><a href="{{ route('version-compare') }}">Find out more</a>.</p>
+                            <p class="mb-0"><a href="{{ route('version-compare') }}" title="Compare Budget to Budget Pro">Find out more</a>.</p>
                         </div>
                     </div>
                     @endif
@@ -292,7 +292,7 @@
                             <p>In Budget Pro we include additional frequency options, daily, weekly, fortnights etc.</p>
                             <p>Additionally, we have more complicated exclusion options.</p>
                             <hr>
-                            <p class="mb-0"><a href="{{ route('version-compare') }}">Find out more</a>.</p>
+                            <p class="mb-0"><a href="{{ route('version-compare') }}" title="Compare Budget to Budget Pro">Find out more</a>.</p>
                         </div>
                     </div>
                 </div>

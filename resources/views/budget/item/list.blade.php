@@ -31,7 +31,7 @@
                 <div class="col-12">
                     <div class="row mb-2">
                         <div class="col-12 col-md-4 col-lg-3">
-                            <input type="text" name="table-filter" class="form-control form-control sm table-filter" data-table="budget-items" placeholder="Filter budget items.." />
+                            <input type="text" name="table-filter" class="form-control form-control sm table-filter" data-table="budget-items" placeholder="Filter budget items.." title="Filter the budget item table" />
                         </div>
                     </div>
 
