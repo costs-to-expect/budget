@@ -14,6 +14,9 @@
     <x-open-graph />
     <x-twitter-card />
     <style>
+        .text-bg-dark a {
+            font-weight: 700;
+        }
         .container {
             max-width: 960px;
         }
@@ -40,7 +43,8 @@
         <div class="col-md-6 p-lg-6 mx-auto my-5">
             <h1 class="display-4 fw-normal">Budget</h1>
             <h2 class="display-5">A budgeting tool so easy to use, it’s child play!</h2>
-            <p class="lead fw-normal">A free, open source budgeting tool powered by the <a href="https://api.costs-to-expect.com">Costs to Expect API</a>.</p>
+            <p class="lead fw-normal">A free, open source budgeting tool powered by the
+                <a href="https://github.com/costs-to-expect/api">Costs to Expect API</a>.</p>
             <p class="lead fw-normal"><span class="badge rounded-pill text-bg-income">Beta</span> Official release due at the start of January 2023.</p>
             <p class="text-muted"><small>You are free to register now but there may be a bug or two until the official release.</small></p>
             <a href="{{ route('register.view') }}" class="btn btn-outline-primary">Register</a>
@@ -77,7 +81,7 @@
         <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 py-3">
                 <h2 class="display-5">Open Source</h2>
-                <p class="lead">Budget and the API are open source. That means we're not hiding anything -
+                <p class="lead"><a href="https://github.com/costs-to-expect/budget/blob/main/LICENSE">Budget</a> and the <a href="https://github.com/costs-to-expect/api/blob/master/LICENSE">API</a> are open source. That means we're not hiding anything -
                     you are always free to see how your data is transmitted and saved.</p>
             </div>
             <div class="bg-light shadow-sm mx-auto"
@@ -88,7 +92,7 @@
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 p-3">
                 <h2 class="display-5">Powerful</h2>
-                <p class="lead">The Costs to Expect API is powerful - we designed it knowing we were going
+                <p class="lead">The Costs to Expect <a href="https://github.com/costs-to-expect/api">API</a> is powerful - we designed it knowing we were going
                     to use it for a variety of different projects.</p>
             </div>
             <div class="bg-dark shadow-sm mx-auto"
@@ -127,7 +131,7 @@
         <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 py-3">
                 <h2 class="display-5">Your Data</h2>
-                <p class="lead">You can use our app or access your data directly via the API, we don't mind
+                <p class="lead">You can use our app or access your data directly via the <a href="https://github.com/costs-to-expect/api">API</a>, we don't mind
                     how you use our tools.</p>
             </div>
         </div>
@@ -152,7 +156,7 @@
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 p-3">
                 <h2 class="display-5">Free</h2>
-                <p class="lead">Simple budgeting should be free* and easy and our aim is to keep Budget free for as long
+                <p class="lead">Simple budgeting should be <strong>free</strong>* and easy and our aim is to keep Budget free for as long
                     as we possibly can. The App is funded by the API and Budget Pro.</p>
                 <p class="text-muted small">
                     *We reserve the right to change this if sheer number of users make this unviable for us (But we promise to do our best!)
