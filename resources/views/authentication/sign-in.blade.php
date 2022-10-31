@@ -66,7 +66,7 @@
                         access to Budget and the entire Costs to Expect service.</p>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">Sign-in</button>
+                <button type="submit" class="btn btn-primary w-100" title="Sign in to Budget">Sign-in</button>
             </form>
         </div>
     </div>

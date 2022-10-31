@@ -91,8 +91,8 @@
                         @csrf
 
                         <div class="col-12 mt-3">
-                            <button type="submit" class="btn btn-sm btn-danger">Reset</button>
-                            <a href="{{ route('account.index') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
+                            <button type="submit" class="btn btn-sm btn-danger" title="Confirm reset request">Reset</button>
+                            <a href="{{ route('account.index') }}" class="btn btn-sm btn-outline-primary" title="Return to Your Account">Cancel</a>
                         </div>
                     </form>
                 </div>

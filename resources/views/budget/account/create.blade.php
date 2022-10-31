@@ -78,8 +78,8 @@
                     <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
                     @if (count($accounts) < $max_accounts)
                     <div class="col-12 mt-3">
-                        <button type="submit" class="btn btn-sm btn-dark">Save</button>
-                        <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
+                        <button type="submit" class="btn btn-sm btn-dark" title="Add new account">Save</button>
+                        <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary" title="Return to your Budget">Cancel</a>
                     </div>
                     @endif
                 </form>
@@ -91,7 +91,7 @@
                         <p>You have created <strong>{{ count($accounts) }}</strong>, the maximum for Budget is <strong>{{ $max_accounts }}</strong>.</p>
                         <p>Additionally, in Budget Pro your Budget can include multiple currencies.</p>
                         <hr>
-                        <p class="mb-0"><a href="{{ route('version-compare') }}">Find out more</a>.</p>
+                        <p class="mb-0"><a href="{{ route('version-compare') }}" title="Compare Budget to Budget Pro">Find out more</a>.</p>
                     </div>
                 </div>
             </div>

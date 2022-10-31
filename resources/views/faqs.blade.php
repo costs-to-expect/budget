@@ -31,7 +31,7 @@
         <header class="site-header sticky-top py-1">
             <nav class="container d-flex flex-column flex-md-row justify-content-between">
                 <a class="py-2 text-center" href="{{ route('landing') }}" aria-label="Product">
-                    <img src="{{ asset('images/logo.png') }}" alt="Costs to Expect" width="48" height="48" />
+                    <img src="{{ asset('images/logo.png') }}" alt="Costs to Expect Logo" width="48" height="48" title="Costs to Expect" />
                 </a>
             </nav>
         </header>
@@ -44,8 +44,8 @@
                     <h2 class="display-5 mt-3 mb-3">Frequency Asked Questions</h2>
 
                     <p class="lead">Hopefully, any questions you have are answered below, if not,
-                        reach out to us on <a href="https://twitter.com/coststoexpect">Twitter</a> or
-                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>
+                        reach out to us on <a href="https://twitter.com/coststoexpect" title="Ask a question on Twitter">Twitter</a> or
+                        via <a href="https://github.com/costs-to-expect/budget/issues" title="Raise an issue on GitHub">GitHub</a>
                     </p>
 
                     <hr />
@@ -69,14 +69,14 @@
                         Mark which expenses have been paid for the month. We’ll give you projections for the months ahead.
                         It's that easy. Keep track of your budget and build your savings.</p>
 
-                    <p class="lead">Check out our <a href="{{ route('getting-started') }}">Getting Started</a>
+                    <p class="lead">Check out our <a href="{{ route('getting-started') }}" title="View our Getting Started page">Getting Started</a>
                         section for more detail.</p>
 
                     <h3 class="display-6 mt-3 mb-3">What is the workflow?</h3>
                     <p class="lead">The workflow explains the simple steps you need to take each time you review
                         your Budget.</p>
 
-                    <p class="lead">Check out our <a href="{{ route('workflow') }}">Workflow</a>
+                    <p class="lead">Check out our <a href="{{ route('workflow') }}" title="View our Workflow page">Workflow</a>
                         section for more detail.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Can I disable a budget item?</h3>
@@ -96,7 +96,7 @@
 
                     <h3 class="display-6 mt-3 mb-3">How do I delete my account?</h3>
                     <p class="lead">We hope this isn't a question you'll ask but should you want to delete your account,
-                        please go to "<a href="{{ route('account.index') }}">Your Account</a>" where we have multiple
+                        please go to "<a href="{{ route('account.index') }}" title="Visit Your Account">Your Account</a>" where we have multiple
                         data deletion options which are quick and easy.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Do I need to give you my bank account details?</h3>
@@ -112,7 +112,7 @@
                     <p class="lead">Budget Pro is the upgraded version of Budget. It includes sharing, multiple
                         budgets as well many other extra features. It will be subject to a monthly subscription fee.</p>
 
-                    <p class="lead">Please review our <a href="{{ route('version-compare') }}">Versions Matrix</a> to see how Budget and Budget Pro compare.</p>
+                    <p class="lead">Please review our <a href="{{ route('version-compare') }}" title="Compare Budget to Budget Pro">Versions Matrix</a> to see how Budget and Budget Pro compare.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Will I be able to upgrade to Budget Pro?</h3>
                     <p class="lead">Yes, upon release you will be able to upgrade to Budget Pro if you want to. Your
@@ -141,8 +141,8 @@
 
                     <h3 class="display-6 mt-3 mb-3">What if I need further help?</h3>
                     <p class="lead">If you need help, please reach out to us on
-                        <a href="https://twitter.com/coststoexpect">Twitter</a> or
-                        via <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>, we'll get back to
+                        <a href="https://twitter.com/coststoexpect" title="Ask a question on Twitter">Twitter</a> or
+                        via <a href="https://github.com/costs-to-expect/budget/issues" title="Raise an issue on GitHub">GitHub</a>, we'll get back to
                         you as soon as we can.</p>
                 </div>
 

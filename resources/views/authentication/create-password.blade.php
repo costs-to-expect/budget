@@ -62,7 +62,7 @@
                 </div>
                 <input type="hidden" name="token" value="{{ old('token', $token) }}" />
                 <input type="hidden" name="email" value="{{ old('email', $email) }}" />
-                <button type="submit" class="btn btn-primary w-100">Set Password</button>
+                <button type="submit" class="btn btn-primary w-100" title="Set your password">Set Password</button>
             </form>
         </div>
     </div>

@@ -30,11 +30,11 @@
                 <h4 class="text-center pt-3">All Done!</h4>
 
                 <p class="lead">Your account is ready, you are free to
-                    <a href="{{ route('sign-in.view') }}">sign-in</a>
+                    <a href="{{ route('sign-in.view') }}" title="Go to sign-in">sign-in</a>
                     immediately and start setting up your budget, enjoy!</p>
 
                 <p>If you have any suggestions, reach out to us on
-                    <a href="https://github.com/costs-to-expect/budget/issues">GitHub</a>, we are
+                    <a href="https://github.com/costs-to-expect/budget/issues" title="Visit issues section on GitHub">GitHub</a>, we are
                     always looking for help with improving our apps.</p>
             </div>
         </div>

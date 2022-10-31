@@ -122,7 +122,7 @@
                     </table>
                 </div>
 
-                <a href="{{ route('account.reset') }}" class="btn btn-sm btn-outline-danger">Reset</a>
+                <a href="{{ route('account.reset') }}" class="btn btn-sm btn-outline-danger" title="Go to reset confirmation screen">Reset</a>
 
                 <h2 class="display-5 pt-5">Delete Budget Account</h2>
 
@@ -191,7 +191,7 @@
                     </table>
                 </div>
 
-                <a href="{{ route('account.delete-budget-account') }}" class="btn btn-sm btn-outline-danger">Delete Budget Account</a>
+                <a href="{{ route('account.delete-budget-account') }}" class="btn btn-sm btn-outline-danger" title="Go to delete budget account confirmation screen">Delete Budget Account</a>
 
                 <h2 class="display-5 pt-5">Delete Account</h2>
 
@@ -238,7 +238,7 @@
                     </table>
                 </div>
 
-                <a href="{{ route('account.delete-account') }}" class="btn btn-sm btn-outline-danger">Delete Account</a>
+                <a href="{{ route('account.delete-account') }}" class="btn btn-sm btn-outline-danger" title="Go to delete account confirmation screen">Delete Account</a>
             </main>
 
             <x-footer />

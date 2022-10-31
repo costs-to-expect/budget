@@ -55,10 +55,10 @@
                         </div>
 
                         <div class="col-12 mt-3">
-                            <button type="submit" class="btn btn-sm btn-primary">
+                            <button type="submit" class="btn btn-sm btn-primary" title="Load demo budget data">
                                 Load
                             </button>
-                            <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary">Cancel</a>
+                            <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary" title="Cancel, don't load demo data">Cancel</a>
                         </div>
                         @endif
                     </form>
@@ -67,7 +67,7 @@
                 @if ($loading === true)
                 <p class="lead text-primary d-none continue-to-demo">
                     We're done! Click the "Continue" button to start exploring.
-                    <a class="btn btn-sm btn-outline-primary" href="{{ route('home') }}">
+                    <a class="btn btn-sm btn-outline-primary" href="{{ route('home') }}" title="Go to Your Budget">
                         Continue
                     </a>
                 </p>

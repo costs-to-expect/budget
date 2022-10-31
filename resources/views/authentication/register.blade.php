@@ -64,7 +64,7 @@
                         </div>
                     @endif
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Register</button>
+                <button type="submit" class="btn btn-primary w-100" title="Register with Costs to Expect">Register</button>
             </form>
         </div>
     </div>

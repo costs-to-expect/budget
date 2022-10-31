@@ -25,7 +25,7 @@
         <header class="site-header sticky-top py-1">
             <nav class="container d-flex flex-column flex-md-row justify-content-between">
                 <a class="py-2 text-center" href="{{ route('landing') }}" aria-label="Product">
-                    <img src="{{ asset('images/logo.png') }}" alt="Costs to Expect" width="48" height="48" />
+                    <img src="{{ asset('images/logo.png') }}" alt="Costs to Expect Logo" width="48" height="48" title="Costs to Expect" />
                 </a>
             </nav>
         </header>

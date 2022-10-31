@@ -60,7 +60,8 @@ class Create extends Action
         $frequency = Helper::createFrequencyArray($input, $timezone);
 
         if ($frequency['type'] === 'one-off') {
-            $end_date = (new \DateTimeImmutable('first day of next month', $timezone))->setTime(7, 1);
+            $start_date = new \DateTimeImmutable($input['start_date'], $timezone);
+            $end_date = $start_date->modify('first day of next month')->setTime(7, 1);
             $input['end_date'] = $end_date->format('Y-m-d');
         }
 

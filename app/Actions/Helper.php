@@ -43,6 +43,7 @@ class Helper
             $start_date = new \DateTimeImmutable($input['start_date'], $timezone);
             $frequency['day'] = null;
             $frequency['month'] = (int) $start_date->format('n');
+            $frequency['year'] = (int) $start_date->format('Y');
         }
 
         ksort($frequency);
