@@ -103,10 +103,9 @@
                     <p class="lead">No. Budget is a projection based budget tool - you tell us your balance and based
                         on your defined Budget, we'll provide you with your financial projections.</p>
 
-                    <h3 class="display-6 mt-3 mb-3">Can I give you bank account details?</h3>
-                    <p class="lead">Down the road, a long term goal for the next version of Budget(Budget Pro), is
-                        adding Open Banking support so we can provide a more accurate projection. We won't need you
-                        to tell us what your balance is or what expenses you have left to pay.</p>
+                    <h3 class="display-6 mt-3 mb-3">Do you support Open Banking?</h3>
+                    <p class="lead">Budget does not and will not support Open Banking. However, after the
+                        beta release of <a href="https://budget-pro.costs-to-expect.com">Budget Pro</a>, our first priority will be to add Open Banking support.</p>
 
                     <h3 class="display-6 mt-3 mb-3">What is Budget Pro?</h3>
                     <p class="lead">Budget Pro is the upgraded version of Budget. It includes sharing, multiple

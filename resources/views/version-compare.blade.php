@@ -42,7 +42,7 @@
                 <div class="col-12">
                     <h2 class="display-4 mt-3 mb-3">Budget and Budget Pro</h2>
 
-                    <p class="lead">Budget Pro is in development and we hope to have it released within the first
+                    <p class="lead"><a href="https://budget-pro.costs-to-expect.com">Budget Pro</a> is in development and we hope to have it released within the first
                         half of 2023. Please review the table below to see how Budget and Budget Pro compare
                     </p>
 
@@ -73,7 +73,7 @@
                                 <td>3</td>
                             </tr>
                             <tr>
-                                <th scope="row">Number of Accounts</th>
+                                <th scope="row">Number of Projection Accounts</th>
                                 <td>3</td>
                                 <td>Unlimited</td>
                             </tr>
@@ -143,6 +143,11 @@
                                 <th scope="row">Open Source</th>
                                 <td>Yes <span class="text-muted small">MIT License</span></td>
                                 <td>No</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Open Banking support</th>
+                                <td>No</td>
+                                <td>Planned <span class="text-muted small">First priority after the release of the Budget Pro beta</span></td>
                             </tr>
                             <tr>
                                 <th scope="row">Fixed Budget Item Amounts</th>
