@@ -32,6 +32,7 @@
             <ul class="list-unstyled text-small">
                 <li><a class="link-primary" href="https://api.costs-to-expect.com" title="The Costs to Expect API">API</a></li>
                 <li><a class="link-primary" href="https://budget.costs-to-expect.com" title="Budget by Costs to Expect">Budget</a></li>
+                <li><a class="link-primary" href="https://budget-pro.costs-to-expect.com" title="Budget Pro by Costs to Expect">Budget Pro</a></li>
                 <li><a class="link-primary" href="https://app.costs-to-expect.com" title="Expense by Costs to Expect">Expense</a></li>
                 <li><a class="link-primary" href="https://status.costs-to-expect.com" title="Service Status for Costs to Expect">Service Status</a></li>
                 <li><a class="link-primary" href="https://github.com/costs-to-expect" title="Visit Costs to Expect on GitHub">GitHub</a></li>
