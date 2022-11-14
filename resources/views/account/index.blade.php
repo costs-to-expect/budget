@@ -63,7 +63,7 @@
                 <h2 class="display-5">Reset Budget</h2>
 
                 <p class="lead">If you reset your account, the Budget you have created and any related data
-                    will be remove. Use this if you want to start afresh.</p>
+                    will be removed. Use this if you want to start afresh.</p>
 
                 <h3 class="display-6">Data that will be deleted</h3>
 
