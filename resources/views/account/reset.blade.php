@@ -12,7 +12,7 @@
     </head>
     <body>
 
-        <x-offcanvas active="account"/>
+        <x-offcanvas active="account.reset"/>
 
         <div class="col-lg-8 mx-auto p-3">
 
@@ -20,7 +20,10 @@
                  <h2 class="display-4">Reset Budget</h2>
 
                 <p class="lead">If you reset your account, the Budget you have created and any related data
-                    will be remove. Use this if you want to start afresh.</p>
+                    will be removed. Use this if you want to start afresh.</p>
+
+                <p class="lead">If you have been playing with your demo, the reset options allows you to
+                    start again.</p>
 
                 <h3 class="display-6">Data that will be deleted</h3>
 

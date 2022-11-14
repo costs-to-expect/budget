@@ -41,6 +41,15 @@
                             <li class="nav-item">
                                 <a class="nav-link @if($active === 'account.change-password') active @endif" href="{{ route('account.change-password') }}" title="Change your account password">Change Password</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if($active === 'account.reset') active @endif" href="{{ route('account.reset') }}" title="Reset the Budget App">Reset App</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if($active === 'account.delete-budget-account') active @endif" href="{{ route('account.delete-budget-account') }}" title="Delete my Budget account App">Delete Budget Account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if($active === 'account.delete-account') active @endif" href="{{ route('account.delete-account') }}" title="Delete my Costs to Expect App">Delete Costs to Expect Account</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item">

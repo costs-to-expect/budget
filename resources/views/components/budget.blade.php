@@ -170,8 +170,7 @@
                     <p class="lead">If you would like to see how everything works, select "Load Demo", We will
                         create a Demo Budget in your currency of choice and you can explore how our Apps works.</p>
 
-                    <p class="lead">When you are comfortable, you can adopt the demo or
-                        <a href="{{ route('account.reset') }}">reset</a> your account and start afresh.</p>
+                    <p class="lead">When you are comfortable, you can adopt the demo or reset your account and start afresh.</p>
                 @else
                     <h4 class="alert-heading">Start Building Your Budget!</h4>
                     <p class="lead">

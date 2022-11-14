@@ -2,7 +2,7 @@
     "name": "costs-to-expect/budget",
     "type": "project",
     "description": "Budgeting powered by the Costs Expect API",
-    "keywords": ["budgeting", "budget", "open-source"],
+    "keywords": ["budgeting", "budget", "open-source", "free", "api", "costs", "costs-expect", "costs-to-expect"],
     "license": "MIT",
     "require": {
         "php": "^8.1",

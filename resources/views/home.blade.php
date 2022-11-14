@@ -22,16 +22,30 @@
                     <div class="alert alert-dark mt-2" role="alert">
                         <h4 class="alert-heading">Demo Mode</h4>
                         <p class="lead">You are viewing your Demo and are free to play with all the features.</p>
+
+                        <p class="lead">
+                            You can add new expenses and accounts using the "New" buttons just above the
+                            demo Budget.
+                        </p>
+
                         <p class="lead">This demo is specific to you. When you are ready click the
                             "Adopt Demo" button to take ownership of this Budget.</p>
 
+                        <p class="lead">Alternatively, you can start afresh by using the "Reset App" option, this will
+                            return the App to the state it was when you first signed in.</p>
+
                         <hr />
+
                         <form action="{{ route('demo.adopt.process') }}" method="POST" class="row g-2">
                             @csrf
                             <div class="col-12 mt-3">
                                 <button type="submit" class="btn btn-sm btn-primary" title="Take ownership of the demo budget">
                                     Adopt Demo
                                 </button>
+
+                                <a class="btn btn-sm btn-outline-primary" href="{{ route('account.reset') }}" title="Reset the App">
+                                    Reset App
+                                </a>
                             </div>
                         </form>
                     </div>
@@ -39,7 +53,7 @@
             </div>
             @endif
 
-            @if ($has_budget === true && $has_accounts === true)
+            @if ($has_budget === true && $has_accounts === true && $demo === false)
             <div class="alert alert-dark mt-2" role="alert">
                 <h4 class="alert-heading">Up to Date?</h4>
                 <p class="mb-0">Have you updated your account balances?</p>
