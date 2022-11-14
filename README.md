@@ -37,10 +37,23 @@ development setup from the steps below.
 
 Go to the project root directory and run the below commands:
 
+### Docker
+
+- Set all the relevant ENV variables, copy .env.example, at a minimum you need to set all the `DB_*` variables.
+- I use mailgun, if you use something else, you'll need to change the mail driver in the .env file.
+
 ```bash
 $ `docker network create costs.network` *
 $ `docker compose build`
 $ `docker compose up`
+```
+### Install all dependencies, composer, yarn, etc.
+
+- I typically install all my dependencies through PHPStorm, but you should install then how you normally would.
+
+```bash
+$ `docker exec costs.budget.app php artisan key:generate`
+$ `docker exec costs.budget.app php artisan migrate`
 ```
 
 *We include a network for local development purposes, I need to connect to a local version of the Costs to Expect
