@@ -12,7 +12,7 @@
     </head>
     <body>
 
-        <x-offcanvas active="account"/>
+        <x-offcanvas active="account.delete-account"/>
 
         <div class="col-lg-8 mx-auto p-3">
 
