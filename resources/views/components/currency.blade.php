@@ -1,1 +1,1 @@
-@if($currency['code'] === 'USD'){{"$"}}@elseif($currency['code'] === 'EUR')&euro;@else&pound;@endif
+@if($currency['code'] === 'EUR')&euro;@elseif($currency['code'] === 'INR')&#8377;@elseif($currency['code'] === 'GBP')&pound;@else{{"$"}}@endif

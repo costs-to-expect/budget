@@ -186,8 +186,8 @@
                             </tr>
                             <tr>
                                 <th scope="row">Currencies Supported</th>
-                                <td>GBP, USD & EUR</td>
-                                <td>GBP, USD & EUR</td>
+                                <td>GBP, USD, EUR, CAD, AUD, NZD & INR</td>
+                                <td>GBP, USD, EUR, CAD, AUD, NZD & INR</td>
                             </tr>
                             <tr>
                                 <th scope="row">Currencies per Budget</th>
