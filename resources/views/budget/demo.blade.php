@@ -46,7 +46,7 @@
                                     <option value="{{ $__currency['id'] }}" @if (old('currency_id') !== null && old('currency_id') === $__currency['id']) selected="selected" @endif>{{ $__currency['code'] }} - <x-currency :currency="$__currency" /></option>
                                 @endforeach
                             </select>
-                            <div id="currency_idHelpBlock" class="form-text">Please choose the currency for your Budget, GBP, USD or EUR.</div>
+                            <div id="currency_idHelpBlock" class="form-text">Please choose the currency for your Budget, GBP, USD, EUR, CAD, AUD, NZD & INR.</div>
                             @error('currency_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
