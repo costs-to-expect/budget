@@ -36,7 +36,7 @@
                             <label for="account" class="form-label">Account *</label>
                             <select id="account" name="account" class="form-select form-select-sm <x-validation-error field='account' />">
                                 @foreach ($accounts as $__account)
-                                    <option value="{{ $__account->id() }}" @if (old('account', $item['account']) !== null && old('account') === $__account->id()) selected="selected" @endif>{{ $__account->name() }}</option>
+                                    <option value="{{ $__account->id() }}" @if (old('account', $item['account']) === $__account->id()) selected="selected" @endif>{{ $__account->name() }}</option>
                                 @endforeach
                                 <x-validation-error-message field="account" />
                             </select>
@@ -99,7 +99,7 @@
                             <select id="target_account" name="target_account" class="form-select form-select-sm <x-validation-error field='target_account' />">
                                 @foreach ($accounts as $__account)
                                     @if ($__account->type() === 'savings')
-                                    <option value="{{ $__account->id() }}" @if (old('target_account', $item['target_account']) !== null && old('target_account') === $__account->id()) selected="selected" @endif>{{ $__account->name() }}</option>
+                                    <option value="{{ $__account->id() }}" @if (old('target_account', $item['target_account']) === $__account->id()) selected="selected" @endif>{{ $__account->name() }}</option>
                                     @endif
                                 @endforeach
                             </select>
