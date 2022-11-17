@@ -60,7 +60,7 @@ class Update extends Action
         if ($frequency['type'] === 'one-off') {
             $start_date = new \DateTimeImmutable($input['start_date'], $timezone);
             $end_date = $start_date->modify('first day of next month')->setTime(7, 1);
-            $input['end_date'] = $end_date->format('Y-m-d');
+            $payload['end_date'] = $end_date->format('Y-m-d');
         }
 
         ksort($item['frequency']);
