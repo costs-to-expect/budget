@@ -1,12 +1,14 @@
 <footer class="container py-5">
     <div class="row">
         <div class="col-12 col-md">
-            <h5>Help</h5>
+            <h5>Help & More</h5>
             <ul class="list-unstyled text-small">
                 <li><a class="link-primary" href="{{ route('getting-started') }}" title="Checkout the Getting Started page">Getting Started</a></li>
                 <li><a class="link-primary" href="{{ route('workflow') }}" title="Checkout the Workflow page">Workflow</a></li>
                 <li><a class="link-primary" href="{{ route('faqs') }}" title="Read our FAQs">FAQs</a></li>
                 <li><a class="link-primary" href="{{ route('version-compare') }}" title="Compare Budget and Budget Pro">Compare Versions</a></li>
+                <li><a class="link-primary" href="https://blog.costs-to-expect.com" title="View the Costs to Expect blog">Our Blog</a></li>
+                <li><a class="link-primary" href="https://www.deanblackborough.com" title="View my blog">Dean Blackborough</a></li>
             </ul>
 
             <small class="d-block mb-1 text-muted">&copy; 2018-{{ date('Y') }} Dean Blackborough</small>
@@ -36,7 +38,6 @@
                 <li><a class="link-primary" href="https://app.costs-to-expect.com" title="Expense by Costs to Expect">Expense</a></li>
                 <li><a class="link-primary" href="https://status.costs-to-expect.com" title="Service Status for Costs to Expect">Service Status</a></li>
                 <li><a class="link-primary" href="https://github.com/costs-to-expect" title="Visit Costs to Expect on GitHub">GitHub</a></li>
-                <li><a class="link-primary" href="https://www.deanblackborough.com" title="View my blog">Dean Blackborough</a></li>
             </ul>
         </div>
     </div>

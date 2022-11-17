@@ -10,8 +10,8 @@ return [
     'item_subtype_id' => env('ITEM_SUBTYPE_ID'),
     'cookie_user' => env('SESSION_NAME_USER'),
     'cookie_bearer' => env('SESSION_NAME_BEARER'),
-    'version' => 'v1.01.0',
-    'release_date' => '15th November 2022',
+    'version' => 'v1.01.1',
+    'release_date' => '17th November 2022',
     'exception_notification_email' => env('EXCEPTION_NOTIFICATION_EMAIL'),
     'timezone' => 'UTC' // We can allow users to override this later
 ];
