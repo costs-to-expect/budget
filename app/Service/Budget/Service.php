@@ -128,8 +128,8 @@ class Service
                 $account['type'],
                 $account['currency'],
                 (float) $account['balance'],
-                $account['description'],
-                array_key_exists('color', $account) === true ? $account['color'] : null
+                array_key_exists('color', $account) === true ? $account['color'] : '#' . dechex(random_int(0, 16777215)),
+                $account['description']
             );
         }
 
@@ -320,7 +320,7 @@ class Service
             throw new LengthException('Too many items, the limit is ' . $this->maxItems());
         }
 
-        $this->budget_items[] = new Item($data, $this->timezone);
+        $this->budget_items[] = new Item(array_merge($data, ['account_color' => $this->account($data['account'])->color()]), $this->timezone);
 
         return true;
     }
