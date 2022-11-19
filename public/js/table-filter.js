@@ -9,8 +9,6 @@
             input = e.target;
             let table1 = document.getElementsByClassName(input.getAttribute('data-table'));
 
-            console.log(table1);
-
             Arr.forEach.call(table1, function (table) {
                 Arr.forEach.call(table.tBodies, function (tbody) {
                     Arr.forEach.call(tbody.rows, filter);

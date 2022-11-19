@@ -120,6 +120,8 @@ class Account extends Controller
 
         Auth::guard()->logout();
 
+        sleep(3);
+
         return redirect()->route('landing');
     }
 
@@ -161,6 +163,8 @@ class Account extends Controller
 
         Auth::guard()->logout();
 
+        sleep(3);
+
         return redirect()->route('landing');
     }
 
@@ -201,6 +205,8 @@ class Account extends Controller
         );
 
         Auth::guard()->logout();
+
+        sleep(3);
 
         return redirect()->route('landing');
     }
