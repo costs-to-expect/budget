@@ -365,7 +365,7 @@ class Service
 
     public function maxItems(): int
     {
-        return 35;
+        return 100;
     }
 
     public function maxAccounts(): int

@@ -79,7 +79,7 @@
                             </tr>
                             <tr>
                                 <th scope="row">Number of Budget Items</th>
-                                <td>35</td>
+                                <td>100</td>
                                 <td>Unlimited</td>
                             </tr>
                             </tbody>

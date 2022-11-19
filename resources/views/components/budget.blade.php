@@ -47,11 +47,11 @@
                                     'month'=>  $__month->month(),
                                     'year'=> $__month->year()
                                 ]) }}">
-                        <div class="col-12 expense @if ($active_item === $__item->id() && $__month->year() === $active_item_year && $__month->month() === $active_item_month) active shadow @endif @if($__item->disabled() === true || ($__month->now() === true && $__item->paid() === true)) opacity-50 @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
+                        <div class="col-12 expense @if ($active_item === $__item->id() && $__month->year() === $active_item_year && $__month->month() === $active_item_month) active shadow @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
                             <div class="name text-grey" title="{{ $__item->name() }}">
                                 {{ $__item->name() }}
                             </div>
-                            <div class="progress @if($__month->now()) border border-grey border-1 @endif">
+                            <div class="progress @if($__month->now()) border border-grey border-1 @endif @if($__item->disabled() === true || ($__month->now() === true && $__item->paid() === true)) opacity-25 @endif">
                                 <div class="progress-bar bg-{{ $__item->category() }}" role="progressbar" aria-label="" style="width: {{ $__item->progressBarPercentage() }}%"
                                      aria-valuenow="{{ $__item->progressBarPercentage() }}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
