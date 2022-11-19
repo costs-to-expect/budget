@@ -128,7 +128,8 @@ class Service
                 $account['type'],
                 $account['currency'],
                 (float) $account['balance'],
-                $account['description']
+                $account['description'],
+                array_key_exists('color', $account) === true ? $account['color'] : null
             );
         }
 

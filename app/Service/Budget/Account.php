@@ -21,7 +21,8 @@ class Account
         private readonly string $type,
         private readonly array $currency,
         float $start,
-        private readonly ?string $description = null
+        private readonly ?string $description = null,
+        private readonly ?string $color = null
     )
     {
         $this->balance = $start;
@@ -36,6 +37,15 @@ class Account
     public function balance() : float
     {
         return $this->balance;
+    }
+
+    public function color() : string
+    {
+        if ($this->color !== null) {
+            return $this->color;
+        }
+
+        return '#' . dechex(random_int(0, 16777215));
     }
 
     public function currency() : array
