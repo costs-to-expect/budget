@@ -49,7 +49,12 @@
                                 ]) }}">
                         <div class="col-12 expense @if ($active_item === $__item->id() && $__month->year() === $active_item_year && $__month->month() === $active_item_month) active shadow @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
                             <div class="name text-grey" title="{{ $__item->name() }}">
-                                {{ $__item->name() }}
+                                <p class="mb-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-fill float-start" viewBox="0 0 16 16">
+                                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z"/>
+                                    </svg>
+                                    {{ $__item->name() }}
+                                </p>
                             </div>
                             <div class="progress @if($__month->now()) border border-grey border-1 @endif @if($__item->disabled() === true || ($__month->now() === true && $__item->paid() === true)) opacity-25 @endif">
                                 <div class="progress-bar bg-{{ $__item->category() }}" role="progressbar" aria-label="" style="width: {{ $__item->progressBarPercentage() }}%"
