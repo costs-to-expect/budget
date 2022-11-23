@@ -51,10 +51,16 @@ class Start extends Action
                     'string',
                     'regex:/^\d+\.\d{2}$/',
                     'max:16'
+                ],
+                'color' => [
+                    'required',
+                    'string',
+                    'regex:/^#([A-Fa-f0-9]{6})$/',
                 ]
             ],
             [
-                'balance.regex' => 'Costs should be in the format 0.00'
+                'balance.regex' => 'Costs should be in the format 0.00',
+                'color.regex' => 'Color should be in the format #000000',
             ]
         )->validate();
 
@@ -92,6 +98,7 @@ class Start extends Action
                 'description' => $input['description'],
                 'currency' => $currency,
                 'balance' => $input['balance'],
+                'color' => $input['color'],
             ]
         ];
 

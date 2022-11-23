@@ -47,10 +47,16 @@ class Update extends Action
                     'string',
                     'regex:/^\d+\.\d{2}$/',
                     'max:16'
+                ],
+                'color' => [
+                    'required',
+                    'string',
+                    'regex:/^#([A-Fa-f0-9]{6})$/',
                 ]
             ],
             [
-                'balance.regex' => 'Costs should be in the format 0.00'
+                'balance.regex' => 'Costs should be in the format 0.00',
+                'color.regex' => 'Color should be in the format #000000',
             ]
         )->validate();
 
@@ -70,6 +76,7 @@ class Update extends Action
         $data['accounts'][$account_id]['type'] = $input['type'];
         $data['accounts'][$account_id]['description'] = $input['description'];
         $data['accounts'][$account_id]['balance'] = $input['balance'];
+        $data['accounts'][$account_id]['color'] = $input['color'];
 
         try {
             $data = json_encode($data, JSON_THROW_ON_ERROR);

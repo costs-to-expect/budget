@@ -128,6 +128,7 @@ class Service
                 $account['type'],
                 $account['currency'],
                 (float) $account['balance'],
+                array_key_exists('color', $account) === true ? $account['color'] : '#' . dechex(random_int(0, 16777215)),
                 $account['description']
             );
         }
@@ -319,7 +320,19 @@ class Service
             throw new LengthException('Too many items, the limit is ' . $this->maxItems());
         }
 
-        $this->budget_items[] = new Item($data, $this->timezone);
+        try {
+            $this->budget_items[] = new Item(
+                array_merge(
+                    $data,
+                    [
+                        'account_color' => $this->account($data['account'])->color(),
+                        'account_name' => $this->account($data['account'])->name()
+                    ]
+                ), $this->timezone
+            );
+        } catch (Exception $e) {
+            throw new \RuntimeException('Unable to add item to budget service: ' . $e->getMessage());
+        }
 
         return true;
     }
@@ -365,7 +378,7 @@ class Service
 
     public function maxItems(): int
     {
-        return 35;
+        return 100;
     }
 
     public function maxAccounts(): int

@@ -64,6 +64,15 @@
                         </div>
                         @enderror
                     </div>
+                    <div class="col-4 col-md-4">
+                        <label for="color" class="form-label">Colour *</label>
+                        <input type="color" class="form-control form-control-sm form-control-color" id="color" name="color" value="{{ old('color', $account->color()) }}" title="Choose a colour for the account">
+                        @error('color')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
                     <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
                     <div class="col-12 mt-3">
                         <button type="submit" class="btn btn-sm btn-dark" title="Save changes to account">Save</button>

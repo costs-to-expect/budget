@@ -12,31 +12,47 @@ namespace App\Service\Budget;
 class ProgressBar
 {
     private array $ranges = [
+        5 => [
+            'max' => 5,
+            'percentage' => 3
+        ],
+        15 => [
+            'max' => 15,
+            'percentage' => 5
+        ],
         25 => [
             'max' => 25,
-            'percentage' => 5
+            'percentage' => 10
         ],
         50 => [
             'max' => 50,
-            'percentage' => 10
+            'percentage' => 25
         ],
         100 => [
             'max' => 100,
-            'percentage' => 15
+            'percentage' => 30
         ],
         250 => [
             'max' => 250,
-            'percentage' => 25
+            'percentage' => 40
         ],
         500  => [
             'max' => 500,
             'percentage' => 50
+        ],
+        750  => [
+            'max' => 750,
+            'percentage' => 60
         ],
         1000 => [
             'max' => 1000,
             'percentage' => 70
         ],
         1500 => [
+            'max' => 1500,
+            'percentage' => 80
+        ],
+        2500 => [
             'max' => 1500,
             'percentage' => 95
         ],

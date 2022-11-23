@@ -33,6 +33,8 @@ class Item
     protected string $category;
 
     protected string $account;
+    protected string $account_color;
+    protected string $account_name;
 
     protected ?string $target_account;
 
@@ -56,6 +58,8 @@ class Item
         $this->id = $data['id'];
 
         $this->account = $data['account'];
+        $this->account_color = $data['account_color'];
+        $this->account_name = $data['account_name'];
         $this->target_account = $data['target_account'];
 
         $this->today = new \DateTimeImmutable('today', $this->timezone);
@@ -100,6 +104,16 @@ class Item
     public function account(): string
     {
         return $this->account;
+    }
+
+    public function accountColor(): string
+    {
+        return $this->account_color;
+    }
+
+    public function accountName(): string
+    {
+        return $this->account_name;
     }
 
     public function active(): bool

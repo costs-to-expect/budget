@@ -46,7 +46,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="col-6 col-md-6">
+                        <div class="col-4">
                             <label for="currency_id" class="form-label">Currency *</label>
                             <select id="currency_id" name="currency_id" class="form-select form-select-sm @error('currency_id') is-invalid @enderror" required="required">
                                 @foreach ($currencies as $__currency)
@@ -59,10 +59,19 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="col-6 col-md-6">
+                        <div class="col-4">
                             <label for="balance" class="form-label">Balance *</label>
                             <input type="number" class="form-control form-control-sm @error('balance') is-invalid @enderror to-fixed" id="balance" name="balance" required="required" placeholder="10.99" min="0" step="0.01" value="{{ old('balance') }}" data-points="2">
                             @error('balance')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label for="color" class="form-label">Colour *</label>
+                            <input type="color" class="form-control form-control-sm form-control-color" id="color" name="color" value="{{ old('color', $color) }}" title="Choose a colour for the account">
+                            @error('color')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

@@ -35,6 +35,8 @@ class BudgetAccount extends Controller
                 'max_accounts' => $budget->maxAccounts(),
 
                 'requests' => $this->api->requests(),
+
+                'color' => "#" . dechex(random_int(0, 16777215))
             ]
         );
     }
@@ -48,7 +50,7 @@ class BudgetAccount extends Controller
             $this->api,
             $this->resource_type_id,
             $this->resource_id,
-            $request->only(['name', 'type', 'description', 'currency_id', 'balance'])
+            $request->only(['name', 'type', 'description', 'currency_id', 'balance', 'color'])
         );
 
         if ($result === 204) {
@@ -108,7 +110,7 @@ class BudgetAccount extends Controller
             $this->resource_type_id,
             $this->resource_id,
             $request->route('account_id'),
-            $request->only(['name', 'type', 'description', 'balance'])
+            $request->only(['name', 'type', 'description', 'balance', 'color'])
         );
 
         if ($result === 204) {
