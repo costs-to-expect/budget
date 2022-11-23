@@ -28,13 +28,27 @@
         @auth
         <x-offcanvas active="workflow"/>
         @else
-        <header class="site-header sticky-top py-1">
-            <nav class="container d-flex flex-column flex-md-row justify-content-between">
-                <a class="py-2 text-center" href="{{ route('landing') }}" aria-label="Product">
-                    <img src="{{ asset('images/logo.png') }}" alt="Costs to Expect Logo" width="48" height="48" title="Costs to Expect" />
-                </a>
-            </nav>
-        </header>
+            <header class="site-header sticky-top py-1">
+                <nav class="container-fluid d-flex flex-column flex-md-row navbar-dark">
+                    <a class="navbar-brand p-0 me-0 me-lg-2" href="{{ route('landing') }}" aria-label="Budget by Costs to Expect">
+                        <img src="{{ asset('images/logo.png') }}" alt="Costs to Expect Logo" width="40" height="40" title="Costs to Expect" />
+                    </a>
+                    <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
+                        <li class="nav-item px-1">
+                            <a class="nav-link py-2 px-0 px-lg-2" href="{{ route('getting-started') }}">Getting Started</a>
+                        </li>
+                        <li class="nav-item px-1">
+                            <a class="nav-link py-2 px-0 px-lg-2 active" href="{{ route('workflow') }}">Workflow</a>
+                        </li>
+                        <li class="nav-item px-1">
+                            <a class="nav-link py-2 px-0 px-lg-2" href="{{ route('version-compare') }}">Versions</a>
+                        </li>
+                        <li class="nav-item px-1">
+                            <a class="nav-link py-2 px-0 px-lg-2" href="{{ route('faqs') }}">FAQs</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
         @endauth
 
         <div class="col-lg-8 mx-auto p-3">
