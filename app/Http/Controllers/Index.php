@@ -146,6 +146,8 @@ class Index extends Controller
                 'currencies' => $currencies,
 
                 'requests' => $this->api->requests(),
+
+                'color' => "#" . dechex(random_int(0, 16777215))
             ]
         );
     }
@@ -159,7 +161,7 @@ class Index extends Controller
             $this->api,
             $this->resource_type_id,
             $this->resource_id,
-            $request->only(['name', 'type', 'description', 'currency_id', 'balance'])
+            $request->only(['name', 'type', 'description', 'currency_id', 'balance', 'color'])
         );
 
         if ($result === 204) {

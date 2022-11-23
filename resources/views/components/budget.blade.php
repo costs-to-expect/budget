@@ -36,7 +36,7 @@
         @foreach ($months as $__month)
             @if ($__month->visible())
             <div class="col-4 @if($counter === 1) border-start border-end border-primary border-opacity-50 @endif @if($__month->now()) bg-light @endif">
-                <div class="text-primary text-center month pb-2">{{ $__month->name() }} {{  $__month->year() }}</div>
+                <div class="text-primary text-center month pb-2">{{ $__month->name() }}<br />{{  $__month->year() }}</div>
                 <div class="row">
                     @foreach ($__month->items() as $__item)
                         <a href="{{ route(
@@ -259,7 +259,7 @@
             @foreach ($accounts as $__account)
             <div class="balance">
                 <a class="btn btn-sm btn-outline-primary" href="{{ route('budget.account.update', ['account_id' => $__account->id()]) }}" title="Set balance for {{ $__account->name() }}">
-                    Set Balance
+                    Edit Account
                 </a>
                 <br />
                 <x-currency :currency="$__account->currency()" /></small>{{ number_format($__account->projected(), 2) }}

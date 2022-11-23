@@ -56,7 +56,8 @@
             @if ($has_budget === true && $has_accounts === true && $demo === false)
             <div class="alert alert-dark mt-2" role="alert">
                 <h4 class="alert-heading">Up to Date?</h4>
-                <p class="mb-0">Have you updated your account balances?</p>
+                <p class="mb-0">Have you updated your account balances, use the "Edit Account" buttons to
+                    set the balance for today?</p>
             </div>
             @endif
 

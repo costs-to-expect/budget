@@ -132,7 +132,8 @@ class LoadDemo implements ShouldQueue
             'id' => Str::uuid()->toString(),
             'name' => 'Default',
             'description' => null,
-            'balance' => '2848.65'
+            'balance' => '2848.65',
+            'color' => "#" . dechex(random_int(0, 16777215))
         ];
         $savings = [
             'currency' => [
@@ -144,7 +145,8 @@ class LoadDemo implements ShouldQueue
             'id' => Str::uuid()->toString(),
             'name' => 'Savings',
             'description' => null,
-            'balance' => '219.54'
+            'balance' => '219.54',
+            'color' => "#" . dechex(random_int(0, 16777215))
         ];
 
         $payload['accounts'] = [
