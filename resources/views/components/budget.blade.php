@@ -58,7 +58,7 @@
                                      aria-valuenow="{{ $__item->progressBarPercentage() }}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-3" title="{{ $__item->accountName() }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-2-front float-start mt-1" viewBox="0 0 16 16" style="color: {{ $__item->accountColor() }}">
                                         <path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
                                         <path d="M2 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z"/>
@@ -234,36 +234,42 @@
             <h2 class="display-6 mt-3 mb-3">Your Balances</h2>
         </div>
         <div class="col-6">
-            <h3>Start</h3>
-            <p class="text-muted mb-1">Balances today</p>
+            <h3>Today</h3>
+            <p class="text-muted mb-1">Your balances as of today</p>
 
             @foreach ($accounts as $__account)
             <div class="balance">
-                <a class="btn btn-sm btn-outline-primary" href="{{ route('budget.account.update', ['account_id' => $__account->id()]) }}" title="Update the account">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                    </svg>
-                </a>
-                <small>{{ $__account->name() }}<br /> <x-currency :currency="$__account->currency()" /></small>{{ number_format($__account->balance(), 2) }}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-2-front ms-1" viewBox="0 0 16 16" style="color: {{ $__account->color() }}">
+                    <path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
+                    <path d="M2 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+                <small>{{ $__account->name() }}</small>
+                <br />
+                <x-currency :currency="$__account->currency()" />{{ number_format($__account->balance(), 2) }}
+
             </div>
             @endforeach
         </div>
         <div class="col-6 text-end">
-            <h3>Projected</h3>
+            <h3>{{ $view_end['month'] . ' ' . $view_end['year'] }}</h3>
 
             @if ($projection === true)
-                <p class="text-muted mb-1">Projected for {{ $view_end['month'] . ' ' . $view_end['year'] }}</p>
+            <p class="text-muted mb-1">Projection for {{ $view_end['month'] . ' ' . $view_end['year'] }}</p>
 
-                @foreach ($accounts as $__account)
-                    <div class="balance">
-                        <small>{{ $__account->name() }}<br /> <x-currency :currency="$__account->currency()" /></small>{{ number_format($__account->projected(), 2) }}
-                    </div>
-                @endforeach
+            @foreach ($accounts as $__account)
+            <div class="balance">
+                <a class="btn btn-sm btn-outline-primary" href="{{ route('budget.account.update', ['account_id' => $__account->id()]) }}" title="Set balance for {{ $__account->name() }}">
+                    Set Balance
+                </a>
+                <br />
+                <x-currency :currency="$__account->currency()" /></small>{{ number_format($__account->projected(), 2) }}
+            </div>
+            @endforeach
             @else
                 <p class="text-muted mb-1">We can't show a Budget projection, you are reviewing your history.</p>
             @endif
         </div>
-        <div class="col-12 mt-2">
+        <div class="col-12 mt-2 text-end">
             <a class="btn btn-sm btn-outline-primary" href="{{ route('budget.account.create') }}" title="Add a new account">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>

@@ -320,7 +320,19 @@ class Service
             throw new LengthException('Too many items, the limit is ' . $this->maxItems());
         }
 
-        $this->budget_items[] = new Item(array_merge($data, ['account_color' => $this->account($data['account'])->color()]), $this->timezone);
+        try {
+            $this->budget_items[] = new Item(
+                array_merge(
+                    $data,
+                    [
+                        'account_color' => $this->account($data['account'])->color(),
+                        'account_name' => $this->account($data['account'])->name()
+                    ]
+                ), $this->timezone
+            );
+        } catch (Exception $e) {
+            throw new \RuntimeException('Unable to add item to budget service: ' . $e->getMessage());
+        }
 
         return true;
     }
