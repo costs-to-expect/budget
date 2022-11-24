@@ -43,10 +43,13 @@
 
     let category = document.querySelector('select#category');
     let toggleCategory = function(value_of_select) {
-        if (value_of_select === 'savings') {
-            document.querySelector('[data-savings="target_account"]').style.display = 'block';
-        } else {
-            document.querySelector('[data-savings="target_account"]').style.display = 'none';
+        let target_account = document.querySelector('[data-savings="target_account"]');
+        if (target_account !== null) {
+            if (value_of_select === 'savings') {
+                document.querySelector('[data-savings="target_account"]').style.display = 'block';
+            } else {
+                document.querySelector('[data-savings="target_account"]').style.display = 'none';
+            }
         }
     }
 

@@ -8,27 +8,41 @@
     @endif
 
     <div class="row">
-        <div class="col-12 text-end">
+        <div class="col-12 mb-2">
+            <div class="row">
+                <div class="col-12 offset-md-6 col-md-6">
+                    <div class="input-group">
+                        <input type="text" name="budget-filter" class="form-control form-control-sm" placeholder="Filter Budget overview.." title="Filter the Budget overview" />
+                        <button class="btn btn-sm btn-dark" type="button" name="clear-filter" id="clear-filter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mb-2 text-end">
             @if ($has_accounts && $has_budget)
             <div class="btn-group" role="group">
                 <a class="btn btn-sm btn-outline-primary @if(Route::is('budget.item.create-expense')) active @endif" href="{{ route('budget.item.create-expense') }}" title="Add a new expense budget item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                     </svg>
-                    New Expense
+                    Expense
                 </a>
                 <a class="btn btn-sm btn-outline-primary @if(Route::is('budget.item.create-income')) active @endif" href="{{ route('budget.item.create-income') }}" title="Add a new income budget item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                     </svg>
-                    New Income
+                    Income
                 </a>
                 @if($has_savings_account)
                 <a class="btn btn-sm btn-outline-primary @if(Route::is('budget.item.create-saving')) active @endif" href="{{ route('budget.item.create-saving') }}" title="Add a new saving budget item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                     </svg>
-                    New Saving
+                    Saving
                 </a>
                 @endif
 
@@ -36,7 +50,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                     </svg>
-                    New Account
+                    Account
                 </a>
             </div>
             @endif
@@ -60,7 +74,7 @@
                                     'item-month' => $__month->month(),
                                     'month'=>  $__month->month(),
                                     'year'=> $__month->year()
-                                ]) }}">
+                                ]) }}" class="budget-item" data-item-name="{{ $__item->name() }}">
                         <div class="col-12 expense @if ($active_item === $__item->id() && $__month->year() === $active_item_year && $__month->month() === $active_item_month) active shadow @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
                             <div class="name text-grey" title="{{ $__item->name() }}">
                                 <p class="mb-1">
@@ -213,20 +227,20 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                         </svg>
-                        New Expense
+                        Expense
                     </a>
                     <a class="btn btn-sm btn-outline-primary @if(Route::is('budget.item.create-income')) active @endif" href="{{ route('budget.item.create-income') }}" title="Add a new income budget item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                         </svg>
-                        New Income
+                        Income
                     </a>
                     @if($has_savings_account)
                     <a class="btn btn-sm btn-outline-primary @if(Route::is('budget.item.create-saving')) active @endif" href="{{ route('budget.item.create-saving') }}" title="Add a new saving budget item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                         </svg>
-                        New Saving
+                        Saving
                     </a>
                     @endif
 
@@ -234,7 +248,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                         </svg>
-                        New Account
+                        Account
                     </a>
                 @else
                     <a class="btn btn-sm btn-outline-primary" href="{{ route('start') }}" title="Start creating your Budget">

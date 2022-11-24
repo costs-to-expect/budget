@@ -218,10 +218,10 @@
                         :projection="$projection"
                         :hasAccounts="$has_accounts"
                         :hasBudget="$has_budget"
+                        :hasSavingsAccount="$has_savings_account"
                         :active_item="$item['id']"
                         :active_item_year="$item_year"
-                        :active_item_month="$item_month"
-                        :hasSavingsAccount="$has_savings_account" />
+                        :active_item_month="$item_month" />
                 </div>
             </div>
 
@@ -233,5 +233,6 @@
         </div>
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
         <script src="{{ asset('js/auto-format-numbers.js') }}" defer></script>
+        <script src="{{ asset('js/filter-budget.js') }}" defer></script>
     </body>
 </html>
