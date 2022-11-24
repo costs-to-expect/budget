@@ -85,6 +85,8 @@ class BudgetItem extends Controller
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
                 'has_savings_account' => $budget->hasSavingsAccount(),
+                'has_paid_items' => $budget->hasPaidItems(),
+
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -167,6 +169,8 @@ class BudgetItem extends Controller
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
                 'has_savings_account' => $budget->hasSavingsAccount(),
+                'has_paid_items' => $budget->hasPaidItems(),
+
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -253,6 +257,8 @@ class BudgetItem extends Controller
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
                 'has_savings_account' => $budget->hasSavingsAccount(),
+                'has_paid_items' => $budget->hasPaidItems(),
+
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -318,6 +324,9 @@ class BudgetItem extends Controller
             [
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
+                'has_savings_account' => $budget->hasSavingsAccount(),
+                'has_paid_items' => $budget->hasPaidItems(),
+
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -325,7 +334,6 @@ class BudgetItem extends Controller
                 'projection' => $budget->projection(),
 
                 'currency' => $budget->currency(),
-                'has_savings_account' => $budget->hasSavingsAccount(),
 
                 'max_items' => $budget->maxItems(),
                 'number_of_items' => $budget->numberOfItems(),
@@ -491,6 +499,8 @@ class BudgetItem extends Controller
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
                 'has_savings_account' => $budget->hasSavingsAccount(),
+                'has_paid_items' => $budget->hasPaidItems(),
+
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -659,6 +669,9 @@ class BudgetItem extends Controller
             [
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
+                'has_savings_account' => $budget->hasSavingsAccount(),
+                'has_paid_items' => $budget->hasPaidItems(),
+
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -666,7 +679,6 @@ class BudgetItem extends Controller
                 'projection' => $budget->projection(),
 
                 'currency' => $budget->currency(),
-                'has_savings_account' => $budget->hasSavingsAccount(),
 
                 'item' => $budget_item['content'],
 

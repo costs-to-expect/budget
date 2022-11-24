@@ -300,7 +300,7 @@ class Service
 
     public function hasPaidItems(): bool
     {
-        return $this->paid_items > 0;
+        return count($this->paid_items) > 0;
     }
 
     public function hasSavingsAccount(): bool

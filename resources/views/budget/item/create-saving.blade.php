@@ -301,7 +301,8 @@
                         :projection="$projection"
                         :hasAccounts="$has_accounts"
                         :hasBudget="$has_budget"
-                        :hasSavingsAccount="$has_savings_account" />
+                        :hasSavingsAccount="$has_savings_account"
+                        :hasPaidItems="$has_paid_items" />
                 </div>
             </div>
 
@@ -315,5 +316,6 @@
         <script src="{{ asset('js/create-budget-item.js') }}" defer></script>
         <script src="{{ asset('js/auto-format-numbers.js') }}" defer></script>
         <script src="{{ asset('js/filter-budget.js') }}" defer></script>
+        <script src="{{ asset('js/toggle-paid.js') }}" defer></script>
     </body>
 </html>

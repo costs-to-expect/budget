@@ -70,7 +70,7 @@
                 :hasAccounts="$has_accounts"
                 :hasBudget="$has_budget"
                 :hasSavingsAccount="$has_savings_account"
-                :hasPaidItems="$has_paid_items"/>
+                :hasPaidItems="$has_paid_items" />
 
             <x-help />
 
