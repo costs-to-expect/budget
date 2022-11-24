@@ -69,7 +69,8 @@
                 :projection="$projection"
                 :hasAccounts="$has_accounts"
                 :hasBudget="$has_budget"
-                :hasSavingsAccount="$has_savings_account" />
+                :hasSavingsAccount="$has_savings_account"
+                :hasPaidItems="$has_paid_items"/>
 
             <x-help />
 
@@ -79,5 +80,6 @@
         </div>
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
         <script src="{{ asset('js/filter-budget.js') }}" defer></script>
+        <script src="{{ asset('js/toggle-paid.js') }}" defer></script>
     </body>
 </html>
