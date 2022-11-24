@@ -18,7 +18,7 @@
 
             <div class="row">
                 <div class="col-12 col-lg-5 mx-auto p-2">
-                    <form action="{{ route('budget.item.create.process') }}" method="POST" class="row g-2">
+                    <form action="{{ route('budget.item.create-expense.process') }}" method="POST" class="row g-2">
 
                         @csrf
 

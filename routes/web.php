@@ -199,14 +199,14 @@ Route::group(
         )->name('budget.item.set-as-not-paid.process');
 
         Route::get(
-            '/budget/item',
-            [BudgetItem::class, 'create']
-        )->name('budget.item.create');
+            '/budget/item/create-expense',
+            [BudgetItem::class, 'createExpense']
+        )->name('budget.item.create-expense');
 
         Route::post(
-            '/budget/item',
-            [BudgetItem::class, 'createProcess']
-        )->name('budget.item.create.process');
+            '/budget/item/create-expense',
+            [BudgetItem::class, 'createExpenseProcess']
+        )->name('budget.item.create-expense.process');
 
         Route::get(
             '/budget/item/{item_id}',

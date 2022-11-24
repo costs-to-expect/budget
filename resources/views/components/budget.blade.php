@@ -11,11 +11,11 @@
         <div class="col-12 text-end">
             @if ($has_accounts && $has_budget)
             <div class="btn-group" role="group">
-                <a class="btn btn-sm btn-outline-primary" href="{{ route('budget.item.create') }}" title="Add a new budget item">
+                <a class="btn btn-sm btn-outline-primary" href="{{ route('budget.item.create-expense') }}" title="Add a new expense">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                     </svg>
-                    New Budget Item
+                    New Expense
                 </a>
 
                 <a class="btn btn-sm btn-outline-primary" href="{{ route('budget.account.create') }}" title="Add a new account">
@@ -195,17 +195,17 @@
             </div>
             <p class="mb-0">
                 @if ($has_accounts)
-                    <a class="btn btn-sm btn-outline-primary" href="{{ route('budget.item.create') }}" title="Add a budget item">
+                    <a class="btn btn-sm btn-outline-primary" href="{{ route('budget.item.create-expense') }}" title="Add a new expense">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                         </svg>
-                        Add Budget Item
+                        New Expense
                     </a>
                     <a class="btn btn-sm btn-outline-primary" href="{{ route('budget.account.create') }}" title="Add a new account">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                         </svg>
-                        Add Account
+                        New Account
                     </a>
                 @else
                     <a class="btn btn-sm btn-outline-primary" href="{{ route('start') }}" title="Start creating your Budget">

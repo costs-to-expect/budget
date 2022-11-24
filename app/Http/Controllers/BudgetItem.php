@@ -304,14 +304,14 @@ class BudgetItem extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function create(Request $request)
+    public function createExpense(Request $request)
     {
         $this->bootstrap($request);
 
         $budget = $this->setUpBudget($request);
 
         return view(
-            'budget.item.create',
+            'budget.item.create-expense',
             [
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
@@ -332,7 +332,7 @@ class BudgetItem extends Controller
         );
     }
 
-    public function createProcess(Request $request)
+    public function createExpenseProcess(Request $request)
     {
         $this->bootstrap($request);
 
@@ -348,7 +348,7 @@ class BudgetItem extends Controller
         if ($result === 201) {
             if (array_key_exists('submit_and_return', $request->all())) {
                 return redirect()
-                    ->route('budget.item.create');
+                    ->route('budget.item.create-expense');
             }
 
             return redirect()
@@ -358,7 +358,7 @@ class BudgetItem extends Controller
 
         if ($result === 422) {
             return redirect()
-                ->route('budget.item.create')
+                ->route('budget.item.create-expense')
                 ->withInput()
                 ->with('validation.errors', $action->getValidationErrors());
         }
