@@ -209,6 +209,26 @@ Route::group(
         )->name('budget.item.create-expense.process');
 
         Route::get(
+            '/budget/item/create-income',
+            [BudgetItem::class, 'createIncome']
+        )->name('budget.item.create-income');
+
+        Route::post(
+            '/budget/item/create-income',
+            [BudgetItem::class, 'createIncomeProcess']
+        )->name('budget.item.create-income.process');
+
+        Route::get(
+            '/budget/item/create-saving',
+            [BudgetItem::class, 'createSaving']
+        )->name('budget.item.create-saving');
+
+        Route::post(
+            '/budget/item/create-saving',
+            [BudgetItem::class, 'createSavingProcess']
+        )->name('budget.item.create-saving.process');
+
+        Route::get(
             '/budget/item/{item_id}',
             [BudgetItem::class, 'index']
         )->name('budget.item.view');

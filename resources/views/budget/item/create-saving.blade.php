@@ -18,16 +18,16 @@
 
             <div class="row">
                 <div class="col-12 col-lg-5 mx-auto p-2">
-                    <form action="{{ route('budget.item.create-expense.process') }}" method="POST" class="row g-2">
+                    <form action="{{ route('budget.item.create-saving.process') }}" method="POST" class="row g-2">
 
                         @csrf
 
                         <div class="col-12">
-                            <h2 class="display-5 mt-3 mb-3">New Expense Item</h2>
+                            <h2 class="display-5 mt-3 mb-3">New Saving Item</h2>
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="name" class="form-label">Name *</label>
-                            <input type="text" class="form-control form-control-sm <x-validation-error field='name' />" id="name" name="name" value="{{ old('name') }}" placeholder="Rent">
+                            <input type="text" class="form-control form-control-sm <x-validation-error field='name' />" id="name" name="name" value="{{ old('name') }}" placeholder="Holiday fund">
                             <x-validation-error-message field="name" />
                         </div>
                         <div class="col-6 col-md-6">
@@ -43,7 +43,7 @@
                         </div>
                         <div class="col-12">
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control form-control-sm <x-validation-error field='description' />" id="description" name="description" placeholder="An optional description of the expense">{{ old('description') }}</textarea>
+                            <textarea class="form-control form-control-sm <x-validation-error field='description' />" id="description" name="description" placeholder="An optional description of the saving item">{{ old('description') }}</textarea>
                             <x-validation-error-message field="description" />
                         </div>
                         <div class="col-12">
@@ -82,11 +82,21 @@
                             <label for="category" class="form-label">Type *</label>
                             <select id="category" name="category" class="form-select form-select-sm <x-validation-error field='category' />">
                                 <optgroup label="Expense">
-                                    <option value="fixed" @if (old('category') === 'fixed') selected="selected" @endif>Fixed</option>
-                                    <option value="flexible" @if (old('category') === 'flexible') selected="selected" @endif>Flexible</option>
+                                    <option value="savings" @if (old('category') === 'savings') selected="selected" @endif>Savings</option>
                                 </optgroup>
                             </select>
                             <x-validation-error-message field="category" />
+                        </div>
+                        <div class="col-6 col-md-6" data-savings="target_account">
+                            <label for="target_account" class="form-label">Target Account *</label>
+                            <select id="target_account" name="target_account" class="form-select form-select-sm <x-validation-error field='target_account' />">
+                                @foreach ($accounts as $__account)
+                                    @if ($__account->type() === 'savings')
+                                    <option value="{{ $__account->id() }}" @if (old('target_account') !== null && old('target_account') === $__account->id()) selected="selected" @endif>{{ $__account->name() }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            <x-validation-error-message field="target_account" />
                         </div>
                         <fieldset>
                             <legend class="col-form-label col-12 text-primary" data-frequency="monthly">Frequency Options</legend>
@@ -241,6 +251,7 @@
                         </fieldset>
                         <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
                         <div class="col-12 mt-3">
+
                             @if (count($accounts) > 0)
                                 @if ($number_of_items < $max_items)
                                 <button type="submit" class="btn btn-sm btn-dark" title="Add budget item">Save</button>

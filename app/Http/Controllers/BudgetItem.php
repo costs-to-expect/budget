@@ -84,6 +84,7 @@ class BudgetItem extends Controller
             [
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
+                'has_savings_account' => $budget->hasSavingsAccount(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -165,6 +166,7 @@ class BudgetItem extends Controller
             [
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
+                'has_savings_account' => $budget->hasSavingsAccount(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -250,6 +252,7 @@ class BudgetItem extends Controller
             [
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
+                'has_savings_account' => $budget->hasSavingsAccount(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -304,14 +307,14 @@ class BudgetItem extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function createExpense(Request $request)
+    private function create(Request $request, string $view)
     {
         $this->bootstrap($request);
 
         $budget = $this->setUpBudget($request);
 
         return view(
-            'budget.item.create-expense',
+            $view,
             [
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
@@ -330,6 +333,21 @@ class BudgetItem extends Controller
                 'requests' => $this->api->requests(),
             ]
         );
+    }
+
+    public function createExpense(Request $request)
+    {
+        return $this->create($request, 'budget.item.create-expense');
+    }
+
+    public function createIncome(Request $request)
+    {
+        return $this->create($request, 'budget.item.create-income');
+    }
+
+    public function createSaving(Request $request)
+    {
+        return $this->create($request, 'budget.item.create-saving');
     }
 
     public function createExpenseProcess(Request $request)
@@ -359,6 +377,74 @@ class BudgetItem extends Controller
         if ($result === 422) {
             return redirect()
                 ->route('budget.item.create-expense')
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
+    }
+
+    public function createIncomeProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Create();
+        $result = $action(
+            $this->api,
+            $this->timezone,
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->all()
+        );
+
+        if ($result === 201) {
+            if (array_key_exists('submit_and_return', $request->all())) {
+                return redirect()
+                    ->route('budget.item.create-income');
+            }
+
+            return redirect()
+                ->route('home')
+                ->with('status', 'item-added');
+        }
+
+        if ($result === 422) {
+            return redirect()
+                ->route('budget.item.create-income')
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
+    }
+
+    public function createSavingProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new Create();
+        $result = $action(
+            $this->api,
+            $this->timezone,
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->all()
+        );
+
+        if ($result === 201) {
+            if (array_key_exists('submit_and_return', $request->all())) {
+                return redirect()
+                    ->route('budget.item.create-saving');
+            }
+
+            return redirect()
+                ->route('home')
+                ->with('status', 'item-added');
+        }
+
+        if ($result === 422) {
+            return redirect()
+                ->route('budget.item.create-saving')
                 ->withInput()
                 ->with('validation.errors', $action->getValidationErrors());
         }
@@ -404,6 +490,7 @@ class BudgetItem extends Controller
             [
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
+                'has_savings_account' => $budget->hasSavingsAccount(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),

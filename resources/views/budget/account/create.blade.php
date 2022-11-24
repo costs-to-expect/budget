@@ -113,7 +113,8 @@
                         :viewEnd="$view_end"
                         :projection="$projection"
                         :hasAccounts="$has_accounts"
-                        :hasBudget="$has_budget" />
+                        :hasBudget="$has_budget"
+                        :hasSavingsAccount="$has_savings_account" />
                 </div>
             </div>
 

@@ -96,6 +96,7 @@
                         :projection="$projection"
                         :hasAccounts="$has_accounts"
                         :hasBudget="$has_budget"
+                        :hasSavingsAccount="$has_savings_account"
                         :active_item="$item['id']"
                         :active_item_year="$item_year"
                         :active_item_month="$item_month" />

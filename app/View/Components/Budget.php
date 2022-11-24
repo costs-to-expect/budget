@@ -26,6 +26,8 @@ class Budget extends Component
 
     private bool $has_budget;
 
+    private bool $has_savings_account;
+
     public function __construct(
         array $accounts,
         array $months,
@@ -34,6 +36,7 @@ class Budget extends Component
         bool $projection = true,
         bool $hasAccounts = true,
         bool $hasBudget = true,
+        bool $hasSavingsAccount = false,
         ?string $activeItem = null,
         ?int $activeItemYear = null,
         ?int $activeItemMonth = null,
@@ -49,6 +52,7 @@ class Budget extends Component
         $this->projection = $projection;
         $this->has_accounts = $hasAccounts;
         $this->has_budget = $hasBudget;
+        $this->has_savings_account = $hasSavingsAccount;
     }
 
     public function render()
@@ -66,6 +70,7 @@ class Budget extends Component
                 'projection' => $this->projection,
                 'has_accounts' => $this->has_accounts,
                 'has_budget' => $this->has_budget,
+                'has_savings_account' => $this->has_savings_account
             ]
         );
     }

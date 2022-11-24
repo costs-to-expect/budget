@@ -220,7 +220,8 @@
                         :hasBudget="$has_budget"
                         :active_item="$item['id']"
                         :active_item_year="$item_year"
-                        :active_item_month="$item_month" />
+                        :active_item_month="$item_month"
+                        :hasSavingsAccount="$has_savings_account" />
                 </div>
             </div>
 

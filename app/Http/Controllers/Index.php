@@ -111,6 +111,8 @@ class Index extends Controller
                 'projection' => $budget->projection(),
 
                 'requests' => $this->api->requests(),
+
+                'has_savings_account' => $budget->hasSavingsAccount()
             ]
         );
     }
