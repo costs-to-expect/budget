@@ -113,7 +113,9 @@
                         :viewEnd="$view_end"
                         :projection="$projection"
                         :hasAccounts="$has_accounts"
-                        :hasBudget="$has_budget" />
+                        :hasBudget="$has_budget"
+                        :hasSavingsAccount="$has_savings_account"
+                        :hasPaidItems="$has_paid_items" />
                 </div>
             </div>
 
@@ -123,5 +125,7 @@
         </div>
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
         <script src="{{ asset('js/auto-format-numbers.js') }}" defer></script>
+        <script src="{{ asset('js/filter-budget.js') }}" defer></script>
+        <script src="{{ asset('js/toggle-paid.js') }}" defer></script>
     </body>
 </html>

@@ -18,30 +18,32 @@
 
             <div class="row">
                 <div class="col-12 col-lg-5 mx-auto p-2">
-                    <form action="{{ route('budget.item.create.process') }}" method="POST" class="row g-2">
+                    <form action="{{ route('budget.item.create-income.process') }}" method="POST" class="row g-2">
 
                         @csrf
 
                         <div class="col-12">
-                            <h2 class="display-5 mt-3 mb-3">New</h2>
+                            <h2 class="display-5 mt-3 mb-3">New Income Item</h2>
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="name" class="form-label">Name *</label>
-                            <input type="text" class="form-control form-control-sm <x-validation-error field='name' />" id="name" name="name" value="{{ old('name') }}" placeholder="Rent">
+                            <input type="text" class="form-control form-control-sm <x-validation-error field='name' />" id="name" name="name" value="{{ old('name') }}" placeholder="Salary">
                             <x-validation-error-message field="name" />
                         </div>
                         <div class="col-6 col-md-6">
                             <label for="account" class="form-label">Account *</label>
                             <select id="account" name="account" class="form-select form-select-sm <x-validation-error field='account' />">
                                 @foreach ($accounts as $__account)
+                                    @if ($__account->type() !== 'savings')
                                     <option value="{{ $__account->id() }}" @if (old('account') !== null && old('account') === $__account->id()) selected="selected" @endif>{{ $__account->name() }}</option>
+                                    @endif
                                 @endforeach
                                 <x-validation-error-message field="account" />
                             </select>
                         </div>
                         <div class="col-12">
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control form-control-sm <x-validation-error field='description' />" id="description" name="description" placeholder="An optional description of the expense/income">{{ old('description') }}</textarea>
+                            <textarea class="form-control form-control-sm <x-validation-error field='description' />" id="description" name="description" placeholder="An optional description of the income">{{ old('description') }}</textarea>
                             <x-validation-error-message field="description" />
                         </div>
                         <div class="col-12">
@@ -75,33 +77,6 @@
                             <label for="amount" class="form-label">Amount *</label>
                             <input type="number" class="form-control form-control-sm <x-validation-error field='amount' /> to-fixed" id="amount" name="amount" placeholder="10.99" value="{{ old('amount') }}" data-points="2" min="0" step="0.01">
                             <x-validation-error-message field="amount" />
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <label for="category" class="form-label">Type *</label>
-                            <select id="category" name="category" class="form-select form-select-sm <x-validation-error field='category' />">
-                                <optgroup label="Expense">
-                                    <option value="fixed" @if (old('category') === 'fixed') selected="selected" @endif>Fixed</option>
-                                    <option value="flexible" @if (old('category') === 'flexible') selected="selected" @endif>Flexible</option>
-                                    @if ($has_savings_account)
-                                    <option value="savings" @if (old('category') === 'savings') selected="selected" @endif>Savings</option>
-                                    @endif
-                                </optgroup>
-                                <optgroup label="Income">
-                                    <option value="income" @if (old('category') === 'income') selected="selected" @endif>Income</option>
-                                </optgroup>
-                            </select>
-                            <x-validation-error-message field="category" />
-                        </div>
-                        <div class="col-6 col-md-6" data-savings="target_account">
-                            <label for="target_account" class="form-label">Target Account *</label>
-                            <select id="target_account" name="target_account" class="form-select form-select-sm <x-validation-error field='target_account' />">
-                                @foreach ($accounts as $__account)
-                                    @if ($__account->type() === 'savings')
-                                    <option value="{{ $__account->id() }}" @if (old('target_account') !== null && old('target_account') === $__account->id()) selected="selected" @endif>{{ $__account->name() }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                            <x-validation-error-message field="target_account" />
                         </div>
                         <fieldset>
                             <legend class="col-form-label col-12 text-primary" data-frequency="monthly">Frequency Options</legend>
@@ -256,6 +231,7 @@
                         </fieldset>
                         <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
                         <div class="col-12 mt-3">
+                            <input type="hidden" name="category" id="category" value="income" />
 
                             @if (count($accounts) > 0)
                                 @if ($number_of_items < $max_items)
@@ -305,7 +281,9 @@
                         :viewEnd="$view_end"
                         :projection="$projection"
                         :hasAccounts="$has_accounts"
-                        :hasBudget="$has_budget" />
+                        :hasBudget="$has_budget"
+                        :hasSavingsAccount="$has_savings_account"
+                        :hasPaidItems="$has_paid_items" />
                 </div>
             </div>
 
@@ -318,5 +296,7 @@
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
         <script src="{{ asset('js/create-budget-item.js') }}" defer></script>
         <script src="{{ asset('js/auto-format-numbers.js') }}" defer></script>
+        <script src="{{ asset('js/filter-budget.js') }}" defer></script>
+        <script src="{{ asset('js/toggle-paid.js') }}" defer></script>
     </body>
 </html>

@@ -26,6 +26,9 @@ class BudgetAccount extends Controller
                 'currency' => $budget->currency(),
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
+                'has_savings_account' => $budget->hasSavingsAccount(),
+                'has_paid_items' => $budget->hasPaidItems(),
+
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -83,8 +86,12 @@ class BudgetAccount extends Controller
             'budget.account.update',
             [
                 'currency' => $budget->currency(),
+
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
+                'has_savings_account' => $budget->hasSavingsAccount(),
+                'has_paid_items' => $budget->hasPaidItems(),
+
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),

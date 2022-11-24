@@ -102,8 +102,6 @@ class Index extends Controller
                 'status' => session()->get('status'),
                 'demo' => $this->demo,
 
-                'has_accounts' => $budget->hasAccounts(),
-                'has_budget' => $budget->hasBudget(),
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
                 'pagination' => $budget->paginationParameters(),
@@ -111,6 +109,11 @@ class Index extends Controller
                 'projection' => $budget->projection(),
 
                 'requests' => $this->api->requests(),
+
+                'has_accounts' => $budget->hasAccounts(),
+                'has_budget' => $budget->hasBudget(),
+                'has_savings_account' => $budget->hasSavingsAccount(),
+                'has_paid_items' => $budget->hasPaidItems()
             ]
         );
     }

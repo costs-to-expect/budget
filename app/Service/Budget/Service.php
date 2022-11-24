@@ -298,6 +298,11 @@ class Service
         return count($this->budget_items) > 0;
     }
 
+    public function hasPaidItems(): bool
+    {
+        return count($this->paid_items) > 0;
+    }
+
     public function hasSavingsAccount(): bool
     {
         foreach ($this->accounts() as $account) {
