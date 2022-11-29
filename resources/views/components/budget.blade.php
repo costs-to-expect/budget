@@ -142,6 +142,20 @@
                     </div>
                 </div>
                 @endforeach
+                @if (count($__month->totalExpensePerAccount()) > 1)
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h4 class="mb-0 pt-2 total">
+                            Total
+                        </h4>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <h5 class="mb-2 total">
+                            <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($__month->totalExpense(), 2) }}
+                        </h5>
+                    </div>
+                </div>
+                @endif
 
                 <h3 class="mb-1">Income</h3>
                 @foreach ($__month->totalIncomePerAccount() as $account_total)
@@ -158,6 +172,20 @@
                     </div>
                 </div>
                 @endforeach
+                @if (count($__month->totalIncomePerAccount()) > 1)
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <h4 class="mb-0 pt-2 total">
+                                Total
+                            </h4>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <h5 class="mb-2 total">
+                                <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($__month->totalIncome(), 2) }}
+                            </h5>
+                        </div>
+                    </div>
+                @endif
             </div>
             @endif
         @endforeach
