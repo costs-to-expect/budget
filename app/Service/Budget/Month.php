@@ -92,6 +92,24 @@ class Month
         return (float) $total;
     }
 
+    public function totalExpensePerAccount(): array
+    {
+        $expense = [];
+        foreach ($this->items() as $item) {
+            if ($item->disabled() === false && $item->category() !== 'income') {
+                if (array_key_exists($item->account(), $expense) !== true) {
+                    $expense[$item->account()] = [
+                        'name' => $item->accountName(),
+                        'total' => 0.0
+                    ];
+                }
+                $expense[$item->account()]['total'] += $item->amount();
+            }
+        }
+
+        return $expense;
+    }
+
     public function totalIncome(): float
     {
         $total = 0;
@@ -102,6 +120,24 @@ class Month
         }
 
         return (float) $total;
+    }
+
+    public function totalIncomePerAccount(): array
+    {
+        $income = [];
+        foreach ($this->items() as $item) {
+            if ($item->disabled() === false && $item->category() === 'income') {
+                if (array_key_exists($item->account(), $income) !== true) {
+                    $income[$item->account()] = [
+                        'name' => $item->accountName(),
+                        'total' => 0.0
+                    ];
+                }
+                $income[$item->account()]['total'] += $item->amount();
+            }
+        }
+
+        return $income;
     }
 
     public function visible(): bool

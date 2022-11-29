@@ -93,6 +93,26 @@ div.budget {
         font-weight: 300;
     }
 
+    div.month-totals {
+        text-align: center;
+
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: rgb(122, 122, 124);
+        }
+
+        h4 {
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(137, 43, 124, 1);
+        }
+        h5 {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+    }
+
     a {
         text-decoration: none;
 

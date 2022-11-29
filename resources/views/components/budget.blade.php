@@ -123,17 +123,41 @@
 
     @if ($has_budget)
     {{--Show the expenditure--}}
-    <div class="row text-grey mt-2 pt-2" id="expenditure">
+    <div class="row mt-2 pt-2" id="expenditure">
         @foreach ($months as $__month)
             @if ($__month->visible())
-            <div class="col-4 month-total">
-                <div class="fs-5 text-center text-muted">Expenditure</div>
-                <div>
-                    <small><x-currency :currency="$__month->currency()" /></small>{{ $__month->totalExpense() }}
+            <div class="col-4 month-totals">
+                <h3 class="mb-1">Expenses</h3>
+                @foreach ($__month->totalExpensePerAccount() as $account_total)
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h4 class="mb-0 pt-2">
+                            {{ $account_total['name'] }}
+                        </h4>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <h5 class="mb-2">
+                            <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($account_total['total'], 2) }}
+                        </h5>
+                    </div>
                 </div>
-                <div class="fs-6">
-                    Income <small><x-currency :currency="$__month->currency()" /></small>{{ $__month->totalIncome() }}
+                @endforeach
+
+                <h3 class="mb-1">Income</h3>
+                @foreach ($__month->totalIncomePerAccount() as $account_total)
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h4 class="mb-0 pt-2">
+                            {{ $account_total['name'] }}
+                        </h4>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <h5 class="mb-2">
+                            <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($account_total['total'], 2) }}
+                        </h5>
+                    </div>
                 </div>
+                @endforeach
             </div>
             @endif
         @endforeach
@@ -145,14 +169,14 @@
     <div id="pagination" class="pagination justify-content-between mt-3">
         <div>
         @if ($pagination['previous'] === null)
-            <a class="btn btn-sm btn-outline-primary disabled" href="" aria-disabled="true">
+            <a class="btn btn-sm btn-outline-primary px-1 py-0 disabled" href="" aria-disabled="true">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
                 </svg>
                 Previous
             </a>
         @else
-            <a class="btn btn-sm btn-outline-primary"
+            <a class="btn btn-sm btn-outline-primary px-1 py-0"
                href="{{ route(
                     $pagination['selected']['item'] === null ? 'home' : 'budget.item.view' ,
                     [
@@ -167,7 +191,7 @@
                 </svg>
                 Previous
             </a>
-            <a class="btn btn-sm btn-outline-primary"
+            <a class="btn btn-sm btn-outline-primary px-1 py-0"
                href="{{ route(
                     $pagination['selected']['item'] === null ? 'home' : 'budget.item.view' ,
                     [
@@ -176,16 +200,12 @@
                         'item-month' => $pagination['selected']['month']
                     ]
                 ) }}" title="Go to today">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar4-event" viewBox="0 0 16 16">
-                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
-                    <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                </svg>
-                Today
+                Go to Today
             </a>
         @endif
         </div>
 
-        <a class="btn btn-sm btn-outline-primary"
+        <a class="btn btn-sm btn-outline-primary px-1 py-0"
            href="{{ route(
                     $pagination['selected']['item'] === null ? 'home' : 'budget.item.view' ,
                     [
