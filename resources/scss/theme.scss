@@ -15,16 +15,11 @@ $theme-colors: (
 );
 
 $link-color: rgba(137, 43, 124, 1);
-
 $input-focus-border-color: rgba(137, 43, 124, 1);
-
 $form-check-input-checked-bg-color: rgba(137, 43, 124, 1);
-
 $pagination-border-radius: 0;
 $pagination-border-radius-sm: 0;
-
 $progress-border-radius: 0.15rem;
-
 $badge-border-radius: 0.15rem;
 $badge-font-weight: 300;
 
@@ -151,6 +146,29 @@ div.budget {
         }
     }
 
+    div.budget-projections {
+
+        h4 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: rgba(137, 43, 124, 1);
+        }
+
+        div.balance {
+            font-size: 1.9rem;
+            font-weight: 300;
+
+            p {
+                font-size: 0.85rem;
+            }
+
+            small {
+                font-weight: 300;
+                font-size: 1.1rem;
+            }
+        }
+    }
+
     div.balances {
 
         h3 {
@@ -168,10 +186,6 @@ div.budget {
                 font-weight: 300;
                 font-size: 1.2rem;
             }
-        }
-
-        p {
-            font-size: 0.75rem;
         }
     }
 }

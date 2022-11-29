@@ -10,3 +10,4 @@ yarn-error.log
 .docker/mysql/data
 public/node_modules
 .phpunit.cache/test-results
+.sass-cache/
