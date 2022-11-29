@@ -19,6 +19,10 @@
                         budget_item.style.display = 'none';
                     }
                 });
+            } else {
+                document.querySelectorAll('a.budget-item').forEach(function (budget_item) {
+                    budget_item.style.display = 'block';
+                });
             }
         });
 
