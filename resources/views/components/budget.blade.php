@@ -123,16 +123,90 @@
 
     @if ($has_budget)
     {{--Show the expenditure--}}
-    <div class="row text-grey mt-2 pt-2" id="expenditure">
+    <div class="row mt-2 pt-2" id="expenditure">
         @foreach ($months as $__month)
             @if ($__month->visible())
-            <div class="col-4 month-total">
-                <div class="fs-5 text-center text-muted">Expenditure</div>
-                <div>
-                    <small><x-currency :currency="$__month->currency()" /></small>{{ $__month->totalExpense() }}
+            <div class="col-4 month-totals">
+                <h3 class="mb-1">Expenses</h3>
+                @foreach ($__month->totalExpensePerAccount() as $account_total)
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h4 class="mb-0 pt-2">
+                            {{ $account_total['name'] }}
+                        </h4>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <h5 class="mb-2">
+                            <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($account_total['total'], 2) }}
+                        </h5>
+                    </div>
                 </div>
-                <div class="fs-6">
-                    Income <small><x-currency :currency="$__month->currency()" /></small>{{ $__month->totalIncome() }}
+                @endforeach
+                @if (count($__month->totalExpensePerAccount()) > 1)
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h4 class="mb-0 pt-2 total">
+                            Total
+                        </h4>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <h5 class="mb-2 total">
+                            <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($__month->totalExpense(), 2) }}
+                        </h5>
+                    </div>
+                </div>
+                @endif
+
+                <h3 class="mb-1">Income</h3>
+                @foreach ($__month->totalIncomePerAccount() as $account_total)
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h4 class="mb-0 pt-2">
+                            {{ $account_total['name'] }}
+                        </h4>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <h5 class="mb-2">
+                            <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($account_total['total'], 2) }}
+                        </h5>
+                    </div>
+                </div>
+                @endforeach
+                @if (count($__month->totalIncomePerAccount()) > 1)
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <h4 class="mb-0 pt-2 total">
+                                Total
+                            </h4>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <h5 class="mb-2 total">
+                                <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($__month->totalIncome(), 2) }}
+                            </h5>
+                        </div>
+                    </div>
+                @endif
+            </div>
+            @endif
+        @endforeach
+    </div>
+
+    <div class="row">
+        @foreach ($months as $__month)
+            @if ($__month->visible())
+            <div class="col-4">
+                <div class="progress">
+                    @foreach ($__month->summary()['categories'] as $__category => $__summary)
+                    <div class="progress-bar bg-{{ $__category }}" role="progressbar"
+                         aria-label="{{ $__category }} percentage outgoings"
+                         style="width: {{ $__summary['percentage'] }}%"
+                         aria-valuenow="{{ $__summary['percentage'] }}"
+                         aria-valuemin="0"
+                         aria-valuemax="{{ $__summary['percentage'] }}"
+                         title="{{ $__category }} {{ $__summary['percentage'] }}% ">
+                        @if ($__summary['percentage'] > 15) {{ $__summary['percentage'] }}% @endif
+                    </div>
+                    @endforeach
                 </div>
             </div>
             @endif
@@ -145,14 +219,14 @@
     <div id="pagination" class="pagination justify-content-between mt-3">
         <div>
         @if ($pagination['previous'] === null)
-            <a class="btn btn-sm btn-outline-primary disabled" href="" aria-disabled="true">
+            <a class="btn btn-sm btn-outline-primary px-1 py-0 disabled" href="" aria-disabled="true">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
                 </svg>
                 Previous
             </a>
         @else
-            <a class="btn btn-sm btn-outline-primary"
+            <a class="btn btn-sm btn-outline-primary px-1 py-0"
                href="{{ route(
                     $pagination['selected']['item'] === null ? 'home' : 'budget.item.view' ,
                     [
@@ -167,7 +241,7 @@
                 </svg>
                 Previous
             </a>
-            <a class="btn btn-sm btn-outline-primary"
+            <a class="btn btn-sm btn-outline-primary px-1 py-0"
                href="{{ route(
                     $pagination['selected']['item'] === null ? 'home' : 'budget.item.view' ,
                     [
@@ -176,16 +250,12 @@
                         'item-month' => $pagination['selected']['month']
                     ]
                 ) }}" title="Go to today">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar4-event" viewBox="0 0 16 16">
-                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
-                    <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                </svg>
-                Today
+                Go to Today
             </a>
         @endif
         </div>
 
-        <a class="btn btn-sm btn-outline-primary"
+        <a class="btn btn-sm btn-outline-primary px-1 py-0"
            href="{{ route(
                     $pagination['selected']['item'] === null ? 'home' : 'budget.item.view' ,
                     [
@@ -281,11 +351,47 @@
 
     @if ($has_accounts)
     {{--Show the balances and projections--}}
-    <div class="row mt-3 balances">
+    <div class="row mt-3 budget-projections">
         <div class="col-12">
-            <h2 class="display-6 mt-3 mb-3">Your Balances</h2>
+            <h2 class="display-6 mt-3 mb-3" id="projections">Balances & Projections</h2>
+
+            <div class="row">
+                @foreach ($accounts as $__account)
+                <div class="col-12 border-bottom border-light pb-3 mb-3 budget-projections">
+                    <h4 class="mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-2-front ms-1" viewBox="0 0 16 16" style="color: {{ $__account->color() }}">
+                            <path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
+                            <path d="M2 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                        {{ $__account->name() }}
+                    </h4>
+                    <div class="row">
+                        <div class="col-6 balance">
+                            <p class="mb-0">Current balance</p>
+                            <small><x-currency :currency="$__account->currency()" /></small>{{ number_format($__account->balance(), 2) }}
+                        </div>
+                        @if ($projection === true)
+                        <div class="col-6 balance text-end">
+                            <p class="mb-0">Projected end {{ $view_end['month'] . ' ' . $view_end['year'] }}</p>
+                            <small><x-currency :currency="$__account->currency()" /></small>{{ number_format($__account->projected(), 2) }}
+                        </div>
+                        @else
+                        <div class="col-6 balance text-end">
+                            <p class="mb-0">No projection</p>
+                            <small><x-currency :currency="$__account->currency()" /></small>{{ number_format($__account->balance(), 2) }}
+                        </div>
+                        @endif
+                        <div class="col-12">
+                            <a class="btn btn-sm btn-outline-primary px-1 py-0" href="{{ route('budget.account.update', ['account_id' => $__account->id()]) }}" title="Set balance for {{ $__account->name() }}">
+                                Set Balance
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
-        <div class="col-6">
+        {{--<div class="col-6">
             <h3>Today</h3>
             <p class="text-muted mb-1">Your balances as of today</p>
 
@@ -301,12 +407,12 @@
 
             </div>
             @endforeach
-        </div>
-        <div class="col-6 text-end">
-            <h3>{{ $view_end['month'] . ' ' . $view_end['year'] }}</h3>
+        </div>--}}
+        {{--<div class="col-6 text-end">
+            <h3>{{ $view_end['month'] }}</h3>
 
             @if ($projection === true)
-            <p class="text-muted mb-1">Projection for {{ $view_end['month'] . ' ' . $view_end['year'] }}</p>
+            <p class="text-muted mb-1">Projection to end of {{ $view_end['month'] . ' ' . $view_end['year'] }}</p>
 
             @foreach ($accounts as $__account)
             <div class="balance">
@@ -320,7 +426,7 @@
             @else
                 <p class="text-muted mb-1">We can't show a Budget projection, you are reviewing your history.</p>
             @endif
-        </div>
+        </div>--}}
         <div class="col-12 mt-2 text-end">
             <a class="btn btn-sm btn-outline-primary" href="{{ route('budget.account.create') }}" title="Add a new account">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
