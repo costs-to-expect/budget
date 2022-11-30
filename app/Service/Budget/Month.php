@@ -80,6 +80,43 @@ class Month
         return $this->now;
     }
 
+    public function summary(): array
+    {
+        $summaries = [
+            'total' => 0,
+            'categories' => [
+                'fixed' => [
+                    'total' => 0
+                ],
+                'flexible' => [
+                    'total' => 0
+                ],
+                'savings' => [
+                    'total' => 0
+                ],
+            ]
+        ];
+
+        foreach ($this->items as $item) {
+            if ($item->disabled() === false && $item->category() !== 'income') {
+                $summaries['total'] += $item->amount();
+                $summaries['categories'][$item->category()]['total'] += $item->amount();
+            }
+        }
+
+        foreach (['fixed', 'flexible'] as $category) {
+            if ($summaries['categories'][$category]['total'] !== 0) {
+                $summaries['categories'][$category]['percentage'] = round(($summaries['categories'][$category]['total'] / $summaries['total']) * 100);
+            } else {
+                $summaries['categories'][$category]['percentage'] = 0;
+            }
+        }
+
+        $summaries['categories']['savings']['percentage'] = 100 - $summaries['categories']['fixed']['percentage'] - $summaries['categories']['flexible']['percentage'];
+
+        return $summaries;
+    }
+
     public function totalExpense(): float
     {
         $total = 0;
