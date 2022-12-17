@@ -11208,6 +11208,9 @@ div.budget a div.expense div.amount {
 div.budget a div.expense div.amount small.disabled-expense, div.budget a div.expense div.amount .disabled-expense.small {
   font-size: 0.6rem;
 }
+div.budget a div.expense div.amount small.paid-expense, div.budget a div.expense div.amount .paid-expense.small {
+  font-size: 0.6rem;
+}
 div.budget a div.expense:hover {
   background-color: rgba(137, 43, 124, 0.25);
   padding-right: 0.3rem;

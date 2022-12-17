@@ -3,7 +3,10 @@
 namespace App\Jobs;
 
 use App\Api\Service;
+use App\Models\AdjustedBudgetItem;
+use App\Models\PaidBudgetItem;
 use App\Notifications\Exception;
+use DateTimeImmutable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -29,6 +32,7 @@ class LoadDemo implements ShouldQueue
     private string $bearer;
     private string $currency_id;
     private array $currency;
+    private array $period;
 
     public function __construct(
         string $resource_type_id,
@@ -41,6 +45,7 @@ class LoadDemo implements ShouldQueue
         $this->resource_id = $resource_id;
         $this->bearer = $bearer;
         $this->currency_id = $currency_id;
+        $this->period = $this->calculatePeriod();
     }
 
     public function handle()
@@ -130,7 +135,7 @@ class LoadDemo implements ShouldQueue
             ],
             'type' => 'expense',
             'id' => Str::uuid()->toString(),
-            'name' => 'Default',
+            'name' => 'Checking',
             'description' => null,
             'balance' => '2848.65',
             'color' => "#" . dechex(random_int(0, 16777215))
@@ -200,7 +205,7 @@ class LoadDemo implements ShouldQueue
         $frequency_car_insurance = [
             'type' => 'annually',
             'day' => null,
-            'month' => 3
+            'month' => $this->period['month'],
         ];
         try {
             $frequency_car_insurance_json = json_encode($frequency_car_insurance, JSON_THROW_ON_ERROR);
@@ -329,6 +334,19 @@ class LoadDemo implements ShouldQueue
                 'frequency' => $monthly_frequency_json
             ],
             [
+                'name' => 'Piano lessons',
+                'account' => $debit_id,
+                'target_account' => null,
+                'description' => null,
+                'amount' => '100.00',
+                'start_date' => '2020-01-01',
+                'disabled' => 1,
+                'end_date' => null,
+                'currency_id' => $this->currency['id'],
+                'category' => 'flexible',
+                'frequency' => $monthly_frequency_json
+            ],
+            [
                 'name' => 'Credit card payment',
                 'account' => $debit_id,
                 'target_account' => null,
@@ -373,6 +391,26 @@ class LoadDemo implements ShouldQueue
                     ' demo budget item, returned error ' . $create_budget_item_response['content'] . ' return code ' .
                     $create_budget_item_response['status'] . $error_suffix));
             }
+
+            $budget_item = $create_budget_item_response['content'];
+            if ($budget_item['name'] === 'Credit card payment') {
+                $paid = new PaidBudgetItem();
+                $paid->resource_id = $this->resource_id;
+                $paid->budget_item_id = $budget_item['id'];
+                $paid->month = $this->period['month'];
+                $paid->year = $this->period['year'];
+                $paid->save();
+            }
+
+            if ($budget_item['name'] === 'Guitar lessons') {
+                $adjusted = new AdjustedBudgetItem();
+                $adjusted->resource_id = $this->resource_id;
+                $adjusted->budget_item_id = $budget_item['id'];
+                $adjusted->month = $this->period['month'];
+                $adjusted->year = $this->period['year'];
+                $adjusted->amount = 125.00;
+                $adjusted->save();
+            }
         }
     }
 
@@ -400,5 +438,19 @@ class LoadDemo implements ShouldQueue
         if ($patch_resource_response['status'] !== 204) {
             $this->fail(new \Exception('Unable to set the demo flag'));
         }
+    }
+
+    /**
+     * @return array{year: int, month: int}
+     */
+    private function calculatePeriod(): array
+    {
+        $timezone = new \DateTimeZone(Config::get('app.config.timezone'));
+        $start_date = (new DateTimeImmutable('first day of this month', $timezone))->setTime(7, 1);
+
+        return [
+            'year' => (int) $start_date->format('Y'),
+            'month' => (int) $start_date->format('n')
+        ];
     }
 }
