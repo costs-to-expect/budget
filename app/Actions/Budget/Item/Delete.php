@@ -5,6 +5,8 @@ namespace App\Actions\Budget\Item;
 
 use App\Actions\Action;
 use App\Api\Service;
+use App\Models\AdjustedBudgetItem;
+use App\Models\PaidBudgetItem;
 use DateTimeZone;
 
 /**
@@ -40,6 +42,17 @@ class Delete extends Action
             );
 
             if ($patch_budget_item_response['status'] === 204) {
+
+                PaidBudgetItem::query()
+                    ->where('resource_id', $resource_id)
+                    ->where('budget_item_id', $item_id)
+                    ->delete();
+
+                AdjustedBudgetItem::query()
+                    ->where('resource_id', $resource_id)
+                    ->where('budget_item_id', $item_id)
+                    ->delete();
+
                 return 204;
             }
 
@@ -61,6 +74,17 @@ class Delete extends Action
         );
 
         if ($delete_budget_item_response['status'] === 204) {
+
+            PaidBudgetItem::query()
+                ->where('resource_id', $resource_id)
+                ->where('budget_item_id', $item_id)
+                ->delete();
+
+            AdjustedBudgetItem::query()
+                ->where('resource_id', $resource_id)
+                ->where('budget_item_id', $item_id)
+                ->delete();
+
             return 204;
         }
 
