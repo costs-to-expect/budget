@@ -233,7 +233,8 @@
                         'item_id' => $pagination['selected']['item'],
                         'item-year' => $pagination['selected']['year'],
                         'item-month' => $pagination['selected']['month'],
-                        ...$pagination['previous']
+                        ...$pagination['previous'],
+                        '#pagination'
                     ]
                 ) }}" title="Go back one month">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -247,7 +248,8 @@
                     [
                         'item_id' => $pagination['selected']['item'],
                         'item-year' => $pagination['selected']['year'],
-                        'item-month' => $pagination['selected']['month']
+                        'item-month' => $pagination['selected']['month'],
+                        '#pagination'
                     ]
                 ) }}" title="Go to today">
                 Go to Today
@@ -262,7 +264,8 @@
                         'item_id' => $pagination['selected']['item'],
                         'item-year' => $pagination['selected']['year'],
                         'item-month' => $pagination['selected']['month'],
-                        ...$pagination['next']
+                        ...$pagination['next'],
+                        '#pagination'
                     ]
                 ) }}" title="Go forward one month">
             Next
@@ -353,7 +356,7 @@
     {{--Show the balances and projections--}}
     <div class="row mt-3 budget-projections">
         <div class="col-12">
-            <h2 class="display-6 mt-3 mb-3" id="projections">Balances & Projections</h2>
+            <h2 class="display-6 mt-3 mb-3">Balances & Projections</h2>
 
             <div class="row">
                 @foreach ($accounts as $__account)
