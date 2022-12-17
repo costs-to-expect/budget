@@ -6,7 +6,6 @@ use App\Api\Service;
 use App\Models\AdjustedBudgetItem;
 use App\Models\PaidBudgetItem;
 use App\Notifications\Exception;
-use DateTimeImmutable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -205,7 +204,7 @@ class LoadDemo implements ShouldQueue
         $frequency_car_insurance = [
             'type' => 'annually',
             'day' => null,
-            'month' => $this->period['month'],
+            'month' => (int) $this->period['month'],
         ];
         try {
             $frequency_car_insurance_json = json_encode($frequency_car_insurance, JSON_THROW_ON_ERROR);
@@ -220,6 +219,18 @@ class LoadDemo implements ShouldQueue
         ];
         try {
             $frequency_water_json = json_encode($frequency_water, JSON_THROW_ON_ERROR);
+        } catch(\JsonException $e) {
+            $this->fail($e);
+        }
+
+        $frequency_one_off  = [
+            'type' => 'one-off',
+            'day' => null,
+            'month' => (int) $this->period['month'],
+            'year' => (int) $this->period['year']
+        ];
+        try {
+            $frequency_one_off_json = json_encode($frequency_one_off, JSON_THROW_ON_ERROR);
         } catch(\JsonException $e) {
             $this->fail($e);
         }
@@ -370,6 +381,18 @@ class LoadDemo implements ShouldQueue
                 'category' => 'fixed',
                 'frequency' => $monthly_frequency_json
             ],
+            [
+                'name' => 'Holiday deposit',
+                'account' => $debit_id,
+                'target_account' => null,
+                'description' => null,
+                'amount' => '175.00',
+                'start_date' => $this->period['year'] . '-' . $this->period['month'] . '-15',
+                'end_date' => $this->period['year_next'] . '-' . $this->period['month_next'] . '-01',
+                'currency_id' => $this->currency['id'],
+                'category' => 'flexible',
+                'frequency' => $frequency_one_off_json
+            ],
         ];
 
         foreach ($budget_items as $budget_item_payload)
@@ -440,17 +463,21 @@ class LoadDemo implements ShouldQueue
         }
     }
 
-    /**
-     * @return array{year: int, month: int}
-     */
     private function calculatePeriod(): array
     {
         $timezone = new \DateTimeZone(Config::get('app.config.timezone'));
-        $start_date = (new DateTimeImmutable('first day of this month', $timezone))->setTime(7, 1);
+        $this_month = (new \DateTime('first day of this month', $timezone))->setTime(7, 1);
+
+        $year = $this_month->format('Y');
+        $month = $this_month->format('m');
+
+        $this_month->modify('first day of next month');
 
         return [
-            'year' => (int) $start_date->format('Y'),
-            'month' => (int) $start_date->format('n')
+            'year' => $year,
+            'month' => $month,
+            'year_next' => $this_month->format('Y'),
+            'month_next' => $this_month->format('m'),
         ];
     }
 }
