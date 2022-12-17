@@ -11167,40 +11167,37 @@ div.budget div.month-total {
   font-size: 1.5rem;
   font-weight: 300;
 }
-div.budget div.month-totals {
-  text-align: center;
-}
 div.budget div.month-totals h3, div.budget div.month-totals .h3 {
   font-size: 1.3rem;
-  font-weight: 300;
-  color: rgb(122, 122, 124);
+  font-weight: 400;
+  color: rgb(92, 90, 90);
 }
 div.budget div.month-totals h4, div.budget div.month-totals .h4 {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 400;
   color: rgb(137, 43, 124);
 }
 div.budget div.month-totals h4.total, div.budget div.month-totals .total.h4 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 350;
   color: rgb(15, 27, 47);
 }
 div.budget div.month-totals h5, div.budget div.month-totals .h5 {
-  font-size: 1.4rem;
-  font-weight: 300;
+  font-size: 1.3rem;
+  font-weight: 400;
 }
 div.budget div.month-totals h5.total, div.budget div.month-totals .total.h5 {
-  font-size: 1.5rem;
-  font-weight: 350;
+  font-size: 1.4rem;
+  font-weight: 450;
 }
 div.budget a {
   text-decoration: none;
 }
 div.budget a div.expense {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
 }
 div.budget a div.expense div.name {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   text-align: center;
 }
 div.budget a div.expense div.amount {
@@ -11209,7 +11206,7 @@ div.budget a div.expense div.amount {
   text-align: center;
 }
 div.budget a div.expense div.amount small.disabled-expense, div.budget a div.expense div.amount .disabled-expense.small {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
 }
 div.budget a div.expense:hover {
   background-color: rgba(137, 43, 124, 0.25);
