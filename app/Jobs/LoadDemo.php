@@ -3,6 +3,8 @@
 namespace App\Jobs;
 
 use App\Api\Service;
+use App\Models\AdjustedBudgetItem;
+use App\Models\PaidBudgetItem;
 use App\Notifications\Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -29,6 +31,7 @@ class LoadDemo implements ShouldQueue
     private string $bearer;
     private string $currency_id;
     private array $currency;
+    private array $period;
 
     public function __construct(
         string $resource_type_id,
@@ -41,6 +44,7 @@ class LoadDemo implements ShouldQueue
         $this->resource_id = $resource_id;
         $this->bearer = $bearer;
         $this->currency_id = $currency_id;
+        $this->period = $this->calculatePeriod();
     }
 
     public function handle()
@@ -130,7 +134,7 @@ class LoadDemo implements ShouldQueue
             ],
             'type' => 'expense',
             'id' => Str::uuid()->toString(),
-            'name' => 'Default',
+            'name' => 'Checking',
             'description' => null,
             'balance' => '2848.65',
             'color' => "#" . dechex(random_int(0, 16777215))
@@ -200,7 +204,7 @@ class LoadDemo implements ShouldQueue
         $frequency_car_insurance = [
             'type' => 'annually',
             'day' => null,
-            'month' => 3
+            'month' => (int) $this->period['month'],
         ];
         try {
             $frequency_car_insurance_json = json_encode($frequency_car_insurance, JSON_THROW_ON_ERROR);
@@ -215,6 +219,18 @@ class LoadDemo implements ShouldQueue
         ];
         try {
             $frequency_water_json = json_encode($frequency_water, JSON_THROW_ON_ERROR);
+        } catch(\JsonException $e) {
+            $this->fail($e);
+        }
+
+        $frequency_one_off  = [
+            'type' => 'one-off',
+            'day' => null,
+            'month' => (int) $this->period['month'],
+            'year' => (int) $this->period['year']
+        ];
+        try {
+            $frequency_one_off_json = json_encode($frequency_one_off, JSON_THROW_ON_ERROR);
         } catch(\JsonException $e) {
             $this->fail($e);
         }
@@ -329,6 +345,19 @@ class LoadDemo implements ShouldQueue
                 'frequency' => $monthly_frequency_json
             ],
             [
+                'name' => 'Piano lessons',
+                'account' => $debit_id,
+                'target_account' => null,
+                'description' => null,
+                'amount' => '100.00',
+                'start_date' => '2020-01-01',
+                'disabled' => 1,
+                'end_date' => null,
+                'currency_id' => $this->currency['id'],
+                'category' => 'flexible',
+                'frequency' => $monthly_frequency_json
+            ],
+            [
                 'name' => 'Credit card payment',
                 'account' => $debit_id,
                 'target_account' => null,
@@ -352,6 +381,18 @@ class LoadDemo implements ShouldQueue
                 'category' => 'fixed',
                 'frequency' => $monthly_frequency_json
             ],
+            [
+                'name' => 'Holiday deposit',
+                'account' => $debit_id,
+                'target_account' => null,
+                'description' => null,
+                'amount' => '175.00',
+                'start_date' => $this->period['year'] . '-' . $this->period['month'] . '-15',
+                'end_date' => $this->period['year_next'] . '-' . $this->period['month_next'] . '-01',
+                'currency_id' => $this->currency['id'],
+                'category' => 'flexible',
+                'frequency' => $frequency_one_off_json
+            ],
         ];
 
         foreach ($budget_items as $budget_item_payload)
@@ -372,6 +413,26 @@ class LoadDemo implements ShouldQueue
                 $this->fail(new \Exception('Unable to create the ' . $budget_item_payload['name'] .
                     ' demo budget item, returned error ' . $create_budget_item_response['content'] . ' return code ' .
                     $create_budget_item_response['status'] . $error_suffix));
+            }
+
+            $budget_item = $create_budget_item_response['content'];
+            if ($budget_item['name'] === 'Credit card payment') {
+                $paid = new PaidBudgetItem();
+                $paid->resource_id = $this->resource_id;
+                $paid->budget_item_id = $budget_item['id'];
+                $paid->month = $this->period['month'];
+                $paid->year = $this->period['year'];
+                $paid->save();
+            }
+
+            if ($budget_item['name'] === 'Guitar lessons') {
+                $adjusted = new AdjustedBudgetItem();
+                $adjusted->resource_id = $this->resource_id;
+                $adjusted->budget_item_id = $budget_item['id'];
+                $adjusted->month = $this->period['month'];
+                $adjusted->year = $this->period['year'];
+                $adjusted->amount = 125.00;
+                $adjusted->save();
             }
         }
     }
@@ -400,5 +461,23 @@ class LoadDemo implements ShouldQueue
         if ($patch_resource_response['status'] !== 204) {
             $this->fail(new \Exception('Unable to set the demo flag'));
         }
+    }
+
+    private function calculatePeriod(): array
+    {
+        $timezone = new \DateTimeZone(Config::get('app.config.timezone'));
+        $this_month = (new \DateTime('first day of this month', $timezone))->setTime(7, 1);
+
+        $year = $this_month->format('Y');
+        $month = $this_month->format('m');
+
+        $this_month->modify('first day of next month');
+
+        return [
+            'year' => $year,
+            'month' => $month,
+            'year_next' => $this_month->format('Y'),
+            'month_next' => $this_month->format('m'),
+        ];
     }
 }

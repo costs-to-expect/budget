@@ -7,7 +7,7 @@
     </div>
 
     <div class="row">
-        <div class="col-12 col-md-6 mb-2">
+        <div class="col-12 col-md-4 mb-2">
             <div class="btn-group" role="group">
                 <button class="btn btn-sm btn-dark @if ($has_paid_items === false) disabled @endif" type="button" name="toggle-paid" id="toggle-paid" title="Toggle visibility of paid budget items" @if ($has_paid_items === false) disabled="disabled" @endif>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
@@ -18,7 +18,7 @@
                 </button>
             </div>
         </div>
-        <div class="col-12 col-md-6 mb-2">
+        <div class="col-12 col-md-8 mb-2">
             <div class="row">
                 <div class="col-12">
                     <div class="input-group">
@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 mb-2 text-end">
+        <div class="col-12 mt-3 mb-3 text-end">
             <div class="btn-group" role="group">
                 <a class="btn btn-sm btn-outline-primary @if(Route::is('budget.item.create-expense')) active @endif" href="{{ route('budget.item.create-expense') }}" title="Add a new expense budget item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -127,7 +127,7 @@
         @foreach ($months as $__month)
             @if ($__month->visible())
             <div class="col-4 month-totals">
-                <h3 class="mb-1">Expenses</h3>
+                <h3 class="mb-1 mt-3">Outgoings</h3>
                 @foreach ($__month->totalExpensePerAccount() as $account_total)
                 <div class="row">
                     <div class="col-12 col-sm-6">
@@ -157,7 +157,7 @@
                 </div>
                 @endif
 
-                <h3 class="mb-1">Income</h3>
+                <h3 class="mb-1 mt-5">Income</h3>
                 @foreach ($__month->totalIncomePerAccount() as $account_total)
                 <div class="row">
                     <div class="col-12 col-sm-6">
@@ -194,7 +194,7 @@
     <div class="row">
         @foreach ($months as $__month)
             @if ($__month->visible())
-            <div class="col-4">
+            <div class="col-4 mt-3">
                 <div class="progress">
                     @foreach ($__month->summary()['categories'] as $__category => $__summary)
                     <div class="progress-bar bg-{{ $__category }}" role="progressbar"
@@ -216,7 +216,7 @@
 
     @if ($has_budget)
     {{--Pagination for the budget--}}
-    <div id="pagination" class="pagination justify-content-between mt-3">
+    <div id="pagination" class="pagination justify-content-between mt-4">
         <div>
         @if ($pagination['previous'] === null)
             <a class="btn btn-sm btn-outline-primary px-1 py-0 disabled" href="" aria-disabled="true">
@@ -233,7 +233,8 @@
                         'item_id' => $pagination['selected']['item'],
                         'item-year' => $pagination['selected']['year'],
                         'item-month' => $pagination['selected']['month'],
-                        ...$pagination['previous']
+                        ...$pagination['previous'],
+                        '#pagination'
                     ]
                 ) }}" title="Go back one month">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -247,7 +248,8 @@
                     [
                         'item_id' => $pagination['selected']['item'],
                         'item-year' => $pagination['selected']['year'],
-                        'item-month' => $pagination['selected']['month']
+                        'item-month' => $pagination['selected']['month'],
+                        '#pagination'
                     ]
                 ) }}" title="Go to today">
                 Go to Today
@@ -262,7 +264,8 @@
                         'item_id' => $pagination['selected']['item'],
                         'item-year' => $pagination['selected']['year'],
                         'item-month' => $pagination['selected']['month'],
-                        ...$pagination['next']
+                        ...$pagination['next'],
+                        '#pagination'
                     ]
                 ) }}" title="Go forward one month">
             Next
@@ -353,7 +356,7 @@
     {{--Show the balances and projections--}}
     <div class="row mt-3 budget-projections">
         <div class="col-12">
-            <h2 class="display-6 mt-3 mb-3" id="projections">Balances & Projections</h2>
+            <h2 class="display-6 mt-3 mb-3">Balances & Projections</h2>
 
             <div class="row">
                 @foreach ($accounts as $__account)
