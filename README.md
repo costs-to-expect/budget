@@ -16,19 +16,19 @@ have any, please don't hesitate to contact us.
 
 Our overview is so clear and simple, a child could manage your budget. We wouldn’t recommend it, but you get the idea.
 
-![Budget overview](/public/images/budget.png)
+![Budget overview](/public/images/readme/budget-overview.png)
 
 ## Projections
 
 Simply input your income and outgoings to see projected balances and savings for the months and years ahead. Handy, right?
 
-![Budget overview](/public/images/projections.png)
+![Budget overview](/public/images/readme/budget-projections.png)
 
 ## Exclusions
 
 We understand that not all expenses are monthly - we provide the tools to set exclusions, ensuring your budget is completely customisable and up-to-date.
 
-![Budget overview](/public/images/exclusions.png)
+![Budget overview](/public/images/readme/budget-item-exclusions.png)
 
 ## Set up
 
