@@ -74,8 +74,8 @@
                     We wouldn’t recommend it, but you get the idea.</p>
             </div>
             <div class="bg-light shadow-sm mx-auto"
-                 style="width: 80%; height: 448px; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/overview.png') }}" width="275" height="" alt="Budget overview screen, shows expenses for each month" />
+                 style="width: 80%; height: 700px; border-radius: 6px 6px 0 0;">
+                <img src="{{ asset('images/landing/budget-overview.png') }}" width="412" height="770" alt="Budget overview screen, shows expenses for each month" />
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -85,8 +85,8 @@
                     and years ahead. Handy, right?</p>
             </div>
             <div class="bg-dark shadow-sm mx-auto"
-                 style="width: 80%; height: 448px; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/projections.png') }}" width="275" height="" alt="Budget overview screen, shows projections for each account" />
+                 style="width: 80%; height: 700px; border-radius: 6px 6px 0 0;">
+                <img src="{{ asset('images/landing/budget-projections.png') }}" width="412" height="770" alt="Budget overview screen, shows projections for each account" />
             </div>
         </div>
     </div>
@@ -100,7 +100,7 @@
             </div>
             <div class="bg-light shadow-sm mx-auto"
                  style="width: 80%; height: 253px; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/open-source.png') }}" width="256" height="" alt="Budget & the Costs to Expect API are Open Source, MIT License" />
+                <img src="{{ asset('images/landing/open-source.png') }}" width="256" height="" alt="Budget & the Costs to Expect API are Open Source, MIT License" />
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -111,7 +111,7 @@
             </div>
             <div class="bg-dark shadow-sm mx-auto"
                  style="width: 80%; height: 253px; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/api.png') }}" width="256" height="" alt="The Costs to Expect API is powerful and powers all our Apps" />
+                <img src="{{ asset('images/landing/api.png') }}" width="256" height="" alt="The Costs to Expect API is powerful and powers all our Apps" />
             </div>
         </div>
     </div>
@@ -124,8 +124,8 @@
                     expenses can be as complex as you like.</p>
             </div>
             <div class="bg-light shadow-sm mx-auto"
-                 style="width: 80%; height: 400px; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/detail.png') }}" width="275" height="" alt="Budget detail screen, show expense details" />
+                 style="width: 80%; height: 500px; border-radius: 6px 6px 0 0;">
+                <img src="{{ asset('images/landing/budget-item.png') }}" width="412" height="512" alt="Budget detail screen, show expense details" />
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -135,8 +135,8 @@
                     ensuring your budget is completely customisable and up-to-date.</p>
             </div>
             <div class="bg-dark shadow-sm mx-auto"
-                 style="width: 80%; height: 400px; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/exclusions.png') }}" width="275" height="" alt="Budget exclusions screen, show that monthly exclusions can be set for monthly expenses" />
+                 style="width: 80%; height: 500px; border-radius: 6px 6px 0 0;">
+                <img src="{{ asset('images/landing/budget-item-exclusions.png') }}" width="412" height="512" alt="Budget exclusions screen, show that monthly exclusions can be set for monthly expenses" />
             </div>
         </div>
     </div>
