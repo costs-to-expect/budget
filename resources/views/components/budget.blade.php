@@ -370,17 +370,18 @@
                     </h4>
                     <div class="row">
                         <div class="col-6 balance">
-                            <p class="mb-0">Current balance</p>
+                            <p class="mb-0">The current <br />account balance</p>
                             <small><x-currency :currency="$__account->currency()" /></small>{{ number_format($__account->balance(), 2) }}
                         </div>
                         @if ($projection === true)
                         <div class="col-6 balance text-end">
-                            <p class="mb-0">Projected end {{ $view_end['month'] . ' ' . $view_end['year'] }}</p>
+                            <p class="mb-0">Projected balance end<br />
+                                {{ $view_end['month'] . ' ' . $view_end['year'] }}</p>
                             <small><x-currency :currency="$__account->currency()" /></small>{{ number_format($__account->projected(), 2) }}
                         </div>
                         @else
                         <div class="col-6 balance text-end">
-                            <p class="mb-0">No projection</p>
+                            <p class="mb-0">Project balance<br />not available</p>
                             <small><x-currency :currency="$__account->currency()" /></small>{{ number_format($__account->balance(), 2) }}
                         </div>
                         @endif
