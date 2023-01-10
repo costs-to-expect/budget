@@ -53,6 +53,9 @@
                         </ul>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link @if($active === 'privacy-policy') active @endif" href="{{ route('privacy-policy') }}" title="Read our Privacy Policy">Privacy Policy</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('sign-out') }}" title="Sign-out of Budget">Sign-out</a>
                     </li>
                 </ul>

@@ -64,6 +64,16 @@
                         </div>
                     @endif
                 </div>
+
+                <div class="mb-3">
+                    <p>By registering and using Budget you are agreeing to our <a href="{{ route('privacy-policy') }}">Privacy Policy</a>.
+                        Please read this carefully before registering although the short story is we will never share your
+                        data with anyone, and we do not track you.</p>
+
+                    <p>Budget is an Open Source project, if you have any doubts about our intentions, please review
+                        or ask someone to review the code on <a class="link-primary" href="https://github.com/costs-to-expect" title="Visit Costs to Expect on GitHub">GitHub</a>.</p>
+                </div>
+
                 <button type="submit" class="btn btn-primary w-100" title="Register with Costs to Expect">Register</button>
             </form>
         </div>
