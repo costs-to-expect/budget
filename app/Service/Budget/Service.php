@@ -49,6 +49,8 @@ class Service
         'year' => null,
     ];
 
+    private bool $now_visible = false;
+
     private DateTimeZone $timezone;
 
     public function __construct(DateTimeZone $timezone)
@@ -218,6 +220,10 @@ class Service
                     ($this->now_year === $year_int && $this->now_month === $month_int),
                     false
                 );
+
+                if ($this->now_year === $year_int && $this->now_month === $month_int) {
+                    $this->now_visible = true;
+                }
             }
         }
 
@@ -241,6 +247,10 @@ class Service
                 true,
                 ($this->now_year === $year_int && $this->now_month === $month_int)
             );
+
+            if ($this->now_year === $year_int && $this->now_month === $month_int) {
+                $this->now_visible = true;
+            }
         }
     }
 
@@ -252,6 +262,11 @@ class Service
     public function nowYear(): int
     {
         return $this->now_year;
+    }
+
+    public function nowVisible(): bool
+    {
+        return $this->now_visible;
     }
 
     public function numberOfItems(): int

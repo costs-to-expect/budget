@@ -138,7 +138,7 @@
                         <div class="col-12">
                             <div class="btn-group" role="group">
                                 <a class="btn btn-sm btn-outline-primary" href="{{ route('home') }}" title="Return to Your Budget">
-                                    Back
+                                    Budget Overview
                                 </a>
                                 <a class="btn btn-sm btn-outline-primary" href="{{ route(
                                     'budget.item.update',
@@ -220,9 +220,10 @@
                         :hasBudget="$has_budget"
                         :hasSavingsAccount="$has_savings_account"
                         :hasPaidItems="$has_paid_items"
-                        :active_item="$item['id']"
-                        :active_item_year="$item_year"
-                        :active_item_month="$item_month" />
+                        :nowVisible="$now_visible"
+                        :activeItem="$item['id']"
+                        :activeItemYear="$item_year"
+                        :activeItemMonth="$item_month" />
                 </div>
             </div>
 

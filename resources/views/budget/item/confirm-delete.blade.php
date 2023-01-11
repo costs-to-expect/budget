@@ -69,7 +69,7 @@
                         <div class="col-12">
                             <div class="btn-group" role="group">
                                 <a class="btn btn-sm btn-outline-primary" href="{{ route('home') }}" title="Return to Your Budget">
-                                    Back
+                                    Budget Overview
                                 </a>
                                 <a class="btn btn-sm btn-outline-primary" href="{{ route('budget.item.update', ['item_id' => $item['id']]) }}" title="Update the budget item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
@@ -99,9 +99,10 @@
                         :hasBudget="$has_budget"
                         :hasSavingsAccount="$has_savings_account"
                         :hasPaidItems="$has_paid_items"
-                        :active_item="$item['id']"
-                        :active_item_year="$item_year"
-                        :active_item_month="$item_month" />
+                        :nowVisible="$now_visible"
+                        :activeItem="$item['id']"
+                        :activeItemYear="$item_year"
+                        :activeItemMonth="$item_month" />
                 </div>
             </div>
 

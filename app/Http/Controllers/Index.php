@@ -113,7 +113,8 @@ class Index extends Controller
                 'has_accounts' => $budget->hasAccounts(),
                 'has_budget' => $budget->hasBudget(),
                 'has_savings_account' => $budget->hasSavingsAccount(),
-                'has_paid_items' => $budget->hasPaidItems()
+                'has_paid_items' => $budget->hasPaidItems(),
+                'now_visible' => $budget->nowVisible(),
             ]
         );
     }

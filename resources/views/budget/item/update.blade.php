@@ -294,9 +294,10 @@
                         :hasBudget="$has_budget"
                         :hasSavingsAccount="$has_savings_account"
                         :hasPaidItems="$has_paid_items"
-                        :active_item="$item['id']"
-                        :active_item_year="$item_year"
-                        :active_item_month="$item_month" />
+                        :nowVisible="$now_visible"
+                        :activeItem="$item['id']"
+                        :activeItemYear="$item_year"
+                        :activeItemMonth="$item_month" />
                 </div>
             </div>
 
