@@ -76,6 +76,11 @@ Route::view(
     'version-compare'
 )->name('version-compare');
 
+Route::view(
+    '/privacy-policy',
+    'privacy-policy'
+)->name('privacy-policy');
+
 Route::group(
     [
         'middleware' => [

@@ -86,6 +86,7 @@ class BudgetItem extends Controller
                 'has_budget' => $budget->hasBudget(),
                 'has_savings_account' => $budget->hasSavingsAccount(),
                 'has_paid_items' => $budget->hasPaidItems(),
+                'now_visible' => $budget->nowVisible(),
 
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
@@ -170,6 +171,7 @@ class BudgetItem extends Controller
                 'has_budget' => $budget->hasBudget(),
                 'has_savings_account' => $budget->hasSavingsAccount(),
                 'has_paid_items' => $budget->hasPaidItems(),
+                'now_visible' => $budget->nowVisible(),
 
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
@@ -258,6 +260,7 @@ class BudgetItem extends Controller
                 'has_budget' => $budget->hasBudget(),
                 'has_savings_account' => $budget->hasSavingsAccount(),
                 'has_paid_items' => $budget->hasPaidItems(),
+                'now_visible' => $budget->nowVisible(),
 
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
@@ -326,6 +329,7 @@ class BudgetItem extends Controller
                 'has_budget' => $budget->hasBudget(),
                 'has_savings_account' => $budget->hasSavingsAccount(),
                 'has_paid_items' => $budget->hasPaidItems(),
+                'now_visible' => $budget->nowVisible(),
 
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
@@ -500,6 +504,7 @@ class BudgetItem extends Controller
                 'has_budget' => $budget->hasBudget(),
                 'has_savings_account' => $budget->hasSavingsAccount(),
                 'has_paid_items' => $budget->hasPaidItems(),
+                'now_visible' => $budget->nowVisible(),
 
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),
@@ -671,6 +676,7 @@ class BudgetItem extends Controller
                 'has_budget' => $budget->hasBudget(),
                 'has_savings_account' => $budget->hasSavingsAccount(),
                 'has_paid_items' => $budget->hasPaidItems(),
+                'now_visible' => $budget->nowVisible(),
 
                 'accounts' => $budget->accounts(),
                 'months' => $budget->months(),

@@ -31,13 +31,13 @@
                 <div class="col-12">
                     <div class="row mb-2">
                         <div class="col-12 col-md-4 col-lg-3">
-                            <input type="text" name="table-filter" class="form-control form-control sm table-filter" data-table="budget-items" placeholder="Filter budget items.." title="Filter the budget item table" />
+                            <input type="text" name="table-filter" class="form-control form-control sm table-filter" placeholder="Filter budget items.." title="Filter the budget item table" />
                         </div>
                     </div>
 
                     <div class="table-responsive">
                         <table class="table table-sm table-borderless budget-items">
-                            <caption>Every budget item you have defined, included deleted and expired</caption>
+                            <caption>Every budget item you have defined, including all soft-deleted and expired items</caption>
                             <thead>
                                 <tr class="bg-dark text-light">
                                     <th scope="col">Name</th>
@@ -70,7 +70,14 @@
                         You have created {{ $number_of_items }} budget items, the limit is {{ $max_items }},
                         you can create another {{ $max_items - $number_of_items }}.</p>
 
-                    <p class="lead">In <a href="{{ route('version-compare') }}">Budget Pro</a>, there will be no limit to the number of budget items you can create.</p>
+                    <div class="p-2">
+                        <div class="alert alert-primary fade show mt-3" role="alert">
+                            <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
+                            <p>In Budget Pro there will not be a limit to the number of items you can create.</p>
+                            <hr>
+                            <p class="mb-0"><a href="{{ route('version-compare') }}" title="Compare Budget to Budget Pro">Find out more</a>.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             @endif
@@ -83,6 +90,6 @@
         </div>
 
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
-        <script src="{{ asset('js/table-filter.js') }}" defer></script>
+        <script src="{{ asset('js/filter-budget-item-list.js') }}" defer></script>
     </body>
 </html>
