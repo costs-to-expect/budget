@@ -59,8 +59,8 @@
 
                     <p class="lead">
                         Your privacy is important to us. It is our policy to respect your privacy regarding any
-                        information we may collect from you across our <a href="https://budget.costs-to-expect.com">website</a>
-                        and the other sites that we own and operate in the Cost to Expect service.
+                        information we may collect from you across our <a href="https://budget.costs-to-expect.com">website</a>,
+                        and other sites in the Costs to Expect service that we own and operate.
                     </p>
                     <p class="lead">
                         We only ask for personal information when we truly need it to provide a service to you.
@@ -69,13 +69,13 @@
                     </p>
                     <p class="lead">
                         We only retain collected information for as long as necessary to provide you with your
-                        requested service. What data we store, we’ll protect within commercially acceptable
-                        means to prevent loss and theft, as well as unauthorised access, disclosure, copying,
-                        use or modification.
+                        requested service. Any data that we store will be protected within commercially acceptable
+                        means to prevent loss and theft, as well as unauthorised access, disclosure, copying, use
+                        or modification.
                     </p>
                     <p class="lead">
-                        We don’t share any personally identifying information publicly or with third-parties,
-                        except when required to by law.
+                        We don’t share any personally identifying information publicly or with third-parties, except
+                        when required to by law.
                     </p>
                     <p class="lead">
                         Our website may link to external sites that are not operated by us. Please be aware that
@@ -83,16 +83,16 @@
                         responsibility or liability for their respective privacy policies.
                     </p>
                     <p class="lead">
-                        You are free to refuse our request for your personal information, with the understanding that
-                        we may be unable to provide you with some of your desired services.
+                        You are free to refuse our request for your personal information, with the understanding
+                        that we may be unable to provide you with some of your desired services.
                     </p>
                     <p class="lead">
                         Your continued use of our website will be regarded as acceptance of our practices around
-                        privacy and personal information. If you have any questions about how we handle user
-                        data and personal information, feel free to contact us.
+                        privacy and personal information. If you have any questions about how we
+                        handle user data and personal information, feel free to contact us.
                     </p>
                     <p>
-                        This policy is effective as of the 10th January 2023.
+                        This policy is effective as of the 12th January 2023.
                     </p>
                 </div>
             </div>
