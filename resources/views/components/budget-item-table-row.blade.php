@@ -1,5 +1,5 @@
-                            <tr>
-                                <td>{{ $item['name'] }}</td>
+                            <tr data-item-name="{{ $item['name'] }}" data-item-description="{{ $item['description'] }}" data-item-amount="{{ number_format($item['amount'], 2) }}" class="item-data">
+                                <td><strong>{{ $item['name'] }}</strong></td>
                                 <td><x-currency :currency="$item['currency']" />{{ number_format($item['amount'], 2) }}</td>
                                 <td><x-category :category="$item['category']" /></td>
                                 <td>
@@ -52,13 +52,13 @@
                                                         'month'=>  $item['uri']['month'],
                                                         'year'=> $item['uri']['year']]
                                                         ) }}"
-                                               class="btn btn-sm btn-outline-primary mb-1" title="View budget item on Your Budget">View on Budget</a><br />
+                                               class="btn btn-sm btn-outline-primary mb-1" title="View budget item on Your Budget">View</a><br />
                                             <button type="submit" class="btn btn-sm btn-dark" title="Disable budget item">Disable</button>
                                         </form>
                                     @endif
                                 </td>
                             </tr>
-                            <tr class="pb-3 mb-3 border-bottom">
+                            <tr data-item-name="{{ $item['name'] }}" data-item-description="{{ $item['description'] }}" data-item-amount="{{ number_format($item['amount'], 2) }}" class="item-data pb-3 mb-3 border-bottom">
                                 <td colspan="7">
                                     <table class="table table-sm table-borderless mb-0">
                                         <thead>
