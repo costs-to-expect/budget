@@ -87,18 +87,18 @@
             </div>
             <div class="bg-light shadow-sm mx-auto"
                  style="width: 80%; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/landing/budget-overview.png') }}" width="412" height="770" alt="Budget overview screen, shows expenses for each month" class="img-fluid" />
+                <img src="{{ asset('images/landing/budget-overview.png') }}" width="390" height="725" alt="Budget overview screen, shows expenses for each month" class="img-fluid" />
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 p-3">
                 <h2 class="display-5">Projections</h2>
-                <p class="lead">Simply input your income and outgoings to see projected balances and savings for the months
+                <p class="lead">Input your income and outgoings to see projected balances and savings for the months
                     and years ahead. Handy, right?</p>
             </div>
             <div class="bg-dark shadow-sm mx-auto"
                  style="width: 80%; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/landing/budget-projections.png') }}" width="412" height="770" alt="Budget overview screen, shows projections for each account" class="img-fluid" />
+                <img src="{{ asset('images/landing/view-projections.png') }}" width="390" height="725" alt="Budget overview screen, shows projections for each account" class="img-fluid" />
             </div>
         </div>
     </div>
@@ -137,7 +137,7 @@
             </div>
             <div class="bg-light shadow-sm mx-auto"
                  style="width: 80%; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/landing/budget-item.png') }}" width="412" height="512" alt="Budget detail screen, show expense details" class="img-fluid" />
+                <img src="{{ asset('images/landing/detail-view.png') }}" width="390" height="725" alt="Budget detail screen, show expense details" class="img-fluid" />
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -148,7 +148,7 @@
             </div>
             <div class="bg-dark shadow-sm mx-auto"
                  style="width: 80%; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/landing/budget-item-exclusions.png') }}" width="412" height="512" alt="Budget exclusions screen, show that monthly exclusions can be set for monthly expenses" class="img-fluid" />
+                <img src="{{ asset('images/landing/set-exclusions.png') }}" width="390" height="725" alt="Budget exclusions screen, show that monthly exclusions can be set for monthly expenses" class="img-fluid" />
             </div>
         </div>
     </div>
