@@ -81,6 +81,11 @@ Route::view(
     'privacy-policy'
 )->name('privacy-policy');
 
+Route::view(
+    '/help/add-income',
+    'add-income'
+)->name('help.add-income');
+
 Route::group(
     [
         'middleware' => [

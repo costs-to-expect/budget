@@ -67,7 +67,7 @@
 <main>
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
         <div class="col-md-6 p-lg-6 mx-auto my-5">
-            <h1 class="display-4 fw-normal">Budget</h1>
+            <h1 class="display-1 fw-normal">Budget</h1>
             <h2 class="display-5">A budgeting tool so easy to use, it’s child play!</h2>
             <p class="lead fw-normal">A <span class="badge rounded-pill text-bg-income">free</span> open source budgeting tool<br />
                 powered by the <a href="https://github.com/costs-to-expect/api">Costs to Expect API</a>.</p>
