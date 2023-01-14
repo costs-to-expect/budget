@@ -14,27 +14,36 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link @if($active === 'home') active @endif" href="{{ route('home') }}" title="View Your Budget">Your Budget</a>
+                        <h5>Your Budget</h5>
 
                         <ul class="navbar-nav justify-content-end flex-grow-1 ps-4 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link @if($active === 'home') active @endif" href="{{ route('home') }}" title="View list of budget items">Budget Overview</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link @if($active === 'budget.item.list') active @endif" href="{{ route('budget.item.list') }}" title="View list of budget items">Budget Items</a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if($active === 'getting-started') active @endif" href="{{ route('getting-started') }}" title="Visit our Getting Started page">Getting Started</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link @if($active === 'workflow') active @endif" href="{{ route('workflow') }}" title="Visit our Workflow page">Workflow</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link @if($active === 'faqs') active @endif" href="{{ route('faqs') }}" title="Read our FAQs">FAQs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link @if($active === 'account') active @endif" href="{{ route('account.index') }}" title="Visit Your Account">Your Account</a>
+                        <h5>Budgeting</h5>
 
                         <ul class="navbar-nav justify-content-end flex-grow-1 ps-4 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link" href="" title="">Page 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="" title="">Page 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <h5>Your Account</h5>
+
+                        <ul class="navbar-nav justify-content-end flex-grow-1 ps-4 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link @if($active === 'account') active @endif" href="{{ route('account.update-profile') }}" title="Visit your Account">Account Overview</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link @if($active === 'account.update-profile') active @endif" href="{{ route('account.update-profile') }}" title="Update your profile">Update Profile</a>
                             </li>
@@ -53,7 +62,22 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if($active === 'privacy-policy') active @endif" href="{{ route('privacy-policy') }}" title="Read our Privacy Policy">Privacy Policy</a>
+                        <h5>Support</h5>
+
+                        <ul class="navbar-nav justify-content-end flex-grow-1 ps-4 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link @if($active === 'getting-started') active @endif" href="{{ route('getting-started') }}" title="Visit our Getting Started page">Getting Started</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if($active === 'workflow') active @endif" href="{{ route('workflow') }}" title="Visit our Workflow page">Workflow</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if($active === 'faqs') active @endif" href="{{ route('faqs') }}" title="Read our FAQs">FAQs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if($active === 'privacy-policy') active @endif" href="{{ route('privacy-policy') }}" title="Read our Privacy Policy">Privacy Policy</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('sign-out') }}" title="Sign-out of Budget">Sign-out</a>

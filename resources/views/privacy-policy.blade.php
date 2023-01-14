@@ -35,16 +35,28 @@
                 </a>
                 <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
                     <li class="nav-item px-1">
-                        <a class="nav-link py-2 px-0 px-lg-2" href="{{ route('getting-started') }}">Getting Started</a>
+                        <a class="nav-link py-2 px-1 px-lg-2" href="{{ route('version-compare') }}">Versions</a>
                     </li>
-                    <li class="nav-item px-1">
-                        <a class="nav-link py-2 px-0 px-lg-2" href="{{ route('workflow') }}">Workflow</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link py-2 px-1 px-lg-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Budgeting
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="">Page 1</a></li>
+                            <li><a class="dropdown-item" href="">Page 2</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item px-1">
-                        <a class="nav-link py-2 px-0 px-lg-2" href="{{ route('version-compare') }}">Versions</a>
-                    </li>
-                    <li class="nav-item px-1">
-                        <a class="nav-link py-2 px-0 px-lg-2 active" href="{{ route('faqs') }}">FAQs</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link py-2 px-1 px-lg-2 active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Support
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('getting-started') }}">Getting Started</a></li>
+                            <li><a class="dropdown-item" href="{{ route('workflow') }}">Workflow</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ route('faqs') }}">FAQs</a></li>
+                            <li><a class="dropdown-item" href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
@@ -99,6 +111,7 @@
 
             <x-footer />
         </div>
+        <script src="{{ asset('node_modules/@popperjs/core/dist/umd/popper.min.js') }}" defer></script>
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
     </body>
 </html>
