@@ -69,11 +69,11 @@
         <div class="col-md-6 p-lg-6 mx-auto my-5">
             <h1 class="display-4 fw-normal">Budget</h1>
             <h2 class="display-5">A budgeting tool so easy to use, it’s child play!</h2>
-            <p class="lead fw-normal">A free, open source budgeting tool powered by the
-                <a href="https://github.com/costs-to-expect/api">Costs to Expect API</a>.</p>
-            <p class="lead fw-normal"><span class="badge rounded-pill text-bg-income">Beta</span> Official release due at the start of January 2023.</p>
-            <p class="text-muted"><small>You are free to register now but there may be a bug or two until the official release.</small></p>
-            <a href="{{ route('register.view') }}" class="btn btn-outline-primary" title="Register an account with Costs to Expect">Register</a>
+            <p class="lead fw-normal">A <span class="badge rounded-pill text-bg-income">free</span> open source budgeting tool<br />
+                powered by the <a href="https://github.com/costs-to-expect/api">Costs to Expect API</a>.</p>
+            <p class="lead fw-normal">If you have advanced budgeting needs, please <a href="{{ route('version-compare') }}">checkout</a> Budget Pro,
+                currently in development and due to be released in the first half of 2023.</p>
+            <a href="{{ route('register.view') }}" class="btn btn-primary" title="Register an account with Costs to Expect">Register for free</a>
             <a href="{{ route('sign-in.view') }}" class="btn btn-outline-primary" title="Sign in with your Costs to Expect account">Sign-in</a>
         </div>
     </div>
