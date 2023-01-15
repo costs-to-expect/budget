@@ -12,10 +12,6 @@
         <x-open-graph />
         <x-twitter-card />
         <style>
-            .container {
-                max-width: 960px;
-            }
-
             .site-header {
                 background-color: #000000;
                 -webkit-backdrop-filter: saturate(180%) blur(20px);
