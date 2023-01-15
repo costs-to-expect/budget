@@ -72,6 +72,36 @@ class BudgetAccount extends Controller
         abort($result, $action->getMessage());
     }
 
+    public function setBalances(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $budget = $this->setUpBudget($request);
+
+        return view(
+            'budget.account.set-balances',
+            [
+                'currency' => $budget->currency(),
+
+                'has_accounts' => $budget->hasAccounts(),
+                'has_budget' => $budget->hasBudget(),
+                'has_savings_account' => $budget->hasSavingsAccount(),
+                'has_paid_items' => $budget->hasPaidItems(),
+                'now_visible' => $budget->nowVisible(),
+
+                'accounts' => $budget->accounts(),
+                'months' => $budget->months(),
+                'pagination' => $budget->paginationParameters(),
+                'view_end' => $budget->viewEndPeriod(),
+                'projection' => $budget->projection(),
+
+                'max_accounts' => $budget->maxAccounts(),
+
+                'requests' => $this->api->requests(),
+            ]
+        );
+    }
+
     public function update(Request $request, $account_id)
     {
         $this->bootstrap($request);
