@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Budget by Costs to Expect - Simplified Budgeting">
         <meta name="author" content="Dean Blackborough">
-        <title>Budget: Getting Started</title>
+        <title>Budget: Add Savings</title>
         <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
         <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
         <link href="{{ asset('css/theme.css') }}" rel="stylesheet"/>
@@ -26,7 +26,7 @@
     <body>
 
         @auth
-        <x-offcanvas active="getting-started"/>
+        <x-offcanvas active="help.add-savings"/>
         @else
         <header class="site-header sticky-top py-1">
             <nav class="container-fluid d-flex navbar-dark">
@@ -70,13 +70,11 @@
         <div class="col-lg-8 mx-auto p-3">
             <div class="row">
                 <div class="col-12">
-                    <h2 class="display-4 mt-3 mb-3">Getting Started</h2>
+                    <h2 class="display-4 mt-3 mb-3">Add Savings</h2>
 
-                    <p class="lead">Before you can follow the workflow, you need to get your Budget setup,
-                        you can do this manually, or you can load up our Demo and adjust it to your needs.
-                    </p>
+                    <p class="lead">To create a new savings budget item please follow the steps below.</p>
 
-                    <p class="lead">If you have your Budget setup, check-out our <a href="{{ route('workflow') }}" title="Visit out Workflow page">Workflow</a> page.</p>
+                    <p class="lead">If you need anymore help, please review our <a href="{{ route('faqs') }}">FAQs</a> section.</p>
                 </div>
             </div>
         </div>
@@ -84,12 +82,12 @@
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="{{ asset('images/getting-started/add-an-account.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="The add a new account form" width="400" height="400" loading="lazy">
+                    <img src="{{ asset('images/savings/new-savings.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="The new savings button is highlighted on the Budget Overview" width="400" height="400" loading="lazy">
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Step 1: Add your accounts</h1>
-                    <p class="lead">Add any accounts you want Budget to track, we need a name and a starting balance.
-                    If you want to track your savings you can add savings accounts.</p>
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Step 1: Select Add Savings</h1>
+                    <p class="lead">From the Budget Overview select the add savings button, this will take
+                        you to the form, so you can add all the necessary details.</p>
                 </div>
             </div>
         </div>
@@ -97,17 +95,12 @@
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="{{ asset('images/getting-started/add-a-budget-item.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="The add a budget item form" width="400" height="400" loading="lazy">
+                    <img src="{{ asset('images/savings/choose-account.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="The new savings form with the account selector highlighted" width="400" height="400" loading="lazy">
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Step 2: Add Your budget Items</h1>
-                    <p class="lead">Add all income and expenditure to you Budget. Items on your Budget
-                        are income or expenditure and can be set to repeat monthly or annually.</p>
-                    <p class="lead">We have help pages to guide you through adding each of our
-                        supported budget item types,
-                        <a href="{{ route('help.add-income') }}">income</a>,
-                        <a href="{{ route('help.add-expense') }}">expense</a> and
-                        <a href="{{ route('help.add-savings') }}">savings</a>.</p>
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Step 2: Choose account</h1>
+                    <p class="lead">Choose the account the savings should be deducted from, this will typically be
+                        your main debit or checking account.</p>
                 </div>
             </div>
         </div>
@@ -115,26 +108,12 @@
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="{{ asset('images/getting-started/set-exclusions.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Set exclusions for budget items" width="400" height="400" loading="lazy">
+                    <img src="{{ asset('images/savings/choose-target-account.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="The new savings form with the target account selector highlighted" width="400" height="400" loading="lazy">
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Step 3: Set Exclusions</h1>
-                    <p class="lead">Things don't always occur on a rigid schedule, when you need flexibility,
-                        use our exclusions. Council Tax is an example of monthly expenditure that doesn't follow a
-                        fixed schedule, for lots of us, we don't pay Council Tax in February and March.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="container col-xxl-8 px-4 py-5">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="{{ asset('images/getting-started/view-projections.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Budget overview projections for all accounts" width="400" height="400" loading="lazy">
-                </div>
-                <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Step 4: Projections</h1>
-                    <p class="lead">Head on over to our <a href="{{ route('workflow') }}" title="View our Workflow page">Workflow</a> page to understand how we generate
-                        your projections.</p>
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Step 3: Choose target account</h1>
+                    <p class="lead">Choose the target account, this is the account the savings will be
+                        transferred into. Our projections will allow you to see how your savings will grow over time.</p>
                 </div>
             </div>
         </div>

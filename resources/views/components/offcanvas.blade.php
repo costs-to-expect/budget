@@ -72,10 +72,13 @@
                                 <a class="nav-link @if($active === 'workflow') active @endif" href="{{ route('workflow') }}" title="Visit our Workflow page">Workflow</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link @if($active === 'help.add-income') active @endif" href="{{ route('help.add-income') }}" title="How to add an income item">Add an income budget item</a>
+                                <a class="nav-link @if($active === 'help.add-income') active @endif" href="{{ route('help.add-income') }}" title="How to add an income item">How do I add an income item?</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link @if($active === 'help.add-expense') active @endif" href="{{ route('help.add-expense') }}" title="How to add an expense item">Add an expense budget item</a>
+                                <a class="nav-link @if($active === 'help.add-expense') active @endif" href="{{ route('help.add-expense') }}" title="How to add an expense item">How do I add an expense item?</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if($active === 'help.add-savings') active @endif" href="{{ route('help.add-savings') }}" title="How to add a savings item">How do I add a savings item?</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link @if($active === 'faqs') active @endif" href="{{ route('faqs') }}" title="Read our FAQs">FAQs</a>

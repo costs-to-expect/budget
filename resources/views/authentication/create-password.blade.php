@@ -44,6 +44,10 @@
                         <li><a class="dropdown-item" href="{{ route('getting-started') }}">Getting Started</a></li>
                         <li><a class="dropdown-item" href="{{ route('workflow') }}">Workflow</a></li>
                         <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ route('help.add-expense') }}">How do I add an expense item?</a></li>
+                        <li><a class="dropdown-item" href="{{ route('help.add-income') }}">How do I add an income item?</a></li>
+                        <li><a class="dropdown-item" href="{{ route('help.add-savings') }}">How do I add a savings item?</a></li>
+                        <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="{{ route('faqs') }}">FAQs</a></li>
                         <li><a class="dropdown-item" href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
                     </ul>

@@ -91,6 +91,11 @@ Route::view(
     'add-expense'
 )->name('help.add-expense');
 
+Route::view(
+    '/help/add-savings',
+    'add-savings'
+)->name('help.add-savings');
+
 Route::group(
     [
         'middleware' => [

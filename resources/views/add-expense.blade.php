@@ -54,6 +54,10 @@
                             <li><a class="dropdown-item" href="{{ route('getting-started') }}">Getting Started</a></li>
                             <li><a class="dropdown-item" href="{{ route('workflow') }}">Workflow</a></li>
                             <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ route('help.add-expense') }}">How do I add an expense item?</a></li>
+                            <li><a class="dropdown-item" href="{{ route('help.add-income') }}">How do I add an income item?</a></li>
+                            <li><a class="dropdown-item" href="{{ route('help.add-savings') }}">How do I add a savings item?</a></li>
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ route('faqs') }}">FAQs</a></li>
                             <li><a class="dropdown-item" href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
                         </ul>
@@ -91,7 +95,7 @@
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="{{ asset('images/expense/set-account-and-frequency.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="The new expense form with the account and repeats selector highlighted" width="400" height="400" loading="lazy">
+                    <img src="{{ asset('images/expense/set-account-and-frequency.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="The new expense form with the account and repeat selector highlighted" width="400" height="400" loading="lazy">
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Step 2: Choose account and frequency</h1>
