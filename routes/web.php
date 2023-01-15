@@ -86,6 +86,11 @@ Route::view(
     'add-income'
 )->name('help.add-income');
 
+Route::view(
+    '/help/add-expense',
+    'add-expense'
+)->name('help.add-expense');
+
 Route::group(
     [
         'middleware' => [

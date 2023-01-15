@@ -75,6 +75,9 @@
                                 <a class="nav-link @if($active === 'help.add-income') active @endif" href="{{ route('help.add-income') }}" title="How to add an income item">Add an income budget item</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link @if($active === 'help.add-expense') active @endif" href="{{ route('help.add-expense') }}" title="How to add an expense item">Add an expense budget item</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link @if($active === 'faqs') active @endif" href="{{ route('faqs') }}" title="Read our FAQs">FAQs</a>
                             </li>
                             <li class="nav-item">
