@@ -12,8 +12,9 @@
         <div class="col-6 col-md-3">
             <h5>Budgeting</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="link-primary" href="" title="Checkout the Getting Started page">Page 1</a></li>
-                <li><a class="link-primary" href="" title="Checkout the Workflow page">Page 2</a></li>
+                <li><a class="link-primary" href="" title="Checkout the Getting Started page">What is Budgeting?</a></li>
+                <li><a class="link-primary" href="" title="Checkout the Workflow page">How to Start a Budget</a></li>
+                <li><a class="link-primary" href="" title="Checkout the Workflow page">Budgeting Tips</a></li>
             </ul>
         </div>
         <div class="col-6 col-md-3">

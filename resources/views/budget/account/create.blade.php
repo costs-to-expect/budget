@@ -91,6 +91,12 @@
                         <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary" title="Return to your Budget">Cancel</a>
                     </div>
                     @endif
+
+                    @if (count($accounts) === $max_accounts)
+                        <div class="col-12 mt-3">
+                            <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary" title="Return to your Budget">Cancel</a>
+                        </div>
+                    @endif
                 </form>
 
                 <div class="p-2">

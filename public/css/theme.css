@@ -11194,7 +11194,7 @@ div.budget a {
   text-decoration: none;
 }
 div.budget a div.expense {
-  margin-bottom: 0.6rem;
+  margin-bottom: 1rem;
 }
 div.budget a div.expense div.name {
   font-size: 0.7rem;
