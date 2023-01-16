@@ -31,7 +31,7 @@ class ForgotPassword extends Notification implements ShouldQueue
             ->subject('Budget: Create a new Password!')
             ->greeting('Hi Budgeteer!')
             ->line('Please find below the link to create a new password account.')
-            ->action('Create Password', url('/create-password') . '?token=' . urlencode($this->token) . '&email=' . urlencode($this->email))
+            ->action('Create Password', url('/create-new-password') . '?token=' . urlencode($this->token) . '&email=' . urlencode($this->email))
             ->line('If you did not start this request, please ignore it, let us know privately if it continues to happen.')
             ->line('Thank you for using Budget, we hope it helps!');
     }

@@ -41,6 +41,11 @@ Route::get(
 )->name('create-password.view');
 
 Route::get(
+    '/create-new-password',
+    [Authentication::class, 'createNewPassword']
+)->name('create-new-password.view');
+
+Route::get(
     '/forgot-password',
     [Authentication::class, 'forgotPassword']
 )->name('forgot-password.view');

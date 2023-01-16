@@ -52,6 +52,36 @@ class Authentication extends Controller
         );
     }
 
+    public function createNewPassword(Request $request)
+    {
+        $token = null;
+        $email = null;
+
+        if (session()->get('authentication.parameters') !== null) {
+            $token = session()->get('authentication.parameters')['token'];
+            $email = session()->get('authentication.parameters')['email'];
+        }
+
+        if ($request->input('token') !== null && $request->input('email') !== null) {
+            $token = $request->input('token');
+            $email = $request->input('email');
+        }
+
+        if ($token === null && $email === null) {
+            abort(404, 'Password cannot be created, registration parameters not found');
+        }
+
+        return view(
+            'authentication.create-new-password',
+            [
+                'token' => $token,
+                'email' => $email,
+                'errors' => session()->get('authentication.errors'),
+                'failed' => session()->get('authentication.failed'),
+            ]
+        );
+    }
+
     public function forgotPassword()
     {
         return view(
@@ -80,7 +110,7 @@ class Authentication extends Controller
 
             Notification::route('mail', $request->input('email'))
                 ->notify(new ForgotPassword($request->input('email'), $token));
-            
+
             return redirect()->route('forgot-password-email-issued');
         }
 
