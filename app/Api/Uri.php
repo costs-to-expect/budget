@@ -80,7 +80,7 @@ class Uri
     #[ArrayShape(['uri' => "string", 'name' => "string"])]
     public static function forgotPassword(): array
     {
-        $uri = '/' . self::VERSION . '/auth/forgot-password';
+        $uri = '/' . self::VERSION . '/auth/forgot-password?send=false';
 
         return [
             'uri' => $uri,

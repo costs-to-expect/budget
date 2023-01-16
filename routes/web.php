@@ -50,6 +50,11 @@ Route::post(
     [Authentication::class, 'forgotPasswordProcess']
 )->name('forgot-password.process');
 
+Route::get(
+    '/forgot-password-email-issued',
+    [Authentication::class, 'forgotPasswordEmailIssued']
+)->name('forgot-password-email-issued');
+
 Route::post(
     '/create-password',
     [Authentication::class, 'createPasswordProcess']

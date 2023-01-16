@@ -13,5 +13,6 @@ return [
     'version' => 'v1.07.0',
     'release_date' => '20th January 2023',
     'exception_notification_email' => env('EXCEPTION_NOTIFICATION_EMAIL'),
-    'timezone' => 'UTC' // We can allow users to override this later
+    'timezone' => 'UTC', // We can allow users to override this later,
+    'forgot-password-salt' => env('APP_HASH_SALT_FORGOT_PASSWORD'),
 ];

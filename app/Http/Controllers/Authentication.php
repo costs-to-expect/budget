@@ -7,9 +7,11 @@ use App\Api\Service;
 use App\Models\PartialRegistration;
 use App\Notifications\CreatePassword;
 use App\Notifications\Registered;
+use Hashids\Hashids;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Notification;
 
 /**
@@ -70,16 +72,16 @@ class Authentication extends Controller
 
         if ($response['status'] === 201) {
 
-            dd($response);
+            $config = Config::get('app.config');
+            $encryptor = new \Illuminate\Encryption\Encrypter($config['forgot-password-salt']);
+            $parameters = $response['content']['uris']['create-new-password']['parameters'];
+            $token = $encryptor->decryptString($parameters['encrypted_token']);
 
             /*Notification::route('mail', $request->input('email'))
-                ->notify(new Registered());
+                ->notify(new Registered($request->input('email'), $token));
+                */
 
-            PartialRegistration::query()
-                ->where('token', '=', $request->input('token'))
-                ->delete();*/
-
-            return redirect()->route('registration-complete');
+            return redirect()->route('forgot-password-email-issued');
         }
 
         if ($response['status'] === 422) {
@@ -91,6 +93,15 @@ class Authentication extends Controller
         return redirect()->route('forgot-password.view')
             ->withInput()
             ->with('authentication.failed', $response['content']);
+    }
+
+    public function forgotPasswordEmailIssued()
+    {
+        return view(
+            'authentication.forgot-password-email-issued',
+            [
+            ]
+        );
     }
 
     public function createPasswordProcess(Request $request)
