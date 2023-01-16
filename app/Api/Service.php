@@ -43,6 +43,19 @@ class Service
         );
     }
 
+    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    public function forgotPassword(array $payload): array
+    {
+        $uri = Uri::forgotPassword();
+
+        return $this->http->post(
+            $uri['uri'],
+            [
+                'email' => $payload['email']
+            ]
+        );
+    }
+
     #[ArrayShape(['status' => "integer", 'content' => "array"])]
     public function getAuthUser(): array
     {

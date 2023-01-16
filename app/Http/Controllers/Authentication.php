@@ -49,6 +49,50 @@ class Authentication extends Controller
         );
     }
 
+    public function forgotPassword()
+    {
+        return view(
+            'authentication.forgot-password',
+            [
+                'errors' => session()->get('authentication.errors'),
+                'failed' => session()->get('authentication.failed'),
+            ]
+        );
+    }
+
+    public function forgotPasswordProcess(Request $request)
+    {
+        $api = new Service();
+
+        $response = $api->forgotPassword(
+            $request->only(['email'])
+        );
+
+        if ($response['status'] === 201) {
+
+            dd($response);
+
+            /*Notification::route('mail', $request->input('email'))
+                ->notify(new Registered());
+
+            PartialRegistration::query()
+                ->where('token', '=', $request->input('token'))
+                ->delete();*/
+
+            return redirect()->route('registration-complete');
+        }
+
+        if ($response['status'] === 422) {
+            return redirect()->route('forgot-password.view')
+                ->withInput()
+                ->with('authentication.errors', $response['fields']);
+        }
+
+        return redirect()->route('forgot-password.view')
+            ->withInput()
+            ->with('authentication.failed', $response['content']);
+    }
+
     public function createPasswordProcess(Request $request)
     {
         $api = new Service();

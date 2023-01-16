@@ -78,6 +78,17 @@ class Uri
     }
 
     #[ArrayShape(['uri' => "string", 'name' => "string"])]
+    public static function forgotPassword(): array
+    {
+        $uri = '/' . self::VERSION . '/auth/forgot-password';
+
+        return [
+            'uri' => $uri,
+            'name' => 'Forgot Password'
+        ];
+    }
+
+    #[ArrayShape(['uri' => "string", 'name' => "string"])]
     public static function item(string $resource_type_id, string $resource_id, string $item_id): array
     {
         $uri = '/' . self::VERSION . '/resource-types/' . $resource_type_id . '/resources/' .

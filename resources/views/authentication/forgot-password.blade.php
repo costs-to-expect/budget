@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Budget by Costs to Expect - Simplified Budgeting">
     <meta name="author" content="Dean Blackborough">
-    <title>Budget: Sign-in</title>
+    <title>Budget: Forgot Password</title>
     <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet" />
@@ -69,9 +69,16 @@
                 </a>
             </div>
 
-            <form action="{{ route('sign-in.process') }}" method="POST" class="col-12 col-md-4 col-lg-3 mx-auto p-2">
+            <form action="{{ route('forgot-password.process') }}" method="POST" class="col-12 col-md-4 col-lg-3 mx-auto p-2">
 
                 @csrf
+
+                <h4 class="text-center">Forgot Password</h4>
+
+                @if ($failed !== null)
+                    <p class="alert alert-danger">We were unable to find your account, the API returned the
+                        following error "{{ $failed }}".</p>
+                @endif
 
                 <div class="mt-3 mb-3">
                     <label for="email" class="form-label">Email</label>
@@ -86,37 +93,13 @@
                         </div>
                     @endif
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control @if($errors !== null && array_key_exists('password', $errors)) is-invalid @endif" id="password" aria-describedby="password-help" required value="" />
-                    <div id="password-help" class="form-text">Please enter your password, <em>we will check this
-                            against the hashed value in our database</em>.</div>
-                    @if($errors !== null && array_key_exists('password', $errors))
-                        <div class="invalid-feedback">
-                            @foreach ($errors['password'] as $error)
-                                {{ $error }}
-                            @endforeach
-                        </div>
-                    @endif
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="remember_me">
-                    <label class="form-check-label" for="remember_me">Check to stay signed-in for longer</label>
-                </div>
 
                 <div class="mb-3">
-                    <p>If you don't have an account with Costs to Expect, you can
-                        <a href="{{ route('register.view') }}">register</a> to get
-                        access to Budget and the entire Costs to Expect service.</p>
+                    <p>As soon as we confirm your account is valid we will email you with
+                        instructions on how to reset your password.</p>
                 </div>
 
-                <div class="mb-3">
-                    <p>If you have forgotten your password, please use our
-                        <a href="{{ route('forgot-password.view') }}">forgot password</a>
-                        form and we will issue instructions on how to create a new password.</p>
-                </div>
-
-                <button type="submit" class="btn btn-primary w-100" title="Sign in to Budget">Sign-in</button>
+                <button type="submit" class="btn btn-primary w-100" title="Forgot password">I Forgot my Password</button>
             </form>
         </div>
     </div>
