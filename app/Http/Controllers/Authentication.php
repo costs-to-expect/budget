@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Api\Service;
 use App\Models\PartialRegistration;
 use App\Notifications\CreatePassword;
+use App\Notifications\ForgotPassword;
 use App\Notifications\Registered;
 use Hashids\Hashids;
 use Illuminate\Http\RedirectResponse;
@@ -77,10 +78,9 @@ class Authentication extends Controller
             $parameters = $response['content']['uris']['create-new-password']['parameters'];
             $token = $encryptor->decryptString($parameters['encrypted_token']);
 
-            /*Notification::route('mail', $request->input('email'))
-                ->notify(new Registered($request->input('email'), $token));
-                */
-
+            Notification::route('mail', $request->input('email'))
+                ->notify(new ForgotPassword($request->input('email'), $token));
+            
             return redirect()->route('forgot-password-email-issued');
         }
 
