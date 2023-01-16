@@ -387,8 +387,11 @@
                         </div>
                         @endif
                         <div class="col-12">
-                            <a class="btn btn-sm btn-outline-primary px-1 py-0" href="{{ route('budget.account.set-balances') }}" title="Set balance for {{ $__account->name() }}">
-                                Set Balance
+                            <a class="btn btn-sm btn-outline-primary px-1 py-0" href="{{ route('budget.account.set-balances') }}" title="Set account balances">
+                                Set Balances
+                            </a>
+                            <a class="btn btn-sm btn-outline-primary px-1 py-0" href="{{ route('budget.account.update', ['account_id' => $__account->id()]) }}" title="Edit account details">
+                                Edit Account
                             </a>
                         </div>
                     </div>

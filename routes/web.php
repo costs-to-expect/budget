@@ -156,6 +156,11 @@ Route::group(
             [BudgetAccount::class, 'setBalances']
         )->name('budget.account.set-balances');
 
+        Route::post(
+            '/budget/account/set-balances',
+            [BudgetAccount::class, 'setBalancesProcess']
+        )->name('budget.account.set-balances.process');
+
         Route::get(
             '/budget/account/{account_id}/edit',
             [BudgetAccount::class, 'update']

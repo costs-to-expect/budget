@@ -42,7 +42,7 @@
 
                         <ul class="navbar-nav justify-content-end flex-grow-1 ps-4 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link @if($active === 'account') active @endif" href="{{ route('account.update-profile') }}" title="Visit your Account">Account Overview</a>
+                                <a class="nav-link @if($active === 'account') active @endif" href="{{ route('account.index') }}" title="Visit your Account">Account Overview</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link @if($active === 'account.update-profile') active @endif" href="{{ route('account.update-profile') }}" title="Update your profile">Update Profile</a>

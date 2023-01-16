@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Budget\Account\Create;
+use App\Actions\Budget\Account\SetBalances;
 use App\Actions\Budget\Account\Update;
 use Illuminate\Http\Request;
 
@@ -100,6 +101,33 @@ class BudgetAccount extends Controller
                 'requests' => $this->api->requests(),
             ]
         );
+    }
+
+    public function setBalancesProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new SetBalances();
+        $result = $action(
+            $this->api,
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->all()
+        );
+
+        if ($result === 204) {
+            return redirect()->route('home')
+                ->with('status', 'balances-updated');
+        }
+
+        if ($result === 422) {
+            return redirect()
+                ->route('budget.account.set-balances')
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
     }
 
     public function update(Request $request, $account_id)
