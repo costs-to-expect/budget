@@ -8,7 +8,6 @@ use App\Models\PartialRegistration;
 use App\Notifications\CreatePassword;
 use App\Notifications\ForgotPassword;
 use App\Notifications\Registered;
-use Hashids\Hashids;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -82,6 +81,38 @@ class Authentication extends Controller
         );
     }
 
+    public function createNewPasswordProcess(Request $request)
+    {
+        $api = new Service();
+
+        $response = $api->createNewPassword(
+            $request->only(['token', 'email', 'password', 'password_confirmation'])
+        );
+
+        if ($response['status'] === 204) {
+            return redirect()->route('new-password-created');
+        }
+
+        if ($response['status'] === 422) {
+            return redirect()->route(
+                'create-new-password.view',
+                [
+                    'token' => $request->input('token'),
+                    'email' => $request->input('email'),
+                ])
+                ->withInput()
+                ->with('authentication.errors', $response['fields']);
+        }
+
+        return redirect()->route(
+            'create-new-password.view',
+            [
+                'token' => $request->input('token'),
+                'email' => $request->input('email'),
+            ])
+            ->with('authentication.failed', $response['content']);
+    }
+
     public function forgotPassword()
     {
         return view(
@@ -129,6 +160,15 @@ class Authentication extends Controller
     {
         return view(
             'authentication.forgot-password-email-issued',
+            [
+            ]
+        );
+    }
+
+    public function newPasswordCreated()
+    {
+        return view(
+            'authentication.new-password-created',
             [
             ]
         );

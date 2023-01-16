@@ -11,7 +11,7 @@ return [
     'cookie_user' => env('SESSION_NAME_USER'),
     'cookie_bearer' => env('SESSION_NAME_BEARER'),
     'version' => 'v1.07.0',
-    'release_date' => '20th January 2023',
+    'release_date' => '23rd January 2023',
     'exception_notification_email' => env('EXCEPTION_NOTIFICATION_EMAIL'),
     'timezone' => 'UTC', // We can allow users to override this later,
     'forgot-password-salt' => env('APP_HASH_SALT_FORGOT_PASSWORD'),

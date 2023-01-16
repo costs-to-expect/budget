@@ -56,6 +56,18 @@ class Uri
     }
 
     #[ArrayShape(['uri' => "string", 'name' => "string"])]
+    public static function createNewPassword(string $token, string $email): array
+    {
+        $uri = '/' . self::VERSION . '/auth/create-new-password?token=' .
+            urlencode($token) . '&email=' . urlencode($email);
+
+        return [
+            'uri' => $uri,
+            'name' => 'Create New Password'
+        ];
+    }
+
+    #[ArrayShape(['uri' => "string", 'name' => "string"])]
     public static function currencies(): array
     {
         $uri = '/' . self::VERSION . '/currencies';

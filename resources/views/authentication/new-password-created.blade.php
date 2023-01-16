@@ -9,6 +9,8 @@
     <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet" />
+    <x-open-graph />
+    <x-twitter-card />
     <style>
         .site-header {
             background-color: #000000;
@@ -57,59 +59,30 @@
     </header>
     <div class="container-fluid pt-5">
         <div class="row d-flex align-items">
-        <div class="col-12">
-            <div class="header text-center">
-                <h1 class="display-1">Budget</h1>
-                <h2 class="display-6">Simplified Budgeting</h2>
-                powered by <a href="https://api.costs-to-expect.com">
-                    <img src="{{ asset('images/logo.png') }}" width="64" height="64" alt="Costs to Expect Logo" title="Powered by the Costs to Expect API">
-                    <span class="d-none">C</span>osts to Expect API
-                </a>
+            <div class="col-12">
+                <div class="header text-center">
+                    <h1 class="display-1">Budget</h1>
+                    <h2 class="display-6">Simplified Budgeting</h2>
+                    powered by <a href="https://api.costs-to-expect.com">
+                        <img src="{{ asset('images/logo.png') }}" width="64" height="64" alt="Costs to Expect Logo" title="Powered by the Costs to Expect API">
+                        <span class="d-none">C</span>osts to Expect API
+                    </a>
+                </div>
+
+                <div class="col-12 col-md-4 col-lg-3 mx-auto p-2">
+
+                    <h4 class="text-center pt-3">Done!</h4>
+
+                    <p class="lead">You have created your password, you should be able
+                        to <a href="{{ route('sign-in.view') }}">sign-in</a> to Budget, happy
+                        budgeting</p>
+
+                    <p>If you have any suggestions, reach out to us on
+                        <a href="https://github.com/costs-to-expect/budget/issues" title="Visit issues section on GitHub">GitHub</a>, we are
+                        always looking for help with improving our apps.</p>
+                </div>
             </div>
-
-            <form action="{{ route('create-new-password.process') }}" method="POST" class="col-12 col-md-4 col-lg-3 mx-auto p-2">
-
-                @csrf
-
-                <h4 class="text-center">Create New Passowrd</h4>
-
-                @if ($failed !== null)
-                    <p class="alert alert-danger">We were unable to create your password, the API returned the
-                        following error "{{ $failed }}". Please check our <a href="https://status.costs-to-expect.com">status</a>
-                        page and try again later.</p>
-                @endif
-
-                <div class="mt-3 mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control @if($errors !== null && array_key_exists('password', $errors)) is-invalid @endif" id="password" aria-describedby="password-help" required value="{{ old('password') }}" />
-                    <div id="password-help" class="form-text">Please enter a password, at least 12 characters please, <em>your password will be hashed</em>.</div>
-                    @if($errors !== null && array_key_exists('password', $errors))
-                        <div class="invalid-feedback">
-                            @foreach ($errors['password'] as $error)
-                                {{ $error }}
-                            @endforeach
-                        </div>
-                    @endif
-                </div>
-
-                <div class="mt-3 mb-3">
-                    <label for="password_confirmation" class="form-label">Confirm password</label>
-                    <input type="password" name="password_confirmation" class="form-control @if($errors !== null && array_key_exists('password_confirmation', $errors)) is-invalid @endif" id="password_confirmation" aria-describedby="password_confirmation-help" required value="{{ old('password_confirmation') }}" />
-                    <div id="password_confirmation-help" class="form-text">Please enter your password again</div>
-                    @if($errors !== null && array_key_exists('password_confirmation', $errors))
-                        <div class="invalid-feedback">
-                            @foreach ($errors['password_confirmation'] as $error)
-                                {{ $error }}
-                            @endforeach
-                        </div>
-                    @endif
-                </div>
-                <input type="hidden" name="token" value="{{ old('token', $token) }}" />
-                <input type="hidden" name="email" value="{{ old('email', $email) }}" />
-                <button type="submit" class="btn btn-primary w-100" title="Set your password">Set Password</button>
-            </form>
         </div>
-    </div>
     </div>
     <script src="{{ asset('node_modules/@popperjs/core/dist/umd/popper.min.js') }}" defer></script>
     <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>

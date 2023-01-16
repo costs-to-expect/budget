@@ -45,6 +45,16 @@ Route::get(
     [Authentication::class, 'createNewPassword']
 )->name('create-new-password.view');
 
+Route::post(
+    '/create-new-password',
+    [Authentication::class, 'createNewPasswordProcess']
+)->name('create-new-password.process');
+
+Route::get(
+    '/new-password-created',
+    [Authentication::class, 'newPasswordCreated']
+)->name('new-password-created');
+
 Route::get(
     '/forgot-password',
     [Authentication::class, 'forgotPassword']
