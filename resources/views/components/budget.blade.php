@@ -128,7 +128,12 @@
         @foreach ($months as $__month)
             @if ($__month->visible())
             <div class="col-4 month-totals">
-                <h3 class="mb-1 mt-3">Outgoings</h3>
+                <h3 class="mb-1 mt-3">
+                    Expenses
+                    @if ($__month->now())
+                        Due
+                    @endif
+                </h3>
                 @foreach ($__month->totalExpensePerAccount() as $account_total)
                 <div class="row">
                     <div class="col-12 col-sm-6">
@@ -158,7 +163,12 @@
                 </div>
                 @endif
 
-                <h3 class="mb-1 mt-5">Income</h3>
+                <h3 class="mb-1 mt-5">
+                    Income
+                    @if ($__month->now())
+                        Due
+                    @endif
+                </h3>
                 @foreach ($__month->totalIncomePerAccount() as $account_total)
                 <div class="row">
                     <div class="col-12 col-sm-6">
