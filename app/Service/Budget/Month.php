@@ -129,11 +129,41 @@ class Month
         return (float) $total;
     }
 
+    public function totalUnpaidExpense(): float
+    {
+        $total = 0;
+        foreach ($this->items as $item) {
+            if ($item->disabled() === false && $item->paid() === false && $item->category() !== 'income') {
+                $total += $item->amount();
+            }
+        }
+
+        return (float) $total;
+    }
+
     public function totalExpensePerAccount(): array
     {
         $expense = [];
         foreach ($this->items() as $item) {
             if ($item->disabled() === false && $item->category() !== 'income') {
+                if (array_key_exists($item->account(), $expense) !== true) {
+                    $expense[$item->account()] = [
+                        'name' => $item->accountName(),
+                        'total' => 0.0
+                    ];
+                }
+                $expense[$item->account()]['total'] += $item->amount();
+            }
+        }
+
+        return $expense;
+    }
+
+    public function totalUnpaidExpensePerAccount(): array
+    {
+        $expense = [];
+        foreach ($this->items() as $item) {
+            if ($item->disabled() === false && $item->paid() === false && $item->category() !== 'income') {
                 if (array_key_exists($item->account(), $expense) !== true) {
                     $expense[$item->account()] = [
                         'name' => $item->accountName(),
@@ -159,11 +189,41 @@ class Month
         return (float) $total;
     }
 
+    public function totalUnpaidIncome(): float
+    {
+        $total = 0;
+        foreach ($this->items as $item) {
+            if ($item->disabled() === false && $item->paid() === false && $item->category() === 'income') {
+                $total += $item->amount();
+            }
+        }
+
+        return (float) $total;
+    }
+
     public function totalIncomePerAccount(): array
     {
         $income = [];
         foreach ($this->items() as $item) {
             if ($item->disabled() === false && $item->category() === 'income') {
+                if (array_key_exists($item->account(), $income) !== true) {
+                    $income[$item->account()] = [
+                        'name' => $item->accountName(),
+                        'total' => 0.0
+                    ];
+                }
+                $income[$item->account()]['total'] += $item->amount();
+            }
+        }
+
+        return $income;
+    }
+
+    public function totalUnpaidIncomePerAccount(): array
+    {
+        $income = [];
+        foreach ($this->items() as $item) {
+            if ($item->disabled() === false && $item->paid() === false && $item->category() === 'income') {
                 if (array_key_exists($item->account(), $income) !== true) {
                     $income[$item->account()] = [
                         'name' => $item->accountName(),

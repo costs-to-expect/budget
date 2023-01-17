@@ -134,30 +134,54 @@
                         Due
                     @endif
                 </h3>
-                @foreach ($__month->totalExpensePerAccount() as $account_total)
-                <div class="row">
-                    <div class="col-12 col-sm-6">
-                        <h4 class="mb-0 pt-2">
-                            {{ $account_total['name'] }}
-                        </h4>
+                @if ($__month->now() === false)
+                    @foreach ($__month->totalExpensePerAccount() as $account_total)
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <h4 class="mb-0 pt-2">
+                                {{ $account_total['name'] }}
+                            </h4>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <h5 class="mb-2">
+                                <small><x-currency :currency="$__month->currency()" /></small>
+                                {{ number_format($account_total['total'], 2) }}
+                            </h5>
+                        </div>
                     </div>
-                    <div class="col-12 col-sm-6">
-                        <h5 class="mb-2">
-                            <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($account_total['total'], 2) }}
-                        </h5>
-                    </div>
-                </div>
-                @endforeach
+                    @endforeach
+                @else
+                    @foreach ($__month->totalUnpaidExpensePerAccount() as $account_total)
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <h4 class="mb-0 pt-2">
+                                    {{ $account_total['name'] }}
+                                </h4>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <h5 class="mb-2">
+                                    <small><x-currency :currency="$__month->currency()" /></small>
+                                    {{ number_format($account_total['total'], 2) }}
+                                </h5>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
                 @if (count($__month->totalExpensePerAccount()) > 1)
                 <div class="row">
                     <div class="col-12 col-sm-6">
                         <h4 class="mb-0 pt-2 total">
-                            Total
+                            Total expenses
                         </h4>
                     </div>
                     <div class="col-12 col-sm-6">
                         <h5 class="mb-2 total">
-                            <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($__month->totalExpense(), 2) }}
+                            <small><x-currency :currency="$__month->currency()" /></small>
+                            @if ($__month->now() === false)
+                            {{ number_format($__month->totalExpense(), 2) }}
+                            @else
+                            {{ number_format($__month->totalUnpaidExpense(), 2) }}
+                            @endif
                         </h5>
                     </div>
                 </div>
@@ -169,30 +193,54 @@
                         Due
                     @endif
                 </h3>
-                @foreach ($__month->totalIncomePerAccount() as $account_total)
-                <div class="row">
-                    <div class="col-12 col-sm-6">
-                        <h4 class="mb-0 pt-2">
-                            {{ $account_total['name'] }}
-                        </h4>
+                @if ($__month->now() === false)
+                    @foreach ($__month->totalIncomePerAccount() as $account_total)
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <h4 class="mb-0 pt-2">
+                                {{ $account_total['name'] }}
+                            </h4>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <h5 class="mb-2">
+                                <small><x-currency :currency="$__month->currency()" /></small>
+                                {{ number_format($account_total['total'], 2) }}
+                            </h5>
+                        </div>
                     </div>
-                    <div class="col-12 col-sm-6">
-                        <h5 class="mb-2">
-                            <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($account_total['total'], 2) }}
-                        </h5>
-                    </div>
-                </div>
-                @endforeach
+                    @endforeach
+                @else
+                    @foreach ($__month->totalUnpaidIncomePerAccount() as $account_total)
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <h4 class="mb-0 pt-2">
+                                    {{ $account_total['name'] }}
+                                </h4>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <h5 class="mb-2">
+                                    <small><x-currency :currency="$__month->currency()" /></small>
+                                    {{ number_format($account_total['total'], 2) }}
+                                </h5>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
                 @if (count($__month->totalIncomePerAccount()) > 1)
                     <div class="row">
                         <div class="col-12 col-sm-6">
                             <h4 class="mb-0 pt-2 total">
-                                Total
+                                Total income
                             </h4>
                         </div>
                         <div class="col-12 col-sm-6">
                             <h5 class="mb-2 total">
-                                <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($__month->totalIncome(), 2) }}
+                                <small><x-currency :currency="$__month->currency()" /></small>
+                                @if ($__month->now() === false)
+                                {{ number_format($__month->totalIncome(), 2) }}
+                                @else
+                                {{ number_format($__month->totalUnpaidIncome(), 2) }}
+                                @endif
                             </h5>
                         </div>
                     </div>
