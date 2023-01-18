@@ -30,7 +30,7 @@
 
                         <ul class="navbar-nav justify-content-end flex-grow-1 ps-4 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link" href="" title="">Page 1</a>
+                                <a class="nav-link @if($active === 'what-is-budgeting') active @endif" href="{{ route('what-is-budgeting') }}" title="What is Budgeting?">What is Budgeting?</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="" title="">Page 2</a>

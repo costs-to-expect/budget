@@ -112,6 +112,11 @@ Route::view(
 )->name('privacy-policy');
 
 Route::view(
+    '/what-is-budgeting',
+    'what-is-budgeting'
+)->name('what-is-budgeting');
+
+Route::view(
     '/help/add-income',
     'add-income'
 )->name('help.add-income');
