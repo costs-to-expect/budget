@@ -7,7 +7,7 @@ use JetBrains\PhpStorm\ArrayShape;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
- * @copyright Dean Blackborough (Costs to Expect) 2018-2022
+ * @copyright Dean Blackborough (Costs to Expect) 2018-2023
  * @license https://github.com/costs-to-expect/budget/blob/main/LICENSE
  */
 class Uri
@@ -56,6 +56,18 @@ class Uri
     }
 
     #[ArrayShape(['uri' => "string", 'name' => "string"])]
+    public static function createNewPassword(string $token, string $email): array
+    {
+        $uri = '/' . self::VERSION . '/auth/create-new-password?token=' .
+            urlencode($token) . '&email=' . urlencode($email);
+
+        return [
+            'uri' => $uri,
+            'name' => 'Create New Password'
+        ];
+    }
+
+    #[ArrayShape(['uri' => "string", 'name' => "string"])]
     public static function currencies(): array
     {
         $uri = '/' . self::VERSION . '/currencies';
@@ -74,6 +86,17 @@ class Uri
         return [
             'uri' => $uri,
             'name' => 'Currency'
+        ];
+    }
+
+    #[ArrayShape(['uri' => "string", 'name' => "string"])]
+    public static function forgotPassword(): array
+    {
+        $uri = '/' . self::VERSION . '/auth/forgot-password?send=false';
+
+        return [
+            'uri' => $uri,
+            'name' => 'Forgot Password'
         ];
     }
 

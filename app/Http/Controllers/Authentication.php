@@ -6,15 +6,17 @@ namespace App\Http\Controllers;
 use App\Api\Service;
 use App\Models\PartialRegistration;
 use App\Notifications\CreatePassword;
+use App\Notifications\ForgotPassword;
 use App\Notifications\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Notification;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
- * @copyright Dean Blackborough (Costs to Expect) 2018-2022
+ * @copyright Dean Blackborough (Costs to Expect) 2018-2023
  * @license https://github.com/costs-to-expect/budget/blob/main/LICENSE
  */
 class Authentication extends Controller
@@ -45,6 +47,129 @@ class Authentication extends Controller
                 'email' => $email,
                 'errors' => session()->get('authentication.errors'),
                 'failed' => session()->get('authentication.failed'),
+            ]
+        );
+    }
+
+    public function createNewPassword(Request $request)
+    {
+        $token = null;
+        $email = null;
+
+        if (session()->get('authentication.parameters') !== null) {
+            $token = session()->get('authentication.parameters')['token'];
+            $email = session()->get('authentication.parameters')['email'];
+        }
+
+        if ($request->input('token') !== null && $request->input('email') !== null) {
+            $token = $request->input('token');
+            $email = $request->input('email');
+        }
+
+        if ($token === null && $email === null) {
+            abort(404, 'Password cannot be created, registration parameters not found');
+        }
+
+        return view(
+            'authentication.create-new-password',
+            [
+                'token' => $token,
+                'email' => $email,
+                'errors' => session()->get('authentication.errors'),
+                'failed' => session()->get('authentication.failed'),
+            ]
+        );
+    }
+
+    public function createNewPasswordProcess(Request $request)
+    {
+        $api = new Service();
+
+        $response = $api->createNewPassword(
+            $request->only(['token', 'email', 'password', 'password_confirmation'])
+        );
+
+        if ($response['status'] === 204) {
+            return redirect()->route('new-password-created');
+        }
+
+        if ($response['status'] === 422) {
+            return redirect()->route(
+                'create-new-password.view',
+                [
+                    'token' => $request->input('token'),
+                    'email' => $request->input('email'),
+                ])
+                ->withInput()
+                ->with('authentication.errors', $response['fields']);
+        }
+
+        return redirect()->route(
+            'create-new-password.view',
+            [
+                'token' => $request->input('token'),
+                'email' => $request->input('email'),
+            ])
+            ->with('authentication.failed', $response['content']);
+    }
+
+    public function forgotPassword()
+    {
+        return view(
+            'authentication.forgot-password',
+            [
+                'errors' => session()->get('authentication.errors'),
+                'failed' => session()->get('authentication.failed'),
+            ]
+        );
+    }
+
+    public function forgotPasswordProcess(Request $request)
+    {
+        $api = new Service();
+
+        $response = $api->forgotPassword(
+            $request->only(['email'])
+        );
+
+        if ($response['status'] === 201) {
+
+            $config = Config::get('app.config');
+            $encryptor = new \Illuminate\Encryption\Encrypter($config['forgot-password-salt']);
+            $parameters = $response['content']['uris']['create-new-password']['parameters'];
+            $token = $encryptor->decryptString($parameters['encrypted_token']);
+
+            Notification::route('mail', $request->input('email'))
+                ->notify(new ForgotPassword($request->input('email'), $token));
+
+            return redirect()->route('forgot-password-email-issued');
+        }
+
+        if ($response['status'] === 422) {
+            return redirect()->route('forgot-password.view')
+                ->withInput()
+                ->with('authentication.errors', $response['fields']);
+        }
+
+        return redirect()->route('forgot-password.view')
+            ->withInput()
+            ->with('authentication.failed', $response['content']);
+    }
+
+    public function forgotPasswordEmailIssued()
+    {
+        return view(
+            'authentication.forgot-password-email-issued',
+            [
+            ]
+        );
+    }
+
+    public function newPasswordCreated()
+    {
+        return view(
+            'authentication.new-password-created',
+            [
             ]
         );
     }

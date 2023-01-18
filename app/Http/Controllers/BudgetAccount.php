@@ -4,12 +4,13 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Budget\Account\Create;
+use App\Actions\Budget\Account\SetBalances;
 use App\Actions\Budget\Account\Update;
 use Illuminate\Http\Request;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
- * @copyright Dean Blackborough (Costs to Expect) 2018-2022
+ * @copyright Dean Blackborough (Costs to Expect) 2018-2023
  * @license https://github.com/costs-to-expect/budget/blob/main/LICENSE
  */
 class BudgetAccount extends Controller
@@ -65,6 +66,63 @@ class BudgetAccount extends Controller
         if ($result === 422) {
             return redirect()
                 ->route('budget.account.create')
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
+        }
+
+        abort($result, $action->getMessage());
+    }
+
+    public function setBalances(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $budget = $this->setUpBudget($request);
+
+        return view(
+            'budget.account.set-balances',
+            [
+                'currency' => $budget->currency(),
+
+                'has_accounts' => $budget->hasAccounts(),
+                'has_budget' => $budget->hasBudget(),
+                'has_savings_account' => $budget->hasSavingsAccount(),
+                'has_paid_items' => $budget->hasPaidItems(),
+                'now_visible' => $budget->nowVisible(),
+
+                'accounts' => $budget->accounts(),
+                'months' => $budget->months(),
+                'pagination' => $budget->paginationParameters(),
+                'view_end' => $budget->viewEndPeriod(),
+                'projection' => $budget->projection(),
+
+                'max_accounts' => $budget->maxAccounts(),
+
+                'requests' => $this->api->requests(),
+            ]
+        );
+    }
+
+    public function setBalancesProcess(Request $request)
+    {
+        $this->bootstrap($request);
+
+        $action = new SetBalances();
+        $result = $action(
+            $this->api,
+            $this->resource_type_id,
+            $this->resource_id,
+            $request->all()
+        );
+
+        if ($result === 204) {
+            return redirect()->route('home')
+                ->with('status', 'balances-updated');
+        }
+
+        if ($result === 422) {
+            return redirect()
+                ->route('budget.account.set-balances')
                 ->withInput()
                 ->with('validation.errors', $action->getValidationErrors());
         }

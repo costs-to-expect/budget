@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
- * @copyright Dean Blackborough (Costs to Expect) 2018-2022
+ * @copyright Dean Blackborough (Costs to Expect) 2018-2023
  * https://github.com/costs-to-expect/budget/blob/main/LICENSE
  *
  * @property string $token

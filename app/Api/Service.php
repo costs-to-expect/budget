@@ -8,7 +8,7 @@ use JetBrains\PhpStorm\ArrayShape;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
- * @copyright Dean Blackborough (Costs to Expect) 2018-2022
+ * @copyright Dean Blackborough (Costs to Expect) 2018-2023
  * @license https://github.com/costs-to-expect/budget/blob/main/LICENSE
  */
 class Service
@@ -39,6 +39,19 @@ class Service
                 'email' => $email,
                 'password' => $password,
                 'device_name' => (app()->environment('local') ? 'budget:local:' : 'budget:')
+            ]
+        );
+    }
+
+    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    public function forgotPassword(array $payload): array
+    {
+        $uri = Uri::forgotPassword();
+
+        return $this->http->post(
+            $uri['uri'],
+            [
+                'email' => $payload['email']
             ]
         );
     }
@@ -142,6 +155,20 @@ class Service
     public function createPassword(array $payload): array
     {
         $uri = Uri::createPassword($payload['token'], $payload['email']);
+
+        return $this->http->post(
+            $uri['uri'],
+            [
+                'password' => $payload['password'],
+                'password_confirmation' => $payload['password_confirmation']
+            ]
+        );
+    }
+
+    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    public function createNewPassword(array $payload): array
+    {
+        $uri = Uri::createNewPassword($payload['token'], $payload['email']);
 
         return $this->http->post(
             $uri['uri'],

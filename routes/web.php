@@ -40,6 +40,36 @@ Route::get(
     [Authentication::class, 'createPassword']
 )->name('create-password.view');
 
+Route::get(
+    '/create-new-password',
+    [Authentication::class, 'createNewPassword']
+)->name('create-new-password.view');
+
+Route::post(
+    '/create-new-password',
+    [Authentication::class, 'createNewPasswordProcess']
+)->name('create-new-password.process');
+
+Route::get(
+    '/new-password-created',
+    [Authentication::class, 'newPasswordCreated']
+)->name('new-password-created');
+
+Route::get(
+    '/forgot-password',
+    [Authentication::class, 'forgotPassword']
+)->name('forgot-password.view');
+
+Route::post(
+    '/forgot-password',
+    [Authentication::class, 'forgotPasswordProcess']
+)->name('forgot-password.process');
+
+Route::get(
+    '/forgot-password-email-issued',
+    [Authentication::class, 'forgotPasswordEmailIssued']
+)->name('forgot-password-email-issued');
+
 Route::post(
     '/create-password',
     [Authentication::class, 'createPasswordProcess']
@@ -80,6 +110,31 @@ Route::view(
     '/privacy-policy',
     'privacy-policy'
 )->name('privacy-policy');
+
+Route::view(
+    '/what-is-budgeting',
+    'what-is-budgeting'
+)->name('what-is-budgeting');
+
+Route::view(
+    '/how-to-start-budgeting',
+    'how-to-start-budgeting'
+)->name('how-to-start-budgeting');
+
+Route::view(
+    '/help/add-income',
+    'add-income'
+)->name('help.add-income');
+
+Route::view(
+    '/help/add-expense',
+    'add-expense'
+)->name('help.add-expense');
+
+Route::view(
+    '/help/add-savings',
+    'add-savings'
+)->name('help.add-savings');
 
 Route::group(
     [
@@ -135,6 +190,16 @@ Route::group(
             '/budget/account',
             [BudgetAccount::class, 'createProcess']
         )->name('budget.account.create.process');
+
+        Route::get(
+            '/budget/account/set-balances',
+            [BudgetAccount::class, 'setBalances']
+        )->name('budget.account.set-balances');
+
+        Route::post(
+            '/budget/account/set-balances',
+            [BudgetAccount::class, 'setBalancesProcess']
+        )->name('budget.account.set-balances.process');
 
         Route::get(
             '/budget/account/{account_id}/edit',

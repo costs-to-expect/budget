@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
- * @copyright Dean Blackborough (Costs to Expect) 2018-2022
+ * @copyright Dean Blackborough (Costs to Expect) 2018-2023
  * @license https://github.com/costs-to-expect/budget/blob/main/LICENSE
  */
 class UserProvider implements \Illuminate\Contracts\Auth\UserProvider

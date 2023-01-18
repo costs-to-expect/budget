@@ -35,16 +35,32 @@
                 </a>
                 <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
                     <li class="nav-item px-1">
-                        <a class="nav-link py-2 px-0 px-lg-2 active" href="{{ route('getting-started') }}">Getting Started</a>
+                        <a class="nav-link py-2 px-1 px-lg-2" href="{{ route('version-compare') }}">Versions</a>
                     </li>
-                    <li class="nav-item px-1">
-                        <a class="nav-link py-2 px-0 px-lg-2" href="{{ route('workflow') }}">Workflow</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link py-2 px-1 px-lg-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Budgeting
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('what-is-budgeting') }}">What is Budgeting?</a></li>
+                            <li><a class="dropdown-item" href="{{ route('how-to-start-budgeting') }}">How to Start Budgeting</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item px-1">
-                        <a class="nav-link py-2 px-0 px-lg-2" href="{{ route('version-compare') }}">Versions</a>
-                    </li>
-                    <li class="nav-item px-1">
-                        <a class="nav-link py-2 px-0 px-lg-2" href="{{ route('faqs') }}">FAQs</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link py-2 px-1 px-lg-2 active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Support
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('getting-started') }}">Getting Started</a></li>
+                            <li><a class="dropdown-item" href="{{ route('workflow') }}">Workflow</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ route('help.add-expense') }}">How do I add an expense item?</a></li>
+                            <li><a class="dropdown-item" href="{{ route('help.add-income') }}">How do I add an income item?</a></li>
+                            <li><a class="dropdown-item" href="{{ route('help.add-savings') }}">How do I add a savings item?</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ route('faqs') }}">FAQs</a></li>
+                            <li><a class="dropdown-item" href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
@@ -68,11 +84,11 @@
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="{{ asset('images/getting-started/new-account.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Image of the new account form" width="700" height="500" loading="lazy">
+                    <img src="{{ asset('images/getting-started/add-an-account.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="The add a new account form" width="400" height="400" loading="lazy">
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Step 1: Add your accounts</h1>
-                    <p class="lead">Any any accounts you want Budget to track, we need a name and a starting balance.
+                    <p class="lead">Add any accounts you want Budget to track, we need a name and a starting balance.
                     If you want to track your savings you can add savings accounts.</p>
                 </div>
             </div>
@@ -81,12 +97,17 @@
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="{{ asset('images/getting-started/new-budget-item.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Image of the new expense form" width="700" height="500" loading="lazy">
+                    <img src="{{ asset('images/getting-started/add-a-budget-item.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="The add a budget item form" width="400" height="400" loading="lazy">
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Step 2: Add Your budget Items</h1>
                     <p class="lead">Add all income and expenditure to you Budget. Items on your Budget
                         are income or expenditure and can be set to repeat monthly or annually.</p>
+                    <p class="lead">We have help pages to guide you through adding each of our
+                        supported budget item types,
+                        <a href="{{ route('help.add-income') }}">income</a>,
+                        <a href="{{ route('help.add-expense') }}">expense</a> and
+                        <a href="{{ route('help.add-savings') }}">savings</a>.</p>
                 </div>
             </div>
         </div>
@@ -94,7 +115,7 @@
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="{{ asset('images/getting-started/exclusions.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Set exclusions for budget items" width="700" height="500" loading="lazy">
+                    <img src="{{ asset('images/getting-started/set-exclusions.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Set exclusions for budget items" width="400" height="400" loading="lazy">
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Step 3: Set Exclusions</h1>
@@ -108,7 +129,7 @@
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="{{ asset('images/workflow/projections.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                    <img src="{{ asset('images/getting-started/view-projections.png') }}" class="shadow d-block mx-lg-auto img-fluid" alt="Budget overview projections for all accounts" width="400" height="400" loading="lazy">
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Step 4: Projections</h1>
@@ -126,6 +147,7 @@
             </div>
         </div>
 
+        <script src="{{ asset('node_modules/@popperjs/core/dist/umd/popper.min.js') }}" defer></script>
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
     </body>
 </html>

@@ -37,16 +37,32 @@
         </a>
         <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
             <li class="nav-item px-1">
-                <a class="nav-link py-2 px-0 px-lg-2" href="{{ route('getting-started') }}">Getting Started</a>
+                <a class="nav-link py-2 px-1 px-lg-2" href="{{ route('version-compare') }}">Versions</a>
             </li>
-            <li class="nav-item px-1">
-                <a class="nav-link py-2 px-0 px-lg-2" href="{{ route('workflow') }}">Workflow</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link py-2 px-1 px-lg-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Budgeting
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ route('what-is-budgeting') }}">What is Budgeting?</a></li>
+                    <li><a class="dropdown-item" href="{{ route('how-to-start-budgeting') }}">How to Start Budgeting</a></li>
+                </ul>
             </li>
-            <li class="nav-item px-1">
-                <a class="nav-link py-2 px-0 px-lg-2" href="{{ route('version-compare') }}">Versions</a>
-            </li>
-            <li class="nav-item px-1">
-                <a class="nav-link py-2 px-0 px-lg-2" href="{{ route('faqs') }}">FAQs</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link py-2 px-1 px-lg-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Support
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ route('getting-started') }}">Getting Started</a></li>
+                    <li><a class="dropdown-item" href="{{ route('workflow') }}">Workflow</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{{ route('help.add-expense') }}">How do I add an expense item?</a></li>
+                    <li><a class="dropdown-item" href="{{ route('help.add-income') }}">How do I add an income item?</a></li>
+                    <li><a class="dropdown-item" href="{{ route('help.add-savings') }}">How do I add a savings item?</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{{ route('faqs') }}">FAQs</a></li>
+                    <li><a class="dropdown-item" href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
+                </ul>
             </li>
         </ul>
     </nav>
@@ -55,13 +71,13 @@
 <main>
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
         <div class="col-md-6 p-lg-6 mx-auto my-5">
-            <h1 class="display-4 fw-normal">Budget</h1>
+            <h1 class="display-1 fw-normal">Budget</h1>
             <h2 class="display-5">A budgeting tool so easy to use, it’s child play!</h2>
-            <p class="lead fw-normal">A free, open source budgeting tool powered by the
-                <a href="https://github.com/costs-to-expect/api">Costs to Expect API</a>.</p>
-            <p class="lead fw-normal"><span class="badge rounded-pill text-bg-income">Beta</span> Official release due at the start of January 2023.</p>
-            <p class="text-muted"><small>You are free to register now but there may be a bug or two until the official release.</small></p>
-            <a href="{{ route('register.view') }}" class="btn btn-outline-primary" title="Register an account with Costs to Expect">Register</a>
+            <p class="lead fw-normal">A <span class="badge rounded-pill text-bg-income">free</span> open source budgeting tool<br />
+                powered by the <a href="https://github.com/costs-to-expect/api">Costs to Expect API</a>.</p>
+            <p class="lead fw-normal">If you need to collaborate or have more advanced budgeting requirements <a href="{{ route('version-compare') }}">Budget Pro</a> might
+                be more suitable for you. Budget Pro is in development and due to be released in the first half of 2023.</p>
+            <a href="{{ route('register.view') }}" class="btn btn-primary" title="Register an account with Costs to Expect">Register for free</a>
             <a href="{{ route('sign-in.view') }}" class="btn btn-outline-primary" title="Sign in with your Costs to Expect account">Sign-in</a>
         </div>
     </div>
@@ -75,18 +91,18 @@
             </div>
             <div class="bg-light shadow-sm mx-auto"
                  style="width: 80%; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/landing/budget-overview.png') }}" width="412" height="770" alt="Budget overview screen, shows expenses for each month" class="img-fluid" />
+                <img src="{{ asset('images/landing/budget-overview.png') }}" width="390" height="725" alt="Budget overview screen, shows expenses for each month" class="img-fluid" />
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 p-3">
                 <h2 class="display-5">Projections</h2>
-                <p class="lead">Simply input your income and outgoings to see projected balances and savings for the months
+                <p class="lead">Input your income and outgoings to see projected balances and savings for the months
                     and years ahead. Handy, right?</p>
             </div>
             <div class="bg-dark shadow-sm mx-auto"
                  style="width: 80%; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/landing/budget-projections.png') }}" width="412" height="770" alt="Budget overview screen, shows projections for each account" class="img-fluid" />
+                <img src="{{ asset('images/landing/view-projections.png') }}" width="390" height="725" alt="Budget overview screen, shows projections for each account" class="img-fluid" />
             </div>
         </div>
     </div>
@@ -125,7 +141,7 @@
             </div>
             <div class="bg-light shadow-sm mx-auto"
                  style="width: 80%; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/landing/budget-item.png') }}" width="412" height="512" alt="Budget detail screen, show expense details" class="img-fluid" />
+                <img src="{{ asset('images/landing/detail-view.png') }}" width="390" height="725" alt="Budget detail screen, show expense details" class="img-fluid" />
             </div>
         </div>
         <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -136,7 +152,7 @@
             </div>
             <div class="bg-dark shadow-sm mx-auto"
                  style="width: 80%; border-radius: 6px 6px 0 0;">
-                <img src="{{ asset('images/landing/budget-item-exclusions.png') }}" width="412" height="512" alt="Budget exclusions screen, show that monthly exclusions can be set for monthly expenses" class="img-fluid" />
+                <img src="{{ asset('images/landing/set-exclusions.png') }}" width="390" height="725" alt="Budget exclusions screen, show that monthly exclusions can be set for monthly expenses" class="img-fluid" />
             </div>
         </div>
     </div>
@@ -183,6 +199,7 @@
 
 <x-footer />
 
+<script src="{{ asset('node_modules/@popperjs/core/dist/umd/popper.min.js') }}" defer></script>
 <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
 
 </body>
