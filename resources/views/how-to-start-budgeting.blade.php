@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Budget by Costs to Expect - Simplified Budgeting">
         <meta name="author" content="Dean Blackborough">
-        <title>Budget: Privacy Policy</title>
+        <title>Budget: How to Start Budgeting?</title>
         <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
         <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
         <link href="{{ asset('css/theme.css') }}" rel="stylesheet"/>
@@ -22,7 +22,7 @@
     <body>
 
         @auth
-        <x-offcanvas active="privacy-policy"/>
+        <x-offcanvas active="how-to-start-budgeting"/>
         @else
         <header class="site-header sticky-top py-1">
             <nav class="container-fluid d-flex navbar-dark">
@@ -34,16 +34,16 @@
                         <a class="nav-link py-2 px-1 px-lg-2" href="{{ route('version-compare') }}">Versions</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link py-2 px-1 px-lg-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link py-2 px-1 px-lg-2 active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Budgeting
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('what-is-budgeting') }}">What is Budgeting?</a></li>
-                            <li><a class="dropdown-item" href="{{ route('how-to-start-budgeting') }}">How to Start Budgeting</a></li>
+                            <li><a class="dropdown-item" href="{{ route('how-to-start-budgeting') }}">How to Start Budgeting?</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link py-2 px-1 px-lg-2 active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link py-2 px-1 px-lg-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Support
                         </a>
                         <ul class="dropdown-menu">
@@ -67,45 +67,58 @@
 
             <div class="row">
                 <div class="col-12">
-                    <h2 class="display-5 mt-3 mb-3">Privacy Policy</h2>
+                    <h2 class="display-5 mt-3 mb-3">How to Start Budgeting?</h2>
 
                     <p class="lead">
-                        Your privacy is important to us. It is our policy to respect your privacy regarding any
-                        information we may collect from you across our <a href="https://budget.costs-to-expect.com">website</a>,
-                        and other sites in the Costs to Expect service that we own and operate.
+                        Budgeting is a bit like exercising. It can be difficult to motivate yourself to start but
+                        once you take the plunge, it doesn't take long to reap the benefits.
                     </p>
                     <p class="lead">
-                        We only ask for personal information when we truly need it to provide a service to you.
-                        We collect it by fair and lawful means, with your knowledge and consent. We also let you
-                        know why we’re collecting it and how it will be used.
+                        A budget can help you manage your money and plan for the future. If you've decided to create
+                        a budget, here's how to get started:
                     </p>
+
+                    <ul>
+                        <li class="mb-3">
+                            <strong>Know what your net income is.</strong>
+                            Seems simple, right? Just remember your net income is what you take home after tax and
+                            other costs such as pension contributions have been deducted. If you receive any benefits,
+                            remember to add these into the pot. If you're one half of a couple, you'll have extra
+                            calculations to make.
+                        </li>
+                        <li class="mb-3">
+                            <strong>Start tracking your expenses.</strong>
+                            Before you even start a budget, you need to understand what you're spending. It's
+                            important that you track everything – even those coffees on the way to work! You might be
+                            surprised by how expenses add up. Track your spending for at least a month so that you
+                            have a good understanding of your expenses.
+                        </li>
+                        <li class="mb-3">
+                            <strong>List your expenses and label them.</strong>
+                            Your expenses will fall into two categories: Fixed expenses are the ones which are
+                            always the same and must be paid. Variable expenses can change from month to month and
+                            are not strictly necessary – we call them the "fun stuff"!
+                        </li>
+                        <li class="mb-3">
+                            <strong>Choose your budgeting approach.</strong>
+                            What works for one person, won't work for everyone. There are
+                            <a href="{{ route('what-is-budgeting') }}">several different</a> ways of
+                            budgeting and it'’'s up to you to decide which approach suits you.
+                        </li>
+                        <li class="mb-3">
+                            <strong>Start managing your money.</strong>
+                            Ready for some more calculations? If the difference between your income and expenditure
+                            is making money tight, you may have to make adjustments to your spending habits –
+                            remember those variable expenses?!
+                        </li>
+                    </ul>
+
                     <p class="lead">
-                        We only retain collected information for as long as necessary to provide you with your
-                        requested service. Any data that we store will be protected within commercially acceptable
-                        means to prevent loss and theft, as well as unauthorised access, disclosure, copying, use
-                        or modification.
+                        Now you're well on your way to having an effective budget and managing your money so that it
+                        works for you. If you'd like to use the Costs to Expect Budget App, check out our
+                        <a href="{{ route('getting-started') }}">Getting Started</a> page.
                     </p>
-                    <p class="lead">
-                        We don’t share any personally identifying information publicly or with third-parties, except
-                        when required to by law.
-                    </p>
-                    <p class="lead">
-                        Our website may link to external sites that are not operated by us. Please be aware that
-                        we have no control over the content and practices of these sites, and cannot accept
-                        responsibility or liability for their respective privacy policies.
-                    </p>
-                    <p class="lead">
-                        You are free to refuse our request for your personal information, with the understanding
-                        that we may be unable to provide you with some of your desired services.
-                    </p>
-                    <p class="lead">
-                        Your continued use of our website will be regarded as acceptance of our practices around
-                        privacy and personal information. If you have any questions about how we
-                        handle user data and personal information, feel free to contact us.
-                    </p>
-                    <p>
-                        This policy is effective as of the 12th January 2023.
-                    </p>
+
                 </div>
             </div>
 

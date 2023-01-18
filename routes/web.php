@@ -117,6 +117,11 @@ Route::view(
 )->name('what-is-budgeting');
 
 Route::view(
+    '/how-to-start-budgeting',
+    'how-to-start-budgeting'
+)->name('how-to-start-budgeting');
+
+Route::view(
     '/help/add-income',
     'add-income'
 )->name('help.add-income');

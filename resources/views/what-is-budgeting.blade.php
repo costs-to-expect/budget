@@ -39,7 +39,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('what-is-budgeting') }}">What is Budgeting?</a></li>
-                            <li><a class="dropdown-item" href="">Page 2</a></li>
+                            <li><a class="dropdown-item" href="{{ route('how-to-start-budgeting') }}">How to Start Budgeting</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -67,7 +67,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <h2 class="display-5 mt-3 mb-3">What is Budgeting</h2>
+                    <h2 class="display-5 mt-3 mb-3">What is Budgeting?</h2>
 
                     <p class="lead">
                         Budgeting is simply the process of balancing your income and outcome and thus creating a plan

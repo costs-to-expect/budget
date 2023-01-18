@@ -13,7 +13,7 @@
             <h5>Budgeting</h5>
             <ul class="list-unstyled text-small">
                 <li><a class="link-primary" href="{{ route('what-is-budgeting') }}" title="What is Budgeting?">What is Budgeting?</a></li>
-                <li><a class="link-primary" href="" title="Checkout the Workflow page">Page 2</a></li>
+                <li><a class="link-primary" href="{{ route('how-to-start-budgeting')  }}" title="How to Start Budgeting?">How to Start Budgeting?</a></li>
             </ul>
         </div>
         <div class="col-6 col-md-3">

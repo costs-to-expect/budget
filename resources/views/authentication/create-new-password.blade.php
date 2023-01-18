@@ -33,7 +33,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('what-is-budgeting') }}">What is Budgeting?</a></li>
-                        <li><a class="dropdown-item" href="">Page 2</a></li>
+                        <li><a class="dropdown-item" href="{{ route('how-to-start-budgeting') }}">How to Start Budgeting</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

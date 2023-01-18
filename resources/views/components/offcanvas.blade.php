@@ -33,7 +33,7 @@
                                 <a class="nav-link @if($active === 'what-is-budgeting') active @endif" href="{{ route('what-is-budgeting') }}" title="What is Budgeting?">What is Budgeting?</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="" title="">Page 2</a>
+                                <a class="nav-link @if($active === 'how-to-start-budgeting') active @endif" href="{{ route('how-to-start-budgeting') }}" title="How to Start Budgeting?">How to Start Budgeting?</a>
                             </li>
                         </ul>
                     </li>

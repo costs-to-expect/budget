@@ -44,9 +44,8 @@
                     Budgeting
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="">What is Budgeting?</a></li>
-                    <li><a class="dropdown-item" href="">How to Start a Budget</a></li>
-                    <li><a class="dropdown-item" href="">Budgeting Tips</a></li>
+                    <li><a class="dropdown-item" href="{{ route('what-is-budgeting') }}">What is Budgeting?</a></li>
+                    <li><a class="dropdown-item" href="{{ route('how-to-start-budgeting') }}">How to Start Budgeting</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
