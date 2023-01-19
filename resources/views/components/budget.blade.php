@@ -144,8 +144,7 @@
                         </div>
                         <div class="col-12 col-sm-6">
                             <h5 class="mb-2">
-                                <small><x-currency :currency="$__month->currency()" /></small>
-                                {{ number_format($account_total['total'], 2) }}
+                                <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($account_total['total'], 2) }}
                             </h5>
                         </div>
                     </div>
@@ -160,8 +159,7 @@
                             </div>
                             <div class="col-12 col-sm-6">
                                 <h5 class="mb-2">
-                                    <small><x-currency :currency="$__month->currency()" /></small>
-                                    {{ number_format($account_total['total'], 2) }}
+                                    <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($account_total['total'], 2) }}
                                 </h5>
                             </div>
                         </div>
@@ -176,12 +174,7 @@
                     </div>
                     <div class="col-12 col-sm-6">
                         <h5 class="mb-2 total">
-                            <small><x-currency :currency="$__month->currency()" /></small>
-                            @if ($__month->now() === false)
-                            {{ number_format($__month->totalExpense(), 2) }}
-                            @else
-                            {{ number_format($__month->totalUnpaidExpense(), 2) }}
-                            @endif
+                            <small><x-currency :currency="$__month->currency()" /></small>@if ($__month->now() === false){{ number_format($__month->totalExpense(), 2) }}@else{{ number_format($__month->totalUnpaidExpense(), 2) }}@endif
                         </h5>
                     </div>
                 </div>
@@ -203,8 +196,7 @@
                         </div>
                         <div class="col-12 col-sm-6">
                             <h5 class="mb-2">
-                                <small><x-currency :currency="$__month->currency()" /></small>
-                                {{ number_format($account_total['total'], 2) }}
+                                <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($account_total['total'], 2) }}
                             </h5>
                         </div>
                     </div>
@@ -219,8 +211,7 @@
                             </div>
                             <div class="col-12 col-sm-6">
                                 <h5 class="mb-2">
-                                    <small><x-currency :currency="$__month->currency()" /></small>
-                                    {{ number_format($account_total['total'], 2) }}
+                                    <small><x-currency :currency="$__month->currency()" /></small>{{ number_format($account_total['total'], 2) }}
                                 </h5>
                             </div>
                         </div>
@@ -235,12 +226,7 @@
                         </div>
                         <div class="col-12 col-sm-6">
                             <h5 class="mb-2 total">
-                                <small><x-currency :currency="$__month->currency()" /></small>
-                                @if ($__month->now() === false)
-                                {{ number_format($__month->totalIncome(), 2) }}
-                                @else
-                                {{ number_format($__month->totalUnpaidIncome(), 2) }}
-                                @endif
+                                <small><x-currency :currency="$__month->currency()" /></small>@if ($__month->now() === false){{ number_format($__month->totalIncome(), 2) }}@else{{ number_format($__month->totalUnpaidIncome(), 2) }}@endif
                             </h5>
                         </div>
                     </div>
