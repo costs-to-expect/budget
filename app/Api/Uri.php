@@ -58,7 +58,7 @@ class Uri
     #[ArrayShape(['uri' => "string", 'name' => "string"])]
     public static function createNewPassword(string $token, string $email): array
     {
-        $uri = '/' . self::VERSION . '/auth/create-new-password?token=' .
+        $uri = '/' . self::VERSION . '/auth/create-new-password?encrypted_token=' .
             urlencode($token) . '&email=' . urlencode($email);
 
         return [

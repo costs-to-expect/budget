@@ -21,30 +21,25 @@ class Authentication extends Controller
 {
     public function createNewPassword(Request $request)
     {
-        $token = null;
+        $encrypted_token = null;
         $email = null;
 
-        if (session()->get('authentication.parameters') !== null) {
-            $token = session()->get('authentication.parameters')['token'];
-            $email = session()->get('authentication.parameters')['email'];
+        if ($request->query('encrypted_token') !== null && $request->query('email') !== null) {
+            $encrypted_token = $request->query('encrypted_token');
+            $email = $request->query('email');
         }
 
-        if ($request->input('token') !== null && $request->input('email') !== null) {
-            $token = $request->input('token');
-            $email = $request->input('email');
-        }
-
-        if ($token === null && $email === null) {
+        if ($encrypted_token === null && $email === null) {
             abort(404, 'Password cannot be created, registration parameters not found');
         }
 
         return view(
             'authentication.create-new-password',
             [
-                'token' => $token,
+                'encrypted_token' => $encrypted_token,
                 'email' => $email,
-                'errors' => session()->get('authentication.errors'),
-                'failed' => session()->get('authentication.failed'),
+                'errors' => session()->get('validation.errors'),
+                'failed' => session()->get('request.failed'),
             ]
         );
     }
@@ -53,32 +48,24 @@ class Authentication extends Controller
     {
         $api = new Service();
 
-        $response = $api->createNewPassword(
-            $request->only(['token', 'email', 'password', 'password_confirmation'])
+        $action = new \App\Actions\Account\CreateNewPassword();
+        $result = $action(
+            $api,
+            $request->only(['encrypted_token', 'email', 'password', 'password_confirmation'])
         );
 
-        if ($response['status'] === 204) {
+        if ($result === 204) {
             return redirect()->route('new-password-created');
         }
 
-        if ($response['status'] === 422) {
-            return redirect()->route(
-                'create-new-password.view',
-                [
-                    'token' => $request->input('token'),
-                    'email' => $request->input('email'),
-                ])
+        if ($result === 422) {
+            return redirect()->route('create-new-password.view', $action->getParameters())
                 ->withInput()
-                ->with('authentication.errors', $response['fields']);
+                ->with('validation.errors', $action->getValidationErrors());
         }
 
-        return redirect()->route(
-            'create-new-password.view',
-            [
-                'token' => $request->input('token'),
-                'email' => $request->input('email'),
-            ])
-            ->with('authentication.failed', $response['content']);
+        return redirect()->route('create-new-password.view',$action->getParameters())
+            ->with('request.failed', $action->getMessage());
     }
 
     public function createPassword(Request $request)

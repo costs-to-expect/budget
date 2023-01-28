@@ -168,7 +168,7 @@ class Service
     #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
     public function createNewPassword(array $payload): array
     {
-        $uri = Uri::createNewPassword($payload['token'], $payload['email']);
+        $uri = Uri::createNewPassword($payload['encrypted_token'], $payload['email']);
 
         return $this->http->post(
             $uri['uri'],
