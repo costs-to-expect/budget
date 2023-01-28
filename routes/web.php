@@ -50,9 +50,9 @@ Route::post(
     [Authentication::class, 'createNewPasswordProcess']
 )->name('create-new-password.process');
 
-Route::get(
+Route::view(
     '/new-password-created',
-    [Authentication::class, 'newPasswordCreated']
+    'authentication.new-password-created',
 )->name('new-password-created');
 
 Route::get(
@@ -65,9 +65,9 @@ Route::post(
     [Authentication::class, 'forgotPasswordProcess']
 )->name('forgot-password.process');
 
-Route::get(
+Route::view(
     '/forgot-password-email-issued',
-    [Authentication::class, 'forgotPasswordEmailIssued']
+    'authentication.forgot-password-email-issued',
 )->name('forgot-password-email-issued');
 
 Route::post(
@@ -75,9 +75,9 @@ Route::post(
     [Authentication::class, 'createPasswordProcess']
 )->name('create-password.process');
 
-Route::get(
+Route::view(
     '/registration-complete',
-    [Authentication::class, 'registrationComplete']
+    'authentication.registration-complete'
 )->name('registration-complete');
 
 
