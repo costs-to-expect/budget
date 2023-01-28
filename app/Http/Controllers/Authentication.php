@@ -135,8 +135,8 @@ class Authentication extends Controller
         return view(
             'authentication.forgot-password',
             [
-                'errors' => session()->get('authentication.errors'),
-                'failed' => session()->get('authentication.failed'),
+                'errors' => session()->get('validation.errors'),
+                'failed' => session()->get('request.failed'),
             ]
         );
     }
@@ -145,32 +145,22 @@ class Authentication extends Controller
     {
         $api = new Service();
 
-        $response = $api->forgotPassword(
-            $request->only(['email'])
-        );
+        $action = new \App\Actions\Account\ForgotPassword();
+        $result = $action($api,$request->only(['email']));
 
-        if ($response['status'] === 201) {
-
-            $config = Config::get('app.config');
-            $encryptor = new \Illuminate\Encryption\Encrypter($config['forgot-password-salt']);
-            $parameters = $response['content']['uris']['create-new-password']['parameters'];
-            $token = $encryptor->decryptString($parameters['encrypted_token']);
-
-            Notification::route('mail', $request->input('email'))
-                ->notify(new ForgotPassword($request->input('email'), $token));
-
+        if ($result === 201) {
             return redirect()->route('forgot-password-email-issued');
         }
 
-        if ($response['status'] === 422) {
+        if ($result === 422) {
             return redirect()->route('forgot-password.view')
                 ->withInput()
-                ->with('authentication.errors', $response['fields']);
+                ->with('validation.errors', $action->getValidationErrors());
         }
 
         return redirect()->route('forgot-password.view')
             ->withInput()
-            ->with('authentication.failed', $response['content']);
+            ->with('request.failed', $action->getMessage());
     }
 
     public function register()
