@@ -81,14 +81,14 @@
 
                 <div class="mt-3 mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control <x-validation-error field='password' />" id="password" aria-describedby="password-help" {{--required--}} value="{{ old('password') }}" />
+                    <input type="password" name="password" class="form-control <x-validation-error field='password' />" id="password" aria-describedby="password-help" required value="{{ old('password') }}" />
                     <div id="password-help" class="form-text">Please enter a password, at least 12 characters please, <em>your password will be hashed</em>.</div>
                     <x-validation-error-message field="password" />
                 </div>
 
                 <div class="mt-3 mb-3">
                     <label for="password_confirmation" class="form-label">Confirm password</label>
-                    <input type="password" name="password_confirmation" class="form-control <x-validation-error field='password_confirmation' />" id="password_confirmation" aria-describedby="password_confirmation-help" {{--required--}} value="{{ old('password_confirmation') }}" />
+                    <input type="password" name="password_confirmation" class="form-control <x-validation-error field='password_confirmation' />" id="password_confirmation" aria-describedby="password_confirmation-help" required value="{{ old('password_confirmation') }}" />
                     <div id="password_confirmation-help" class="form-text">Please enter your password again</div>
                     <x-validation-error-message field="password_confirmation" />
                 </div>
