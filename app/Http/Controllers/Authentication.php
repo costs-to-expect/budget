@@ -186,7 +186,7 @@ class Authentication extends Controller
         }
 
         return redirect()->route('register.view')
-            ->with('authentication.failed', $action->getMessage());
+            ->with('request.failed', $action->getMessage());
     }
 
     public function signIn()

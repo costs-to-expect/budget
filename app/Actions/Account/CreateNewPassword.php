@@ -20,8 +20,6 @@ class CreateNewPassword extends Action
     {
         $post_response = $api->createNewPassword($input);
 
-        dd($post_response);
-
         if ($post_response['status'] === 204) {
             return 204;
         }
@@ -29,7 +27,7 @@ class CreateNewPassword extends Action
         if ($post_response['status'] === 422) {
             $this->validation_errors = $post_response['fields'];
             $this->parameters = [
-                'token' => $input['token'],
+                'encrypted_token' => $input['encrypted_token'],
                 'email' => $input['email'],
             ];
 
@@ -38,7 +36,7 @@ class CreateNewPassword extends Action
 
         $this->message = $post_response['content'];
         $this->parameters = [
-            'token' => $input['token'],
+            'encrypted_token' => $input['encrypted_token'],
             'email' => $input['email'],
         ];
 
