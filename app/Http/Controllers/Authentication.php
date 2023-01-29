@@ -4,13 +4,11 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Account\Register;
+use App\Actions\Account\SignIn;
 use App\Api\Service;
-use App\Notifications\ForgotPassword;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Notification;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -194,25 +192,25 @@ class Authentication extends Controller
         return view(
             'authentication.sign-in',
             [
-                'errors' => session()->get('authentication.errors')
+                'errors' => session()->get('validation.errors')
             ]
         );
     }
 
     public function signInProcess(Request $request)
     {
-        $credentials = $request->only(['email', 'password']);
+        $action = new SignIn();
+        $result = $action(
+            $request->only(['email', 'password', 'remember_me'])
+        );
 
-        if (Auth::attempt($credentials, $request->input('remember_me') !== null)) {
-            return redirect()->route('home');
+        if ($result === 422) {
+            return redirect()->route('sign-in.view')
+                ->withInput()
+                ->with('validation.errors', $action->getValidationErrors());
         }
 
-        return redirect()->route('sign-in.view')
-            ->withInput()
-            ->with(
-                'authentication.errors',
-                Auth::errors()
-            );
+        return redirect()->route('home');
     }
 
     public function signOut(): RedirectResponse

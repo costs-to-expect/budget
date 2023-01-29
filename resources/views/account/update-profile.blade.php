@@ -41,14 +41,14 @@
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" name="email" class="form-control <x-validation-error field='email' />" id="email" aria-describedby="email-help" required value="{{ old('email', $user['content']['email']) }}" />
                                 <div id="email-help" class="form-text">Your email address, update if necessary.</div>
-                                <x-validation-error-message field="email" :oldStyle="true" />
+                                <x-validation-error-message field="email" />
                             </div>
 
                             <div class=col-12">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" name="name" class="form-control <x-validation-error field='name' />" id="name" aria-describedby="name-help" required value="{{ old('name', $user['content']['name']) }}" />
                                 <div id="name-help" class="form-text">Your name, update if necessary.</div>
-                                <x-validation-error-message field="name" :oldStyle="true" />
+                                <x-validation-error-message field="name" />
                             </div>
 
                             <div class=col-12">
