@@ -20,7 +20,7 @@ class ForgotPassword extends Action
         array $input
     ): int
     {
-        $post_response = $api->forgotPassword($input);
+        $post_response = $api->authenticationForgotPassword($input);
 
         if ($post_response['status'] === 201) {
 

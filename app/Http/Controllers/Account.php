@@ -22,7 +22,7 @@ class Account extends Controller
     {
         $this->bootstrap($request);
 
-        $user = $this->api->getAuthUser();
+        $user = $this->api->authenticationUser();
 
         if ($user['status'] !== 200) {
             abort(404, 'Unable to fetch your account information from the API');
@@ -65,7 +65,7 @@ class Account extends Controller
     {
         $this->bootstrap($request);
 
-        $user = $this->api->getAuthUser();
+        $user = $this->api->authenticationUser();
 
         if ($user['status'] !== 200) {
 
@@ -86,7 +86,7 @@ class Account extends Controller
     {
         $this->bootstrap($request);
 
-        $user = $this->api->getAuthUser();
+        $user = $this->api->authenticationUser();
 
         if ($user['status'] !== 200) {
 
@@ -106,7 +106,7 @@ class Account extends Controller
     {
         $this->bootstrap($request);
 
-        $user = $this->api->getAuthUser();
+        $user = $this->api->authenticationUser();
 
         if ($user['status'] !== 200) {
             abort(404, 'Unable to fetch your account from the API');
@@ -129,7 +129,7 @@ class Account extends Controller
     {
         $this->bootstrap($request);
 
-        $user = $this->api->getAuthUser();
+        $user = $this->api->authenticationUser();
 
         if ($user['status'] !== 200) {
 
@@ -149,7 +149,7 @@ class Account extends Controller
     {
         $this->bootstrap($request);
 
-        $user = $this->api->getAuthUser();
+        $user = $this->api->authenticationUser();
 
         if ($user['status'] !== 200) {
             abort(404, 'Unable to fetch your account from the API');
@@ -172,7 +172,7 @@ class Account extends Controller
     {
         $this->bootstrap($request);
 
-        $user = $this->api->getAuthUser();
+        $user = $this->api->authenticationUser();
 
         if ($user['status'] !== 200) {
 
@@ -192,7 +192,7 @@ class Account extends Controller
     {
         $this->bootstrap($request);
 
-        $user = $this->api->getAuthUser();
+        $user = $this->api->authenticationUser();
 
         if ($user['status'] !== 200) {
             abort(404, 'Unable to fetch your account from the API');
@@ -215,7 +215,7 @@ class Account extends Controller
     {
         $this->bootstrap($request);
 
-        $user = $this->api->getAuthUser();
+        $user = $this->api->authenticationUser();
 
         if ($user['status'] !== 200) {
             abort(404, 'Unable to fetch your account information from the API');

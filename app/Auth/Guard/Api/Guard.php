@@ -75,7 +75,7 @@ class Guard implements \Illuminate\Contracts\Auth\Guard
     {
         $api = new Service($this->request->cookie($this->config['cookie_bearer']));
 
-        $response = $api->authSignIn(
+        $response = $api->authenticationSignIn(
             $credentials['email'],
             $credentials['password']
         );

@@ -1,65 +1,14 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Budget by Costs to Expect - Simplified Budgeting">
-        <meta name="author" content="Dean Blackborough">
-        <title>Budget: How to Start Budgeting?</title>
-        <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
-        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
-        <link href="{{ asset('css/theme.css') }}" rel="stylesheet"/>
-        <x-open-graph />
-        <x-twitter-card />
-        <style>
-            .site-header {
-                background-color: #000000;
-                -webkit-backdrop-filter: saturate(180%) blur(20px);
-                backdrop-filter: saturate(180%) blur(20px);
-            }
-        </style>
-    </head>
+    <x-html-head title="How to start budgeting" description="How to start budgeting, we give you all the information to help get started" />
     <body>
 
         @auth
         <x-offcanvas active="how-to-start-budgeting"/>
         @else
         <header class="site-header sticky-top py-1">
-            <nav class="container-fluid d-flex navbar-dark">
-                <a class="navbar-brand p-0 me-0 me-lg-2" href="{{ route('landing') }}" aria-label="Budget by Costs to Expect">
-                    <img src="{{ asset('images/logo.png') }}" alt="Costs to Expect Logo" width="40" height="40" title="Costs to Expect" />
-                </a>
-                <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
-                    <li class="nav-item px-1">
-                        <a class="nav-link py-2 px-1 px-lg-2" href="{{ route('version-compare') }}">Versions</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link py-2 px-1 px-lg-2 active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Budgeting
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('what-is-budgeting') }}">What is Budgeting?</a></li>
-                            <li><a class="dropdown-item" href="{{ route('how-to-start-budgeting') }}">How to Start Budgeting?</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link py-2 px-1 px-lg-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Support
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('getting-started') }}">Getting Started</a></li>
-                            <li><a class="dropdown-item" href="{{ route('workflow') }}">Workflow</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ route('help.add-expense') }}">How do I add an expense item?</a></li>
-                            <li><a class="dropdown-item" href="{{ route('help.add-income') }}">How do I add an income item?</a></li>
-                            <li><a class="dropdown-item" href="{{ route('help.add-savings') }}">How do I add a savings item?</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ route('faqs') }}">FAQs</a></li>
-                            <li><a class="dropdown-item" href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
+            <x-api-status />
+            <x-navbar active="budgeting" />
         </header>
         @endauth
 

@@ -23,7 +23,7 @@ class UserProvider implements \Illuminate\Contracts\Auth\UserProvider
     {
         $api = new Service($this->config['cookie_bearer']);
 
-        $user_response = $api->getAuthUser();
+        $user_response = $api->authenticationUser();
         if ($user_response['status'] === 200) {
             $user = new User();
             $user->id = $user_response['content']['id'];

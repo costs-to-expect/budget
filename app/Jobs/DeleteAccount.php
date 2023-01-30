@@ -51,7 +51,7 @@ class DeleteAccount implements ShouldQueue
             ->where('resource_id', '=', $this->resource_id)
             ->delete();
 
-        $response = $api->requestDelete();
+        $response = $api->accountRequestDelete();
 
         if ($response['status'] !== 201) {
             throw new \Exception($response['content']);

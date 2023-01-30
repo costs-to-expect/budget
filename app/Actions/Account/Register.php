@@ -21,7 +21,7 @@ class Register extends Action
         array $input
     ): int
     {
-        $post_response = $api->register($input);
+        $post_response = $api->authenticationRegister($input);
 
         if ($post_response['status'] === 201) {
 

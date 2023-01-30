@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Budget by Costs to Expect - Simplified Budgeting">
         <meta name="author" content="Dean Blackborough">
-        <title>Budget: Confirm Disable</title>
+        <title>Confirm Disable Budget Item</title>
         <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
         <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
         <link href="{{ asset('css/theme.css') }}" rel="stylesheet"/>
@@ -89,20 +89,48 @@
                 </div>
 
                 <div class="col-12 col-lg-7 p-2">
-                    <x-budget
-                        :accounts="$accounts"
-                        :months="$months"
-                        :pagination="$pagination"
-                        :viewEnd="$view_end"
-                        :projection="$projection"
-                        :hasAccounts="$has_accounts"
-                        :hasBudget="$has_budget"
-                        :hasSavingsAccount="$has_savings_account"
-                        :hasPaidItems="$has_paid_items"
-                        :nowVisible="$now_visible"
-                        :activeItem="$item['id']"
-                        :activeItemYear="$item_year"
-                        :activeItemMonth="$item_month" />
+
+                    <div class="budget">
+                        @if ($has_budget === true)
+
+                            @if ($has_accounts)
+                                <x-budget-controls
+                                    :hasSavingsAccount="$has_savings_account"
+                                    :hasPaidItems="$has_paid_items"
+                                    :nowVisible="$now_visible"
+                                />
+                            @endif
+
+                            <x-budget
+                                :months="$months"
+                                :activeItem="$item['id']"
+                                :activeItemYear="$item_year"
+                                :activeItemMonth="$item_month" />
+
+                            <x-budget-expenditure
+                                :months="$months" />
+
+                            <x-budget-ratios
+                                :months="$months" />
+
+                            <x-budget-pagination
+                                :pagination="$pagination" />
+
+                            <x-budget-projections
+                                :accounts="$accounts"
+                                :viewEnd="$view_end"
+                                :projection="$projection" />
+
+                        @else
+                            <x-budget-missing
+                                :hasAccounts="$has_accounts"
+                                :hasSavingsAccount="$has_savings_account"
+                            />
+                        @endif
+
+                        <x-budget-definitions />
+                    </div>
+
                 </div>
             </div>
 

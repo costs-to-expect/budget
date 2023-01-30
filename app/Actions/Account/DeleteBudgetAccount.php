@@ -14,7 +14,7 @@ class DeleteBudgetAccount
         string $bearer_token,
         string $resource_type_id,
         string $resource_id
-    ): bool
+    ): int
     {
         \App\Jobs\DeleteBudgetAccount::dispatch(
             $bearer_token,
@@ -22,6 +22,6 @@ class DeleteBudgetAccount
             $resource_id
         );
 
-        return true;
+        return 201;
     }
 }

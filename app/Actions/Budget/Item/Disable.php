@@ -20,13 +20,13 @@ class Disable extends Action
         string $item_id
     ): int
     {
-        $item_response = $api->getBudgetItem($resource_type_id, $resource_id, $item_id);
+        $item_response = $api->budgetItem($resource_type_id, $resource_id, $item_id);
         if ($item_response['status'] !== 200) {
             $this->message = $item_response['content'];
             return $item_response['status'];
         }
 
-        $patch_budget_item_response = $api->patchBudgetItem(
+        $patch_budget_item_response = $api->budgetItemUpdate(
             $resource_type_id,
             $resource_id,
             $item_id,

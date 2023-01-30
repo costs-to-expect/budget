@@ -18,7 +18,7 @@ class ChangePassword extends Action
         array $input
     ): int
     {
-        $post_response = $api->changePassword($input);
+        $post_response = $api->authenticationChangePassword($input);
 
         if ($post_response['status'] === 204) {
             return $post_response['status'];

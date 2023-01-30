@@ -87,7 +87,7 @@ class Create extends Action
             'frequency' => $frequency_json
         ];
 
-        $create_budget_item_response = $api->createBudgetItem(
+        $create_budget_item_response = $api->budgetItemCreate(
             $resource_type_id,
             $resource_id,
             $payload

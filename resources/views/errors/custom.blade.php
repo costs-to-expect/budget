@@ -23,11 +23,8 @@
     </head>
     <body>
         <header class="site-header sticky-top py-1">
-            <nav class="container d-flex flex-column flex-md-row justify-content-between">
-                <a class="py-2 text-center" href="{{ route('landing') }}" aria-label="Product">
-                    <img src="{{ asset('images/logo.png') }}" alt="Costs to Expect Logo" width="48" height="48" title="Costs to Expect" />
-                </a>
-            </nav>
+            <x-api-status />
+            <x-navbar active="support"/>
         </header>
 
         <div class="col-lg-8 mx-auto p-3">
@@ -46,6 +43,7 @@
 
             <x-footer />
         </div>
+        <script src="{{ asset('node_modules/@popperjs/core/dist/umd/popper.min.js') }}" defer></script>
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
     </body>
 </html>

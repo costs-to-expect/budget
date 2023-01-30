@@ -51,14 +51,14 @@ class Controller extends BaseController
     {
         $this->api = new Service($request->cookie($this->config['cookie_bearer']));
 
-        $resource_types = $this->api->getResourceTypes(['item-type' => $this->item_type_id]);
+        $resource_types = $this->api->resourceTypes(['item-type' => $this->item_type_id]);
 
         if ($resource_types['status'] === 200) {
 
             if (count($resource_types['content']) === 1) {
 
                 $resource_type_id = $resource_types['content'][0]['id'];
-                $resources = $this->api->getResources($resource_type_id, ['item-subtype' => $this->item_subtype_id]);
+                $resources = $this->api->resources($resource_type_id, ['item-subtype' => $this->item_subtype_id]);
 
                 if ($resources['status'] === 200) {
 
@@ -84,7 +84,7 @@ class Controller extends BaseController
                         return true;
                     }
 
-                    $create_resource_response = $this->api->createResource($resource_type_id);
+                    $create_resource_response = $this->api->resourceCreate($resource_type_id);
                     if ($create_resource_response['status'] === 201) {
                         $this->resource_type_id = $resource_type_id;
                         $this->resource_id = $create_resource_response['content']['id'];
@@ -96,12 +96,12 @@ class Controller extends BaseController
                     abort($resources['status'], $resources['content']);
                 }
             } else {
-                $create_resource_type_response = $this->api->createResourceType();
+                $create_resource_type_response = $this->api->resourceTypeCreate();
                 if ($create_resource_type_response['status'] === 201) {
 
                     $this->resource_type_id = $create_resource_type_response['content']['id'];
 
-                    $create_resource_response = $this->api->createResource($this->resource_type_id);
+                    $create_resource_response = $this->api->resourceCreate($this->resource_type_id);
                     if ($create_resource_response['status'] === 201) {
                         $this->resource_id = $create_resource_response['content']['id'];
 
@@ -118,7 +118,7 @@ class Controller extends BaseController
 
     protected function getBudgetItems(): array
     {
-        $response = $this->api->getBudgetItems(
+        $response = $this->api->budgetItems(
             $this->resource_type_id,
             $this->resource_id,
             [

@@ -51,7 +51,7 @@ class DeleteBudgetAccount implements ShouldQueue
             ->where('resource_id', '=', $this->resource_id)
             ->delete();
 
-        $response = $api->requestBudgetAccountDelete($this->resource_type_id);
+        $response = $api->accountRequestAppAccountDelete($this->resource_type_id);
 
         if ($response['status'] !== 201) {
             throw new \Exception($response['content']);

@@ -44,7 +44,7 @@ class Index extends Controller
             return redirect()->route('home');
         }
 
-        $currencies_response = $this->api->getCurrencies();
+        $currencies_response = $this->api->currencies();
         if ($currencies_response['status'] !== 200) {
             abort(404, 'Cannot fetch the currencies from the API');
         }
@@ -83,7 +83,7 @@ class Index extends Controller
             $request->input('currency_id')
         );
 
-        if ($result === true) {
+        if ($result === 201) {
             return redirect()->route('demo', ['loading' => true]);
         }
 
@@ -128,7 +128,7 @@ class Index extends Controller
     {
         $this->bootstrap($request);
 
-        $currencies_response = $this->api->getCurrencies();
+        $currencies_response = $this->api->currencies();
         if ($currencies_response['status'] !== 200) {
             abort(404, 'Cannot fetch the currencies from the API');
         }

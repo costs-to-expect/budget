@@ -59,7 +59,7 @@ class BudgetItem extends Controller
 
         $budget = $this->setUpBudget($request);
 
-        $budget_item = $this->api->getBudgetItem(
+        $budget_item = $this->api->budgetItem(
             $this->resource_type_id,
             $this->resource_id,
             $request->route('item_id')
@@ -144,7 +144,7 @@ class BudgetItem extends Controller
 
         $budget = $this->setUpBudget($request);
 
-        $budget_item = $this->api->getBudgetItem(
+        $budget_item = $this->api->budgetItem(
             $this->resource_type_id,
             $this->resource_id,
             $request->route('item_id')
@@ -233,7 +233,7 @@ class BudgetItem extends Controller
 
         $budget = $this->setUpBudget($request);
 
-        $budget_item = $this->api->getBudgetItem(
+        $budget_item = $this->api->budgetItem(
             $this->resource_type_id,
             $this->resource_id,
             $request->route('item_id')
@@ -470,7 +470,7 @@ class BudgetItem extends Controller
 
         $budget = $this->setUpBudget($request);
 
-        $budget_item = $this->api->getBudgetItem(
+        $budget_item = $this->api->budgetItem(
             $this->resource_type_id,
             $this->resource_id,
             $request->route('item_id')
@@ -659,7 +659,7 @@ class BudgetItem extends Controller
 
         $budget = $this->setUpBudget($request);
 
-        $budget_item = $this->api->getBudgetItem(
+        $budget_item = $this->api->budgetItem(
             $this->resource_type_id,
             $this->resource_id,
             $request->route('item_id')

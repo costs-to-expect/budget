@@ -21,7 +21,7 @@ class CreatePassword extends Action
         array $input
     ): int
     {
-        $post_response = $api->createPassword($input);
+        $post_response = $api->authenticationCreatePassword($input);
 
         if ($post_response['status'] === 204) {
 

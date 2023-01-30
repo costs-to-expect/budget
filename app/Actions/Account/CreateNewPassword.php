@@ -18,7 +18,7 @@ class CreateNewPassword extends Action
         array $input
     ): int
     {
-        $post_response = $api->createNewPassword($input);
+        $post_response = $api->authenticationCreateNewPassword($input);
 
         if ($post_response['status'] === 204) {
             return 204;
