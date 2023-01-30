@@ -14,13 +14,20 @@ abstract class Action
 
     protected array $validation_errors = [];
 
-    public function getValidationErrors(): array
-    {
-        return $this->validation_errors;
-    }
+    protected array $parameters = [];
 
     public function getMessage(): string
     {
         return $this->message;
+    }
+
+    public function getParameters(): array
+    {
+        return $this->parameters;
+    }
+
+    public function getValidationErrors(): array
+    {
+        return $this->validation_errors;
     }
 }

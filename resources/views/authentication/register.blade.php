@@ -83,29 +83,17 @@
 
                     <div class="mt-3 mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" name="name" class="form-control @if($errors !== null && array_key_exists('name', $errors)) is-invalid @endif" id="name" aria-describedby="name-help" required value="{{ old('name') }}" />
+                        <input type="text" name="name" class="form-control <x-validation-error field='name' />" id="name" aria-describedby="name-help" required value="{{ old('name') }}" />
                         <div id="name-help" class="form-text">Please enter a name, <em>any name will do</em>.</div>
-                        @if($errors !== null && array_key_exists('name', $errors))
-                            <div class="invalid-feedback">
-                                @foreach ($errors['name'] as $error)
-                                    {{ $error }}
-                                @endforeach
-                            </div>
-                        @endif
+                        <x-validation-error-message field="name" />
                     </div>
 
                     <div class="mt-3 mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control @if($errors !== null && array_key_exists('email', $errors)) is-invalid @endif" id="email" aria-describedby="email-help" required value="{{ old('email') }}" />
+                        <input type="email" name="email" class="form-control <x-validation-error field='email' />" id="email" aria-describedby="email-help" required value="{{ old('email') }}" />
                         <div id="email-help" class="form-text">Please enter your email address, <em>we will never share
                                 your email address</em>.</div>
-                        @if($errors !== null && array_key_exists('email', $errors))
-                            <div class="invalid-feedback">
-                                @foreach ($errors['email'] as $error)
-                                    {{ $error }}
-                                @endforeach
-                            </div>
-                        @endif
+                        <x-validation-error-message field="email" />
                     </div>
 
                     <div class="mb-3">

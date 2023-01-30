@@ -81,30 +81,18 @@
 
                 <div class="mt-3 mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control @if($errors !== null && array_key_exists('password', $errors)) is-invalid @endif" id="password" aria-describedby="password-help" required value="{{ old('password') }}" />
+                    <input type="password" name="password" class="form-control <x-validation-error field='password' />" id="password" aria-describedby="password-help" required value="{{ old('password') }}" />
                     <div id="password-help" class="form-text">Please enter a password, at least 12 characters please, <em>your password will be hashed</em>.</div>
-                    @if($errors !== null && array_key_exists('password', $errors))
-                        <div class="invalid-feedback">
-                            @foreach ($errors['password'] as $error)
-                                {{ $error }}
-                            @endforeach
-                        </div>
-                    @endif
+                    <x-validation-error-message field="password" />
                 </div>
 
                 <div class="mt-3 mb-3">
                     <label for="password_confirmation" class="form-label">Confirm password</label>
-                    <input type="password" name="password_confirmation" class="form-control @if($errors !== null && array_key_exists('password_confirmation', $errors)) is-invalid @endif" id="password_confirmation" aria-describedby="password_confirmation-help" required value="{{ old('password_confirmation') }}" />
+                    <input type="password" name="password_confirmation" class="form-control <x-validation-error field='password_confirmation' />" id="password_confirmation" aria-describedby="password_confirmation-help" required value="{{ old('password_confirmation') }}" />
                     <div id="password_confirmation-help" class="form-text">Please enter your password again</div>
-                    @if($errors !== null && array_key_exists('password_confirmation', $errors))
-                        <div class="invalid-feedback">
-                            @foreach ($errors['password_confirmation'] as $error)
-                                {{ $error }}
-                            @endforeach
-                        </div>
-                    @endif
+                    <x-validation-error-message field="password_confirmation" />
                 </div>
-                <input type="hidden" name="token" value="{{ old('token', $token) }}" />
+                <input type="hidden" name="encrypted_token" value="{{ old('encrypted_token', $encrypted_token) }}" />
                 <input type="hidden" name="email" value="{{ old('email', $email) }}" />
                 <button type="submit" class="btn btn-primary w-100" title="Set your password">Set Password</button>
             </form>

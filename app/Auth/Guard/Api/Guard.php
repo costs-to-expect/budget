@@ -101,13 +101,8 @@ class Guard implements \Illuminate\Contracts\Auth\Guard
             return true;
         }
 
-        if ($response['status'] === 422) {
-            $this->errors = $response['content']['fields'];
-            return false;
-        }
-
-        if ($response['status'] === 401) {
-            $this->errors = ['email' => [$response['content']]];
+        if ($response['status'] === 422 || $response['status'] === 401) {
+            $this->errors = $response['fields'];
             return false;
         }
 
