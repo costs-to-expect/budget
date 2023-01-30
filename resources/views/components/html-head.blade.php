@@ -7,6 +7,7 @@
         <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
         <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
         <link href="{{ asset('css/theme.css') }}" rel="stylesheet"/>
+        <meta name="google-site-verification" content="G9eO3hWVVzN79hg4ZFI4SYgIFybZbnyOd5DG2WMK2SM" />
         <x-open-graph />
         <x-twitter-card />
         <style>
