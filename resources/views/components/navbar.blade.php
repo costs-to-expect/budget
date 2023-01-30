@@ -4,10 +4,10 @@
         </a>
         <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
             <li class="nav-item px-1">
-                <a class="nav-link py-2 px-1 px-lg-2" href="{{ route('version-compare') }}">Versions</a>
+                <a class="nav-link py-2 px-1 px-lg-2 @if($active === 'versions') active @endif" href="{{ route('version-compare') }}">Versions</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link py-2 px-1 px-lg-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link py-2 px-1 px-lg-2 @if($active === 'budgeting') active @endif dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Budgeting
                 </a>
                 <ul class="dropdown-menu">
@@ -16,7 +16,7 @@
                 </ul>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link py-2 px-1 px-lg-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link py-2 px-1 px-lg-2 @if($active === 'support') active @endif dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Support
                 </a>
                 <ul class="dropdown-menu">
