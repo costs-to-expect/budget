@@ -1,28 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Budget by Costs to Expect - Simplified Budgeting">
-        <meta name="author" content="Dean Blackborough">
-        <title>Budget: Version Compare</title>
-        <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
-        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
-        <link href="{{ asset('css/theme.css') }}" rel="stylesheet"/>
-        <x-open-graph />
-        <x-twitter-card />
-        <style>
-            .container {
-                max-width: 960px;
-            }
-
-            .site-header {
-                background-color: #000000;
-                -webkit-backdrop-filter: saturate(180%) blur(20px);
-                backdrop-filter: saturate(180%) blur(20px);
-            }
-        </style>
-    </head>
+    <x-html-head title="Budget vs Budget Pro" description="How do Budget and Budget Pro, what are the differences between the two versions, check the table to see all the features" />
     <body>
 
         @auth

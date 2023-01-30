@@ -1,24 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Budget by Costs to Expect - Simplified Budgeting">
-        <meta name="author" content="Dean Blackborough">
-        <title>Budget: What is Budgeting?</title>
-        <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
-        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
-        <link href="{{ asset('css/theme.css') }}" rel="stylesheet"/>
-        <x-open-graph />
-        <x-twitter-card />
-        <style>
-            .site-header {
-                background-color: #000000;
-                -webkit-backdrop-filter: saturate(180%) blur(20px);
-                backdrop-filter: saturate(180%) blur(20px);
-            }
-        </style>
-    </head>
+    <x-html-head title="What is Budgeting" description="We explain what Budgeting is and explain some of the terms that get banded about" />
     <body>
 
         @auth

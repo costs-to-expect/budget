@@ -1,28 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Budget by Costs to Expect - Simplified Budgeting">
-        <meta name="author" content="Dean Blackborough">
-        <title>Budget: Add Expense</title>
-        <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
-        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
-        <link href="{{ asset('css/theme.css') }}" rel="stylesheet"/>
-        <x-open-graph />
-        <x-twitter-card />
-        <style>
-            .container {
-                max-width: 960px;
-            }
-
-            .site-header {
-                background-color: #000000;
-                -webkit-backdrop-filter: saturate(180%) blur(20px);
-                backdrop-filter: saturate(180%) blur(20px);
-            }
-        </style>
-    </head>
+    <x-html-head title="Add Expense" description="How do you add an expense budget item to your Budget?" />
     <body>
 
         @auth

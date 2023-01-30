@@ -1,15 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Budget by Costs to Expect - Simplified Budgeting">
-        <meta name="author" content="Dean Blackborough">
-        <title>Budget: Home</title>
-        <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
-        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
-        <link href="{{ asset('css/theme.css') }}" rel="stylesheet"/>
-    </head>
+    <x-html-head title="Your Budget" description="A budgeting tool so easy to use, it’s child play!" />
     <body>
 
         <x-offcanvas active="home"/>
