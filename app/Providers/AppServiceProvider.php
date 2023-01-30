@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Config;
+use App\Api\Service;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,8 +24,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('*', function ($view) {
-            $view->with('config', Config::get('app.config'));
+        $api_status = [];
+
+        $api = new Service();
+        $status = $api->status();
+        if ($status['status'] === 200) {
+            $api_status = $status['content'];
+        }
+
+        view()->composer('*', function ($view) use ($api_status) {
+            $view->with('api_status', $api_status);
         });
     }
 }

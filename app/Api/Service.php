@@ -353,4 +353,18 @@ class Service
             ]
         );
     }
+
+    #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    public function status(): array
+    {
+        $uri = Uri::status();
+
+        $response = $this->http->get($uri['uri']);
+
+        if ($response['status'] === 200) {
+            $this->requests[] = array_merge($uri, ['time' => $response['time']]);
+        }
+
+        return $response;
+    }
 }

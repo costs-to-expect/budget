@@ -24,6 +24,15 @@ class Uri
     }
 
     #[ArrayShape(['uri' => "string", 'name' => "string"])]
+    public static function status(): array
+    {
+        return [
+            'uri' => '/' . self::VERSION . '/status',
+            'name' => 'API Status'
+        ];
+    }
+
+    #[ArrayShape(['uri' => "string", 'name' => "string"])]
     public static function user(): array
     {
         return [
