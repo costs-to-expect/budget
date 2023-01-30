@@ -93,17 +93,45 @@
             </div>
 
                 <div class="col-12 col-lg-7 p-2">
-                    <x-budget
-                        :accounts="$accounts"
-                        :months="$months"
-                        :pagination="$pagination"
-                        :viewEnd="$view_end"
-                        :projection="$projection"
-                        :hasAccounts="$has_accounts"
-                        :hasBudget="$has_budget"
-                        :hasSavingsAccount="$has_savings_account"
-                        :hasPaidItems="$has_paid_items"
-                        :nowVisible="$now_visible" />
+
+                    <div class="budget">
+                        @if ($has_budget === true)
+
+                            @if ($has_accounts)
+                                <x-budget-controls
+                                    :hasSavingsAccount="$has_savings_account"
+                                    :hasPaidItems="$has_paid_items"
+                                    :nowVisible="$now_visible"
+                                />
+                            @endif
+
+                            <x-budget
+                                :months="$months" />
+
+                            <x-budget-expenditure
+                                :months="$months" />
+
+                            <x-budget-ratios
+                                :months="$months" />
+
+                            <x-budget-pagination
+                                :pagination="$pagination" />
+
+                            <x-budget-projections
+                                :accounts="$accounts"
+                                :viewEnd="$view_end"
+                                :projection="$projection" />
+
+                        @else
+                            <x-budget-missing
+                                :hasAccounts="$has_accounts"
+                                :hasSavingsAccount="$has_savings_account"
+                            />
+                        @endif
+
+                        <x-budget-definitions />
+                    </div>
+
                 </div>
             </div>
 

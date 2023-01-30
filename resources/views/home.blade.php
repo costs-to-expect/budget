@@ -63,25 +63,20 @@
 
             <div class="budget">
                 @if ($has_budget === true)
+
+                    @if ($has_accounts)
                     <x-budget-controls
-                        :hasAccounts="$has_accounts"
-                        :hasBudget="$has_budget"
                         :hasSavingsAccount="$has_savings_account"
                         :hasPaidItems="$has_paid_items"
                         :nowVisible="$now_visible"
                     />
+                    @endif
 
                     <x-budget
-                        :accounts="$accounts"
-                        :months="$months"
-                        :pagination="$pagination"
-                        :viewEnd="$view_end"
-                        :projection="$projection"
-                        :hasAccounts="$has_accounts"
-                        :hasBudget="$has_budget"
-                        :hasSavingsAccount="$has_savings_account"
-                        :hasPaidItems="$has_paid_items"
-                        :nowVisible="$now_visible" />
+                        :months="$months" />
+
+                    <x-budget-expenditure
+                        :months="$months" />
 
                     <x-budget-ratios
                         :months="$months" />
