@@ -18,7 +18,7 @@ class UpdateProfile extends Action
         array $input
     ): int
     {
-        $post_response = $api->updateProfile($input);
+        $post_response = $api->authenticationUpdateProfile($input);
 
         if ($post_response['status'] === 204) {
             return $post_response['status'];

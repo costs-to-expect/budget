@@ -18,10 +18,10 @@ class Demo extends Action
         string $resource_id,
         string $bearer_id,
         string $currency_id
-    ): bool
+    ): int
     {
         LoadDemo::dispatch($resource_type_id, $resource_id, $bearer_id, $currency_id);
 
-        return true;
+        return 201;
     }
 }

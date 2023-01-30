@@ -19,7 +19,7 @@ class AdoptDemo extends Action
         string $resource_id,
     ): int
     {
-        $resource_response = $api->getResource($resource_type_id, $resource_id);
+        $resource_response = $api->resource($resource_type_id, $resource_id);
         if ($resource_response['status'] !== 200) {
             $this->message = 'Unable to fetch the resource for your Budget, please try again';
             return $resource_response['status'];
@@ -34,7 +34,7 @@ class AdoptDemo extends Action
             return 500;
         }
 
-        $patch_resource_response = $api->patchResource(
+        $patch_resource_response = $api->resourceUpdate(
             $resource_type_id,
             $resource_id,
             ['data' => $payload]

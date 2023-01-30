@@ -21,7 +21,7 @@ class SetBalances extends Action
         array $input
     ): int
     {
-        $resource = $api->getResource($resource_type_id, $resource_id);
+        $resource = $api->resource($resource_type_id, $resource_id);
         if ($resource['status'] !== 200) {
             $this->message = 'Unable to fetch the resource for your Budget, please try again';
             return $resource['status'];
@@ -59,7 +59,7 @@ class SetBalances extends Action
             abort(500, $e->getMessage());
         }
 
-        $patch_resource_response = $api->patchResource(
+        $patch_resource_response = $api->resourceUpdate(
             $resource_type_id,
             $resource_id,
             ['data' => $data]

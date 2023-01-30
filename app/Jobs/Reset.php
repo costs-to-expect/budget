@@ -51,7 +51,7 @@ class Reset implements ShouldQueue
             ->where('resource_id', '=', $this->resource_id)
             ->delete();
 
-        $response = $api->requestReset(
+        $response = $api->accountRequestAppReset(
             $this->resource_type_id,
             $this->resource_id
         );

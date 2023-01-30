@@ -14,7 +14,7 @@ class Reset
         string $bearer_token,
         string $resource_type_id,
         string $resource_id
-    ): bool
+    ): int
     {
         \App\Jobs\Reset::dispatch(
             $bearer_token,
@@ -22,6 +22,6 @@ class Reset
             $resource_id
         );
 
-        return true;
+        return 201;
     }
 }

@@ -75,7 +75,7 @@ class LoadDemo implements ShouldQueue
 
     private function confirmNoBudgetSetup(Service $api): void
     {
-        $resource = $api->getResource($this->resource_type_id, $this->resource_id);
+        $resource = $api->resource($this->resource_type_id, $this->resource_id);
         if ($resource['status'] !== 200) {
             $this->fail(new \Exception('Unable to fetch the resource, no Budget account'));
         }
@@ -86,7 +86,7 @@ class LoadDemo implements ShouldQueue
             $accounts = $data['accounts'];
         }
 
-        $budget_items_response = $api->getBudgetItems(
+        $budget_items_response = $api->budgetItems(
             $this->resource_type_id,
             $this->resource_id,
             [
@@ -119,7 +119,7 @@ class LoadDemo implements ShouldQueue
     private function createAccounts(Service $api): array
     {
         // Fetch the requested currency
-        $currency_response = $api->getCurrency($this->currency_id);
+        $currency_response = $api->currency($this->currency_id);
         if ($currency_response['status'] !== 200) {
             $this->fail(new \Exception('Unable to fetch the currency, cannot create accounts'));
         }
@@ -164,7 +164,7 @@ class LoadDemo implements ShouldQueue
             $this->fail($e);
         }
 
-        $patch_resource_response = $api->patchResource(
+        $patch_resource_response = $api->resourceUpdate(
             $this->resource_type_id,
             $this->resource_id,
             ['data' => $data]
@@ -397,7 +397,7 @@ class LoadDemo implements ShouldQueue
 
         foreach ($budget_items as $budget_item_payload)
         {
-            $create_budget_item_response = $api->createBudgetItem(
+            $create_budget_item_response = $api->budgetItemCreate(
                 $this->resource_type_id,
                 $this->resource_id,
                 $budget_item_payload
@@ -439,7 +439,7 @@ class LoadDemo implements ShouldQueue
 
     private function setDemoFlag(Service $api): void
     {
-        $resource_response = $api->getResource($this->resource_type_id, $this->resource_id);
+        $resource_response = $api->resource($this->resource_type_id, $this->resource_id);
         if ($resource_response['status'] !== 200) {
             $this->fail(new \Exception('Unable to fetch the resource from the API'));
         }
@@ -452,7 +452,7 @@ class LoadDemo implements ShouldQueue
             $this->fail($e);
         }
 
-        $patch_resource_response = $api->patchResource(
+        $patch_resource_response = $api->resourceUpdate(
             $this->resource_type_id,
             $this->resource_id,
             ['data' => $payload]

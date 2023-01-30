@@ -15,7 +15,7 @@ class Uri
     private const VERSION = 'v3';
 
     #[ArrayShape(['uri' => "string", 'name' => "string"])]
-    public static function authSignIn(): array
+    public static function signIn(): array
     {
         return [
             'uri' => '/' . self::VERSION . '/auth/login',
@@ -24,7 +24,7 @@ class Uri
     }
 
     #[ArrayShape(['uri' => "string", 'name' => "string"])]
-    public static function authUser(): array
+    public static function user(): array
     {
         return [
             'uri' => '/' . self::VERSION . '/auth/user',
