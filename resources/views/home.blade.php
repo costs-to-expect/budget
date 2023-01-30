@@ -61,17 +61,48 @@
             </div>
             @endif
 
-            <x-budget
-                :accounts="$accounts"
-                :months="$months"
-                :pagination="$pagination"
-                :viewEnd="$view_end"
-                :projection="$projection"
-                :hasAccounts="$has_accounts"
-                :hasBudget="$has_budget"
-                :hasSavingsAccount="$has_savings_account"
-                :hasPaidItems="$has_paid_items"
-                :nowVisible="$now_visible" />
+            <div class="budget">
+                @if ($has_budget === true)
+                    <x-budget-controls
+                        :hasAccounts="$has_accounts"
+                        :hasBudget="$has_budget"
+                        :hasSavingsAccount="$has_savings_account"
+                        :hasPaidItems="$has_paid_items"
+                        :nowVisible="$now_visible"
+                    />
+
+                    <x-budget
+                        :accounts="$accounts"
+                        :months="$months"
+                        :pagination="$pagination"
+                        :viewEnd="$view_end"
+                        :projection="$projection"
+                        :hasAccounts="$has_accounts"
+                        :hasBudget="$has_budget"
+                        :hasSavingsAccount="$has_savings_account"
+                        :hasPaidItems="$has_paid_items"
+                        :nowVisible="$now_visible" />
+
+                    <x-budget-ratios
+                        :months="$months" />
+
+                    <x-budget-pagination
+                        :pagination="$pagination" />
+
+                    <x-budget-projections
+                        :accounts="$accounts"
+                        :viewEnd="$view_end"
+                        :projection="$projection" />
+
+                @else
+                    <x-budget-missing
+                        :hasAccounts="$has_accounts"
+                        :hasSavingsAccount="$has_savings_account"
+                    />
+                @endif
+
+                <x-budget-definitions />
+            </div>
 
             <x-help />
 
