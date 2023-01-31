@@ -35,7 +35,7 @@ class Controller extends BaseController
 
     protected Service $api;
 
-    protected $timezone;
+    protected \DateTimeZone $timezone;
 
     protected array $budget_items = [];
 
