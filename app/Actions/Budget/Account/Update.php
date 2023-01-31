@@ -7,6 +7,7 @@ use App\Actions\Action;
 use App\Api\Service;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use JsonException;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -80,7 +81,7 @@ class Update extends Action
 
         try {
             $data = json_encode($data, JSON_THROW_ON_ERROR);
-        } catch (\JsonException $e) {
+        } catch (JsonException $e) {
             abort(500, $e->getMessage());
         }
 

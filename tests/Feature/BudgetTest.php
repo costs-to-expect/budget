@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Service\Budget\Service;
+use App\Service\Budget\Settings;
 use DateTimeImmutable;
-use DateTimeZone;
 use Illuminate\Foundation\Testing\WithFaker;
 use LengthException;
 use Tests\TestCase;
@@ -15,7 +15,7 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonths(): void
     {
-        $service = new Service(new DateTimeZone('UTC'));
+        $service = new Service();
         $service->create();
 
         $this->assertCount(3, $service->months());
@@ -23,9 +23,9 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonthsWhenStartDateSet(): void
     {
-        $service = new Service(new DateTimeZone('UTC'));
+        $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-08-01", app(Settings::class)->dateTimeZone())
         );
         $service->create();
 
@@ -34,9 +34,9 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonthsWithYearWrap(): void
     {
-        $service = new Service(new DateTimeZone('UTC'));
+        $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-11-01", new DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-11-01", app(Settings::class)->dateTimeZone())
         );
         $service->create();
 
@@ -46,9 +46,9 @@ class BudgetTest extends TestCase
 
         $this->assertCount(3, $service->months());
 
-        $service = new Service(new DateTimeZone('UTC'));
+        $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-12-01", new DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-12-01", app(Settings::class)->dateTimeZone())
         );
         $service->create();
 
@@ -61,9 +61,9 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonthsPagintionOneMonth(): void
     {
-        $service = new Service(new DateTimeZone('UTC'));
+        $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-12-01", new DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-12-01", app(Settings::class)->dateTimeZone())
         );
         $service->setPagination(1, 2021);
         $service->create();
@@ -78,9 +78,9 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonthsPaginationWrapsFutureYear(): void
     {
-        $service = new Service(new DateTimeZone('UTC'));
+        $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-12-01", new DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-12-01", app(Settings::class)->dateTimeZone())
         );
         $service->setPagination(1, 2022);
         $service->create();
@@ -95,9 +95,9 @@ class BudgetTest extends TestCase
 
     public function testVewEndDate(): void
     {
-        $service = new Service(new DateTimeZone('UTC'));
+        $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-08-01", app(Settings::class)->dateTimeZone())
         );
         $service->create();
 
@@ -107,9 +107,9 @@ class BudgetTest extends TestCase
 
     public function testVewEndDateWithPagination(): void
     {
-        $service = new Service(new DateTimeZone('UTC'));
+        $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-08-01", new DateTimeZone('UTC'))
+            new DateTimeImmutable("2020-08-01", app(Settings::class)->dateTimeZone())
         );
         $service->setPagination(2, 2021);
         $service->create();
@@ -120,7 +120,7 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonthsVisibility(): void
     {
-        $service = new Service(new DateTimeZone('UTC'));
+        $service = new Service();
         $service->create();
 
         $this->assertCount(3, $service->months());
@@ -132,9 +132,9 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonthsVisibilityWithPagination(): void
     {
-        $service = new Service(new DateTimeZone('UTC'));
+        $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2022-08-01", new DateTimeZone('UTC'))
+            new DateTimeImmutable("2022-08-01", app(Settings::class)->dateTimeZone())
         );
         $service->setPagination(10, 2022);
         $service->create();
@@ -150,7 +150,7 @@ class BudgetTest extends TestCase
 
     public function testAccountCreated(): void
     {
-        $service = new Service(new DateTimeZone('UTC'));
+        $service = new Service();
         $service->setAccounts([
             [
                 'currency' => [
@@ -209,7 +209,7 @@ class BudgetTest extends TestCase
             'balance' => 1254.36,
         ];
 
-        $service = new Service(new DateTimeZone('UTC'));
+        $service = new Service();
         $service->setAccounts([$account_1, $account_2, $account_3]);
         $service->create();
 
@@ -267,7 +267,7 @@ class BudgetTest extends TestCase
             'balance' => 1254.36,
         ];
 
-        $service = new Service(new DateTimeZone('UTC'));
+        $service = new Service();
 
         $this->expectException(LengthException::class);
         $service->setAccounts([$account_1, $account_2, $account_3, $account_4]);
@@ -290,7 +290,7 @@ class BudgetTest extends TestCase
             'balance' => 1254.36,
         ];
 
-        $service = new Service(new DateTimeZone('UTC'));
+        $service = new Service();
         $service->setAccounts([$account]);
         $service->create();
 
@@ -300,9 +300,9 @@ class BudgetTest extends TestCase
 
     public function testGeneratedMonthsWhenViewingThePast(): void
     {
-        $service = new Service(new DateTimeZone('UTC'));
+        $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2022-08-01", new DateTimeZone('UTC'))
+            new DateTimeImmutable("2022-08-01", app(Settings::class)->dateTimeZone())
         );
         $service->setPagination(5, 2021);
         $service->create();

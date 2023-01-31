@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Api;
 
+use GuzzleHttp\TransferStats;
 use Illuminate\Support\Facades\Config;
 use JetBrains\PhpStorm\ArrayShape;
 
@@ -22,14 +23,14 @@ class Http
         if ($bearer === null) {
             $this->client = \Illuminate\Support\Facades\Http::withHeaders($this->defaultHeaders())
                 ->withOptions(
-                    ['on_stats' => function (\GuzzleHttp\TransferStats $stats) {
+                    ['on_stats' => function (TransferStats $stats) {
                         $this->stats[] = $stats->getTransferTime();
                     }]
                 );
         } else {
             $this->client = \Illuminate\Support\Facades\Http::withToken($bearer)
                 ->withOptions(
-                    ['on_stats' => function (\GuzzleHttp\TransferStats $stats) {
+                    ['on_stats' => function (TransferStats $stats) {
                         $this->stats[] = $stats->getTransferTime();
                     }]
                 )

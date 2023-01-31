@@ -35,8 +35,6 @@ class Controller extends BaseController
 
     protected Service $api;
 
-    protected \DateTimeZone $timezone;
-
     protected array $budget_items = [];
 
     public function __construct()
@@ -44,7 +42,6 @@ class Controller extends BaseController
         $this->config = Config::get('app.config');
         $this->item_type_id = $this->config['item_type_id'];
         $this->item_subtype_id = $this->config['item_subtype_id'];
-        $this->timezone = new \DateTimeZone(Config::get('app.config.timezone'));
     }
 
     protected function bootstrap(Request $request)
@@ -137,7 +134,7 @@ class Controller extends BaseController
     {
         $this->budget_items = $this->getBudgetItems();
 
-        $budget = new \App\Service\Budget\Service($this->timezone);
+        $budget = new \App\Service\Budget\Service();
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
         }

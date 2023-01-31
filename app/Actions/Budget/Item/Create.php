@@ -6,7 +6,9 @@ namespace App\Actions\Budget\Item;
 use App\Actions\Action;
 use App\Actions\Helper;
 use App\Api\Service;
-use DateTimeZone;
+use App\Service\Budget\Settings;
+use DateTimeImmutable;
+use JsonException;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -17,7 +19,6 @@ class Create extends Action
 {
     public function __invoke(
         Service $api,
-        DateTimeZone $timezone,
         string $resource_type_id,
         string $resource_id,
         array $input
@@ -57,17 +58,17 @@ class Create extends Action
             return 422;
         }
 
-        $frequency = Helper::createFrequencyArray($input, $timezone);
+        $frequency = Helper::createFrequencyArray($input);
 
         if ($frequency['type'] === 'one-off') {
-            $start_date = new \DateTimeImmutable($input['start_date'], $timezone);
+            $start_date = new DateTimeImmutable($input['start_date'], app(Settings::class)->dateTimeZone());
             $end_date = $start_date->modify('first day of next month')->setTime(7, 1);
             $input['end_date'] = $end_date->format('Y-m-d');
         }
 
         try {
             $frequency_json = json_encode($frequency, JSON_THROW_ON_ERROR);
-        } catch(\JsonException $e) {
+        } catch(JsonException $e) {
             $this->validation_errors['frequency_option']['errors'] = [
                 'The frequency settings could not be encoded to JSON, please try again'
             ];

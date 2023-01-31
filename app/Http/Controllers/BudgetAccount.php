@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Actions\Budget\Account\Create;
 use App\Actions\Budget\Account\SetBalances;
 use App\Actions\Budget\Account\Update;
+use App\Service\Budget\Settings;
 use Illuminate\Http\Request;
 
 /**
@@ -37,7 +38,7 @@ class BudgetAccount extends Controller
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
 
-                'max_accounts' => $budget->maxAccounts(),
+                'max_accounts' => app(Settings::class)->maxAccounts(),
 
                 'requests' => $this->api->requests(),
 
@@ -96,7 +97,7 @@ class BudgetAccount extends Controller
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
 
-                'max_accounts' => $budget->maxAccounts(),
+                'max_accounts' => app(Settings::class)->maxAccounts(),
 
                 'requests' => $this->api->requests(),
             ]
@@ -160,7 +161,7 @@ class BudgetAccount extends Controller
 
                 'account' => $accounts[$account_id],
 
-                'max_accounts' => $budget->maxAccounts(),
+                'max_accounts' => app(Settings::class)->maxAccounts(),
 
                 'requests' => $this->api->requests(),
             ]

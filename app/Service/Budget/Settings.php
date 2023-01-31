@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Budget;
 
+use DateTimeZone;
 use Illuminate\Support\Facades\Config;
 
 /**
@@ -13,14 +14,14 @@ use Illuminate\Support\Facades\Config;
  */
 class Settings
 {
-    private \DateTimeZone $dateTimeZone;
+    private DateTimeZone $dateTimeZone;
 
     public function __construct()
     {
-        $this->dateTimeZone = new \DateTimeZone(Config::get('app.config.timezone'));
+        $this->dateTimeZone = new DateTimeZone(Config::get('app.config.timezone'));
     }
 
-    public function dateTimeZone(): \DateTimeZone
+    public function dateTimeZone(): DateTimeZone
     {
         return $this->dateTimeZone;
     }

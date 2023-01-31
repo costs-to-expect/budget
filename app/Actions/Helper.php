@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
-use DateTimeZone;
+use App\Service\Budget\Settings;
+use DateTimeImmutable;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -12,7 +13,7 @@ use DateTimeZone;
  */
 class Helper
 {
-    public static function createFrequencyArray($input, DateTimeZone $timezone): array
+    public static function createFrequencyArray($input): array
     {
         $frequency = [ 'type' => $input['frequency_option'] ];
         if ($frequency['type'] === 'monthly') {
@@ -40,7 +41,7 @@ class Helper
         }
 
         if ($frequency['type'] === 'one-off') {
-            $start_date = new \DateTimeImmutable($input['start_date'], $timezone);
+            $start_date = new DateTimeImmutable($input['start_date'], app(Settings::class)->dateTimeZone());
             $frequency['day'] = null;
             $frequency['month'] = (int) $start_date->format('n');
             $frequency['year'] = (int) $start_date->format('Y');

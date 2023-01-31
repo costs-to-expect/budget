@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Actions\Account\CreateNewPassword;
+use App\Actions\Account\CreatePassword;
+use App\Actions\Account\ForgotPassword;
 use App\Actions\Account\Register;
 use App\Actions\Account\SignIn;
 use App\Api\Service;
@@ -46,7 +49,7 @@ class Authentication extends Controller
     {
         $api = new Service();
 
-        $action = new \App\Actions\Account\CreateNewPassword();
+        $action = new CreateNewPassword();
         $result = $action(
             $api,
             $request->only(['encrypted_token', 'email', 'password', 'password_confirmation'])
@@ -95,7 +98,7 @@ class Authentication extends Controller
     {
         $api = new Service();
 
-        $action = new \App\Actions\Account\CreatePassword();
+        $action = new CreatePassword();
         $result = $action(
             $api,
             $request->only(['token', 'email', 'password', 'password_confirmation'])
@@ -130,7 +133,7 @@ class Authentication extends Controller
     {
         $api = new Service();
 
-        $action = new \App\Actions\Account\ForgotPassword();
+        $action = new ForgotPassword();
         $result = $action($api,$request->only(['email']));
 
         if ($result === 201) {

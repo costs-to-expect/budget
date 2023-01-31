@@ -8,6 +8,7 @@ use App\Api\Service;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use JsonException;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -104,7 +105,7 @@ class Start extends Action
 
         try {
             $payload = json_encode($payload, JSON_THROW_ON_ERROR);
-        } catch (\JsonException $e) {
+        } catch (JsonException $e) {
             abort(500, $e->getMessage());
         }
 

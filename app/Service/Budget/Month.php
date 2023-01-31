@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Service\Budget;
 
 use DateTimeImmutable;
-use DateTimeZone;
+use Exception;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -14,16 +14,17 @@ use DateTimeZone;
  */
 class Month
 {
-    private \DateTimeImmutable $date;
+    private DateTimeImmutable $date;
 
     /** @var Item[] */
     private array $items = [];
 
+    private Settings $settings;
+
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(
-        private readonly DateTimeZone $timezone,
         private readonly int $month,
         private readonly int $year,
         private readonly array $currency,
@@ -32,7 +33,9 @@ class Month
         private readonly bool $future = true
     )
     {
-        $this->date = new DateTimeImmutable("{$this->year}-{$this->month}-01", $this->timezone);
+        $this->settings = app(Settings::class);
+
+        $this->date = new DateTimeImmutable("{$this->year}-{$this->month}-01", $this->settings->dateTimeZone());
     }
 
     public function add(Item $item): void

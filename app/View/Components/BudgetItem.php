@@ -2,7 +2,8 @@
 
 namespace App\View\Components;
 
-use Illuminate\Support\Facades\Config;
+use App\Service\Budget\Settings;
+use DateTimeImmutable;
 use Illuminate\View\Component;
 
 class BudgetItem extends Component
@@ -33,8 +34,10 @@ class BudgetItem extends Component
         $this->now_month = $nowMonth;
         $this->adjusted_amount = $adjustedAmount;
 
-        $this->item['start_date'] = new \DateTimeImmutable($this->item['start_date'], new \DateTimeZone(Config::get('app.config.timezone')));
-        $this->item['end_date'] = ($this->item['end_date'] !== null) ? new \DateTimeImmutable($this->item['end_date'], new \DateTimeZone(Config::get('app.config.timezone'))) : null;
+        $timezone = app(Settings::class)->dateTimeZone();
+
+        $this->item['start_date'] = new DateTimeImmutable($this->item['start_date'], $timezone);
+        $this->item['end_date'] = ($this->item['end_date'] !== null) ? new DateTimeImmutable($this->item['end_date'], $timezone) : null;
         if (
             $this->item['frequency']['type'] === 'monthly' &&
             is_array($this->item['frequency']['exclusions']) &&

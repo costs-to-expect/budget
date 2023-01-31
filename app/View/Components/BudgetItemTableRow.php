@@ -2,7 +2,8 @@
 
 namespace App\View\Components;
 
-use Illuminate\Support\Facades\Config;
+use App\Service\Budget\Settings;
+use DateTimeImmutable;
 use Illuminate\View\Component;
 
 class BudgetItemTableRow extends Component
@@ -19,8 +20,10 @@ class BudgetItemTableRow extends Component
         $this->year = $year;
         $this->month = $month;
 
-        $this->item['start_date'] = new \DateTimeImmutable($this->item['start_date'], new \DateTimeZone(Config::get('app.config.timezone')));
-        $this->item['end_date'] = ($this->item['end_date'] !== null) ? new \DateTimeImmutable($this->item['end_date'], new \DateTimeZone(Config::get('app.config.timezone'))) : null;
+        $timezone = app(Settings::class)->dateTimeZone();
+
+        $this->item['start_date'] = new DateTimeImmutable($this->item['start_date'], $timezone);
+        $this->item['end_date'] = ($this->item['end_date'] !== null) ? new DateTimeImmutable($this->item['end_date'], $timezone) : null;
         if (
             $this->item['frequency']['type'] === 'monthly' &&
             is_array($this->item['frequency']['exclusions']) &&
@@ -34,7 +37,7 @@ class BudgetItemTableRow extends Component
         if ($this->item['disabled'] === true) {
             $this->item['status'] = 'Disabled';
         }
-        if ($this->item['end_date'] !== null && $this->item['end_date'] < new \DateTimeImmutable('now', new \DateTimeZone(Config::get('app.config.timezone')))) {
+        if ($this->item['end_date'] !== null && $this->item['end_date'] < new DateTimeImmutable('now', $timezone)) {
             $this->item['status'] = 'Deleted/Expired';
         }
 

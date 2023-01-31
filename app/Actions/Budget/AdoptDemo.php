@@ -5,6 +5,7 @@ namespace App\Actions\Budget;
 
 use App\Actions\Action;
 use App\Api\Service;
+use JsonException;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -29,7 +30,7 @@ class AdoptDemo extends Action
         unset($data['demo']);
         try {
             $payload = json_encode($data, JSON_THROW_ON_ERROR);
-        } catch (\JsonException $e) {
+        } catch (JsonException $e) {
             $this->message = $e->getMessage();
             return 500;
         }
