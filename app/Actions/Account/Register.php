@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Actions\Account;
 
 use App\Actions\Action;
-use App\Api\Service;
+use App\Service\Api\Service;
 use App\Models\PartialRegistration;
 use App\Notifications\CreatePassword;
 use Illuminate\Support\Facades\Notification;

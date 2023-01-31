@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Api\Service;
+use App\Service\Api\Service;
 use App\Models\AdjustedBudgetItem;
 use App\Models\PaidBudgetItem;
 use App\Notifications\Exception;

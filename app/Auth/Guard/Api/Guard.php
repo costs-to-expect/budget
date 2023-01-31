@@ -2,7 +2,7 @@
 
 namespace App\Auth\Guard\Api;
 
-use App\Api\Service;
+use App\Service\Api\Service;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -73,7 +73,7 @@ class Guard implements \Illuminate\Contracts\Auth\Guard
 
     public function validate(array $credentials = [], bool $remember_me = false): bool
     {
-        $api = new Service($this->request->cookie($this->config['cookie_bearer']));
+        $api = app(Service::class);
 
         $response = $api->authenticationSignIn(
             $credentials['email'],

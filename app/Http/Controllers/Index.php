@@ -18,7 +18,7 @@ class Index extends Controller
 {
     public function adoptDemoProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new AdoptDemo();
         $result = $action(
@@ -37,7 +37,7 @@ class Index extends Controller
 
     public function demo(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $budget = $this->setUpBudget($request);
         if ($budget->hasAccounts() === true || $budget->hasBudget() === true) {
@@ -92,7 +92,7 @@ class Index extends Controller
 
     public function home(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $budget = $this->setUpBudget($request);
 
@@ -126,7 +126,7 @@ class Index extends Controller
 
     public function start(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $currencies_response = $this->api->currencies();
         if ($currencies_response['status'] !== 200) {
@@ -158,7 +158,7 @@ class Index extends Controller
 
     public function startProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new Start();
         $result = $action(
@@ -185,7 +185,7 @@ class Index extends Controller
 
     public function isDemoLoaded(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         return response()->json(['demo' => $this->demo]);
     }

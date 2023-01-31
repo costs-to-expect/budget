@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Api\Service;
+use App\Service\Api\Service;
 use App\Models\AdjustedBudgetItem;
 use App\Models\PaidBudgetItem;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -44,9 +44,9 @@ class Controller extends BaseController
         $this->item_subtype_id = $this->config['item_subtype_id'];
     }
 
-    protected function bootstrap(Request $request)
+    protected function bootstrap()
     {
-        $this->api = new Service($request->cookie($this->config['cookie_bearer']));
+        $this->api = app(Service::class);
 
         $resource_types = $this->api->resourceTypes(['item-type' => $this->item_type_id]);
 

@@ -8,7 +8,7 @@ use App\Actions\Account\CreatePassword;
 use App\Actions\Account\ForgotPassword;
 use App\Actions\Account\Register;
 use App\Actions\Account\SignIn;
-use App\Api\Service;
+use App\Service\Api\Service;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

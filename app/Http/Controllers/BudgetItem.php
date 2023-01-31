@@ -27,7 +27,7 @@ class BudgetItem extends Controller
 {
     public function adjustProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new Adjust();
         $result = $action(
@@ -56,7 +56,7 @@ class BudgetItem extends Controller
 
     public function confirmDelete(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $budget = $this->setUpBudget($request);
 
@@ -111,7 +111,7 @@ class BudgetItem extends Controller
 
     public function confirmDeleteProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new Delete();
         $result = $action(
@@ -140,7 +140,7 @@ class BudgetItem extends Controller
 
     public function confirmDisable(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $budget = $this->setUpBudget($request);
 
@@ -195,7 +195,7 @@ class BudgetItem extends Controller
 
     public function confirmDisableProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new Disable();
         $result = $action(
@@ -229,7 +229,7 @@ class BudgetItem extends Controller
 
     public function confirmEnable(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $budget = $this->setUpBudget($request);
 
@@ -284,7 +284,7 @@ class BudgetItem extends Controller
 
     public function confirmEnableProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new Enable();
         $result = $action(
@@ -318,7 +318,7 @@ class BudgetItem extends Controller
 
     private function create(Request $request, string $view)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $budget = $this->setUpBudget($request);
 
@@ -364,7 +364,7 @@ class BudgetItem extends Controller
 
     public function createExpenseProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new Create();
         $result = $action(
@@ -397,7 +397,7 @@ class BudgetItem extends Controller
 
     public function createIncomeProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new Create();
         $result = $action(
@@ -430,7 +430,7 @@ class BudgetItem extends Controller
 
     public function createSavingProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new Create();
         $result = $action(
@@ -463,7 +463,7 @@ class BudgetItem extends Controller
 
     public function index(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $budget = $this->setUpBudget($request);
 
@@ -532,7 +532,7 @@ class BudgetItem extends Controller
 
     public function list(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $budget = $this->setUpBudget($request);
 
@@ -553,7 +553,7 @@ class BudgetItem extends Controller
 
     public function resetProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new Reset();
         $result = $action(
@@ -581,7 +581,7 @@ class BudgetItem extends Controller
 
     public function restoreProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new Restore();
         $result = $action(
@@ -602,7 +602,7 @@ class BudgetItem extends Controller
 
     public function setAsNotPaidProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new SetAsNotPaid();
         $result = $action(
@@ -627,7 +627,7 @@ class BudgetItem extends Controller
 
     public function setAsPaidProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new SetAsPaid();
         $result = $action(
@@ -652,7 +652,7 @@ class BudgetItem extends Controller
 
     public function update(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $budget = $this->setUpBudget($request);
 
@@ -698,7 +698,7 @@ class BudgetItem extends Controller
 
     public function updateProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new Update();
         $result = $action(

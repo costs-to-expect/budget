@@ -18,7 +18,7 @@ class BudgetAccount extends Controller
 {
     public function create(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $budget = $this->setUpBudget($request);
 
@@ -49,7 +49,7 @@ class BudgetAccount extends Controller
 
     public function createProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new Create();
         $result = $action(
@@ -76,7 +76,7 @@ class BudgetAccount extends Controller
 
     public function setBalances(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $budget = $this->setUpBudget($request);
 
@@ -106,7 +106,7 @@ class BudgetAccount extends Controller
 
     public function setBalancesProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new SetBalances();
         $result = $action(
@@ -133,7 +133,7 @@ class BudgetAccount extends Controller
 
     public function update(Request $request, $account_id)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $budget = $this->setUpBudget($request);
 
@@ -170,7 +170,7 @@ class BudgetAccount extends Controller
 
     public function updateProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new Update();
         $result = $action(

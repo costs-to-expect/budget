@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Actions\Budget;
 
 use App\Actions\Action;
-use App\Api\Service;
+use App\Service\Api\Service;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;

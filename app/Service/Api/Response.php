@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Api;
+namespace App\Service\Api;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>

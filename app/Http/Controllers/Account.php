@@ -20,7 +20,7 @@ class Account extends Controller
 {
     public function changePassword(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $user = $this->api->authenticationUser();
 
@@ -38,7 +38,7 @@ class Account extends Controller
 
     public function changePasswordProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new ChangePassword();
         $result = $action(
@@ -63,7 +63,7 @@ class Account extends Controller
 
     public function index(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $user = $this->api->authenticationUser();
 
@@ -84,7 +84,7 @@ class Account extends Controller
 
     public function reset(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $user = $this->api->authenticationUser();
 
@@ -104,7 +104,7 @@ class Account extends Controller
 
     public function resetProcess(Request $request, Reset $action)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $user = $this->api->authenticationUser();
 
@@ -127,7 +127,7 @@ class Account extends Controller
 
     public function deleteAccount(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $user = $this->api->authenticationUser();
 
@@ -147,7 +147,7 @@ class Account extends Controller
 
     public function deleteAccountProcess(Request $request, DeleteAccount $action)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $user = $this->api->authenticationUser();
 
@@ -170,7 +170,7 @@ class Account extends Controller
 
     public function deleteBudgetAccount(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $user = $this->api->authenticationUser();
 
@@ -190,7 +190,7 @@ class Account extends Controller
 
     public function deleteBudgetAccountProcess(Request $request, DeleteBudgetAccount $action)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $user = $this->api->authenticationUser();
 
@@ -213,7 +213,7 @@ class Account extends Controller
 
     public function updateProfile(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $user = $this->api->authenticationUser();
 
@@ -231,7 +231,7 @@ class Account extends Controller
 
     public function updateProfileProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new UpdateProfile();
         $result = $action(
