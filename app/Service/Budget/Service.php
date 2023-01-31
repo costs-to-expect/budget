@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Service\Budget;
 
+use App\Models\AdjustedBudgetItem;
+use App\Models\PaidBudgetItem;
 use DateInterval;
 use DateTimeImmutable;
 use Exception;
+use Illuminate\Http\Request;
 use LengthException;
 use RuntimeException;
 
@@ -61,6 +64,47 @@ class Service
 
         $this->now_year = (int) $this->start_date->format('Y');
         $this->now_month = (int) $this->start_date->format('n');
+    }
+
+    public function init(Request $request, $resource_id, $budget_items, $accounts): Service
+    {
+        if ($request->query('month') !== null && $request->query('year') !== null) {
+            $this->setPagination((int) $request->query('month'), (int) $request->query('year'));
+        }
+
+        if (
+            $request->route('item_id') !== null &&
+            $request->query('item-month') !== null &&
+            $request->query('item-year') !== null
+        ) {
+            $this->setSelected(
+                $request->route('item_id'),
+                (int) $request->query('item-month'),
+                (int) $request->query('item-year')
+            );
+        }
+
+        $this->setAccounts($accounts)
+            ->create();
+
+        $paid_budget_items = (new PaidBudgetItem())->getPaidBudgetItems(
+            $resource_id,
+            $this->nowYear(),
+            $this->nowMonth()
+        );
+
+        $adjustments = (new AdjustedBudgetItem())->getAdjustments($resource_id);
+
+        $this->setPaidBudgetItems($paid_budget_items);
+        $this->setAdjustments($adjustments);
+
+        foreach ($budget_items as $budget_item) {
+            $this->addItem($budget_item);
+        }
+
+        $this->assignItemsToBudget();
+
+        return $this;
     }
 
     public function setNow(DateTimeImmutable $start_date): Service

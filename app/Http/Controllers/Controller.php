@@ -134,7 +134,23 @@ class Controller extends BaseController
     {
         $this->budget_items = $this->getBudgetItems();
 
+        /**
+         * @var \App\Service\Budget\Service $budget
+         */
+        $budget = app(\App\Service\Budget\Service::class);
+
+        $budget->init(
+            $request,
+            $this->resource_id,
+            $this->budget_items,
+            $this->accounts
+        );
+
+        return $budget;
+
+/*
         $budget = new \App\Service\Budget\Service();
+
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
         }
@@ -171,6 +187,6 @@ class Controller extends BaseController
 
         $budget->assignItemsToBudget();
 
-        return $budget;
+        return $budget;*/
     }
 }
