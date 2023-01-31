@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Api\Service;
+use App\Service\Api\Service;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,10 +26,12 @@ class AppServiceProvider extends ServiceProvider
     {
         $api_status = [];
 
-        $api = new Service();
-        $status = $api->status();
-        if ($status['status'] === 200) {
-            $api_status = $status['content'];
+        if (app()->environment('local')) {
+            $api = new Service();
+            $status = $api->status();
+            if ($status['status'] === 200) {
+                $api_status = $status['content'];
+            }
         }
 
         view()->composer('*', function ($view) use ($api_status) {

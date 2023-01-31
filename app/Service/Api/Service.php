@@ -1,8 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Api;
+namespace App\Service\Api;
 
+use App\Service\Api\Http;
+use App\Service\Api\Uri;
 use Illuminate\Support\Facades\Config;
 use JetBrains\PhpStorm\ArrayShape;
 

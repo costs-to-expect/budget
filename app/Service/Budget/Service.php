@@ -6,9 +6,10 @@ namespace App\Service\Budget;
 
 use DateInterval;
 use DateTimeImmutable;
-use DateTimeZone;
 use Exception;
+use Illuminate\Http\Request;
 use LengthException;
+use RuntimeException;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -35,7 +36,6 @@ class Service
     private bool $projection = true;
 
     private array $currency;
-    private array $default_currency;
 
     private int $now_month;
     private int $now_year;
@@ -51,23 +51,56 @@ class Service
 
     private bool $now_visible = false;
 
-    private DateTimeZone $timezone;
+    private Settings $settings;
 
-    public function __construct(DateTimeZone $timezone)
+    public function __construct()
     {
-        $this->timezone = $timezone;
+        $this->settings = app(Settings::class);
 
-        $this->start_date = (new DateTimeImmutable('first day of this month', $this->timezone))->setTime(7, 1);
-        $this->view_start_date = (new DateTimeImmutable('first day of this month', $this->timezone))->setTime(7, 1);
+        $this->start_date = (new DateTimeImmutable('first day of this month', $this->settings->dateTimeZone()))->setTime(7, 1);
+        $this->view_start_date = (new DateTimeImmutable('first day of this month', $this->settings->dateTimeZone()))->setTime(7, 1);
 
         $this->now_year = (int) $this->start_date->format('Y');
         $this->now_month = (int) $this->start_date->format('n');
+    }
 
-        $this->default_currency = [
-            'id' => 'epMqeYqPkL',
-            'code' => 'GBP',
-            'name' => 'Sterling'
-        ];
+    public function init(
+        Request $request,
+        $budget_items,
+        $accounts,
+        $paid_budget_items,
+        $adjustments
+    ): Service
+    {
+        if ($request->query('month') !== null && $request->query('year') !== null) {
+            $this->setPagination((int) $request->query('month'), (int) $request->query('year'));
+        }
+
+        if (
+            $request->route('item_id') !== null &&
+            $request->query('item-month') !== null &&
+            $request->query('item-year') !== null
+        ) {
+            $this->setSelected(
+                $request->route('item_id'),
+                (int) $request->query('item-month'),
+                (int) $request->query('item-year')
+            );
+        }
+
+        $this->setAccounts($accounts)
+            ->create();
+
+        $this->setPaidBudgetItems($paid_budget_items);
+        $this->setAdjustments($adjustments);
+
+        foreach ($budget_items as $budget_item) {
+            $this->addItem($budget_item);
+        }
+
+        $this->assignItemsToBudget();
+
+        return $this;
     }
 
     public function setNow(DateTimeImmutable $start_date): Service
@@ -85,7 +118,7 @@ class Service
     {
         $this->view_start_date = (new DateTimeImmutable(
             "{$year}-{$month}-01",
-            $this->timezone
+            $this->settings->dateTimeZone()
         ))->setTime(7, 1);
 
         return $this;
@@ -98,7 +131,7 @@ class Service
         return $this;
     }
 
-    public function setSelected(string $item, int $month, int $year): Service
+    protected function setSelected(string $item, int $month, int $year): Service
     {
         $this->selected = [
             'item' => $item,
@@ -114,8 +147,8 @@ class Service
      */
     public function setAccounts(array $accounts): Service
     {
-        if (count($accounts) > $this->maxAccounts()) {
-            throw new LengthException('Too many accounts, the limit is ' . $this->maxAccounts());
+        if (count($accounts) > $this->settings->maxAccounts()) {
+            throw new LengthException('Too many accounts, the limit is ' . $this->settings->maxAccounts());
         }
 
         foreach ($accounts as $account) {
@@ -136,7 +169,7 @@ class Service
         }
 
         if (isset($this->currency) === false) {
-            $this->currency = $this->default_currency;
+            $this->currency = $this->settings->defaultCurrency();
         }
 
         return $this;
@@ -149,19 +182,12 @@ class Service
         return $this;
     }
 
-    public function setCurrency(array $currency): Service
-    {
-        $this->currency = $currency;
-
-        return $this;
-    }
-
     public function create(): void
     {
         $this->setUpMonths();
     }
 
-    private function setUpMonths(): void
+    protected function setUpMonths(): void
     {
         $date_diff = date_diff($this->start_date, $this->view_start_date);
 
@@ -177,7 +203,6 @@ class Service
                 $month_int = (int)$next->format('n');
 
                 $this->months[$year_int . '-' . $month_int] = new Month(
-                    $this->timezone,
                     $month_int,
                     $year_int,
                     $this->currency(),
@@ -207,12 +232,11 @@ class Service
                 if ($i === 2) {
                     $this->projection = false; // We are not projecting as there are three past months on display
                     $this->view_end_date = (new DateTimeImmutable(
-                        "{$year_int}-{$month_int}-01", $this->timezone
+                        "{$year_int}-{$month_int}-01", $this->settings->dateTimeZone()
                     ))->setTime(7, 1);
                 }
 
                 $this->months[$year_int . '-' . $month_int] = new Month(
-                    $this->timezone,
                     $month_int,
                     $year_int,
                     $this->currency(),
@@ -227,7 +251,7 @@ class Service
             }
         }
 
-        for ($i = 0; $i < $this->numberOfVisibleMonths() - $added_to_view_start_date; $i++) {
+        for ($i = 0; $i < $this->settings->visibleMonths() - $added_to_view_start_date; $i++) {
             $months_to_add = $i + $added_to_view_start_date;
 
             $next = $this->view_start_date->add(new DateInterval("P{$months_to_add}M"));
@@ -236,11 +260,10 @@ class Service
             $month_int = (int)$next->format('n');
 
             $this->view_end_date = (new DateTimeImmutable(
-                "{$year_int}-{$month_int}-01", $this->timezone
+                "{$year_int}-{$month_int}-01", $this->settings->dateTimeZone()
             ))->setTime(7, 1);
 
             $this->months[$year_int . '-' . $month_int] = new Month(
-                $this->timezone,
                 $month_int,
                 $year_int,
                 $this->currency(),
@@ -274,33 +297,13 @@ class Service
         return count($this->budget_items);
     }
 
-    public function numberOfVisibleMonths(): int
-    {
-        return 3;
-    }
-
     public function currency(): array
     {
         if (isset($this->currency) === false) {
-            return $this->default_currency;
+            return $this->settings->defaultCurrency();
         }
 
         return $this->currency;
-    }
-
-    public function currencyId(): string
-    {
-        return $this->currency['id'];
-    }
-
-    public function currencyCode(): string
-    {
-        return $this->currency['code'];
-    }
-
-    public function currencyName(): string
-    {
-        return $this->currency['name'];
     }
 
     public function hasAccounts(): bool
@@ -336,8 +339,8 @@ class Service
 
     public function addItem(array $data): bool
     {
-        if (count($this->budget_items) > $this->maxItems()) {
-            throw new LengthException('Too many items, the limit is ' . $this->maxItems());
+        if (count($this->budget_items) > $this->settings->maxItems()) {
+            throw new LengthException('Too many items, the limit is ' . $this->settings->maxItems());
         }
 
         try {
@@ -348,10 +351,10 @@ class Service
                         'account_color' => $this->account($data['account'])->color(),
                         'account_name' => $this->account($data['account'])->name()
                     ]
-                ), $this->timezone
+                )
             );
         } catch (Exception $e) {
-            throw new \RuntimeException('Unable to add item to budget service: ' . $e->getMessage());
+            throw new RuntimeException('Unable to add item to budget service: ' . $e->getMessage());
         }
 
         return true;
@@ -394,16 +397,6 @@ class Service
             'month' => $this->view_end_date->format('F'),
             'year' => (int)$this->view_end_date->format('Y')
         ];
-    }
-
-    public function maxItems(): int
-    {
-        return 100;
-    }
-
-    public function maxAccounts(): int
-    {
-        return 3;
     }
 
     public function months(): array

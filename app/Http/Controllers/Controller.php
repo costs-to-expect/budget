@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Api\Service;
+use App\Service\Api\Service;
 use App\Models\AdjustedBudgetItem;
 use App\Models\PaidBudgetItem;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -35,8 +35,6 @@ class Controller extends BaseController
 
     protected Service $api;
 
-    protected $timezone;
-
     protected array $budget_items = [];
 
     public function __construct()
@@ -44,12 +42,11 @@ class Controller extends BaseController
         $this->config = Config::get('app.config');
         $this->item_type_id = $this->config['item_type_id'];
         $this->item_subtype_id = $this->config['item_subtype_id'];
-        $this->timezone = new \DateTimeZone(Config::get('app.config.timezone'));
     }
 
-    protected function bootstrap(Request $request)
+    protected function bootstrap()
     {
-        $this->api = new Service($request->cookie($this->config['cookie_bearer']));
+        $this->api = app(Service::class);
 
         $resource_types = $this->api->resourceTypes(['item-type' => $this->item_type_id]);
 
@@ -137,25 +134,10 @@ class Controller extends BaseController
     {
         $this->budget_items = $this->getBudgetItems();
 
-        $budget = new \App\Service\Budget\Service($this->timezone);
-        if ($request->query('month') !== null && $request->query('year') !== null) {
-            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
-        }
-
-        if (
-            $request->route('item_id') !== null &&
-            $request->query('item-month') !== null &&
-            $request->query('item-year') !== null
-        ) {
-            $budget->setSelected(
-                $request->route('item_id'),
-                (int) $request->query('item-month'),
-                (int) $request->query('item-year')
-            );
-        }
-
-        $budget->setAccounts($this->accounts)
-            ->create();
+        /**
+         * @var \App\Service\Budget\Service $budget
+         */
+        $budget = app(\App\Service\Budget\Service::class);
 
         $paid_budget_items = (new PaidBudgetItem())->getPaidBudgetItems(
             $this->resource_id,
@@ -165,14 +147,13 @@ class Controller extends BaseController
 
         $adjustments = (new AdjustedBudgetItem())->getAdjustments($this->resource_id);
 
-        $budget->setPaidBudgetItems($paid_budget_items);
-        $budget->setAdjustments($adjustments);
-
-        foreach ($this->budget_items as $budget_item) {
-            $budget->addItem($budget_item);
-        }
-
-        $budget->assignItemsToBudget();
+        $budget->init(
+            $request,
+            $this->budget_items,
+            $this->accounts,
+            $paid_budget_items,
+            $adjustments
+        );
 
         return $budget;
     }

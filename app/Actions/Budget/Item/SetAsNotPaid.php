@@ -5,6 +5,7 @@ namespace App\Actions\Budget\Item;
 
 use App\Actions\Action;
 use App\Models\PaidBudgetItem;
+use Exception;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -29,7 +30,7 @@ class SetAsNotPaid extends Action
                 ->delete();
 
             return 204;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->message = $e->getMessage();
 
             return 500;

@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Actions\Budget\Account\Create;
 use App\Actions\Budget\Account\SetBalances;
 use App\Actions\Budget\Account\Update;
+use App\Service\Budget\Settings;
 use Illuminate\Http\Request;
 
 /**
@@ -17,7 +18,7 @@ class BudgetAccount extends Controller
 {
     public function create(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $budget = $this->setUpBudget($request);
 
@@ -37,7 +38,7 @@ class BudgetAccount extends Controller
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
 
-                'max_accounts' => $budget->maxAccounts(),
+                'max_accounts' => app(Settings::class)->maxAccounts(),
 
                 'requests' => $this->api->requests(),
 
@@ -48,7 +49,7 @@ class BudgetAccount extends Controller
 
     public function createProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new Create();
         $result = $action(
@@ -75,7 +76,7 @@ class BudgetAccount extends Controller
 
     public function setBalances(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $budget = $this->setUpBudget($request);
 
@@ -96,7 +97,7 @@ class BudgetAccount extends Controller
                 'view_end' => $budget->viewEndPeriod(),
                 'projection' => $budget->projection(),
 
-                'max_accounts' => $budget->maxAccounts(),
+                'max_accounts' => app(Settings::class)->maxAccounts(),
 
                 'requests' => $this->api->requests(),
             ]
@@ -105,7 +106,7 @@ class BudgetAccount extends Controller
 
     public function setBalancesProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new SetBalances();
         $result = $action(
@@ -132,7 +133,7 @@ class BudgetAccount extends Controller
 
     public function update(Request $request, $account_id)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $budget = $this->setUpBudget($request);
 
@@ -160,7 +161,7 @@ class BudgetAccount extends Controller
 
                 'account' => $accounts[$account_id],
 
-                'max_accounts' => $budget->maxAccounts(),
+                'max_accounts' => app(Settings::class)->maxAccounts(),
 
                 'requests' => $this->api->requests(),
             ]
@@ -169,7 +170,7 @@ class BudgetAccount extends Controller
 
     public function updateProcess(Request $request)
     {
-        $this->bootstrap($request);
+        $this->bootstrap();
 
         $action = new Update();
         $result = $action(

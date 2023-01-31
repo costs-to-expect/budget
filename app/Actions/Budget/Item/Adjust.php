@@ -5,6 +5,7 @@ namespace App\Actions\Budget\Item;
 
 use App\Actions\Action;
 use App\Models\AdjustedBudgetItem;
+use Exception;
 use Illuminate\Support\Facades\Validator;
 
 /**
@@ -57,7 +58,7 @@ class Adjust extends Action
             $model->save();
 
             return 201;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->message = $e->getMessage();
 
             echo $e->getMessage(); die;

@@ -9,7 +9,7 @@ use App\Service\Budget\Frequency\Monthly;
 use App\Service\Budget\Frequency\OneOff;
 use App\Service\Budget\Frequency\Period;
 use DateTimeImmutable;
-use DateTimeZone;
+use Exception;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -46,14 +46,14 @@ class Item
 
     protected bool $has_adjustment = false;
 
-    protected DateTimeZone $timezone;
+    protected Settings $settings;
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
-    public function __construct(array $data, DateTimeZone $timezone)
+    public function __construct(array $data)
     {
-        $this->timezone = $timezone;
+        $this->settings = app(Settings::class);
 
         $this->id = $data['id'];
 
@@ -62,11 +62,11 @@ class Item
         $this->account_name = $data['account_name'];
         $this->target_account = $data['target_account'];
 
-        $this->today = new \DateTimeImmutable('today', $this->timezone);
+        $this->today = new DateTimeImmutable('today', $this->settings->dateTimeZone());
 
-        $this->start_date = new \DateTimeImmutable($data['start_date'], $this->timezone);
+        $this->start_date = new DateTimeImmutable($data['start_date'], $this->settings->dateTimeZone());
         if ($data['end_date'] !== null) {
-            $this->end_date = new \DateTimeImmutable($data['end_date'], $this->timezone);
+            $this->end_date = new DateTimeImmutable($data['end_date'], $this->settings->dateTimeZone());
         }
 
         $this->name = $data['name'];
@@ -140,8 +140,8 @@ class Item
 
     private function activeForMonthAnnualItem(int $days, int $month, int $year): bool
     {
-        $start_of_active_month = new DateTimeImmutable("{$year}-{$month}-01", $this->timezone);
-        $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", $this->timezone);
+        $start_of_active_month = new DateTimeImmutable("{$year}-{$month}-01", $this->settings->dateTimeZone());
+        $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", $this->settings->dateTimeZone());
 
         return (
             $this->frequency()->month() === $month &&
@@ -161,7 +161,7 @@ class Item
 
     private function activeForOneOffItem(int $days, int $month, int $year): bool
     {
-        $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", $this->timezone);
+        $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", $this->settings->dateTimeZone());
 
         return (
             $this->frequency()->month() === $month &&
@@ -172,8 +172,8 @@ class Item
 
     private function activeForMonthMonthlyItem(int $days, int $month, int $year): bool
     {
-        $start_of_active_month = new DateTimeImmutable("{$year}-{$month}-01", $this->timezone);
-        $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", $this->timezone);
+        $start_of_active_month = new DateTimeImmutable("{$year}-{$month}-01", $this->settings->dateTimeZone());
+        $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", $this->settings->dateTimeZone());
 
         return (
             in_array($month, $this->frequency()->exclusions(), true) === false &&

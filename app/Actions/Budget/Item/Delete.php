@@ -4,10 +4,11 @@ declare(strict_types=1);
 namespace App\Actions\Budget\Item;
 
 use App\Actions\Action;
-use App\Api\Service;
+use App\Service\Api\Service;
 use App\Models\AdjustedBudgetItem;
 use App\Models\PaidBudgetItem;
-use DateTimeZone;
+use App\Service\Budget\Settings;
+use DateTimeImmutable;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -18,7 +19,6 @@ class Delete extends Action
 {
     public function __invoke(
         Service $api,
-        DateTimeZone $timezone,
         string $resource_type_id,
         string $resource_id,
         string $item_id,
@@ -37,7 +37,7 @@ class Delete extends Action
                 $resource_id,
                 $item_id,
                 [
-                    'end_date' => (new \DateTimeImmutable('yesterday', $timezone))->format('Y-m-d')
+                    'end_date' => (new DateTimeImmutable('yesterday', app(Settings::class)->dateTimeZone()))->format('Y-m-d')
                 ]
             );
 

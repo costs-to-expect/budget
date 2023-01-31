@@ -17,4 +17,7 @@
             <directory suffix=".php">tests/</directory>
         </testsuite>
     </testsuites>
+    <php>
+        <server name="APP_ENV" value="testing"/>
+    </php>
 </phpunit>

@@ -2,10 +2,12 @@
 
 namespace App\Jobs;
 
-use App\Api\Service;
+use App\Service\Api\Service;
 use App\Models\AdjustedBudgetItem;
 use App\Models\PaidBudgetItem;
 use App\Notifications\Exception;
+use App\Service\Budget\Settings;
+use DateTime;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -15,6 +17,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
+use JsonException;
 use Throwable;
 
 /**
@@ -33,6 +36,8 @@ class LoadDemo implements ShouldQueue
     private array $currency;
     private array $period;
 
+    private Settings $settings;
+
     public function __construct(
         string $resource_type_id,
         string $resource_id,
@@ -40,6 +45,8 @@ class LoadDemo implements ShouldQueue
         string $currency_id
     )
     {
+        $this->settings = app(Settings::class);
+
         $this->resource_type_id = $resource_type_id;
         $this->resource_id = $resource_id;
         $this->bearer = $bearer;
@@ -100,7 +107,7 @@ class LoadDemo implements ShouldQueue
 
         $budget_items = $budget_items_response['content'];
 
-        $budget = new \App\Service\Budget\Service(new \DateTimeZone(Config::get('app.config.timezone')));
+        $budget = new \App\Service\Budget\Service();
         $budget
             ->setAccounts($accounts)
             ->create();
@@ -160,7 +167,7 @@ class LoadDemo implements ShouldQueue
 
         try {
             $data = json_encode($payload, JSON_THROW_ON_ERROR);
-        } catch (\JsonException $e) {
+        } catch (JsonException $e) {
             $this->fail($e);
         }
 
@@ -186,7 +193,7 @@ class LoadDemo implements ShouldQueue
         ];
         try {
             $monthly_frequency_json = json_encode($monthly_frequency, JSON_THROW_ON_ERROR);
-        } catch(\JsonException $e) {
+        } catch(JsonException $e) {
             $this->fail($e);
         }
 
@@ -197,7 +204,7 @@ class LoadDemo implements ShouldQueue
         ];
         try {
             $frequency_council_tax_json = json_encode($frequency_council_tax, JSON_THROW_ON_ERROR);
-        } catch(\JsonException $e) {
+        } catch(JsonException $e) {
             $this->fail($e);
         }
 
@@ -208,7 +215,7 @@ class LoadDemo implements ShouldQueue
         ];
         try {
             $frequency_car_insurance_json = json_encode($frequency_car_insurance, JSON_THROW_ON_ERROR);
-        } catch(\JsonException $e) {
+        } catch(JsonException $e) {
             $this->fail($e);
         }
 
@@ -219,7 +226,7 @@ class LoadDemo implements ShouldQueue
         ];
         try {
             $frequency_water_json = json_encode($frequency_water, JSON_THROW_ON_ERROR);
-        } catch(\JsonException $e) {
+        } catch(JsonException $e) {
             $this->fail($e);
         }
 
@@ -231,7 +238,7 @@ class LoadDemo implements ShouldQueue
         ];
         try {
             $frequency_one_off_json = json_encode($frequency_one_off, JSON_THROW_ON_ERROR);
-        } catch(\JsonException $e) {
+        } catch(JsonException $e) {
             $this->fail($e);
         }
 
@@ -448,7 +455,7 @@ class LoadDemo implements ShouldQueue
         $data['demo'] = true;
         try {
             $payload = json_encode($data, JSON_THROW_ON_ERROR);
-        } catch (\JsonException $e) {
+        } catch (JsonException $e) {
             $this->fail($e);
         }
 
@@ -465,8 +472,7 @@ class LoadDemo implements ShouldQueue
 
     private function calculatePeriod(): array
     {
-        $timezone = new \DateTimeZone(Config::get('app.config.timezone'));
-        $this_month = (new \DateTime('first day of this month', $timezone))->setTime(7, 1);
+        $this_month = (new DateTime('first day of this month', $this->settings->dateTimeZone()))->setTime(7, 1);
 
         $year = $this_month->format('Y');
         $month = $this_month->format('m');

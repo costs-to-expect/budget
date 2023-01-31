@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Api\Service;
+use App\Service\Api\Service;
 use App\Notifications\Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
