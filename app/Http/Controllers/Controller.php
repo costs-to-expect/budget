@@ -139,37 +139,6 @@ class Controller extends BaseController
          */
         $budget = app(\App\Service\Budget\Service::class);
 
-        $budget->init(
-            $request,
-            $this->resource_id,
-            $this->budget_items,
-            $this->accounts
-        );
-
-        return $budget;
-
-/*
-        $budget = new \App\Service\Budget\Service();
-
-        if ($request->query('month') !== null && $request->query('year') !== null) {
-            $budget->setPagination((int) $request->query('month'), (int) $request->query('year'));
-        }
-
-        if (
-            $request->route('item_id') !== null &&
-            $request->query('item-month') !== null &&
-            $request->query('item-year') !== null
-        ) {
-            $budget->setSelected(
-                $request->route('item_id'),
-                (int) $request->query('item-month'),
-                (int) $request->query('item-year')
-            );
-        }
-
-        $budget->setAccounts($this->accounts)
-            ->create();
-
         $paid_budget_items = (new PaidBudgetItem())->getPaidBudgetItems(
             $this->resource_id,
             $budget->nowYear(),
@@ -178,15 +147,14 @@ class Controller extends BaseController
 
         $adjustments = (new AdjustedBudgetItem())->getAdjustments($this->resource_id);
 
-        $budget->setPaidBudgetItems($paid_budget_items);
-        $budget->setAdjustments($adjustments);
+        $budget->init(
+            $request,
+            $this->budget_items,
+            $this->accounts,
+            $paid_budget_items,
+            $adjustments
+        );
 
-        foreach ($this->budget_items as $budget_item) {
-            $budget->addItem($budget_item);
-        }
-
-        $budget->assignItemsToBudget();
-
-        return $budget;*/
+        return $budget;
     }
 }

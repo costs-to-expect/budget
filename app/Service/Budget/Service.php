@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Service\Budget;
 
-use App\Models\AdjustedBudgetItem;
-use App\Models\PaidBudgetItem;
 use DateInterval;
 use DateTimeImmutable;
 use Exception;
@@ -66,7 +64,13 @@ class Service
         $this->now_month = (int) $this->start_date->format('n');
     }
 
-    public function init(Request $request, $resource_id, $budget_items, $accounts): Service
+    public function init(
+        Request $request,
+        $budget_items,
+        $accounts,
+        $paid_budget_items,
+        $adjustments
+    ): Service
     {
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $this->setPagination((int) $request->query('month'), (int) $request->query('year'));
@@ -86,14 +90,6 @@ class Service
 
         $this->setAccounts($accounts)
             ->create();
-
-        $paid_budget_items = (new PaidBudgetItem())->getPaidBudgetItems(
-            $resource_id,
-            $this->nowYear(),
-            $this->nowMonth()
-        );
-
-        $adjustments = (new AdjustedBudgetItem())->getAdjustments($resource_id);
 
         $this->setPaidBudgetItems($paid_budget_items);
         $this->setAdjustments($adjustments);
@@ -135,7 +131,7 @@ class Service
         return $this;
     }
 
-    public function setSelected(string $item, int $month, int $year): Service
+    protected function setSelected(string $item, int $month, int $year): Service
     {
         $this->selected = [
             'item' => $item,
@@ -186,19 +182,12 @@ class Service
         return $this;
     }
 
-    public function setCurrency(array $currency): Service
-    {
-        $this->currency = $currency;
-
-        return $this;
-    }
-
     public function create(): void
     {
         $this->setUpMonths();
     }
 
-    private function setUpMonths(): void
+    protected function setUpMonths(): void
     {
         $date_diff = date_diff($this->start_date, $this->view_start_date);
 
@@ -315,21 +304,6 @@ class Service
         }
 
         return $this->currency;
-    }
-
-    public function currencyId(): string
-    {
-        return $this->currency['id'];
-    }
-
-    public function currencyCode(): string
-    {
-        return $this->currency['code'];
-    }
-
-    public function currencyName(): string
-    {
-        return $this->currency['name'];
     }
 
     public function hasAccounts(): bool

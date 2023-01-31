@@ -10,17 +10,12 @@ class BudgetProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->bind(Settings::class, function() {
+        $this->app->singleton(Settings::class, function() {
             return new Settings();
         });
 
-        $this->app->bind(Service::class, function() {
+        $this->app->singleton(Service::class, function() {
             return new Service();
         });
-    }
-
-    public function boot()
-    {
-        //
     }
 }
