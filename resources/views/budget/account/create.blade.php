@@ -118,6 +118,7 @@
 
                             @if ($has_accounts)
                                 <x-budget-controls
+                                    :accounts="$accounts"
                                     :hasSavingsAccount="$has_savings_account"
                                     :hasPaidItems="$has_paid_items"
                                     :nowVisible="$now_visible"

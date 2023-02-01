@@ -349,7 +349,8 @@ class Service
                     $data,
                     [
                         'account_color' => $this->account($data['account'])->color(),
-                        'account_name' => $this->account($data['account'])->name()
+                        'account_name' => $this->account($data['account'])->name(),
+                        'account_id' => $this->account($data['account'])->id()
                     ]
                 )
             );
