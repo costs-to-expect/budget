@@ -17,14 +17,14 @@
         <div class="col-lg-8 mx-auto p-3">
 
             <main>
-                <h2 class="display-4">Delete Budget Account</h2>
+                <h2 class="display-5">Delete Budget Account</h2>
 
                 <p class="lead">This will delete your Budget account and all the data within it. If you are
                     using any of our other Apps, those Apps will not be affected.</p>
 
-                <h3 class="display-6">Data that will be deleted</h3>
+                <h4>Data that will be permanently deleted</h4>
 
-                <p>All the data listed in the following table will be deleted.</p>
+                <p>We will instantly delete all the data listed in the following table.</p>
 
                 <div class="table-responsive">
                     <table class="table table-sm">
@@ -55,9 +55,9 @@
                     </table>
                 </div>
 
-                <h3 class="display-6">Data that will be not deleted</h3>
+                <h4>Data that will be not deleted</h4>
 
-                <p>All the data listed in the following table will remain.</p>
+                <p>We will not touch any of the data detailed in the following table.</p>
 
                 <div class="table-responsive">
                     <table class="table table-sm">

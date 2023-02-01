@@ -14,78 +14,80 @@
 
         <x-offcanvas active="home"/>
 
-        <div class="col-lg-10 col-xl-9 mx-auto p-3">
+        <div class="col-lg-8 col-xl-6 mx-auto p-3">
+
             <div class="col-12 mx-auto p-2">
+                <h2 class="display-5 mt-3 mb-3">Let's Begin</h2>
 
-                <div class="alert alert-dark mt-2" role="alert">
-                    <h4 class="alert-heading">Let's Begin</h4>
-                    <p class="lead">
-                        Setting up your Budget is simple. Start by inputting an account and the balance.</p>
-                    <p class="lead">When this is complete you can start creating your Budget.</p>
+                <p class="lead">
+                    Setting up your Budget is simple. Start by inputting an account and the balance.
+                </p>
 
-                    <form action="{{ route('start.process') }}" method="POST" class="row g-2">
+                <p class="lead">When this is complete you can start creating your Budget.</p>
 
-                        @csrf
+                <form action="{{ route('start.process') }}" method="POST" class="row g-2">
 
-                        <div class="col-12 col-md-6">
-                            <label for="name" class="form-label">Name *</label>
-                            <input type="text" class="form-control form-control-sm @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required="required" placeholder="Debit">
-                            <input type="hidden" name="type" value="expense" />
-                            @error('name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                    @csrf
+
+                    <div class="col-12 col-md-6">
+                        <label for="name" class="form-label">Account Name *</label>
+                        <input type="text" class="form-control form-control-sm @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required="required" placeholder="Debit">
+                        <input type="hidden" name="type" value="expense" />
+                        @error('name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
                         </div>
-                        <div class="col-12">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control form-control-sm @error('description') is-invalid @enderror" id="description" name="description" placeholder="An optional description of the account">{{ old('description') }}</textarea>
-                            @error('description')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                        @enderror
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="description" class="form-label">Account Description</label>
+                        <input type="text" class="form-control form-control-sm @error('description') is-invalid @enderror" id="description" name="description" value="{{ old('description') }}" placeholder="An optional description of the account">
+                        @error('description')
+                        <div class="invalid-feedback">
+                            {{ $message }}
                         </div>
-                        <div class="col-4">
-                            <label for="currency_id" class="form-label">Currency *</label>
-                            <select id="currency_id" name="currency_id" class="form-select form-select-sm @error('currency_id') is-invalid @enderror" required="required">
-                                @foreach ($currencies as $__currency)
-                                    <option value="{{ $__currency['id'] }}" @if (old('currency_id') !== null && old('currency_id') === $__currency['id']) selected="selected" @endif>{{ $__currency['code'] }} - <x-currency :currency="$__currency" /></option>
-                                @endforeach
-                            </select>
-                            @error('currency_id')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                        @enderror
+                    </div>
+                    <div class="col-6">
+                        <label for="currency_id" class="form-label">Currency *</label>
+                        <select id="currency_id" name="currency_id" class="form-select form-select-sm @error('currency_id') is-invalid @enderror" required="required">
+                            @foreach ($currencies as $__currency)
+                                <option value="{{ $__currency['id'] }}" @if (old('currency_id') !== null && old('currency_id') === $__currency['id']) selected="selected" @endif>{{ $__currency['code'] }} - <x-currency :currency="$__currency" /></option>
+                            @endforeach
+                        </select>
+                        @error('currency_id')
+                        <div class="invalid-feedback">
+                            {{ $message }}
                         </div>
-                        <div class="col-4">
-                            <label for="balance" class="form-label">Balance *</label>
-                            <input type="number" class="form-control form-control-sm @error('balance') is-invalid @enderror to-fixed" id="balance" name="balance" required="required" placeholder="10.99" min="0" step="0.01" value="{{ old('balance') }}" data-points="2">
-                            @error('balance')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                        @enderror
+                    </div>
+                    <div class="col-6">
+                        <label for="balance" class="form-label">Balance *</label>
+                        <input type="number" class="form-control form-control-sm @error('balance') is-invalid @enderror to-fixed" id="balance" name="balance" required="required" placeholder="10.99" min="0" step="0.01" value="{{ old('balance') }}" data-points="2">
+                        @error('balance')
+                        <div class="invalid-feedback">
+                            {{ $message }}
                         </div>
-                        <div class="col-4 col-md-4">
-                            <label for="color" class="form-label">Colour *</label>
-                            <input type="color" class="form-control form-control-sm form-control-color" id="color" name="color" value="{{ old('color', $color) }}" title="Choose a colour for the account">
-                            @error('color')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                        @enderror
+                    </div>
+                    <div class="col-12">
+                        <label for="color" class="form-label">Account Colour *</label>
+                        <input type="color" class="form-control form-control-sm form-control-color" id="color" name="color" value="{{ old('color', $color) }}" title="Choose a colour for the account">
+                        <div id="email-help" class="form-text">Set a colour to help you identify expenses relating to this account on your Budget, this can be changed later.</div>
+                        @error('color')
+                        <div class="invalid-feedback">
+                            {{ $message }}
                         </div>
-                        <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
-                        <div class="col-12 mt-3">
-                            <button type="submit" class="btn btn-sm btn-primary" title="Create my budget">
-                                Save
-                            </button>
-                            <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary" title="Cancel, don't create budget">Cancel</a>
-                        </div>
-                    </form>
-                </div>
+                        @enderror
+                    </div>
+                    <div class="col-12 text-muted small">Fields marked with an asterisk * are required.</div>
+                    <div class="col-12 mt-3">
+                        <button type="submit" class="btn btn-sm btn-primary" title="Create my budget">
+                            Save
+                        </button>
+                        <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary" title="Cancel, don't create budget">Cancel</a>
+                    </div>
+                </form>
             </div>
 
             <x-help />

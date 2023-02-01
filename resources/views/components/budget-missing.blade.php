@@ -10,7 +10,7 @@
                 <p class="lead">If you would like to see how everything works, select "Load Demo", We will
                     create a Demo Budget in your currency of choice and you can explore how our Apps works.</p>
 
-                <p class="lead">When you are comfortable, you can adopt the demo or reset your account and start afresh.</p>
+                <p class="lead mb-0">When you are comfortable, you can adopt the demo or reset your account and start afresh.</p>
             @else
                 <h4 class="alert-heading">Start Building Your Budget!</h4>
                 <p class="lead">
@@ -20,7 +20,7 @@
 
                 <h4 class="alert-heading">Savings?</h4>
 
-                <p class="lead">If you want to project your savings, you will need to add a savings account.</p>
+                <p class="lead mb-0">If you want to project your savings, you will need to add a savings account.</p>
             @endif
         </div>
         <p class="mb-0">
@@ -38,12 +38,12 @@
                     Income
                 </a>
                 @if($has_savings_account)
-                    <a class="btn btn-sm btn-outline-primary @if(Route::is('budget.item.create-saving')) active @endif" href="{{ route('budget.item.create-saving') }}" title="Add a new saving budget item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-                        </svg>
-                        Saving
-                    </a>
+                <a class="btn btn-sm btn-outline-primary @if(Route::is('budget.item.create-saving')) active @endif" href="{{ route('budget.item.create-saving') }}" title="Add a new saving budget item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                    </svg>
+                    Saving
+                </a>
                 @endif
 
                 <a class="btn btn-sm btn-outline-primary @if(Route::is('budget.account.create')) active @endif" href="{{ route('budget.account.create') }}" title="Add a new account">

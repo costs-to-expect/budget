@@ -17,17 +17,17 @@
         <div class="col-lg-8 mx-auto p-3">
 
             <main>
-                 <h2 class="display-4">Reset Budget</h2>
+                 <h2 class="display-5">Reset Budget</h2>
 
                 <p class="lead">If you reset your account, the Budget you have created and any related data
-                    will be removed. Use this if you want to start afresh.</p>
+                    will be permanently deleted. Use this if you want to start afresh.</p>
 
                 <p class="lead">If you have been playing with your demo, the reset options allows you to
                     start again.</p>
 
-                <h3 class="display-6">Data that will be deleted</h3>
+                <h4>Data that will be permanently deleted</h4>
 
-                <p>All the data listed in the following table will be deleted.</p>
+                <p>We will instantly delete all the data listed in the following table.</p>
 
                 <div class="table-responsive">
                     <table class="table table-sm">
@@ -53,9 +53,9 @@
                     </table>
                 </div>
 
-                <h3 class="display-6">Data that will be not deleted</h3>
+                <h4>Data that will be not deleted</h4>
 
-                <p>All the data listed in the following table will remain.</p>
+                <p>We will not touch any of the data detailed in the following table.</p>
 
                 <div class="table-responsive">
                     <table class="table table-sm">
