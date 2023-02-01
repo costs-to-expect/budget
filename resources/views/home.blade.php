@@ -22,24 +22,23 @@
                         <p class="lead">This demo is specific to you. When you are ready click the
                             "Adopt Demo" button to take ownership of this Budget.</p>
 
-                        <p class="lead">Alternatively, you can start afresh by using the "Reset App" option, this will
+                        <p class="lead mb-0">Alternatively, you can start afresh by using the "Reset App" option, this will
                             return the App to the state it was when you first signed in.</p>
 
-                        <hr />
-
-                        <form action="{{ route('demo.adopt.process') }}" method="POST" class="row g-2">
-                            @csrf
-                            <div class="col-12 mt-3">
-                                <button type="submit" class="btn btn-sm btn-primary" title="Take ownership of the demo budget">
-                                    Adopt Demo
-                                </button>
-
-                                <a class="btn btn-sm btn-outline-primary" href="{{ route('account.reset') }}" title="Reset the App">
-                                    Reset App
-                                </a>
-                            </div>
-                        </form>
                     </div>
+
+                    <form action="{{ route('demo.adopt.process') }}" method="POST" class="row g-2">
+                        @csrf
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-sm btn-primary" title="Take ownership of the demo budget">
+                                Adopt Demo
+                            </button>
+
+                            <a class="btn btn-sm btn-outline-primary" href="{{ route('account.reset') }}" title="Reset the App">
+                                Reset App
+                            </a>
+                        </div>
+                    </form>
                 </div>
             </div>
             @endif

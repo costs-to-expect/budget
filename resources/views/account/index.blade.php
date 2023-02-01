@@ -17,15 +17,18 @@
         <div class="col-lg-8 mx-auto p-3">
 
             <main>
-                <h2 class="display-4 mt-3 mb-3">Your Account</h2>
+                <h2 class="display-5 mt-3 mb-3">Account Overview</h2>
 
-                <p class="lead">You can manage your account below, this includes resetting your Budget,
-                    deleting your data and account and updating your username and email address.
+                <p class="lead">From here you can update and manage your account. If you need to
+                    update your profile or set a new password, check below, if you want to delete your
+                    account or reset the App, check the relevant section below, <em>you have full control over
+                    your data</em>.
                 </p>
 
-                <h2 class="display-5">User</h2>
+                <h3>Profile & Password</h3>
 
-                <p class="lead">Update your name, email and password using the options below.</p>
+                <p class="lead">Change your name or email using the "Update Profile" button, if you
+                    want or need to set a new password, use the "Change Password" button.</p>
 
                 @if ($status === 'password-changed')
                     <div class="alert alert-dark alert-dismissible fade show" role="alert">
@@ -60,14 +63,14 @@
                     </li>
                 </ul>
 
-                <h2 class="display-5">Reset Budget</h2>
+                <h3 class="mt-5">Reset Budget</h3>
 
-                <p class="lead">If you reset your account, the Budget you have created and any related data
-                    will be removed. Use this if you want to start afresh.</p>
+                <p class="lead">You can reset your Budget account using the option below. All data related to
+                    Budget will be permanently deleted, use this if you want to start afresh.</p>
 
-                <h3 class="display-6">Data that will be deleted</h3>
+                <h4>Data that will be permanently deleted</h4>
 
-                <p>All the data listed in the following table will be deleted.</p>
+                <p>We will instantly delete all the data listed in the following table.</p>
 
                 <div class="table-responsive">
                     <table class="table table-sm">
@@ -93,9 +96,9 @@
                     </table>
                 </div>
 
-                <h3 class="display-6">Data that will be not deleted</h3>
+                <h4>Data that will be not deleted</h4>
 
-                <p>All the data listed in the following table will remain.</p>
+                <p>We will not touch any of the data detailed in the following table.</p>
 
                 <div class="table-responsive">
                     <table class="table table-sm">
@@ -122,16 +125,17 @@
                     </table>
                 </div>
 
-                <a href="{{ route('account.reset') }}" class="btn btn-sm btn-outline-danger" title="Go to reset confirmation screen">Reset</a>
+                <a href="{{ route('account.reset') }}" class="btn btn-sm btn-outline-danger" title="Go to reset confirmation screen">Request Reset</a>
 
-                <h2 class="display-5 pt-5">Delete Budget Account</h2>
 
-                <p class="lead">This will delete your Budget account and all the data within it. If you are
-                    using any of our other Apps, those Apps will not be affected.</p>
+                <h3 class="mt-5">Delete Budget Account</h3>
 
-                <h3 class="display-6">Data that will be deleted</h3>
+                <p class="lead">This will permanently delete your Budget account and all the data within it.
+                    If you are using any of our other Apps, those Apps will not be affected.</p>
 
-                <p>All the data listed in the following table will be deleted.</p>
+                <h4>Data that will be permanently deleted</h4>
+
+                <p>We will instantly delete all the data listed in the following table.</p>
 
                 <div class="table-responsive">
                     <table class="table table-sm">
@@ -162,9 +166,9 @@
                     </table>
                 </div>
 
-                <h3 class="display-6">Data that will be not deleted</h3>
+                <h4>Data that will be not deleted</h4>
 
-                <p>All the data listed in the following table will remain.</p>
+                <p>We will not touch any of the data detailed in the following table.</p>
 
                 <div class="table-responsive">
                     <table class="table table-sm">
@@ -191,12 +195,12 @@
                     </table>
                 </div>
 
-                <a href="{{ route('account.delete-budget-account') }}" class="btn btn-sm btn-outline-danger" title="Go to delete budget account confirmation screen">Delete Budget Account</a>
+                <a href="{{ route('account.delete-budget-account') }}" class="btn btn-sm btn-outline-danger" title="Go to delete budget account confirmation screen">Request Budget Account Deletion</a>
 
-                <h2 class="display-5 pt-5">Delete Account</h2>
+                <h3 class="mt-5">Delete Account</h3>
 
-                <p class="lead">This will delete your Costs to Expect account. All your data will be
-                    removed across our entire service. Please review the following table to see what will be
+                <p class="lead">This will permanently delete your Costs to Expect account. All your data
+                    will be removed across our entire service. Please review the following table to see what will be
                     deleted, nothing will remain.</p>
 
                 <div class="table-responsive">
@@ -238,7 +242,7 @@
                     </table>
                 </div>
 
-                <a href="{{ route('account.delete-account') }}" class="btn btn-sm btn-outline-danger" title="Go to delete account confirmation screen">Delete Account</a>
+                <a href="{{ route('account.delete-account') }}" class="btn btn-sm btn-outline-danger" title="Go to delete account confirmation screen">Request Account Deletion</a>
             </main>
 
             <x-footer />

@@ -17,10 +17,10 @@
         <div class="col-lg-8 mx-auto p-3">
 
             <main>
-                <h2 class="display-4">Delete Account</h2>
+                <h2 class="display-5">Delete Account</h2>
 
-                <p class="lead">This will delete your Costs to Expect account. All your data will be
-                    removed across our entire service. Please review the following table to see what will be
+                <p class="lead">This will permanently delete your Costs to Expect account. All your data
+                    will be removed across our entire service. Please review the following table to see what will be
                     deleted, nothing will remain.</p>
 
                 <div class="table-responsive">

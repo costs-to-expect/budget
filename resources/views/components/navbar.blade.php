@@ -1,4 +1,4 @@
-    <nav class="container-fluid d-flex navbar-dark">
+    <nav class="container-fluid d-flex navbar-dark bg-dark">
         <a class="navbar-brand p-0 me-0 me-lg-2" href="{{ route('landing') }}" aria-label="Budget by Costs to Expect">
             <img src="{{ asset('images/logo.png') }}" alt="Costs to Expect Logo" width="40" height="40" title="Costs to Expect" />
         </a>
