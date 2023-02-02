@@ -60,6 +60,7 @@ class Item
         $this->account = $data['account'];
         $this->account_color = $data['account_color'];
         $this->account_name = $data['account_name'];
+        $this->account_id = $data['account_id'];
         $this->target_account = $data['target_account'];
 
         $this->today = new DateTimeImmutable('today', $this->settings->dateTimeZone());
@@ -114,6 +115,11 @@ class Item
     public function accountName(): string
     {
         return $this->account_name;
+    }
+
+    public function accountId(): string
+    {
+        return $this->account_id;
     }
 
     public function active(): bool

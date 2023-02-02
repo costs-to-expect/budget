@@ -1,14 +1,14 @@
 (function () {
     'use strict'
 
-    let filter = document.querySelector('input[name="budget-filter"]');
-    let clear_filter = document.querySelector('button[name="clear-filter"]');
+    const filter = document.querySelector('input[name="budget-filter"]');
+    const clear_filter = document.querySelector('button[name="clear-filter"]');
 
     if (filter !== null && clear_filter !== null) {
 
         filter.addEventListener('keyup', function () {
             let filter_value = this.value.toLowerCase();
-            let budget_items = document.querySelectorAll('a.budget-item');
+            const budget_items = document.querySelectorAll('a.budget-item');
 
             if (filter_value.length > 3) {
                 budget_items.forEach(function (budget_item) {

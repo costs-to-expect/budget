@@ -70,6 +70,7 @@
 
                             @if ($has_accounts)
                                 <x-budget-controls
+                                    :accounts="$accounts"
                                     :hasSavingsAccount="$has_savings_account"
                                     :hasPaidItems="$has_paid_items"
                                     :nowVisible="$now_visible"
@@ -114,5 +115,6 @@
         <script src="{{ asset('js/auto-format-numbers.js') }}" defer></script>
         <script src="{{ asset('js/filter-budget.js') }}" defer></script>
         <script src="{{ asset('js/toggle-paid.js') }}" defer></script>
+        <script src="{{ asset('js/filter-budget-by-account.js') }}" defer></script>
     </body>
 </html>

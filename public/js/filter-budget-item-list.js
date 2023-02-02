@@ -1,13 +1,13 @@
 (function () {
     'use strict'
 
-    let filter = document.querySelector('input[name="table-filter"]');
+    const filter = document.querySelector('input[name="table-filter"]');
 
     if (filter !== null) {
 
         filter.addEventListener('keyup', function () {
-            let filter_value = this.value.toLowerCase();
-            let budget_items = document.querySelectorAll('table.budget-items tr.item-data');
+            const filter_value = this.value.toLowerCase();
+            const budget_items = document.querySelectorAll('table.budget-items tr.item-data');
 
             if (filter_value.length > 3) {
                 budget_items.forEach(function (budget_item) {
