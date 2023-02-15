@@ -133,232 +133,232 @@ Route::view(
 )->name('help.add-savings');
 
 Route::middleware('auth')->group(static function () {
-        Route::get(
+    Route::get(
             '/home',
             [Index::class, 'home']
         )->name('home');
 
-        Route::get(
+    Route::get(
             '/demo',
             [Index::class, 'demo']
         )->name('demo');
 
-        Route::post(
+    Route::post(
             '/demo',
             [Index::class, 'demoProcess']
         )->name('demo.process');
 
-        Route::post(
+    Route::post(
             '/adopt-demo',
             [Index::class, 'adoptDemoProcess']
         )->name('demo.adopt.process');
 
-        Route::get(
+    Route::get(
             '/is-demo-loaded',
             [Index::class, 'isDemoLoaded']
         )->name('demo.is-loaded');
 
-        Route::get(
+    Route::get(
             '/start',
             [Index::class, 'start']
         )->name('start');
 
-        Route::post(
+    Route::post(
             '/start',
             [Index::class, 'startProcess']
         )->name('start.process');
 
-        // Budget account management
-        Route::get(
+    // Budget account management
+    Route::get(
             '/budget/account',
             [BudgetAccount::class, 'create']
         )->name('budget.account.create');
 
-        Route::post(
+    Route::post(
             '/budget/account',
             [BudgetAccount::class, 'createProcess']
         )->name('budget.account.create.process');
 
-        Route::get(
+    Route::get(
             '/budget/account/set-balances',
             [BudgetAccount::class, 'setBalances']
         )->name('budget.account.set-balances');
 
-        Route::post(
+    Route::post(
             '/budget/account/set-balances',
             [BudgetAccount::class, 'setBalancesProcess']
         )->name('budget.account.set-balances.process');
 
-        Route::get(
+    Route::get(
             '/budget/account/{account_id}/edit',
             [BudgetAccount::class, 'update']
         )->name('budget.account.update');
 
-        Route::post(
+    Route::post(
             '/budget/account/{account_id}/edit',
             [BudgetAccount::class, 'updateProcess']
         )->name('budget.account.update.process');
 
-        // Budget item management
-        Route::post(
+    // Budget item management
+    Route::post(
             '/budget/item/{item_id}/adjust/{item_year}/{item_month}',
             [BudgetItem::class, 'adjustProcess']
         )->name('budget.item.adjust.process');
 
-        Route::post(
+    Route::post(
             '/budget/item/{item_id}/reset/{item_year}/{item_month}',
             [BudgetItem::class, 'resetProcess']
         )->name('budget.item.reset.process');
 
-        Route::post(
+    Route::post(
             '/budget/item/{item_id}/restore',
             [BudgetItem::class, 'restoreProcess']
         )->name('budget.item.restore.process');
 
-        Route::get(
+    Route::get(
             '/budget/item/{item_id}/confirm-delete',
             [BudgetItem::class, 'confirmDelete']
         )->name('budget.item.confirm-delete');
 
-        Route::post(
+    Route::post(
             '/budget/item/{item_id}/confirm-delete',
             [BudgetItem::class, 'confirmDeleteProcess']
         )->name('budget.item.confirm-delete.process');
 
-        Route::get(
+    Route::get(
             '/budget/item/{item_id}/confirm-disable',
             [BudgetItem::class, 'confirmDisable']
         )->name('budget.item.confirm-disable');
 
-        Route::post(
+    Route::post(
             '/budget/item/{item_id}/confirm-disable',
             [BudgetItem::class, 'confirmDisableProcess']
         )->name('budget.item.confirm-disable.process');
 
-        Route::get(
+    Route::get(
             '/budget/item/{item_id}/confirm-enable',
             [BudgetItem::class, 'confirmEnable']
         )->name('budget.item.confirm-enable');
 
-        Route::post(
+    Route::post(
             '/budget/item/{item_id}/confirm-enable',
             [BudgetItem::class, 'confirmEnableProcess']
         )->name('budget.item.confirm-enable.process');
 
-        Route::post(
+    Route::post(
             '/budget/item/{item_id}/set-as-paid',
             [BudgetItem::class, 'setAsPaidProcess']
         )->name('budget.item.set-as-paid.process');
 
-        Route::post(
+    Route::post(
             '/budget/item/{item_id}/set-as-not-paid',
             [BudgetItem::class, 'setAsNotPaidProcess']
         )->name('budget.item.set-as-not-paid.process');
 
-        Route::get(
+    Route::get(
             '/budget/item/create-expense',
             [BudgetItem::class, 'createExpense']
         )->name('budget.item.create-expense');
 
-        Route::post(
+    Route::post(
             '/budget/item/create-expense',
             [BudgetItem::class, 'createExpenseProcess']
         )->name('budget.item.create-expense.process');
 
-        Route::get(
+    Route::get(
             '/budget/item/create-income',
             [BudgetItem::class, 'createIncome']
         )->name('budget.item.create-income');
 
-        Route::post(
+    Route::post(
             '/budget/item/create-income',
             [BudgetItem::class, 'createIncomeProcess']
         )->name('budget.item.create-income.process');
 
-        Route::get(
+    Route::get(
             '/budget/item/create-saving',
             [BudgetItem::class, 'createSaving']
         )->name('budget.item.create-saving');
 
-        Route::post(
+    Route::post(
             '/budget/item/create-saving',
             [BudgetItem::class, 'createSavingProcess']
         )->name('budget.item.create-saving.process');
 
-        Route::get(
+    Route::get(
             '/budget/item/{item_id}',
             [BudgetItem::class, 'index']
         )->name('budget.item.view');
 
-        Route::get(
+    Route::get(
             '/budget/item/{item_id}/edit',
             [BudgetItem::class, 'update']
         )->name('budget.item.update');
 
-        Route::post(
+    Route::post(
             '/budget/item/{item_id}/edit',
             [BudgetItem::class, 'updateProcess']
         )->name('budget.item.update.process');
 
-        Route::get(
+    Route::get(
             '/budget/items',
             [BudgetItem::class, 'list']
         )->name('budget.item.list');
 
-        // Account management
-        Route::get(
+    // Account management
+    Route::get(
             '/account',
             [Account::class, 'index']
         )->name('account.index');
 
-        Route::get(
+    Route::get(
             '/account/reset',
             [Account::class, 'reset']
         )->name('account.reset');
 
-        Route::post(
+    Route::post(
             '/account/reset',
             [Account::class, 'resetProcess']
         )->name('account.reset.process');
 
-        Route::get(
+    Route::get(
             '/account/delete-budget-account',
             [Account::class, 'deleteBudgetAccount']
         )->name('account.delete-budget-account');
 
-        Route::post(
+    Route::post(
             '/account/delete-budget-account',
             [Account::class, 'deleteBudgetAccountProcess']
         )->name('account.delete-budget-account.process');
 
-        Route::get(
+    Route::get(
             '/account/delete-account',
             [Account::class, 'deleteAccount']
         )->name('account.delete-account');
 
-        Route::post(
+    Route::post(
             '/account/delete-account',
             [Account::class, 'deleteAccountProcess']
         )->name('account.delete-account.process');
 
-        Route::get(
+    Route::get(
             '/account/change-password',
             [Account::class, 'changePassword']
         )->name('account.change-password');
 
-        Route::post(
+    Route::post(
             '/account/change-password',
             [Account::class, 'changePasswordProcess']
         )->name('account.change-password.process');
 
-        Route::get(
+    Route::get(
             '/account/update-profile',
             [Account::class, 'updateProfile']
         )->name('account.update-profile');
 
-        Route::post(
+    Route::post(
             '/account/update-profile',
             [Account::class, 'updateProfileProcess']
         )->name('account.update-profile.process');
-    }
+}
 );

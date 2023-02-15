@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App\Actions\Account\ChangePassword;
 use App\Actions\Account\DeleteAccount;
 use App\Actions\Account\DeleteBudgetAccount;
 use App\Actions\Account\Reset;
 use App\Actions\Account\UpdateProfile;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>

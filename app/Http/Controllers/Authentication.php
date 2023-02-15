@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use App\Actions\Account\CreateNewPassword;
 use App\Actions\Account\CreatePassword;
 use App\Actions\Account\ForgotPassword;
@@ -14,6 +13,7 @@ use App\Service\Api\Service;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
