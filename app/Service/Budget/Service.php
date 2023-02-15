@@ -38,11 +38,13 @@ class Service
     private array $currency;
 
     private int $now_month;
+
     private int $now_year;
 
     private array $paid_items = [];
 
     private array $adjustments = [];
+
     private array $selected = [
         'item' => null,
         'month' => null,
@@ -70,8 +72,7 @@ class Service
         $accounts,
         $paid_budget_items,
         $adjustments
-    ): Service
-    {
+    ): Service {
         if ($request->query('month') !== null && $request->query('year') !== null) {
             $this->setPagination((int) $request->query('month'), (int) $request->query('year'));
         }
@@ -136,7 +137,7 @@ class Service
         $this->selected = [
             'item' => $item,
             'month' => $month,
-            'year' => $year
+            'year' => $year,
         ];
 
         return $this;
@@ -148,11 +149,10 @@ class Service
     public function setAccounts(array $accounts): Service
     {
         if (count($accounts) > $this->settings->maxAccounts()) {
-            throw new LengthException('Too many accounts, the limit is ' . $this->settings->maxAccounts());
+            throw new LengthException('Too many accounts, the limit is '.$this->settings->maxAccounts());
         }
 
         foreach ($accounts as $account) {
-
             if (isset($this->currency) === false) {
                 $this->currency = $account['currency'];
             }
@@ -163,7 +163,7 @@ class Service
                 $account['type'],
                 $account['currency'],
                 (float) $account['balance'],
-                array_key_exists('color', $account) === true ? $account['color'] : '#' . dechex(random_int(0, 16777215)),
+                array_key_exists('color', $account) === true ? $account['color'] : '#'.dechex(random_int(0, 16777215)),
                 $account['description']
             );
         }
@@ -199,10 +199,10 @@ class Service
             ) {
                 $next = $this->start_date->add(new DateInterval("P{$i}M"));
 
-                $year_int = (int)$next->format('Y');
-                $month_int = (int)$next->format('n');
+                $year_int = (int) $next->format('Y');
+                $month_int = (int) $next->format('n');
 
-                $this->months[$year_int . '-' . $month_int] = new Month(
+                $this->months[$year_int.'-'.$month_int] = new Month(
                     $month_int,
                     $year_int,
                     $this->currency(),
@@ -226,8 +226,8 @@ class Service
                 $added_to_view_start_date++;
                 $next = $this->view_start_date->add(new DateInterval("P{$i}M"));
 
-                $year_int = (int)$next->format('Y');
-                $month_int = (int)$next->format('n');
+                $year_int = (int) $next->format('Y');
+                $month_int = (int) $next->format('n');
 
                 if ($i === 2) {
                     $this->projection = false; // We are not projecting as there are three past months on display
@@ -236,7 +236,7 @@ class Service
                     ))->setTime(7, 1);
                 }
 
-                $this->months[$year_int . '-' . $month_int] = new Month(
+                $this->months[$year_int.'-'.$month_int] = new Month(
                     $month_int,
                     $year_int,
                     $this->currency(),
@@ -256,14 +256,14 @@ class Service
 
             $next = $this->view_start_date->add(new DateInterval("P{$months_to_add}M"));
 
-            $year_int = (int)$next->format('Y');
-            $month_int = (int)$next->format('n');
+            $year_int = (int) $next->format('Y');
+            $month_int = (int) $next->format('n');
 
             $this->view_end_date = (new DateTimeImmutable(
                 "{$year_int}-{$month_int}-01", $this->settings->dateTimeZone()
             ))->setTime(7, 1);
 
-            $this->months[$year_int . '-' . $month_int] = new Month(
+            $this->months[$year_int.'-'.$month_int] = new Month(
                 $month_int,
                 $year_int,
                 $this->currency(),
@@ -340,7 +340,7 @@ class Service
     public function addItem(array $data): bool
     {
         if (count($this->budget_items) > $this->settings->maxItems()) {
-            throw new LengthException('Too many items, the limit is ' . $this->settings->maxItems());
+            throw new LengthException('Too many items, the limit is '.$this->settings->maxItems());
         }
 
         try {
@@ -350,12 +350,12 @@ class Service
                     [
                         'account_color' => $this->account($data['account'])->color(),
                         'account_name' => $this->account($data['account'])->name(),
-                        'account_id' => $this->account($data['account'])->id()
+                        'account_id' => $this->account($data['account'])->id(),
                     ]
                 )
             );
         } catch (Exception $e) {
-            throw new RuntimeException('Unable to add item to budget service: ' . $e->getMessage());
+            throw new RuntimeException('Unable to add item to budget service: '.$e->getMessage());
         }
 
         return true;
@@ -368,19 +368,19 @@ class Service
 
     public function paginationParameters(): array
     {
-        $earlier = $this->view_start_date->sub(new DateInterval("P1M"));
-        $later = $this->view_start_date->add(new DateInterval("P1M"));
+        $earlier = $this->view_start_date->sub(new DateInterval('P1M'));
+        $later = $this->view_start_date->add(new DateInterval('P1M'));
 
         return [
             'previous' => [
-                'month' => (int)$earlier->format('n'),
-                'year' => (int)$earlier->format('Y')
+                'month' => (int) $earlier->format('n'),
+                'year' => (int) $earlier->format('Y'),
             ],
             'next' => [
-                'month' => (int)$later->format('n'),
-                'year' => (int)$later->format('Y')
+                'month' => (int) $later->format('n'),
+                'year' => (int) $later->format('Y'),
             ],
-            'selected' => $this->selected
+            'selected' => $this->selected,
         ];
     }
 
@@ -396,7 +396,7 @@ class Service
     {
         return [
             'month' => $this->view_end_date->format('F'),
-            'year' => (int)$this->view_end_date->format('Y')
+            'year' => (int) $this->view_end_date->format('Y'),
         ];
     }
 
@@ -410,7 +410,6 @@ class Service
         foreach ($this->months as $month) {
             foreach ($this->budget_items as $budget_item) {
                 if ($budget_item->activeForMonth($month->days(), $month->month(), $month->year()) === true) {
-
                     if ($month->now() === true && in_array($budget_item->id(), $this->paid_items, true)) {
                         $budget_item = clone $budget_item;
                         $budget_item->setPaid(true);
@@ -425,11 +424,11 @@ class Service
                         $budget_item->setAdjustment($this->adjustments[$budget_item->id()][$month->year()][$month->month()]);
                     }
 
-                    $this->months[$month->year() . '-' . $month->month()]->add($budget_item);
+                    $this->months[$month->year().'-'.$month->month()]->add($budget_item);
 
                     if (
                         $budget_item->disabled() === false &&
-                        $this->months[$month->year() . '-' . $month->month()]->future() === true
+                        $this->months[$month->year().'-'.$month->month()]->future() === true
                     ) {
                         if ($budget_item->category() === 'income' && $budget_item->paid() === false) {
                             if (array_key_exists($budget_item->account(), $this->accounts)) {

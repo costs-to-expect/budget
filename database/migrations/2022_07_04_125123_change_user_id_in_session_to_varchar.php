@@ -14,16 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::table('sessions', static function (Blueprint $table) {
-
             $table->dropIndex('sessions_user_id_index');
             $table->dropColumn('user_id');
-
         });
 
         Schema::table('sessions', static function (Blueprint $table) {
-
             $table->string('user_id')->nullable()->index()->after('id');
-
         });
     }
 

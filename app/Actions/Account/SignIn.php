@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions\Account;
@@ -15,23 +16,21 @@ class SignIn extends Action
 {
     public function __invoke(
         array $input
-    ): int
-    {
+    ): int {
         if (array_key_exists('email', $input) === false || $input['email'] === null) {
             $this->validation_errors['email']['errors'] = [
-                'You need to provide your email address'
+                'You need to provide your email address',
             ];
         }
         if (array_key_exists('password', $input) === false || $input['password'] === null) {
             $this->validation_errors['password']['errors'] = [
-                'You need to provide your password'
+                'You need to provide your password',
             ];
         }
 
         if ($this->validation_errors !== []) {
             return 422;
         }
-
 
         if (Auth::attempt($input, array_key_exists('remember_me', $input))) {
             return 204;

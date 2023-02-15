@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
@@ -31,7 +32,7 @@ class Account extends Controller
         return view(
             'account.change-password',
             [
-                'user' => $user
+                'user' => $user,
             ]
         );
     }
@@ -97,7 +98,7 @@ class Account extends Controller
         return view(
             'account.reset',
             [
-                'user' => $user['content']
+                'user' => $user['content'],
             ]
         );
     }
@@ -140,7 +141,7 @@ class Account extends Controller
         return view(
             'account.delete-account',
             [
-                'user' => $user['content']
+                'user' => $user['content'],
             ]
         );
     }
@@ -183,7 +184,7 @@ class Account extends Controller
         return view(
             'account.delete-budget-account',
             [
-                'user' => $user['content']
+                'user' => $user['content'],
             ]
         );
     }
@@ -224,7 +225,7 @@ class Account extends Controller
         return view(
             'account.update-profile',
             [
-                'user' => $user
+                'user' => $user,
             ]
         );
     }

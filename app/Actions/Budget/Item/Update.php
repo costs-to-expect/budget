@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions\Budget\Item;
@@ -23,11 +24,11 @@ class Update extends Action
         string $resource_id,
         string $item_id,
         array $input
-    ): int
-    {
+    ): int {
         $item_response = $api->budgetItem($resource_type_id, $resource_id, $item_id);
         if ($item_response['status'] !== 200) {
             $this->message = $item_response['content'];
+
             return $item_response['status'];
         }
 
@@ -71,6 +72,7 @@ class Update extends Action
 
         if (count($payload) === 0) {
             $this->message = 'No changes to save';
+
             return 204;
         }
 
@@ -79,8 +81,9 @@ class Update extends Action
                 $payload['frequency'] = json_encode($payload['frequency'], JSON_THROW_ON_ERROR);
             } catch (JsonException $e) {
                 $this->validation_errors['frequency_option']['errors'] = [
-                    'The frequency settings could not be encoded to JSON, please try again'
+                    'The frequency settings could not be encoded to JSON, please try again',
                 ];
+
                 return 422;
             }
         }
@@ -99,6 +102,7 @@ class Update extends Action
         if ($patch_budget_item_response['status'] === 422) {
             $this->message = $patch_budget_item_response['content'];
             $this->validation_errors = $patch_budget_item_response['fields'];
+
             return 422;
         }
 

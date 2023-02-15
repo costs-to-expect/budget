@@ -151,7 +151,7 @@ class Index extends Controller
 
                 'requests' => $this->api->requests(),
 
-                'color' => "#" . dechex(random_int(0, 16777215))
+                'color' => '#'.dechex(random_int(0, 16777215)),
             ]
         );
     }

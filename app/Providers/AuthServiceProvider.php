@@ -31,7 +31,7 @@ class AuthServiceProvider extends ServiceProvider
             $config = Config::get('app.config');
             $auth_config = [
                 'cookie_bearer' => $config['cookie_bearer'],
-                'cookie_user' => $config['cookie_user']
+                'cookie_user' => $config['cookie_user'],
             ];
 
             return new Guard(new UserProvider($auth_config), $auth_config, $app['request']);

@@ -9,7 +9,7 @@ class ApiProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->singleton(Service::class, function() {
+        $this->app->singleton(Service::class, function () {
             return new Service(request()->cookie(config('app.config.cookie_bearer')));
         });
     }

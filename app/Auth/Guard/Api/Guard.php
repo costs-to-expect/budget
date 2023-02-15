@@ -17,17 +17,20 @@ use Illuminate\Support\Facades\Session;
 class Guard implements \Illuminate\Contracts\Auth\Guard
 {
     private UserProvider $user_provider;
+
     private array $config;
+
     private Request $request;
+
     private ?Authenticatable $user;
+
     private array $errors = [];
 
     public function __construct(
         UserProvider $user_provider,
         array $config,
         Request $request
-    )
-    {
+    ) {
         $this->user_provider = $user_provider;
         $this->config = $config;
         $this->request = $request;
@@ -53,7 +56,7 @@ class Guard implements \Illuminate\Contracts\Auth\Guard
 
     public function guest(): bool
     {
-        return !$this->check();
+        return ! $this->check();
     }
 
     public function user(): ?Authenticatable
@@ -81,7 +84,6 @@ class Guard implements \Illuminate\Contracts\Auth\Guard
         );
 
         if ($response['status'] === 201) {
-
             $life_time = 43200;
             if ($remember_me === false) {
                 $life_time = null;
@@ -103,6 +105,7 @@ class Guard implements \Illuminate\Contracts\Auth\Guard
 
         if ($response['status'] === 422 || $response['status'] === 401) {
             $this->errors = $response['fields'];
+
             return false;
         }
 

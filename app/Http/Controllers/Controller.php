@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Service\Api\Service;
 use App\Models\AdjustedBudgetItem;
 use App\Models\PaidBudgetItem;
+use App\Service\Api\Service;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -26,11 +26,15 @@ class Controller extends BaseController
     protected array $config;
 
     protected string $item_type_id;
+
     protected string $item_subtype_id;
 
     protected ?string $resource_type_id = null;
+
     protected ?string $resource_id = null;
+
     protected array $accounts = [];
+
     protected bool $demo = false;
 
     protected Service $api;
@@ -51,14 +55,11 @@ class Controller extends BaseController
         $resource_types = $this->api->resourceTypes(['item-type' => $this->item_type_id]);
 
         if ($resource_types['status'] === 200) {
-
             if (count($resource_types['content']) === 1) {
-
                 $resource_type_id = $resource_types['content'][0]['id'];
                 $resources = $this->api->resources($resource_type_id, ['item-subtype' => $this->item_subtype_id]);
 
                 if ($resources['status'] === 200) {
-
                     if (count($resources['content']) === 1) {
                         $this->resource_type_id = $resource_type_id;
                         $this->resource_id = $resources['content'][0]['id'];
@@ -69,11 +70,11 @@ class Controller extends BaseController
                         }
 
                         if (is_array($data)) {
-                            if(array_key_exists('accounts', $data) === true) {
+                            if (array_key_exists('accounts', $data) === true) {
                                 $this->accounts = $data['accounts'];
                             }
 
-                            if(array_key_exists('demo', $data) === true) {
+                            if (array_key_exists('demo', $data) === true) {
                                 $this->demo = true;
                             }
                         }
@@ -95,7 +96,6 @@ class Controller extends BaseController
             } else {
                 $create_resource_type_response = $this->api->resourceTypeCreate();
                 if ($create_resource_type_response['status'] === 201) {
-
                     $this->resource_type_id = $create_resource_type_response['content']['id'];
 
                     $create_resource_response = $this->api->resourceCreate($this->resource_type_id);
@@ -120,7 +120,7 @@ class Controller extends BaseController
             $this->resource_id,
             [
                 'limit' => 50,
-                'sort' => 'amount:desc|created:asc'
+                'sort' => 'amount:desc|created:asc',
             ]
         );
         if ($response['status'] !== 200) {

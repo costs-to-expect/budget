@@ -9,8 +9,11 @@ class Budget extends Component
 {
     /** @var Month[] */
     private array $months;
+
     private ?string $active_item;
+
     private ?int $active_item_year;
+
     private ?int $active_item_month;
 
     public function __construct(
@@ -18,8 +21,7 @@ class Budget extends Component
         ?string $activeItem = null,
         ?int $activeItemYear = null,
         ?int $activeItemMonth = null,
-    )
-    {
+    ) {
         $this->months = $months;
         $this->active_item = $activeItem;
         $this->active_item_year = $activeItemYear;

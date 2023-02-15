@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('budget_item_id');
             $table->unsignedInteger('year');
             $table->unsignedTinyInteger('month');
-            $table->decimal('amount',12, 2);
+            $table->decimal('amount', 12, 2);
             $table->timestamps();
 
             $table->index('resource_id');

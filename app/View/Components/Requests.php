@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\View\Components;
@@ -24,7 +25,7 @@ class Requests extends Component
         return view(
             'components.requests',
             [
-                'requests' => $this->requests
+                'requests' => $this->requests,
             ]
         );
     }

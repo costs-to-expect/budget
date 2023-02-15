@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
@@ -65,7 +66,7 @@ class Authentication extends Controller
                 ->with('validation.errors', $action->getValidationErrors());
         }
 
-        return redirect()->route('create-new-password.view',$action->getParameters())
+        return redirect()->route('create-new-password.view', $action->getParameters())
             ->with('request.failed', $action->getMessage());
     }
 
@@ -134,7 +135,7 @@ class Authentication extends Controller
         $api = new Service();
 
         $action = new ForgotPassword();
-        $result = $action($api,$request->only(['email']));
+        $result = $action($api, $request->only(['email']));
 
         if ($result === 201) {
             return redirect()->route('forgot-password-email-issued');
@@ -169,11 +170,10 @@ class Authentication extends Controller
         $action = new Register();
         $result = $action(
             $api,
-            $request->only(['name','email'])
+            $request->only(['name', 'email'])
         );
 
         if ($result === 201) {
-
             return redirect()->route(
                 'create-password.view',
                 $action->getParameters()
@@ -195,7 +195,7 @@ class Authentication extends Controller
         return view(
             'authentication.sign-in',
             [
-                'errors' => session()->get('validation.errors')
+                'errors' => session()->get('validation.errors'),
             ]
         );
     }

@@ -12,7 +12,6 @@ Route::get(
     [Index::class, 'landing']
 )->name('landing');
 
-
 Route::get(
     '/sign-in',
     [Authentication::class, 'signIn']
@@ -23,7 +22,6 @@ Route::post(
     [Authentication::class, 'signInProcess']
 )->name('sign-in.process');
 
-
 Route::get(
     '/register',
     [Authentication::class, 'register']
@@ -33,7 +31,6 @@ Route::post(
     '/register',
     [Authentication::class, 'registerProcess']
 )->name('register.process');
-
 
 Route::get(
     '/create-password',
@@ -79,7 +76,6 @@ Route::view(
     '/registration-complete',
     'authentication.registration-complete'
 )->name('registration-complete');
-
 
 Route::get(
     '/sign-out',
@@ -139,11 +135,10 @@ Route::view(
 Route::group(
     [
         'middleware' => [
-            'auth'
-        ]
+            'auth',
+        ],
     ],
-    static function() {
-
+    static function () {
         Route::get(
             '/home',
             [Index::class, 'home']
@@ -179,7 +174,6 @@ Route::group(
             [Index::class, 'startProcess']
         )->name('start.process');
 
-
         // Budget account management
         Route::get(
             '/budget/account',
@@ -210,7 +204,6 @@ Route::group(
             '/budget/account/{account_id}/edit',
             [BudgetAccount::class, 'updateProcess']
         )->name('budget.account.update.process');
-
 
         // Budget item management
         Route::post(
@@ -317,7 +310,6 @@ Route::group(
             '/budget/items',
             [BudgetItem::class, 'list']
         )->name('budget.item.list');
-
 
         // Account management
         Route::get(

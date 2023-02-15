@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions\Budget\Account;
@@ -22,8 +23,7 @@ class Update extends Action
         string $resource_id,
         string $account_id,
         array $input
-    ): int
-    {
+    ): int {
         // We need to validate the input because we are patching a resource
         // The API will only error if we don't send JSON which we won't, however, it is
         // possible the JSON could be invalid, as in missing data
@@ -41,19 +41,19 @@ class Update extends Action
                     Rule::in(['expense', 'savings']),
                 ],
                 'description' => [
-                    'sometimes'
+                    'sometimes',
                 ],
                 'balance' => [
                     'required',
                     'string',
                     'regex:/^\d+\.\d{2}$/',
-                    'max:16'
+                    'max:16',
                 ],
                 'color' => [
                     'required',
                     'string',
                     'regex:/^#([A-Fa-f0-9]{6})$/',
-                ]
+                ],
             ],
             [
                 'balance.regex' => 'Costs should be in the format 0.00',
@@ -64,6 +64,7 @@ class Update extends Action
         $resource = $api->resource($resource_type_id, $resource_id);
         if ($resource['status'] !== 200) {
             $this->message = 'Unable to fetch the resource for your Budget, please try again';
+
             return $resource['status'];
         }
 
@@ -99,6 +100,7 @@ class Update extends Action
 
         if ($patch_resource_response['status'] === 422) {
             $this->validation_errors = $patch_resource_response['fields'];
+
             return $patch_resource_response['status'];
         }
 

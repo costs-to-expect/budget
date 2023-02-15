@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
@@ -42,7 +43,7 @@ class BudgetAccount extends Controller
 
                 'requests' => $this->api->requests(),
 
-                'color' => "#" . dechex(random_int(0, 16777215))
+                'color' => '#'.dechex(random_int(0, 16777215)),
             ]
         );
     }

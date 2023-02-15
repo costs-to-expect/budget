@@ -19,7 +19,7 @@ class BudgetItemTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $account_id,
@@ -30,7 +30,7 @@ class BudgetItemTest extends TestCase
 
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-08-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-08-01', app(Settings::class)->dateTimeZone())
         );
         $service->setAccounts([$account]);
         $service->create();
@@ -42,11 +42,11 @@ class BudgetItemTest extends TestCase
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 1866.00,
-                "currency" => [
-                    "id" => "epMqeYqPkL",
-                    "name" => "Sterling",
-                    "code" => "GBP",
-                    "uri" => "/v3/currencies/epMqeYqPkL",
+                'currency' => [
+                    'id' => 'epMqeYqPkL',
+                    'name' => 'Sterling',
+                    'code' => 'GBP',
+                    'uri' => '/v3/currencies/epMqeYqPkL',
                 ],
                 'category' => 'income',
                 'start_date' => '2020-08-01',
@@ -55,8 +55,8 @@ class BudgetItemTest extends TestCase
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 10,
-                    'exclusions' => []
-                ]
+                    'exclusions' => [],
+                ],
             ]
         );
 
@@ -75,7 +75,7 @@ class BudgetItemTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $account_id,
@@ -86,7 +86,7 @@ class BudgetItemTest extends TestCase
 
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-08-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-08-01', app(Settings::class)->dateTimeZone())
         );
         $service->setAccounts([$account]);
         $service->create();
@@ -98,11 +98,11 @@ class BudgetItemTest extends TestCase
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 1866.00,
-                "currency" => [
-                    "id" => "epMqeYqPkL",
-                    "name" => "Sterling",
-                    "code" => "GBP",
-                    "uri" => "/v3/currencies/epMqeYqPkL",
+                'currency' => [
+                    'id' => 'epMqeYqPkL',
+                    'name' => 'Sterling',
+                    'code' => 'GBP',
+                    'uri' => '/v3/currencies/epMqeYqPkL',
                 ],
                 'category' => 'income',
                 'start_date' => '2020-09-01',
@@ -111,8 +111,8 @@ class BudgetItemTest extends TestCase
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 10,
-                    'exclusions' => []
-                ]
+                    'exclusions' => [],
+                ],
             ]
         );
 
@@ -132,7 +132,7 @@ class BudgetItemTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $account_id,
@@ -143,7 +143,7 @@ class BudgetItemTest extends TestCase
 
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-08-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-08-01', app(Settings::class)->dateTimeZone())
         );
         $service->setAccounts([$account]);
         $service->setPagination(12, 2020);
@@ -156,11 +156,11 @@ class BudgetItemTest extends TestCase
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 1866.00,
-                "currency" => [
-                    "id" => "epMqeYqPkL",
-                    "name" => "Sterling",
-                    "code" => "GBP",
-                    "uri" => "/v3/currencies/epMqeYqPkL",
+                'currency' => [
+                    'id' => 'epMqeYqPkL',
+                    'name' => 'Sterling',
+                    'code' => 'GBP',
+                    'uri' => '/v3/currencies/epMqeYqPkL',
                 ],
                 'category' => 'income',
                 'start_date' => '2020-08-01',
@@ -169,8 +169,8 @@ class BudgetItemTest extends TestCase
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 10,
-                    'exclusions' => []
-                ]
+                    'exclusions' => [],
+                ],
             ]
         );
 
@@ -189,7 +189,7 @@ class BudgetItemTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $account_id,
@@ -200,7 +200,7 @@ class BudgetItemTest extends TestCase
 
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-08-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-08-01', app(Settings::class)->dateTimeZone())
         );
         $service->setAccounts([$account]);
         $service->setPagination(10, 2020);
@@ -213,11 +213,11 @@ class BudgetItemTest extends TestCase
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 1866.00,
-                "currency" => [
-                    "id" => "epMqeYqPkL",
-                    "name" => "Sterling",
-                    "code" => "GBP",
-                    "uri" => "/v3/currencies/epMqeYqPkL",
+                'currency' => [
+                    'id' => 'epMqeYqPkL',
+                    'name' => 'Sterling',
+                    'code' => 'GBP',
+                    'uri' => '/v3/currencies/epMqeYqPkL',
                 ],
                 'category' => 'income',
                 'start_date' => '2020-09-01',
@@ -226,8 +226,8 @@ class BudgetItemTest extends TestCase
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 10,
-                    'exclusions' => []
-                ]
+                    'exclusions' => [],
+                ],
             ]
         );
 
@@ -249,7 +249,7 @@ class BudgetItemTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $account_id,
@@ -260,7 +260,7 @@ class BudgetItemTest extends TestCase
 
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-05-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-05-01', app(Settings::class)->dateTimeZone())
         );
         $service->setAccounts([$account]);
         $service->create();
@@ -272,11 +272,11 @@ class BudgetItemTest extends TestCase
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 650.00,
-                "currency" => [
-                    "id" => "epMqeYqPkL",
-                    "name" => "Sterling",
-                    "code" => "GBP",
-                    "uri" => "/v3/currencies/epMqeYqPkL",
+                'currency' => [
+                    'id' => 'epMqeYqPkL',
+                    'name' => 'Sterling',
+                    'code' => 'GBP',
+                    'uri' => '/v3/currencies/epMqeYqPkL',
                 ],
                 'category' => 'expense',
                 'start_date' => '2020-08-01',
@@ -285,8 +285,8 @@ class BudgetItemTest extends TestCase
                 'frequency' => [
                     'type' => 'annually',
                     'day' => 5,
-                    'month' => 8
-                ]
+                    'month' => 8,
+                ],
             ]
         );
 
@@ -305,7 +305,7 @@ class BudgetItemTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $account_id,
@@ -316,7 +316,7 @@ class BudgetItemTest extends TestCase
 
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-02-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-02-01', app(Settings::class)->dateTimeZone())
         );
         $service->setPagination(5, 2020);
         $service->setAccounts([$account]);
@@ -329,11 +329,11 @@ class BudgetItemTest extends TestCase
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 650.00,
-                "currency" => [
-                    "id" => "epMqeYqPkL",
-                    "name" => "Sterling",
-                    "code" => "GBP",
-                    "uri" => "/v3/currencies/epMqeYqPkL",
+                'currency' => [
+                    'id' => 'epMqeYqPkL',
+                    'name' => 'Sterling',
+                    'code' => 'GBP',
+                    'uri' => '/v3/currencies/epMqeYqPkL',
                 ],
                 'category' => 'expense',
                 'start_date' => '2020-08-01',
@@ -342,8 +342,8 @@ class BudgetItemTest extends TestCase
                 'frequency' => [
                     'type' => 'annually',
                     'day' => 5,
-                    'month' => 8
-                ]
+                    'month' => 8,
+                ],
             ]
         );
 
@@ -362,7 +362,7 @@ class BudgetItemTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $account_id,
@@ -373,7 +373,7 @@ class BudgetItemTest extends TestCase
 
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-05-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-05-01', app(Settings::class)->dateTimeZone())
         );
         $service->setAccounts([$account]);
         $service->create();
@@ -385,11 +385,11 @@ class BudgetItemTest extends TestCase
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 650.00,
-                "currency" => [
-                    "id" => "epMqeYqPkL",
-                    "name" => "Sterling",
-                    "code" => "GBP",
-                    "uri" => "/v3/currencies/epMqeYqPkL",
+                'currency' => [
+                    'id' => 'epMqeYqPkL',
+                    'name' => 'Sterling',
+                    'code' => 'GBP',
+                    'uri' => '/v3/currencies/epMqeYqPkL',
                 ],
                 'category' => 'expense',
                 'start_date' => '2020-07-01',
@@ -398,8 +398,8 @@ class BudgetItemTest extends TestCase
                 'frequency' => [
                     'type' => 'annually',
                     'day' => 5,
-                    'month' => 7
-                ]
+                    'month' => 7,
+                ],
             ]
         );
 
@@ -418,7 +418,7 @@ class BudgetItemTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $account_id,
@@ -429,7 +429,7 @@ class BudgetItemTest extends TestCase
 
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-02-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-02-01', app(Settings::class)->dateTimeZone())
         );
         $service->setPagination(5, 2020);
         $service->setAccounts([$account]);
@@ -442,11 +442,11 @@ class BudgetItemTest extends TestCase
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 650.00,
-                "currency" => [
-                    "id" => "epMqeYqPkL",
-                    "name" => "Sterling",
-                    "code" => "GBP",
-                    "uri" => "/v3/currencies/epMqeYqPkL",
+                'currency' => [
+                    'id' => 'epMqeYqPkL',
+                    'name' => 'Sterling',
+                    'code' => 'GBP',
+                    'uri' => '/v3/currencies/epMqeYqPkL',
                 ],
                 'category' => 'expense',
                 'start_date' => '2020-07-01',
@@ -455,8 +455,8 @@ class BudgetItemTest extends TestCase
                 'frequency' => [
                     'type' => 'annually',
                     'day' => 5,
-                    'month' => 7
-                ]
+                    'month' => 7,
+                ],
             ]
         );
 
@@ -478,7 +478,7 @@ class BudgetItemTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $account_id,
@@ -489,7 +489,7 @@ class BudgetItemTest extends TestCase
 
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-08-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-08-01', app(Settings::class)->dateTimeZone())
         );
         $service->setAccounts([$account]);
         $service->create();
@@ -501,11 +501,11 @@ class BudgetItemTest extends TestCase
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 1866.00,
-                "currency" => [
-                    "id" => "epMqeYqPkL",
-                    "name" => "Sterling",
-                    "code" => "GBP",
-                    "uri" => "/v3/currencies/epMqeYqPkL",
+                'currency' => [
+                    'id' => 'epMqeYqPkL',
+                    'name' => 'Sterling',
+                    'code' => 'GBP',
+                    'uri' => '/v3/currencies/epMqeYqPkL',
                 ],
                 'category' => 'income',
                 'start_date' => '2020-08-01',
@@ -514,8 +514,8 @@ class BudgetItemTest extends TestCase
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 10,
-                    'exclusions' => [10]
-                ]
+                    'exclusions' => [10],
+                ],
             ]
         );
 
@@ -534,7 +534,7 @@ class BudgetItemTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $account_id,
@@ -545,7 +545,7 @@ class BudgetItemTest extends TestCase
 
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-08-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-08-01', app(Settings::class)->dateTimeZone())
         );
         $service->setAccounts([$account]);
         $service->setPagination(11, 2020);
@@ -558,11 +558,11 @@ class BudgetItemTest extends TestCase
                 'target_account' => null,
                 'description' => 'This is a description for the expense',
                 'amount' => 1866.00,
-                "currency" => [
-                    "id" => "epMqeYqPkL",
-                    "name" => "Sterling",
-                    "code" => "GBP",
-                    "uri" => "/v3/currencies/epMqeYqPkL",
+                'currency' => [
+                    'id' => 'epMqeYqPkL',
+                    'name' => 'Sterling',
+                    'code' => 'GBP',
+                    'uri' => '/v3/currencies/epMqeYqPkL',
                 ],
                 'category' => 'income',
                 'start_date' => '2020-08-01',
@@ -571,8 +571,8 @@ class BudgetItemTest extends TestCase
                 'frequency' => [
                     'type' => 'monthly',
                     'day' => 10,
-                    'exclusions' => [10, 11]
-                ]
+                    'exclusions' => [10, 11],
+                ],
             ]
         );
 

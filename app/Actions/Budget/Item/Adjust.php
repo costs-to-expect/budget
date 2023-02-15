@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions\Budget\Item;
@@ -21,8 +22,7 @@ class Adjust extends Action
         int $month,
         string $budget_item_id,
         array $input
-    ): int
-    {
+    ): int {
         Validator::make(
             $input,
             [
@@ -30,11 +30,11 @@ class Adjust extends Action
                     'required',
                     'string',
                     'regex:/^\d+\.\d{2}$/',
-                    'max:16'
-                ]
+                    'max:16',
+                ],
             ],
             [
-                'amount.regex' => 'The amount should be in the format 0.00'
+                'amount.regex' => 'The amount should be in the format 0.00',
             ]
         )->validate();
 
@@ -61,7 +61,8 @@ class Adjust extends Action
         } catch (Exception $e) {
             $this->message = $e->getMessage();
 
-            echo $e->getMessage(); die;
+            echo $e->getMessage();
+            exit;
 
             return 500;
         }

@@ -25,7 +25,7 @@ class BudgetTest extends TestCase
     {
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-08-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-08-01', app(Settings::class)->dateTimeZone())
         );
         $service->create();
 
@@ -36,7 +36,7 @@ class BudgetTest extends TestCase
     {
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-11-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-11-01', app(Settings::class)->dateTimeZone())
         );
         $service->create();
 
@@ -48,7 +48,7 @@ class BudgetTest extends TestCase
 
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-12-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-12-01', app(Settings::class)->dateTimeZone())
         );
         $service->create();
 
@@ -63,7 +63,7 @@ class BudgetTest extends TestCase
     {
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-12-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-12-01', app(Settings::class)->dateTimeZone())
         );
         $service->setPagination(1, 2021);
         $service->create();
@@ -80,7 +80,7 @@ class BudgetTest extends TestCase
     {
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-12-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-12-01', app(Settings::class)->dateTimeZone())
         );
         $service->setPagination(1, 2022);
         $service->create();
@@ -97,7 +97,7 @@ class BudgetTest extends TestCase
     {
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-08-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-08-01', app(Settings::class)->dateTimeZone())
         );
         $service->create();
 
@@ -109,7 +109,7 @@ class BudgetTest extends TestCase
     {
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2020-08-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2020-08-01', app(Settings::class)->dateTimeZone())
         );
         $service->setPagination(2, 2021);
         $service->create();
@@ -134,7 +134,7 @@ class BudgetTest extends TestCase
     {
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2022-08-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2022-08-01', app(Settings::class)->dateTimeZone())
         );
         $service->setPagination(10, 2022);
         $service->create();
@@ -156,14 +156,14 @@ class BudgetTest extends TestCase
                 'currency' => [
                     'id' => 1,
                     'code' => 'GBP',
-                    'name' => 'Sterling'
+                    'name' => 'Sterling',
                 ],
                 'type' => 'expense',
                 'id' => $this->faker()->uuid(),
                 'name' => 'Default',
                 'description' => null,
                 'balance' => 1254.36,
-            ]
+            ],
         ]);
         $service->create();
 
@@ -176,7 +176,7 @@ class BudgetTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
@@ -188,7 +188,7 @@ class BudgetTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
@@ -200,7 +200,7 @@ class BudgetTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
@@ -222,7 +222,7 @@ class BudgetTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
@@ -234,7 +234,7 @@ class BudgetTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
@@ -246,7 +246,7 @@ class BudgetTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
@@ -258,7 +258,7 @@ class BudgetTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $this->faker()->uuid(),
@@ -281,7 +281,7 @@ class BudgetTest extends TestCase
             'currency' => [
                 'id' => 1,
                 'code' => 'GBP',
-                'name' => 'Sterling'
+                'name' => 'Sterling',
             ],
             'type' => 'expense',
             'id' => $uuid,
@@ -302,7 +302,7 @@ class BudgetTest extends TestCase
     {
         $service = new Service();
         $service->setNow(
-            new DateTimeImmutable("2022-08-01", app(Settings::class)->dateTimeZone())
+            new DateTimeImmutable('2022-08-01', app(Settings::class)->dateTimeZone())
         );
         $service->setPagination(5, 2021);
         $service->create();

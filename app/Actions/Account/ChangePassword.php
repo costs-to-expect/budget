@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions\Account;
@@ -16,8 +17,7 @@ class ChangePassword extends Action
     public function __invoke(
         Service $api,
         array $input
-    ): int
-    {
+    ): int {
         $post_response = $api->authenticationChangePassword($input);
 
         if ($post_response['status'] === 204) {
@@ -28,6 +28,7 @@ class ChangePassword extends Action
 
         if ($post_response['status'] === 422) {
             $this->validation_errors = $post_response['fields'];
+
             return $post_response['status'];
         }
 

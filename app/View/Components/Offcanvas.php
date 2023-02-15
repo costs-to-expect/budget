@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\View\Components;
@@ -24,7 +25,7 @@ class Offcanvas extends Component
         return view(
             'components.offcanvas',
             [
-                'active' => $this->active
+                'active' => $this->active,
             ]
         );
     }

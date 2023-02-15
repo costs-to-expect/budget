@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
@@ -616,7 +617,7 @@ class BudgetItem extends Controller
             return redirect()
                 ->route('budget.item.view', [
                     'item_id' => $request->route('item_id'),
-                    'item-month'=> (int) $request->post('month'),
+                    'item-month' => (int) $request->post('month'),
                     'item-yar' => (int) $request->post('year'),
                 ])
                 ->with('status', 'item-marked-as-not-paid');
@@ -641,7 +642,7 @@ class BudgetItem extends Controller
             return redirect()
                 ->route('budget.item.view', [
                     'item_id' => $request->route('item_id'),
-                    'item-month'=> (int) $request->post('month'),
+                    'item-month' => (int) $request->post('month'),
                     'item-yar' => (int) $request->post('year'),
                 ])
                 ->with('status', 'item-marked-as-paid');

@@ -17,8 +17,7 @@ class Exception extends Notification implements ShouldQueue
         public readonly string $file,
         public readonly int $line,
         public readonly string $trace,
-    )
-    {
+    ) {
         //
     }
 
@@ -45,11 +44,11 @@ class Exception extends Notification implements ShouldQueue
             ->greeting('Oops')
             ->subject('Budget: An exception has been thrown')
             ->line('An exception has been thrown on Budget, details below.')
-            ->line('Code: ' . $this->code)
-            ->line('Message: ' . $this->message)
-            ->line('File: ' . $this->file)
-            ->line('Line: ' . $this->line)
-            ->line('Trace string: ' . $this->trace);
+            ->line('Code: '.$this->code)
+            ->line('Message: '.$this->message)
+            ->line('File: '.$this->file)
+            ->line('Line: '.$this->line)
+            ->line('Trace string: '.$this->trace);
     }
 
     /**
