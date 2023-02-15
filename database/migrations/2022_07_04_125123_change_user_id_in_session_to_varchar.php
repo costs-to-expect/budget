@@ -11,7 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('sessions', static function (Blueprint $table) {
             $table->dropIndex('sessions_user_id_index');
@@ -28,7 +28,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         // No down
     }

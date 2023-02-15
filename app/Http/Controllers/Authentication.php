@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
 use App\Actions\Account\CreateNewPassword;
 use App\Actions\Account\CreatePassword;
 use App\Actions\Account\ForgotPassword;
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
  */
 class Authentication extends Controller
 {
-    public function createNewPassword(Request $request)
+    public function createNewPassword(Request $request): View
     {
         $encrypted_token = null;
         $email = null;
@@ -46,7 +47,7 @@ class Authentication extends Controller
         );
     }
 
-    public function createNewPasswordProcess(Request $request)
+    public function createNewPasswordProcess(Request $request): RedirectResponse
     {
         $api = new Service();
 
@@ -70,7 +71,7 @@ class Authentication extends Controller
             ->with('request.failed', $action->getMessage());
     }
 
-    public function createPassword(Request $request)
+    public function createPassword(Request $request): View
     {
         $token = null;
         $email = null;
@@ -119,7 +120,7 @@ class Authentication extends Controller
             ->with('request.failed', $action->getMessage());
     }
 
-    public function forgotPassword()
+    public function forgotPassword(): View
     {
         return view(
             'authentication.forgot-password',
@@ -130,7 +131,7 @@ class Authentication extends Controller
         );
     }
 
-    public function forgotPasswordProcess(Request $request)
+    public function forgotPasswordProcess(Request $request): RedirectResponse
     {
         $api = new Service();
 
@@ -152,7 +153,7 @@ class Authentication extends Controller
             ->with('request.failed', $action->getMessage());
     }
 
-    public function register()
+    public function register(): View
     {
         return view(
             'authentication.register',
@@ -190,7 +191,7 @@ class Authentication extends Controller
             ->with('request.failed', $action->getMessage());
     }
 
-    public function signIn()
+    public function signIn(): View
     {
         return view(
             'authentication.sign-in',
@@ -200,7 +201,7 @@ class Authentication extends Controller
         );
     }
 
-    public function signInProcess(Request $request)
+    public function signInProcess(Request $request): RedirectResponse
     {
         $action = new SignIn();
         $result = $action(

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Actions\Budget\Account\Create;
 use App\Actions\Budget\Account\SetBalances;
 use App\Actions\Budget\Account\Update;
@@ -17,7 +19,7 @@ use Illuminate\Http\Request;
  */
 class BudgetAccount extends Controller
 {
-    public function create(Request $request)
+    public function create(Request $request): View
     {
         $this->bootstrap();
 
@@ -48,7 +50,7 @@ class BudgetAccount extends Controller
         );
     }
 
-    public function createProcess(Request $request)
+    public function createProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -75,7 +77,7 @@ class BudgetAccount extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function setBalances(Request $request)
+    public function setBalances(Request $request): View
     {
         $this->bootstrap();
 
@@ -105,7 +107,7 @@ class BudgetAccount extends Controller
         );
     }
 
-    public function setBalancesProcess(Request $request)
+    public function setBalancesProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -132,7 +134,7 @@ class BudgetAccount extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function update(Request $request, $account_id)
+    public function update(Request $request, $account_id): View
     {
         $this->bootstrap();
 
@@ -169,7 +171,7 @@ class BudgetAccount extends Controller
         );
     }
 
-    public function updateProcess(Request $request)
+    public function updateProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 

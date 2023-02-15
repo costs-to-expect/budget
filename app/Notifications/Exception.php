@@ -27,7 +27,7 @@ class Exception extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return array
      */
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['mail'];
     }
@@ -38,7 +38,7 @@ class Exception extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return MailMessage
      */
-    public function toMail($notifiable)
+    public function toMail($notifiable): MailMessage
     {
         return (new MailMessage)
             ->greeting('Oops')
@@ -57,7 +57,7 @@ class Exception extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toArray($notifiable): array
     {
         return [
             'code' => $this->code,

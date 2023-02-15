@@ -11,7 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('paid_budget_item', function (Blueprint $table) {
             $table->string('resource_id');
@@ -33,7 +33,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         // No down
     }

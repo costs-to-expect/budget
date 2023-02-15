@@ -273,7 +273,7 @@ class BudgetTest extends TestCase
         $service->setAccounts([$account_1, $account_2, $account_3, $account_4]);
     }
 
-    public function testAccountReturned()
+    public function testAccountReturned(): void
     {
         $uuid = $this->faker->uuid();
 

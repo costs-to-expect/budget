@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Actions\Budget\Item\Adjust;
 use App\Actions\Budget\Item\Create;
 use App\Actions\Budget\Item\Delete;
@@ -26,7 +28,7 @@ use Illuminate\Http\Request;
  */
 class BudgetItem extends Controller
 {
-    public function adjustProcess(Request $request)
+    public function adjustProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -55,7 +57,7 @@ class BudgetItem extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function confirmDelete(Request $request)
+    public function confirmDelete(Request $request): View
     {
         $this->bootstrap();
 
@@ -110,7 +112,7 @@ class BudgetItem extends Controller
         );
     }
 
-    public function confirmDeleteProcess(Request $request)
+    public function confirmDeleteProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -139,7 +141,7 @@ class BudgetItem extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function confirmDisable(Request $request)
+    public function confirmDisable(Request $request): View
     {
         $this->bootstrap();
 
@@ -194,7 +196,7 @@ class BudgetItem extends Controller
         );
     }
 
-    public function confirmDisableProcess(Request $request)
+    public function confirmDisableProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -228,7 +230,7 @@ class BudgetItem extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function confirmEnable(Request $request)
+    public function confirmEnable(Request $request): View
     {
         $this->bootstrap();
 
@@ -283,7 +285,7 @@ class BudgetItem extends Controller
         );
     }
 
-    public function confirmEnableProcess(Request $request)
+    public function confirmEnableProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -363,7 +365,7 @@ class BudgetItem extends Controller
         return $this->create($request, 'budget.item.create-saving');
     }
 
-    public function createExpenseProcess(Request $request)
+    public function createExpenseProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -396,7 +398,7 @@ class BudgetItem extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function createIncomeProcess(Request $request)
+    public function createIncomeProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -429,7 +431,7 @@ class BudgetItem extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function createSavingProcess(Request $request)
+    public function createSavingProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -462,7 +464,7 @@ class BudgetItem extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $this->bootstrap();
 
@@ -531,7 +533,7 @@ class BudgetItem extends Controller
         );
     }
 
-    public function list(Request $request)
+    public function list(Request $request): View
     {
         $this->bootstrap();
 
@@ -552,7 +554,7 @@ class BudgetItem extends Controller
         );
     }
 
-    public function resetProcess(Request $request)
+    public function resetProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -580,7 +582,7 @@ class BudgetItem extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function restoreProcess(Request $request)
+    public function restoreProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -601,7 +603,7 @@ class BudgetItem extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function setAsNotPaidProcess(Request $request)
+    public function setAsNotPaidProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -626,7 +628,7 @@ class BudgetItem extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function setAsPaidProcess(Request $request)
+    public function setAsPaidProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -651,7 +653,7 @@ class BudgetItem extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function update(Request $request)
+    public function update(Request $request): View
     {
         $this->bootstrap();
 
@@ -697,7 +699,7 @@ class BudgetItem extends Controller
         );
     }
 
-    public function updateProcess(Request $request)
+    public function updateProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 

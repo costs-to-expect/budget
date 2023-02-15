@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Actions\Account\ChangePassword;
 use App\Actions\Account\DeleteAccount;
 use App\Actions\Account\DeleteBudgetAccount;
@@ -19,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
  */
 class Account extends Controller
 {
-    public function changePassword(Request $request)
+    public function changePassword(Request $request): View
     {
         $this->bootstrap();
 
@@ -37,7 +39,7 @@ class Account extends Controller
         );
     }
 
-    public function changePasswordProcess(Request $request)
+    public function changePasswordProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -62,7 +64,7 @@ class Account extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $this->bootstrap();
 
@@ -83,7 +85,7 @@ class Account extends Controller
         );
     }
 
-    public function reset(Request $request)
+    public function reset(Request $request): View
     {
         $this->bootstrap();
 
@@ -103,7 +105,7 @@ class Account extends Controller
         );
     }
 
-    public function resetProcess(Request $request, Reset $action)
+    public function resetProcess(Request $request, Reset $action): RedirectResponse
     {
         $this->bootstrap();
 
@@ -126,7 +128,7 @@ class Account extends Controller
         return redirect()->route('landing');
     }
 
-    public function deleteAccount(Request $request)
+    public function deleteAccount(Request $request): View
     {
         $this->bootstrap();
 
@@ -146,7 +148,7 @@ class Account extends Controller
         );
     }
 
-    public function deleteAccountProcess(Request $request, DeleteAccount $action)
+    public function deleteAccountProcess(Request $request, DeleteAccount $action): RedirectResponse
     {
         $this->bootstrap();
 
@@ -169,7 +171,7 @@ class Account extends Controller
         return redirect()->route('landing');
     }
 
-    public function deleteBudgetAccount(Request $request)
+    public function deleteBudgetAccount(Request $request): View
     {
         $this->bootstrap();
 
@@ -189,7 +191,7 @@ class Account extends Controller
         );
     }
 
-    public function deleteBudgetAccountProcess(Request $request, DeleteBudgetAccount $action)
+    public function deleteBudgetAccountProcess(Request $request, DeleteBudgetAccount $action): RedirectResponse
     {
         $this->bootstrap();
 
@@ -212,7 +214,7 @@ class Account extends Controller
         return redirect()->route('landing');
     }
 
-    public function updateProfile(Request $request)
+    public function updateProfile(Request $request): View
     {
         $this->bootstrap();
 
@@ -230,7 +232,7 @@ class Account extends Controller
         );
     }
 
-    public function updateProfileProcess(Request $request)
+    public function updateProfileProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 

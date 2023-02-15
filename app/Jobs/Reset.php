@@ -39,7 +39,7 @@ class Reset implements ShouldQueue
         $this->bearer = $bearer;
     }
 
-    public function handle()
+    public function handle(): void
     {
         $api = new Service($this->bearer);
 

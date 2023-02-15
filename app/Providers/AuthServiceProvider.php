@@ -25,7 +25,7 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         Auth::extend('api', static function (Container $app) {
             $config = Config::get('app.config');

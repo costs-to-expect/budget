@@ -22,7 +22,7 @@ class CreatePassword extends Notification implements ShouldQueue
         $this->token = $token;
     }
 
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['mail'];
     }
@@ -34,7 +34,7 @@ class CreatePassword extends Notification implements ShouldQueue
                 ->first() !== null;
     }
 
-    public function toMail($notifiable)
+    public function toMail($notifiable): MailMessage
     {
         return (new MailMessage)
             ->subject('Budget: Create a Password and you\'re good to go!')
@@ -45,7 +45,7 @@ class CreatePassword extends Notification implements ShouldQueue
             ->line('Thank you for using Budget, we hope it helps!');
     }
 
-    public function toArray($notifiable)
+    public function toArray($notifiable): array
     {
         return [
             'token' => $this->token,

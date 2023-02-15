@@ -21,12 +21,12 @@ class ForgotPassword extends Notification implements ShouldQueue
         $this->token = $token;
     }
 
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['mail'];
     }
 
-    public function toMail($notifiable)
+    public function toMail($notifiable): MailMessage
     {
         return (new MailMessage)
             ->subject('Budget: Create a new Password!')
@@ -37,7 +37,7 @@ class ForgotPassword extends Notification implements ShouldQueue
             ->line('Thank you for using Budget, we hope it helps!');
     }
 
-    public function toArray($notifiable)
+    public function toArray($notifiable): array
     {
         return [
             'token' => $this->token,

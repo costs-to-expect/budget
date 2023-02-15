@@ -57,7 +57,7 @@ class LoadDemo implements ShouldQueue
         $this->period = $this->calculatePeriod();
     }
 
-    public function handle()
+    public function handle(): void
     {
         $api = new Service($this->bearer);
 
