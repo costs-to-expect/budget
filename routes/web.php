@@ -132,13 +132,7 @@ Route::view(
     'add-savings'
 )->name('help.add-savings');
 
-Route::group(
-    [
-        'middleware' => [
-            'auth',
-        ],
-    ],
-    static function () {
+Route::middleware('auth')->group(static function () {
         Route::get(
             '/home',
             [Index::class, 'home']
