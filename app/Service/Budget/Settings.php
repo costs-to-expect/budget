@@ -31,7 +31,7 @@ class Settings
         return [
             'id' => 'epMqeYqPkL',
             'code' => 'GBP',
-            'name' => 'Sterling'
+            'name' => 'Sterling',
         ];
     }
 

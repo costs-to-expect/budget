@@ -1,12 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions\Budget\Item;
 
 use App\Actions\Action;
-use App\Service\Api\Service;
 use App\Models\AdjustedBudgetItem;
 use App\Models\PaidBudgetItem;
+use App\Service\Api\Service;
 use App\Service\Budget\Settings;
 use DateTimeImmutable;
 
@@ -23,11 +24,11 @@ class Delete extends Action
         string $resource_id,
         string $item_id,
         bool $discard = false
-    ): int
-    {
+    ): int {
         $item_response = $api->budgetItem($resource_type_id, $resource_id, $item_id);
         if ($item_response['status'] !== 200) {
             $this->message = $item_response['content'];
+
             return $item_response['status'];
         }
 
@@ -37,12 +38,11 @@ class Delete extends Action
                 $resource_id,
                 $item_id,
                 [
-                    'end_date' => (new DateTimeImmutable('yesterday', app(Settings::class)->dateTimeZone()))->format('Y-m-d')
+                    'end_date' => (new DateTimeImmutable('yesterday', app(Settings::class)->dateTimeZone()))->format('Y-m-d'),
                 ]
             );
 
             if ($patch_budget_item_response['status'] === 204) {
-
                 PaidBudgetItem::query()
                     ->where('resource_id', $resource_id)
                     ->where('budget_item_id', $item_id)
@@ -59,6 +59,7 @@ class Delete extends Action
             if ($patch_budget_item_response['status'] === 422) {
                 $this->message = $patch_budget_item_response['content'];
                 $this->validation_errors = $patch_budget_item_response['fields'];
+
                 return 422;
             }
 
@@ -74,7 +75,6 @@ class Delete extends Action
         );
 
         if ($delete_budget_item_response['status'] === 204) {
-
             PaidBudgetItem::query()
                 ->where('resource_id', $resource_id)
                 ->where('budget_item_id', $item_id)

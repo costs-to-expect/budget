@@ -14,7 +14,7 @@
 
         <x-offcanvas active="account.delete-account"/>
 
-        <div class="col-lg-8 mx-auto p-3">
+        <div class="col-lg-8 col-xl-6 mx-auto p-3">
 
             <main>
                 <h2 class="display-5">Delete Account</h2>

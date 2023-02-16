@@ -19,6 +19,7 @@ class User extends Authenticatable
     public function getAuthIdentifier()
     {
         $config = Config::get('app.config');
+
         return request()?->cookie($config['cookie_user']);
     }
 

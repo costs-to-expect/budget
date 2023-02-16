@@ -2,14 +2,13 @@
 
 namespace App\Jobs;
 
-use App\Service\Api\Service;
 use App\Models\AdjustedBudgetItem;
 use App\Models\PaidBudgetItem;
 use App\Notifications\Exception;
+use App\Service\Api\Service;
 use App\Service\Budget\Settings;
 use DateTime;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -30,10 +29,15 @@ class LoadDemo implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private string $resource_type_id;
+
     private string $resource_id;
+
     private string $bearer;
+
     private string $currency_id;
+
     private array $currency;
+
     private array $period;
 
     private Settings $settings;
@@ -43,8 +47,7 @@ class LoadDemo implements ShouldQueue
         string $resource_id,
         string $bearer,
         string $currency_id
-    )
-    {
+    ) {
         $this->settings = app(Settings::class);
 
         $this->resource_type_id = $resource_type_id;
@@ -54,7 +57,7 @@ class LoadDemo implements ShouldQueue
         $this->period = $this->calculatePeriod();
     }
 
-    public function handle()
+    public function handle(): void
     {
         $api = new Service($this->bearer);
 
@@ -98,7 +101,7 @@ class LoadDemo implements ShouldQueue
             $this->resource_id,
             [
                 'limit' => 50,
-                'sort' => 'amount:desc|created:asc'
+                'sort' => 'amount:desc|created:asc',
             ]
         );
         if ($budget_items_response['status'] !== 200) {
@@ -137,32 +140,32 @@ class LoadDemo implements ShouldQueue
             'currency' => [
                 'id' => $this->currency['id'],
                 'code' => $this->currency['code'],
-                'name' => $this->currency['name']
+                'name' => $this->currency['name'],
             ],
             'type' => 'expense',
             'id' => Str::uuid()->toString(),
             'name' => 'Checking',
             'description' => null,
             'balance' => '2848.65',
-            'color' => "#" . dechex(random_int(0, 16777215))
+            'color' => '#'.dechex(random_int(0, 16777215)),
         ];
         $savings = [
             'currency' => [
                 'id' => $this->currency['id'],
                 'code' => $this->currency['code'],
-                'name' => $this->currency['name']
+                'name' => $this->currency['name'],
             ],
             'type' => 'savings',
             'id' => Str::uuid()->toString(),
             'name' => 'Savings',
             'description' => null,
             'balance' => '219.54',
-            'color' => "#" . dechex(random_int(0, 16777215))
+            'color' => '#'.dechex(random_int(0, 16777215)),
         ];
 
         $payload['accounts'] = [
             $debit['id'] => $debit,
-            $savings['id'] => $savings
+            $savings['id'] => $savings,
         ];
 
         try {
@@ -193,7 +196,7 @@ class LoadDemo implements ShouldQueue
         ];
         try {
             $monthly_frequency_json = json_encode($monthly_frequency, JSON_THROW_ON_ERROR);
-        } catch(JsonException $e) {
+        } catch (JsonException $e) {
             $this->fail($e);
         }
 
@@ -204,7 +207,7 @@ class LoadDemo implements ShouldQueue
         ];
         try {
             $frequency_council_tax_json = json_encode($frequency_council_tax, JSON_THROW_ON_ERROR);
-        } catch(JsonException $e) {
+        } catch (JsonException $e) {
             $this->fail($e);
         }
 
@@ -215,30 +218,30 @@ class LoadDemo implements ShouldQueue
         ];
         try {
             $frequency_car_insurance_json = json_encode($frequency_car_insurance, JSON_THROW_ON_ERROR);
-        } catch(JsonException $e) {
+        } catch (JsonException $e) {
             $this->fail($e);
         }
 
         $frequency_water = [
             'type' => 'annually',
             'day' => null,
-            'month' => 10
+            'month' => 10,
         ];
         try {
             $frequency_water_json = json_encode($frequency_water, JSON_THROW_ON_ERROR);
-        } catch(JsonException $e) {
+        } catch (JsonException $e) {
             $this->fail($e);
         }
 
-        $frequency_one_off  = [
+        $frequency_one_off = [
             'type' => 'one-off',
             'day' => null,
             'month' => (int) $this->period['month'],
-            'year' => (int) $this->period['year']
+            'year' => (int) $this->period['year'],
         ];
         try {
             $frequency_one_off_json = json_encode($frequency_one_off, JSON_THROW_ON_ERROR);
-        } catch(JsonException $e) {
+        } catch (JsonException $e) {
             $this->fail($e);
         }
 
@@ -253,7 +256,7 @@ class LoadDemo implements ShouldQueue
                 'end_date' => null,
                 'currency_id' => $this->currency['id'],
                 'category' => 'income',
-                'frequency' => $monthly_frequency_json
+                'frequency' => $monthly_frequency_json,
             ],
             [
                 'name' => 'Savings',
@@ -265,7 +268,7 @@ class LoadDemo implements ShouldQueue
                 'end_date' => null,
                 'currency_id' => $this->currency['id'],
                 'category' => 'savings',
-                'frequency' => $monthly_frequency_json
+                'frequency' => $monthly_frequency_json,
             ],
             [
                 'name' => 'Rent',
@@ -277,7 +280,7 @@ class LoadDemo implements ShouldQueue
                 'end_date' => null,
                 'currency_id' => $this->currency['id'],
                 'category' => 'fixed',
-                'frequency' => $monthly_frequency_json
+                'frequency' => $monthly_frequency_json,
             ],
             [
                 'name' => 'Council Tax',
@@ -289,7 +292,7 @@ class LoadDemo implements ShouldQueue
                 'end_date' => null,
                 'currency_id' => $this->currency['id'],
                 'category' => 'fixed',
-                'frequency' => $frequency_council_tax_json
+                'frequency' => $frequency_council_tax_json,
             ],
             [
                 'name' => 'Car insurance',
@@ -301,7 +304,7 @@ class LoadDemo implements ShouldQueue
                 'end_date' => null,
                 'currency_id' => $this->currency['id'],
                 'category' => 'fixed',
-                'frequency' => $frequency_car_insurance_json
+                'frequency' => $frequency_car_insurance_json,
             ],
             [
                 'name' => 'Water',
@@ -313,7 +316,7 @@ class LoadDemo implements ShouldQueue
                 'end_date' => null,
                 'currency_id' => $this->currency['id'],
                 'category' => 'fixed',
-                'frequency' => $frequency_water_json
+                'frequency' => $frequency_water_json,
             ],
             [
                 'name' => 'Netflix',
@@ -325,7 +328,7 @@ class LoadDemo implements ShouldQueue
                 'end_date' => null,
                 'currency_id' => $this->currency['id'],
                 'category' => 'flexible',
-                'frequency' => $monthly_frequency_json
+                'frequency' => $monthly_frequency_json,
             ],
             [
                 'name' => 'Chess.com',
@@ -337,7 +340,7 @@ class LoadDemo implements ShouldQueue
                 'end_date' => null,
                 'currency_id' => $this->currency['id'],
                 'category' => 'flexible',
-                'frequency' => $monthly_frequency_json
+                'frequency' => $monthly_frequency_json,
             ],
             [
                 'name' => 'Guitar lessons',
@@ -349,7 +352,7 @@ class LoadDemo implements ShouldQueue
                 'end_date' => null,
                 'currency_id' => $this->currency['id'],
                 'category' => 'flexible',
-                'frequency' => $monthly_frequency_json
+                'frequency' => $monthly_frequency_json,
             ],
             [
                 'name' => 'Piano lessons',
@@ -362,7 +365,7 @@ class LoadDemo implements ShouldQueue
                 'end_date' => null,
                 'currency_id' => $this->currency['id'],
                 'category' => 'flexible',
-                'frequency' => $monthly_frequency_json
+                'frequency' => $monthly_frequency_json,
             ],
             [
                 'name' => 'Credit card payment',
@@ -374,7 +377,7 @@ class LoadDemo implements ShouldQueue
                 'end_date' => null,
                 'currency_id' => $this->currency['id'],
                 'category' => 'fixed',
-                'frequency' => $monthly_frequency_json
+                'frequency' => $monthly_frequency_json,
             ],
             [
                 'name' => 'Gas & Electric',
@@ -386,7 +389,7 @@ class LoadDemo implements ShouldQueue
                 'end_date' => null,
                 'currency_id' => $this->currency['id'],
                 'category' => 'fixed',
-                'frequency' => $monthly_frequency_json
+                'frequency' => $monthly_frequency_json,
             ],
             [
                 'name' => 'Holiday deposit',
@@ -394,16 +397,15 @@ class LoadDemo implements ShouldQueue
                 'target_account' => null,
                 'description' => null,
                 'amount' => '175.00',
-                'start_date' => $this->period['year'] . '-' . $this->period['month'] . '-15',
-                'end_date' => $this->period['year_next'] . '-' . $this->period['month_next'] . '-01',
+                'start_date' => $this->period['year'].'-'.$this->period['month'].'-15',
+                'end_date' => $this->period['year_next'].'-'.$this->period['month_next'].'-01',
                 'currency_id' => $this->currency['id'],
                 'category' => 'flexible',
-                'frequency' => $frequency_one_off_json
+                'frequency' => $frequency_one_off_json,
             ],
         ];
 
-        foreach ($budget_items as $budget_item_payload)
-        {
+        foreach ($budget_items as $budget_item_payload) {
             $create_budget_item_response = $api->budgetItemCreate(
                 $this->resource_type_id,
                 $this->resource_id,
@@ -411,15 +413,14 @@ class LoadDemo implements ShouldQueue
             );
 
             if ($create_budget_item_response['status'] !== 201) {
-
                 $error_suffix = '';
                 if ($create_budget_item_response['status'] === 422) {
-                    $error_suffix = ' - ' . json_encode($create_budget_item_response['fields']);
+                    $error_suffix = ' - '.json_encode($create_budget_item_response['fields']);
                 }
 
-                $this->fail(new \Exception('Unable to create the ' . $budget_item_payload['name'] .
-                    ' demo budget item, returned error ' . $create_budget_item_response['content'] . ' return code ' .
-                    $create_budget_item_response['status'] . $error_suffix));
+                $this->fail(new \Exception('Unable to create the '.$budget_item_payload['name'].
+                    ' demo budget item, returned error '.$create_budget_item_response['content'].' return code '.
+                    $create_budget_item_response['status'].$error_suffix));
             }
 
             $budget_item = $create_budget_item_response['content'];

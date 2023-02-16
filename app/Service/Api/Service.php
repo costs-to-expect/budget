@@ -1,10 +1,9 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Service\Api;
 
-use App\Service\Api\Http;
-use App\Service\Api\Uri;
 use Illuminate\Support\Facades\Config;
 use JetBrains\PhpStorm\ArrayShape;
 
@@ -18,6 +17,7 @@ class Service
     private Http $http;
 
     private string $item_type_id;
+
     private string $item_subtype_id;
 
     private array $requests = [];
@@ -30,7 +30,7 @@ class Service
         $this->item_subtype_id = Config::get('app.config.item_subtype_id');
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array', 'fields' => 'array'])]
     public function authenticationSignIn(string $email, string $password): array
     {
         $uri = Uri::signIn();
@@ -40,12 +40,12 @@ class Service
             [
                 'email' => $email,
                 'password' => $password,
-                'device_name' => (app()->environment('local') ? 'budget:local:' : 'budget:')
+                'device_name' => (app()->environment('local') ? 'budget:local:' : 'budget:'),
             ]
         );
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array', 'fields' => 'array'])]
     public function authenticationForgotPassword(array $payload): array
     {
         $uri = Uri::forgotPassword();
@@ -53,12 +53,12 @@ class Service
         return $this->http->post(
             $uri['uri'],
             [
-                'email' => $payload['email']
+                'email' => $payload['email'],
             ]
         );
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array'])]
     public function authenticationUser(): array
     {
         $uri = Uri::user();
@@ -72,7 +72,7 @@ class Service
         return $response;
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array'])]
     public function budgetItem(string $resource_type_id, string $resource_id, string $item_id): array
     {
         $uri = Uri::item($resource_type_id, $resource_id, $item_id);
@@ -86,7 +86,7 @@ class Service
         return $response;
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array'])]
     public function budgetItems(string $resource_type_id, string $resource_id, array $parameters = []): array
     {
         $uri = Uri::items($resource_type_id, $resource_id, $parameters);
@@ -100,7 +100,7 @@ class Service
         return $response;
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array'])]
     public function currencies(): array
     {
         $uri = Uri::currencies();
@@ -114,7 +114,7 @@ class Service
         return $response;
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array'])]
     public function currency(string $currency_id): array
     {
         $uri = Uri::currency($currency_id);
@@ -128,7 +128,7 @@ class Service
         return $response;
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array', 'fields' => 'array'])]
     public function authenticationChangePassword(array $payload): array
     {
         $uri = Uri::changePassword();
@@ -137,12 +137,12 @@ class Service
             $uri['uri'],
             [
                 'password' => $payload['password'],
-                'password_confirmation' => $payload['password_confirmation']
+                'password_confirmation' => $payload['password_confirmation'],
             ]
         );
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array', 'fields' => 'array'])]
     public function budgetItemCreate(string $resource_type_id, string $resource_id, array $payload): array
     {
         $uri = Uri::items($resource_type_id, $resource_id);
@@ -153,7 +153,7 @@ class Service
         );
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array', 'fields' => 'array'])]
     public function authenticationCreatePassword(array $payload): array
     {
         $uri = Uri::createPassword($payload['token'], $payload['email']);
@@ -162,12 +162,12 @@ class Service
             $uri['uri'],
             [
                 'password' => $payload['password'],
-                'password_confirmation' => $payload['password_confirmation']
+                'password_confirmation' => $payload['password_confirmation'],
             ]
         );
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array', 'fields' => 'array'])]
     public function authenticationCreateNewPassword(array $payload): array
     {
         $uri = Uri::createNewPassword($payload['encrypted_token'], $payload['email']);
@@ -176,12 +176,12 @@ class Service
             $uri['uri'],
             [
                 'password' => $payload['password'],
-                'password_confirmation' => $payload['password_confirmation']
+                'password_confirmation' => $payload['password_confirmation'],
             ]
         );
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array'])]
     public function resourceCreate(string $resource_type_id): array
     {
         $uri = Uri::resources($resource_type_id);
@@ -191,12 +191,12 @@ class Service
             [
                 'name' => 'Annual Budget',
                 'description' => 'Your annual budget',
-                'item_subtype_id' => $this->item_subtype_id
+                'item_subtype_id' => $this->item_subtype_id,
             ]
         );
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array'])]
     public function resourceTypeCreate(): array
     {
         $uri = Uri::resourceTypes();
@@ -206,24 +206,23 @@ class Service
             [
                 'name' => 'Budgeting',
                 'description' => 'Free budgeting for all',
-                'item_type_id' => $this->item_type_id
+                'item_type_id' => $this->item_type_id,
             ]
         );
     }
 
-    #[ArrayShape(['status' => "integer", "content" => "string"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'string'])]
     public function budgetItemDelete(
         string $resource_type_id,
         string $resource_id,
         string $item_id
-    ): array
-    {
+    ): array {
         $uri = Uri::item($resource_type_id, $resource_id, $item_id);
 
         return $this->http->delete($uri['uri']);
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array'])]
     public function resource(string $resource_type_id, string $resource_id, array $parameters = []): array
     {
         $uri = Uri::resource($resource_type_id, $resource_id, $parameters);
@@ -237,7 +236,7 @@ class Service
         return $response;
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array'])]
     public function resources(string $resource_type_id, array $parameters = []): array
     {
         $uri = Uri::resources($resource_type_id, $parameters);
@@ -251,7 +250,7 @@ class Service
         return $response;
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array'])]
     public function resourceTypes(array $parameters = []): array
     {
         $uri = Uri::resourceTypes($parameters);
@@ -265,32 +264,30 @@ class Service
         return $response;
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array', 'fields' => 'array'])]
     public function budgetItemUpdate(
         string $resource_type_id,
         string $resource_id,
         string $item_id,
         array $payload = []
-    ): array
-    {
+    ): array {
         $uri = Uri::item($resource_type_id, $resource_id, $item_id);
 
         return $this->http->patch($uri['uri'], $payload);
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array', 'fields' => 'array'])]
     public function resourceUpdate(
         string $resource_type_id,
         string $resource_id,
         array $payload = []
-    ): array
-    {
+    ): array {
         $uri = Uri::resource($resource_type_id, $resource_id);
 
         return $this->http->patch($uri['uri'], $payload);
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array', 'fields' => 'array'])]
     public function authenticationRegister(array $payload): array
     {
         $uri = Uri::register();
@@ -299,39 +296,36 @@ class Service
             $uri['uri'],
             [
                 'name' => $payload['name'],
-                'email' => $payload['email']
+                'email' => $payload['email'],
             ]
         );
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array', 'fields' => 'array'])]
     public function accountRequestAppAccountDelete(
         string $resource_type_id,
         array $payload = []
-    ): array
-    {
+    ): array {
         $uri = Uri::requestResourceTypeDelete($resource_type_id);
 
         return $this->http->post($uri['uri'], $payload);
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array', 'fields' => 'array'])]
     public function accountRequestDelete(
         array $payload = []
-    ): array
-    {
+    ): array {
         $uri = Uri::requestDelete();
 
         return $this->http->post($uri['uri'], $payload);
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array', 'fields' => 'array'])]
     public function accountRequestAppReset(
         string $resource_type_id,
         string $resource_id,
         array $payload = []
-    ): array
-    {
+    ): array {
         $uri = Uri::requestResourceDelete($resource_type_id, $resource_id);
 
         return $this->http->post($uri['uri'], $payload);
@@ -342,7 +336,7 @@ class Service
         return $this->requests;
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array", 'fields' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array', 'fields' => 'array'])]
     public function authenticationUpdateProfile(array $payload): array
     {
         $uri = Uri::updateProfile();
@@ -351,12 +345,12 @@ class Service
             $uri['uri'],
             [
                 'email' => $payload['email'],
-                'name' => $payload['name']
+                'name' => $payload['name'],
             ]
         );
     }
 
-    #[ArrayShape(['status' => "integer", 'content' => "array"])]
+    #[ArrayShape(['status' => 'integer', 'content' => 'array'])]
     public function status(): array
     {
         $uri = Uri::status();

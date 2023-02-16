@@ -19,13 +19,17 @@ use Exception;
 class Item
 {
     protected string $name;
+
     protected ?string $description;
 
     protected DateTimeImmutable $start_date;
+
     protected ?DateTimeImmutable $end_date = null;
 
     protected float $amount;
+
     protected float $original_amount;
+
     protected array $currency;
 
     protected Period $frequency;
@@ -33,7 +37,9 @@ class Item
     protected string $category;
 
     protected string $account;
+
     protected string $account_color;
+
     protected string $account_name;
 
     protected ?string $target_account;
@@ -124,10 +130,9 @@ class Item
 
     public function active(): bool
     {
-        return (
+        return
             $this->startDate() <= now() &&
-            now() <= $this->endDate()
-        );
+            now() <= $this->endDate();
     }
 
     public function activeForMonth(int $days, int $month, int $year): bool
@@ -149,7 +154,7 @@ class Item
         $start_of_active_month = new DateTimeImmutable("{$year}-{$month}-01", $this->settings->dateTimeZone());
         $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", $this->settings->dateTimeZone());
 
-        return (
+        return
             $this->frequency()->month() === $month &&
             $this->startDate() <= $end_of_active_month &&
             (
@@ -161,19 +166,17 @@ class Item
                         $this->endDate() > $this->today
                     )
                 )
-            )
-        );
+            );
     }
 
     private function activeForOneOffItem(int $days, int $month, int $year): bool
     {
         $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", $this->settings->dateTimeZone());
 
-        return (
+        return
             $this->frequency()->month() === $month &&
             $this->startDate() <= $end_of_active_month &&
-            $this->endDate() > $end_of_active_month
-        );
+            $this->endDate() > $end_of_active_month;
     }
 
     private function activeForMonthMonthlyItem(int $days, int $month, int $year): bool
@@ -181,7 +184,7 @@ class Item
         $start_of_active_month = new DateTimeImmutable("{$year}-{$month}-01", $this->settings->dateTimeZone());
         $end_of_active_month = new DateTimeImmutable("{$year}-{$month}-{$days}", $this->settings->dateTimeZone());
 
-        return (
+        return
             in_array($month, $this->frequency()->exclusions(), true) === false &&
             $this->startDate() <= $end_of_active_month &&
             (
@@ -193,8 +196,7 @@ class Item
                         $this->endDate() > $this->today
                     )
                 )
-            )
-        );
+            );
     }
 
     public function amount(): float

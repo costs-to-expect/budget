@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions\Budget;
@@ -18,11 +19,11 @@ class AdoptDemo extends Action
         Service $api,
         string $resource_type_id,
         string $resource_id,
-    ): int
-    {
+    ): int {
         $resource_response = $api->resource($resource_type_id, $resource_id);
         if ($resource_response['status'] !== 200) {
             $this->message = 'Unable to fetch the resource for your Budget, please try again';
+
             return $resource_response['status'];
         }
 
@@ -32,6 +33,7 @@ class AdoptDemo extends Action
             $payload = json_encode($data, JSON_THROW_ON_ERROR);
         } catch (JsonException $e) {
             $this->message = $e->getMessage();
+
             return 500;
         }
 
@@ -46,6 +48,7 @@ class AdoptDemo extends Action
         }
 
         $this->message = $patch_resource_response['content'];
+
         return $patch_resource_response['status'];
     }
 }

@@ -14,7 +14,7 @@
 
         <x-offcanvas active="home"/>
 
-        <div class="col-lg-10 col-xl-9 mx-auto p-3">
+        <div class="col-lg-10 col-xl-8 col-xxl-8 mx-auto p-3">
             <div class="row">
                 <div class="col-12 col-lg-5 mx-auto p-2">
                     <form action="{{ route('budget.account.set-balances.process') }}" method="POST" class="row g-2">

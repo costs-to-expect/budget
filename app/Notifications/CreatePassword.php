@@ -13,6 +13,7 @@ class CreatePassword extends Notification implements ShouldQueue
     use Queueable;
 
     public string $email;
+
     public string $token;
 
     public function __construct(string $email, string $token)
@@ -21,7 +22,7 @@ class CreatePassword extends Notification implements ShouldQueue
         $this->token = $token;
     }
 
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['mail'];
     }
@@ -33,18 +34,18 @@ class CreatePassword extends Notification implements ShouldQueue
                 ->first() !== null;
     }
 
-    public function toMail($notifiable)
+    public function toMail($notifiable): MailMessage
     {
         return (new MailMessage)
             ->subject('Budget: Create a Password and you\'re good to go!')
             ->greeting('Hi Budgeteer!')
             ->line('Your account has been created. To start creating your budget, you just need to create your password.')
             ->line('If you’ve already created a password, please just ignore us! This email is just in case you never got a chance, you can pick up where you left off.')
-            ->action('Create Password', url('/create-password') . '?token=' . urlencode($this->token) . '&email=' . urlencode($this->email))
+            ->action('Create Password', url('/create-password').'?token='.urlencode($this->token).'&email='.urlencode($this->email))
             ->line('Thank you for using Budget, we hope it helps!');
     }
 
-    public function toArray($notifiable)
+    public function toArray($notifiable): array
     {
         return [
             'token' => $this->token,

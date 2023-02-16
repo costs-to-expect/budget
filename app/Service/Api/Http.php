@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Service\Api;
@@ -42,7 +43,7 @@ class Http
 
     public function delete(string $uri): array
     {
-        $response = $this->client->delete($this->baseUri() . $uri);
+        $response = $this->client->delete($this->baseUri().$uri);
 
         return match ($response->status()) {
             204 => [
@@ -51,7 +52,7 @@ class Http
             ],
             default => [
                 'status' => $response->status(),
-                'content' => $response->json('message')
+                'content' => $response->json('message'),
             ],
         };
     }
@@ -59,9 +60,9 @@ class Http
     public function get(string $uri, bool $skip_cache = false): array
     {
         if ($skip_cache === false) {
-            $response = $this->client->get($this->baseUri() . $uri);
+            $response = $this->client->get($this->baseUri().$uri);
         } else {
-            $response = $this->client->withHeaders(['X-Skip-Cache' => 'true'])->get($this->baseUri() . $uri);
+            $response = $this->client->withHeaders(['X-Skip-Cache' => 'true'])->get($this->baseUri().$uri);
         }
 
         return match ($response->status()) {
@@ -77,7 +78,7 @@ class Http
             ],
             default => [
                 'status' => $response->status(),
-                'content' => 'We encountered an unknown error contacting the API [' . $response->json('message') . ']' ,
+                'content' => 'We encountered an unknown error contacting the API ['.$response->json('message').']',
             ]
         };
     }
@@ -85,7 +86,7 @@ class Http
     public function patch(string $uri, array $payload): array
     {
         $response = $this->client->patch(
-            $this->baseUri() . $uri,
+            $this->baseUri().$uri,
             $payload
         );
 
@@ -94,7 +95,7 @@ class Http
                 'status' => 204,
                 'content' => null,
             ],
-            400, 401, 403, 404, 500, 503,  => [
+            400, 401, 403, 404, 500, 503, => [
                 'status' => $response->status(),
                 'content' => $response->json('message'),
             ],
@@ -113,20 +114,20 @@ class Http
     public function post(string $uri, array $payload): array
     {
         $response = $this->client->post(
-            $this->baseUri() . $uri,
+            $this->baseUri().$uri,
             $payload
         );
 
         return match ($response->status()) {
             201 => [
                 'status' => $response->status(),
-                'content' => $response->json()
+                'content' => $response->json(),
             ],
             204 => [
                 'status' => 204,
                 'content' => null,
             ],
-            400, 401, 403, 404, 500, 503,  => [
+            400, 401, 403, 404, 500, 503, => [
                 'status' => $response->status(),
                 'content' => $response->json('message'),
             ],
@@ -153,12 +154,12 @@ class Http
         return $config['api_url_dev'];
     }
 
-    #[ArrayShape(['Accept' => "string", 'Content-Type' => "string"])]
+    #[ArrayShape(['Accept' => 'string', 'Content-Type' => 'string'])]
     private function defaultHeaders(): array
     {
         return [
             'Accept' => 'application/json',
-            'Content-Type' => 'application/json'
+            'Content-Type' => 'application/json',
         ];
     }
 }

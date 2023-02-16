@@ -2,10 +2,9 @@
 
 namespace App\Jobs;
 
-use App\Service\Api\Service;
 use App\Notifications\Exception;
+use App\Service\Api\Service;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -25,21 +24,22 @@ class Reset implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private string $resource_type_id;
+
     private string $resource_id;
+
     private string $bearer;
 
     public function __construct(
         string $bearer,
         string $resource_type_id,
         string $resource_id
-    )
-    {
+    ) {
         $this->resource_type_id = $resource_type_id;
         $this->resource_id = $resource_id;
         $this->bearer = $bearer;
     }
 
-    public function handle()
+    public function handle(): void
     {
         $api = new Service($this->bearer);
 

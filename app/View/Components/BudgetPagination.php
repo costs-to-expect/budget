@@ -10,8 +10,7 @@ class BudgetPagination extends Component
 
     public function __construct(
         array $pagination,
-    )
-    {
+    ) {
         $this->pagination = $pagination;
     }
 

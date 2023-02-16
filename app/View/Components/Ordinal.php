@@ -7,6 +7,7 @@ use Illuminate\View\Component;
 class Ordinal extends Component
 {
     private int $day;
+
     private string $ordinal;
 
     public function __construct(int $day)
