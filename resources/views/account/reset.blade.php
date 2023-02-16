@@ -14,7 +14,7 @@
 
         <x-offcanvas active="account.reset"/>
 
-        <div class="col-lg-8 mx-auto p-3">
+        <div class="col-lg-8 col-xl-6 mx-auto p-3">
 
             <main>
                  <h2 class="display-5">Reset Budget</h2>

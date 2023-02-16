@@ -36,7 +36,7 @@
                     </a>
                 </div>
 
-                <div class="col-12 col-md-4 col-lg-4 mx-auto p-2">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mx-auto p-2">
 
                     <h4 class="text-center pt-3">All Done!</h4>
 

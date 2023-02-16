@@ -12,7 +12,7 @@
         </header>
         @endauth
 
-        <div class="col-lg-8 mx-auto p-3">
+        <div class="col-lg-8 col-xl-6 mx-auto p-3">
             <div class="row">
                 <div class="col-12">
                     <h2 class="display-4 mt-3 mb-3">Budget and Budget Pro</h2>
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="col-lg-8 mx-auto p-3">
+        <div class="col-lg-8 col-xl-6 mx-auto p-3">
             <div class="row">
                 <div class="col-12">
                     <h3 class="display-6 mb-3">What are the limits for each version?</h3>
@@ -247,7 +247,7 @@
             </div>
         </div>
 
-        <div class="col-lg-8 mx-auto p-3">
+        <div class="col-lg-8 col-xl-6 mx-auto p-3">
             <div class="row">
                 <div class="col-12">
                     <x-footer />

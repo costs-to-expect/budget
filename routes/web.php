@@ -7,10 +7,12 @@ use App\Http\Controllers\BudgetItem;
 use App\Http\Controllers\Index;
 use Illuminate\Support\Facades\Route;
 
-Route::get(
-    '/',
-    [Index::class, 'landing']
-)->name('landing');
+Route::middleware('guest')->group(static function () {
+    Route::get(
+        '/',
+        [Index::class, 'landing']
+    )->name('landing');
+});
 
 Route::get(
     '/sign-in',

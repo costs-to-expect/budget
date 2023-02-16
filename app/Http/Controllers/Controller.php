@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Config;
 class Controller extends BaseController
 {
     use AuthorizesRequests;
-    use DispatchesJobs;
     use ValidatesRequests;
 
     protected array $config;
