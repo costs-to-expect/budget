@@ -16,8 +16,7 @@ class BudgetProjections extends Component
         array $accounts,
         array $viewEnd,
         bool $projection = true
-    )
-    {
+    ) {
         $this->accounts = $accounts;
         $this->view_end = $viewEnd;
         $this->projection = $projection;

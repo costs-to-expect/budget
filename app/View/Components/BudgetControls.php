@@ -19,8 +19,7 @@ class BudgetControls extends Component
         bool $hasSavingsAccount = false,
         bool $hasPaidItems = false,
         bool $nowVisible = true
-    )
-    {
+    ) {
         $this->accounts = $accounts;
 
         $this->has_savings_account = $hasSavingsAccount;

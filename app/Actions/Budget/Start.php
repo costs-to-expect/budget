@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions\Budget;
@@ -22,8 +23,7 @@ class Start extends Action
         string $resource_type_id,
         string $resource_id,
         array $input
-    ): int
-    {
+    ): int {
         // We need to validate the input because we are patching a resource
         // The API will only error if we don't send JSON which we won't, however, it is
         // possible the JSON could be invalid, as in missing data
@@ -41,23 +41,23 @@ class Start extends Action
                     Rule::in(['expense', 'savings']),
                 ],
                 'description' => [
-                    'sometimes'
+                    'sometimes',
                 ],
                 'currency_id' => [
                     'required',
-                    'string'
+                    'string',
                 ],
                 'balance' => [
                     'required',
                     'string',
                     'regex:/^\d+\.\d{2}$/',
-                    'max:16'
+                    'max:16',
                 ],
                 'color' => [
                     'required',
                     'string',
                     'regex:/^#([A-Fa-f0-9]{6})$/',
-                ]
+                ],
             ],
             [
                 'balance.regex' => 'Costs should be in the format 0.00',
@@ -68,12 +68,14 @@ class Start extends Action
         $resource = $api->resource($resource_type_id, $resource_id);
         if ($resource['status'] !== 200) {
             $this->message = 'Unable to fetch the resource for your Budget, please try again';
+
             return $resource['status'];
         }
 
         $currencies = $api->currencies();
         if ($currencies['status'] !== 200) {
             $this->message = 'Unable to fetch the currencies, please try again';
+
             return $currencies['status'];
         }
 
@@ -87,6 +89,7 @@ class Start extends Action
 
         if ($currency === null) {
             $this->message = 'Unable to find the selected currency, please try again';
+
             return 500;
         }
 
@@ -100,7 +103,7 @@ class Start extends Action
                 'currency' => $currency,
                 'balance' => $input['balance'],
                 'color' => $input['color'],
-            ]
+            ],
         ];
 
         try {
@@ -123,6 +126,7 @@ class Start extends Action
 
         if ($patch_resource_response['status'] === 422) {
             $this->validation_errors = $patch_resource_response['fields'];
+
             return $patch_resource_response['status'];
         }
 

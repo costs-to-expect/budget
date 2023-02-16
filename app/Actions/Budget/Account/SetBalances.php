@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions\Budget\Account;
@@ -20,11 +21,11 @@ class SetBalances extends Action
         string $resource_type_id,
         string $resource_id,
         array $input
-    ): int
-    {
+    ): int {
         $resource = $api->resource($resource_type_id, $resource_id);
         if ($resource['status'] !== 200) {
             $this->message = 'Unable to fetch the resource for your Budget, please try again';
+
             return $resource['status'];
         }
 
@@ -37,11 +38,11 @@ class SetBalances extends Action
                 'required',
                 'string',
                 'regex:/^\d+\.\d{2}$/',
-                'max:16'
+                'max:16',
             ];
-            $messages[$id . '.required'] = 'Please enter the balance for the account';
-            $messages[$id . '.regex'] = 'The value should be in the format 0.00';
-            $messages[$id . '.max'] = 'The balance value is too big';
+            $messages[$id.'.required'] = 'Please enter the balance for the account';
+            $messages[$id.'.regex'] = 'The value should be in the format 0.00';
+            $messages[$id.'.max'] = 'The balance value is too big';
         }
 
         Validator::make(
@@ -74,6 +75,7 @@ class SetBalances extends Action
 
         if ($patch_resource_response['status'] === 422) {
             $this->validation_errors = $patch_resource_response['fields'];
+
             return $patch_resource_response['status'];
         }
 

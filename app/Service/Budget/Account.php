@@ -23,48 +23,47 @@ class Account
         float $start,
         private readonly string $color,
         private readonly ?string $description = null,
-    )
-    {
+    ) {
         $this->balance = $start;
         $this->projected = $start;
     }
 
-    public function add(float $amount) : void
+    public function add(float $amount): void
     {
         $this->projected += $amount;
     }
 
-    public function balance() : float
+    public function balance(): float
     {
         return $this->balance;
     }
 
-    public function color() : string
+    public function color(): string
     {
         return $this->color;
     }
 
-    public function currency() : array
+    public function currency(): array
     {
         return $this->currency;
     }
 
-    public function currencyId() : string
+    public function currencyId(): string
     {
         return $this->currency['id'];
     }
 
-    public function currencyCode() : string
+    public function currencyCode(): string
     {
         return $this->currency['code'];
     }
 
-    public function currencyName() : string
+    public function currencyName(): string
     {
         return $this->currency['name'];
     }
 
-    public function description() : ?string
+    public function description(): ?string
     {
         return $this->description;
     }
@@ -74,12 +73,12 @@ class Account
         return $this->id;
     }
 
-    public function sub(float $amount) : void
+    public function sub(float $amount): void
     {
         $this->projected -= $amount;
     }
 
-    public function name() : string
+    public function name(): string
     {
         return $this->name;
     }

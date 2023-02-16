@@ -8,13 +8,13 @@ use Illuminate\Support\ServiceProvider;
 
 class BudgetProvider extends ServiceProvider
 {
-    public function register()
+    public function register(): void
     {
-        $this->app->singleton(Settings::class, function() {
+        $this->app->singleton(Settings::class, function () {
             return new Settings();
         });
 
-        $this->app->singleton(Service::class, function() {
+        $this->app->singleton(Service::class, function () {
             return new Service();
         });
     }

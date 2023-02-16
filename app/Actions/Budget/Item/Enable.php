@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions\Budget\Item;
@@ -18,11 +19,11 @@ class Enable extends Action
         string $resource_type_id,
         string $resource_id,
         string $item_id
-    ): int
-    {
+    ): int {
         $item_response = $api->budgetItem($resource_type_id, $resource_id, $item_id);
         if ($item_response['status'] !== 200) {
             $this->message = $item_response['content'];
+
             return $item_response['status'];
         }
 
@@ -31,7 +32,7 @@ class Enable extends Action
             $resource_id,
             $item_id,
             [
-                'disabled' => false
+                'disabled' => false,
             ]
         );
 
@@ -42,6 +43,7 @@ class Enable extends Action
         if ($patch_budget_item_response['status'] === 422) {
             $this->message = $patch_budget_item_response['content'];
             $this->validation_errors = $patch_budget_item_response['fields'];
+
             return 422;
         }
 

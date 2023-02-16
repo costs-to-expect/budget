@@ -22,7 +22,7 @@ class ValidationError extends Component
         return view(
             'components.validation-error',
             [
-                'has_error' => $this->has_error
+                'has_error' => $this->has_error,
             ]
         );
     }

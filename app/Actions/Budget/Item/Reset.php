@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions\Budget\Item;
@@ -19,8 +20,7 @@ class Reset extends Action
         int $year,
         int $month,
         string $budget_item_id
-    ): int
-    {
+    ): int {
         try {
             AdjustedBudgetItem::query()
                 ->where('resource_id', '=', $resource_id)

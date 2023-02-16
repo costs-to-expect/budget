@@ -31,8 +31,7 @@ class Month
         private readonly bool $visible,
         private readonly bool $now = false,
         private readonly bool $future = true
-    )
-    {
+    ) {
         $this->settings = app(Settings::class);
 
         $this->date = new DateTimeImmutable("{$this->year}-{$this->month}-01", $this->settings->dateTimeZone());
@@ -89,15 +88,15 @@ class Month
             'total' => 0,
             'categories' => [
                 'fixed' => [
-                    'total' => 0
+                    'total' => 0,
                 ],
                 'flexible' => [
-                    'total' => 0
+                    'total' => 0,
                 ],
                 'savings' => [
-                    'total' => 0
+                    'total' => 0,
                 ],
-            ]
+            ],
         ];
 
         foreach ($this->items as $item) {
@@ -152,7 +151,7 @@ class Month
                 if (array_key_exists($item->account(), $expense) !== true) {
                     $expense[$item->account()] = [
                         'name' => $item->accountName(),
-                        'total' => 0.0
+                        'total' => 0.0,
                     ];
                 }
                 $expense[$item->account()]['total'] += $item->amount();
@@ -170,7 +169,7 @@ class Month
                 if (array_key_exists($item->account(), $expense) !== true) {
                     $expense[$item->account()] = [
                         'name' => $item->accountName(),
-                        'total' => 0.0
+                        'total' => 0.0,
                     ];
                 }
                 $expense[$item->account()]['total'] += $item->amount();
@@ -212,7 +211,7 @@ class Month
                 if (array_key_exists($item->account(), $income) !== true) {
                     $income[$item->account()] = [
                         'name' => $item->accountName(),
-                        'total' => 0.0
+                        'total' => 0.0,
                     ];
                 }
                 $income[$item->account()]['total'] += $item->amount();
@@ -230,7 +229,7 @@ class Month
                 if (array_key_exists($item->account(), $income) !== true) {
                     $income[$item->account()] = [
                         'name' => $item->accountName(),
-                        'total' => 0.0
+                        'total' => 0.0,
                     ];
                 }
                 $income[$item->account()]['total'] += $item->amount();

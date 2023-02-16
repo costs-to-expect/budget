@@ -1,11 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions\Account;
 
 use App\Actions\Action;
 use App\Service\Api\Service;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Notification;
 
 /**
@@ -18,12 +18,10 @@ class ForgotPassword extends Action
     public function __invoke(
         Service $api,
         array $input
-    ): int
-    {
+    ): int {
         $post_response = $api->authenticationForgotPassword($input);
 
         if ($post_response['status'] === 201) {
-
             $this->parameters = $post_response['content']['uris']['create-new-password']['parameters'];
 
             Notification::route('mail', $input['email'])

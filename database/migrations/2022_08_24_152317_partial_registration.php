@@ -8,13 +8,10 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('partial_registration', function (Blueprint $table) {
-
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_unicode_ci';
 

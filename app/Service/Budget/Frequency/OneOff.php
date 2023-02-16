@@ -12,12 +12,12 @@ namespace App\Service\Budget\Frequency;
 class OneOff extends Period
 {
     protected string $type = 'one-off';
+
     protected string $name = 'One-Off';
 
     public function __construct(
         private readonly int $month
-    )
-    {
+    ) {
     }
 
     public function month(): int

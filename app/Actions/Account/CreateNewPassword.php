@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions\Account;
@@ -16,8 +17,7 @@ class CreateNewPassword extends Action
     public function __invoke(
         Service $api,
         array $input
-    ): int
-    {
+    ): int {
         $post_response = $api->authenticationCreateNewPassword($input);
 
         if ($post_response['status'] === 204) {

@@ -9,8 +9,11 @@ use Illuminate\View\Component;
 class BudgetItemTableRow extends Component
 {
     protected array $accounts;
+
     protected array $item;
+
     protected int $year;
+
     protected int $month;
 
     public function __construct(array $accounts, array $item, int $year, int $month)
@@ -46,7 +49,7 @@ class BudgetItemTableRow extends Component
             'month' => $month,
             'year' => $year,
             'item-month' => $month,
-            'item-year' => $year
+            'item-year' => $year,
         ];
 
         if ($this->item['status'] === 'Active') {
@@ -56,7 +59,7 @@ class BudgetItemTableRow extends Component
                 $this->item['frequency']['type'] === 'monthly' &&
                 in_array($this->item['uri']['month'], $this->item['frequency']['exclusions'], true)
             ) {
-                for($i = $this->item['uri']['month'] + 1; $i < 13; $i++) {
+                for ($i = $this->item['uri']['month'] + 1; $i < 13; $i++) {
                     if (in_array($i, $this->item['frequency']['exclusions'], true) === false) {
                         $this->item['uri']['month'] = $i;
                         $this->item['uri']['item-month'] = $i;
@@ -67,7 +70,7 @@ class BudgetItemTableRow extends Component
                 $this->item['uri']['year']++;
                 $this->item['uri']['item-year']++;
 
-                for($i = 1; $i < 13; $i++) {
+                for ($i = 1; $i < 13; $i++) {
                     if (in_array($i, $this->item['frequency']['exclusions'], true) === false) {
                         $this->item['uri']['month'] = $i;
                         $this->item['uri']['item-month'] = $i;

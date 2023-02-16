@@ -20,7 +20,7 @@ class BudgetExpenditure extends Component
         return view(
             'components.budget-expenditure',
             [
-                'months' => $this->months
+                'months' => $this->months,
             ]
         );
     }

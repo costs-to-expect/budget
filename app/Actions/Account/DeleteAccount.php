@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions\Account;
@@ -14,8 +15,7 @@ class DeleteAccount
         string $bearer_token,
         string $resource_type_id,
         string $resource_id
-    ): int
-    {
+    ): int {
         \App\Jobs\DeleteAccount::dispatch(
             $bearer_token,
             $resource_type_id,

@@ -9,11 +9,17 @@ use Illuminate\View\Component;
 class BudgetItem extends Component
 {
     private array $item;
+
     private array $accounts;
+
     private int $item_year;
+
     private int $item_month;
+
     private int $now_year;
+
     private int $now_month;
+
     private ?float $adjusted_amount;
 
     public function __construct(
@@ -24,8 +30,7 @@ class BudgetItem extends Component
         int $nowYear,
         int $nowMonth,
         float $adjustedAmount = null
-    )
-    {
+    ) {
         $this->item = $item;
         $this->accounts = $accounts;
         $this->item_year = $itemYear;

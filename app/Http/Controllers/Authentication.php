@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
@@ -12,6 +13,7 @@ use App\Service\Api\Service;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -20,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
  */
 class Authentication extends Controller
 {
-    public function createNewPassword(Request $request)
+    public function createNewPassword(Request $request): View
     {
         $encrypted_token = null;
         $email = null;
@@ -45,7 +47,7 @@ class Authentication extends Controller
         );
     }
 
-    public function createNewPasswordProcess(Request $request)
+    public function createNewPasswordProcess(Request $request): RedirectResponse
     {
         $api = new Service();
 
@@ -65,11 +67,11 @@ class Authentication extends Controller
                 ->with('validation.errors', $action->getValidationErrors());
         }
 
-        return redirect()->route('create-new-password.view',$action->getParameters())
+        return redirect()->route('create-new-password.view', $action->getParameters())
             ->with('request.failed', $action->getMessage());
     }
 
-    public function createPassword(Request $request)
+    public function createPassword(Request $request): View
     {
         $token = null;
         $email = null;
@@ -118,7 +120,7 @@ class Authentication extends Controller
             ->with('request.failed', $action->getMessage());
     }
 
-    public function forgotPassword()
+    public function forgotPassword(): View
     {
         return view(
             'authentication.forgot-password',
@@ -129,12 +131,12 @@ class Authentication extends Controller
         );
     }
 
-    public function forgotPasswordProcess(Request $request)
+    public function forgotPasswordProcess(Request $request): RedirectResponse
     {
         $api = new Service();
 
         $action = new ForgotPassword();
-        $result = $action($api,$request->only(['email']));
+        $result = $action($api, $request->only(['email']));
 
         if ($result === 201) {
             return redirect()->route('forgot-password-email-issued');
@@ -151,7 +153,7 @@ class Authentication extends Controller
             ->with('request.failed', $action->getMessage());
     }
 
-    public function register()
+    public function register(): View
     {
         return view(
             'authentication.register',
@@ -169,11 +171,10 @@ class Authentication extends Controller
         $action = new Register();
         $result = $action(
             $api,
-            $request->only(['name','email'])
+            $request->only(['name', 'email'])
         );
 
         if ($result === 201) {
-
             return redirect()->route(
                 'create-password.view',
                 $action->getParameters()
@@ -190,17 +191,17 @@ class Authentication extends Controller
             ->with('request.failed', $action->getMessage());
     }
 
-    public function signIn()
+    public function signIn(): View
     {
         return view(
             'authentication.sign-in',
             [
-                'errors' => session()->get('validation.errors')
+                'errors' => session()->get('validation.errors'),
             ]
         );
     }
 
-    public function signInProcess(Request $request)
+    public function signInProcess(Request $request): RedirectResponse
     {
         $action = new SignIn();
         $result = $action(

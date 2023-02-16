@@ -17,8 +17,7 @@ class Exception extends Notification implements ShouldQueue
         public readonly string $file,
         public readonly int $line,
         public readonly string $trace,
-    )
-    {
+    ) {
         //
     }
 
@@ -26,9 +25,8 @@ class Exception extends Notification implements ShouldQueue
      * Get the notification's delivery channels.
      *
      * @param  mixed  $notifiable
-     * @return array
      */
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['mail'];
     }
@@ -37,28 +35,26 @@ class Exception extends Notification implements ShouldQueue
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return MailMessage
      */
-    public function toMail($notifiable)
+    public function toMail($notifiable): MailMessage
     {
         return (new MailMessage)
             ->greeting('Oops')
             ->subject('Budget: An exception has been thrown')
             ->line('An exception has been thrown on Budget, details below.')
-            ->line('Code: ' . $this->code)
-            ->line('Message: ' . $this->message)
-            ->line('File: ' . $this->file)
-            ->line('Line: ' . $this->line)
-            ->line('Trace string: ' . $this->trace);
+            ->line('Code: '.$this->code)
+            ->line('Message: '.$this->message)
+            ->line('File: '.$this->file)
+            ->line('Line: '.$this->line)
+            ->line('Trace string: '.$this->trace);
     }
 
     /**
      * Get the array representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return array
      */
-    public function toArray($notifiable)
+    public function toArray($notifiable): array
     {
         return [
             'code' => $this->code,

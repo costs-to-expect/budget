@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions;
@@ -15,7 +16,7 @@ class Helper
 {
     public static function createFrequencyArray($input): array
     {
-        $frequency = [ 'type' => $input['frequency_option'] ];
+        $frequency = ['type' => $input['frequency_option']];
         if ($frequency['type'] === 'monthly') {
             $frequency['exclusions'] = [];
             if ($input['monthly_day'] !== null) {

@@ -7,7 +7,10 @@ namespace App\Http\Controllers;
 use App\Actions\Budget\AdoptDemo;
 use App\Actions\Budget\Demo;
 use App\Actions\Budget\Start;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 /**
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -16,7 +19,7 @@ use Illuminate\Http\Request;
  */
 class Index extends Controller
 {
-    public function adoptDemoProcess(Request $request)
+    public function adoptDemoProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -71,7 +74,7 @@ class Index extends Controller
         );
     }
 
-    public function demoProcess(Request $request)
+    public function demoProcess(Request $request): RedirectResponse
     {
         $this->bootstrap($request);
 
@@ -90,7 +93,7 @@ class Index extends Controller
         return redirect()->route('home');
     }
 
-    public function home(Request $request)
+    public function home(Request $request): View
     {
         $this->bootstrap();
 
@@ -119,12 +122,12 @@ class Index extends Controller
         );
     }
 
-    public function landing()
+    public function landing(): View
     {
         return view('landing');
     }
 
-    public function start(Request $request)
+    public function start(Request $request): View
     {
         $this->bootstrap();
 
@@ -151,12 +154,12 @@ class Index extends Controller
 
                 'requests' => $this->api->requests(),
 
-                'color' => "#" . dechex(random_int(0, 16777215))
+                'color' => '#'.dechex(random_int(0, 16777215)),
             ]
         );
     }
 
-    public function startProcess(Request $request)
+    public function startProcess(Request $request): RedirectResponse
     {
         $this->bootstrap();
 
@@ -183,7 +186,7 @@ class Index extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function isDemoLoaded(Request $request)
+    public function isDemoLoaded(Request $request): Response
     {
         $this->bootstrap();
 

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Actions\Budget;
@@ -18,8 +19,7 @@ class Demo extends Action
         string $resource_id,
         string $bearer_id,
         string $currency_id
-    ): int
-    {
+    ): int {
         LoadDemo::dispatch($resource_type_id, $resource_id, $bearer_id, $currency_id);
 
         return 201;

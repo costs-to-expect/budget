@@ -13,8 +13,7 @@ class BudgetMissing extends Component
     public function __construct(
         bool $hasAccounts = true,
         bool $hasSavingsAccount = false
-    )
-    {
+    ) {
         $this->has_accounts = $hasAccounts;
         $this->has_savings_account = $hasSavingsAccount;
     }

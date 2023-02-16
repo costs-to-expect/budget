@@ -12,7 +12,7 @@
         </header>
         @endauth
 
-        <div class="col-lg-8 mx-auto p-3">
+        <div class="col-lg-8 col-xl-6 mx-auto p-3">
 
             <div class="row">
                 <div class="col-12">

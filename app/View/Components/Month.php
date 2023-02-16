@@ -31,7 +31,7 @@ class Month extends Component
         return view(
             'components.month',
             [
-                'name' => $this->name
+                'name' => $this->name,
             ]
         );
     }
