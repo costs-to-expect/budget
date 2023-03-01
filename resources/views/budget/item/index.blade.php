@@ -14,7 +14,7 @@
 
         <x-offcanvas active="home"/>
 
-        <div class="col-lg-8 col-xl-6 mx-auto p-3">
+        <div class="col-lg-10 col-xl-8 col-xxl-8 mx-auto p-3">
 
             <div class="row">
                 <div class="col-12 col-lg-5 mx-auto p-2">
@@ -265,7 +265,6 @@
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
         <script src="{{ asset('js/auto-format-numbers.js') }}" defer></script>
         <script src="{{ asset('js/filter-budget.js') }}" defer></script>
-        <script src="{{ asset('js/toggle-paid.js') }}" defer></script>
-        <script src="{{ asset('js/filter-budget-by-account.js') }}" defer></script>
+        <script src="{{ asset('js/view-controls.js') }}" defer></script>
     </body>
 </html>

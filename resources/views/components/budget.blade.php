@@ -13,7 +13,7 @@
                                     'item-month' => $__month->month(),
                                     'month'=>  $__month->month(),
                                     'year'=> $__month->year()
-                                ]) }}" class="budget-item" data-item-account="{{ $__item->accountId() }}" data-item-name="{{ $__item->name() }}" @if($__month->now() === true && $__item->paid() === true) data-item-paid=true @endif>
+                                ]) }}" class="budget-item" data-item-account="{{ $__item->accountId() }}" data-item-name="{{ $__item->name() }}" @if($__month->now() === true && $__item->paid() === true) data-item-paid=true @else data-item-paid=false  @endif>
                         <div class="col-12 expense @if ($active_item === $__item->id() && $__month->year() === $active_item_year && $__month->month() === $active_item_month) active shadow @endif" @if($__item->disabled() === true) title="Disabled expense" @endif>
                             <div class="name text-grey" title="{{ $__item->name() }}">
                                 <p class="mb-1">
