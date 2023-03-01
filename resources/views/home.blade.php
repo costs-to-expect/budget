@@ -99,7 +99,5 @@
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
         <script src="{{ asset('js/filter-budget.js') }}" defer></script>
         <script src="{{ asset('js/view-controls.js') }}" defer></script>
-        {{--<script src="{{ asset('js/toggle-paid.js') }}" defer></script>
-        <script src="{{ asset('js/filter-budget-by-account.js') }}" defer></script>--}}
     </body>
 </html>
