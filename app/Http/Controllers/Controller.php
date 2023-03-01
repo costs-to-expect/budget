@@ -117,7 +117,7 @@ class Controller extends BaseController
             $this->resource_type_id,
             $this->resource_id,
             [
-                'limit' => 50,
+                'limit' => 100,
                 'sort' => 'amount:desc|created:asc',
             ]
         );
