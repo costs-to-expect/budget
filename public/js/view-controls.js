@@ -38,9 +38,6 @@
 
     const setVisibleItems = function(show_paid, account_id)
     {
-        console.log('Account id = ' + account_id);
-        console.log('Show paid = ' + show_paid);
-
         const items = document.querySelectorAll('a.budget-item');
 
         if (account_id === '') {
@@ -55,9 +52,6 @@
             items.forEach(function (budget_item) {
 
                 if (budget_item.dataset.itemAccount === account_id) {
-
-                    console.log(budget_item.dataset.itemAccount + ' = ' + account_id);
-
                     if (show_paid === 'false' && budget_item.dataset.itemPaid === 'true') {
                         budget_item.style.display = 'none';
                     } else {
@@ -90,16 +84,22 @@
         }
     }
 
+    const setAccountFilterValue = function(account_id)
+    {
+        document.querySelector('select[name="account-filter"]').value = account_id;
+    }
+
     const toggle_paid_status = document.querySelector('button[name="toggle-paid"]');
     if (toggle_paid_status !== null)
     {
-        setVisibleItems(show_paid, account_id);
         setToggleButtonText(show_paid);
+        setVisibleItems(show_paid, account_id);
         toggle_paid_status.addEventListener('click', togglePaidStatus);
     }
     const account_filter = document.querySelector('select[name="account-filter"]');
     if (account_filter !== null)
     {
+        setAccountFilterValue(account_id);
         setVisibleItems(show_paid, account_id);
         account_filter.addEventListener('change', toggleAccountId);
     }
