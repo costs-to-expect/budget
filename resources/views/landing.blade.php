@@ -20,6 +20,8 @@
                 <a href="https://budget-pro.costs-to-expect.com" class="btn btn-primary" title="Register an account with Costs to Expect">Try Budget Pro</a>
                 <a href="{{ route('register.view') }}" class="btn btn-primary" title="Register an account with Costs to Expect">Register for free</a>
                 <a href="{{ route('sign-in.view') }}" class="btn btn-outline-primary" title="Sign in with your Costs to Expect account">Sign-in</a>
+
+                <p class="mt-3 fw-normal">Please reach out to us on <a href="https://twitter.com/coststoexpect">Twitter</a> if you want to migrate from Budget to Budget Pro.</p>
             </div>
         </div>
 
