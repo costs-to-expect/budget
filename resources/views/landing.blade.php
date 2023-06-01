@@ -16,9 +16,12 @@
                 <p class="lead fw-normal">A <span class="badge rounded-pill text-bg-income">free</span> open source budgeting tool<br />
                     powered by the <a href="https://github.com/costs-to-expect/api">Costs to Expect API</a>.</p>
                 <p class="lead fw-normal">If you need to collaborate or have more advanced budgeting requirements <a href="{{ route('version-compare') }}">Budget Pro</a> might
-                    be more suitable for you. Budget Pro is in development and due to be released in the first half of 2023.</p>
+                    be more suitable for you. Budget Pro is currency in alpha and is free to use during the alpha and beta period.</p>
+                <a href="https://budget-pro.costs-to-expect.com" class="btn btn-primary" title="Register an account with Costs to Expect">Try Budget Pro</a>
                 <a href="{{ route('register.view') }}" class="btn btn-primary" title="Register an account with Costs to Expect">Register for free</a>
                 <a href="{{ route('sign-in.view') }}" class="btn btn-outline-primary" title="Sign in with your Costs to Expect account">Sign-in</a>
+
+                <p class="mt-3 fw-normal">Please reach out to us on <a href="https://twitter.com/coststoexpect">Twitter</a> if you want to migrate from Budget to Budget Pro.</p>
             </div>
         </div>
 

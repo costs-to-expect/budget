@@ -274,8 +274,8 @@
 
                     <div class="p-2">
                         <div class="alert alert-primary fade show mt-3" role="alert">
-                            <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
-                            <p>In Budget Pro we will support multi-edit.</p>
+                            <h4 class="alert-heading">Budget Pro!</h4>
+                            <p>In Budget Pro we plan to support multi-edit.</p>
                             <p>You will be able to update all your budget items on a single page.</p>
                             <hr>
                             <p class="mb-0"><a href="{{ route('version-compare') }}" title="Compare Budget to Budget Pro">Find out more</a>.</p>

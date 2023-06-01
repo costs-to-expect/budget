@@ -272,8 +272,8 @@
                     @if ($number_of_items > ($max_items - 10))
                     <div class="p-2">
                         <div class="alert alert-primary fade show mt-3" role="alert">
-                            <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
-                            <p>In Budget Pro you will be able to have more than {{ $max_items }} items on your Budget.</p>
+                            <h4 class="alert-heading">Budget Pro!</h4>
+                            <p>In Budget Pro you can have more than {{ $max_items }} items on your Budget.</p>
                             <p>You can create another {{ $max_items - $number_of_items }} budget items.</p>
                             <hr>
                             <p class="mb-0"><a href="{{ route('version-compare') }}" title="Compare Budget to Budget Pro">Find out more</a>.</p>
@@ -283,8 +283,8 @@
 
                     <div class="p-2">
                         <div class="alert alert-primary fade show mt-3" role="alert">
-                            <h4 class="alert-heading">Budget Pro! <small>Coming soon(tm)</small></h4>
-                            <p>In Budget Pro we include additional frequency options, daily, weekly, fortnights etc.</p>
+                            <h4 class="alert-heading">Budget Pro!</h4>
+                            <p>In Budget Pro we are working on including additional frequency options, daily, weekly, fortnights etc.</p>
                             <p>Additionally, we have more complicated exclusion options.</p>
                             <hr>
                             <p class="mb-0"><a href="{{ route('version-compare') }}" title="Compare Budget to Budget Pro">Find out more</a>.</p>
