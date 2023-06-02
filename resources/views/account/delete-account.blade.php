@@ -44,6 +44,11 @@
                             <td>API</td>
                         </tr>
                         <tr>
+                            <td>Budget Pro</td>
+                            <td>Any data that exists</td>
+                            <td>Budget Pro</td>
+                        </tr>
+                        <tr>
                             <td>Budget</td>
                             <td>Any data that exists</td>
                             <td>Budget</td>
