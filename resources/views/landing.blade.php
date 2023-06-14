@@ -13,10 +13,11 @@
             <div class="col-md-6 p-lg-6 mx-auto my-5">
                 <h1 class="display-1 fw-normal">Budget</h1>
                 <h2 class="display-5">A budgeting tool so easy to use, it’s child play!</h2>
-                <p class="lead fw-normal">A <span class="badge rounded-pill text-bg-income">free</span> open source budgeting tool<br />
+                <p class="lead fw-normal">A <span class="badge rounded-pill text-bg-income">free</span> and open source budgeting tool<br />
                     powered by the <a href="https://github.com/costs-to-expect/api">Costs to Expect API</a>.</p>
                 <p class="lead fw-normal">If you need to collaborate or have more advanced budgeting requirements <a href="{{ route('version-compare') }}">Budget Pro</a> might
-                    be more suitable for you. Budget Pro is currency in alpha and is free to use during the alpha and beta period.</p>
+                    be more suitable for you.</p>
+                <p>Budget Pro is currently in alpha and is FREE to use during the alpha and beta period.</p>
                 <a href="https://budget-pro.costs-to-expect.com" class="btn btn-primary" title="Register an account with Costs to Expect">Try Budget Pro</a>
                 <a href="{{ route('register.view') }}" class="btn btn-primary" title="Register an account with Costs to Expect">Register for free</a>
                 <a href="{{ route('sign-in.view') }}" class="btn btn-outline-primary" title="Sign in with your Costs to Expect account">Sign-in</a>
@@ -30,7 +31,7 @@
                 <div class="my-3 py-3">
                     <h2 class="display-5">Simple</h2>
                     <p class="lead">Our overview is so clear and simple, a child could manage your budget.
-                        We wouldn’t recommend it, but you get the idea.</p>
+                        We would not recommend it, but you get the idea.</p>
                 </div>
                 <div class="bg-light shadow-sm mx-auto"
                      style="width: 80%; border-radius: 6px 6px 0 0;">
