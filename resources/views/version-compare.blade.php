@@ -17,11 +17,14 @@
                 <div class="col-12">
                     <h2 class="display-4 mt-3 mb-3">Budget and Budget Pro</h2>
 
-                    <p class="lead"><a href="https://budget-pro.costs-to-expect.com">Budget Pro</a> is in development and we hope to have it released within the first
-                        half of 2023. Please review the table below to see how Budget and Budget Pro compare
-                    </p>
+                    <p class="lead"><a href="https://budget-pro.costs-to-expect.com">Budget Pro</a>
+                        recently entered alpha, we are adding a few more features and expect to enter the
+                        beta period soon.</p>
 
-                    <p class="lead mb-0">The tables below detail some of the features planned for Budget Pro.</p>
+                    <p class="lead">During the alpha & beta period, <a href="https://budget-pro.costs-to-expect.com">Budget Pro</a>
+                        is FREE for all.</p>
+
+                    <p class="lead mb-0">The tables below detail the differences between Budget & Budget Pro.</p>
                 </div>
             </div>
         </div>
@@ -125,6 +128,16 @@
                                 <td>Planned <span class="text-muted small">First priority after the release of the Budget Pro beta</span></td>
                             </tr>
                             <tr>
+                                <th scope="row">Monthly Budgets</th>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Weekly Budgets *</th>
+                                <td>No</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
                                 <th scope="row">Fixed Budget Item Amounts</th>
                                 <td>Yes</td>
                                 <td>Yes</td>
@@ -165,11 +178,6 @@
                                 <td>GBP, USD, EUR, CAD, AUD, NZD & INR</td>
                             </tr>
                             <tr>
-                                <th scope="row">Currencies per Budget</th>
-                                <td>1</td>
-                                <td>3 <span class="text-muted small">Multiple currencies supported on a Budget</span></td>
-                            </tr>
-                            <tr>
                                 <th scope="row">Budget Item Frequencies</th>
                                 <td>Annually, Monthly & One-Off</td>
                                 <td>Daily, Weekly, Fortnightly, Annually, Monthly & One-Off</td>
@@ -188,6 +196,11 @@
                                 <th scope="row">Multiple Edit *</th>
                                 <td>No</td>
                                 <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Cost</th>
+                                <td>FREE</td>
+                                <td>Monthly subscription or lifetime purchase</td>
                             </tr>
                             </tbody>
                         </table>
@@ -226,14 +239,24 @@
                                 <td>Yes</td>
                             </tr>
                             <tr>
+                                <th scope="row">Set Datetime Format</th>
+                                <td>No</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
                                 <th scope="row">Define Colours for Categories *</th>
                                 <td>No</td>
                                 <td>Yes</td>
                             </tr>
                             <tr>
-                                <th scope="row">Number of Visible Months on Budget</th>
+                                <th scope="row">Number of Visible Periods for Monthly Budget</th>
                                 <td>3</td>
-                                <td>3, 6, or 12</td>
+                                <td>3, 6, 12 and quarterly</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Number of Visible Periods for Weekly Budget</th>
+                                <td>N/A</td>
+                                <td>4, 6, 13 and quarterly</td>
                             </tr>
                             <tr>
                                 <th scope="row">Customise Expense Bars *</th>

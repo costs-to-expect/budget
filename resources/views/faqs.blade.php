@@ -97,7 +97,8 @@
                         the downgrade but no data will be lost.</p>
 
                     <h3 class="display-6 mt-3 mb-3">When will Budget Pro release?</h3>
-                    <p class="lead">We don't have a fixed release date but we're aiming for the first half of 2023.</p>
+                    <p class="lead">Budget Pro was released into alpha on the 1st June. We are half through finishing
+                        the development and pushing for a beta release in August/September.</p>
 
                     <h3 class="display-6 mt-3 mb-3">Will you update Budget after you release Budget Pro?</h3>
                     <p class="lead">Yes, both Budget and Budget Pro will receive regular updates and we have an
