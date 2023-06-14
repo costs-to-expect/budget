@@ -11,3 +11,5 @@ yarn-error.log
 public/node_modules
 .phpunit.cache/test-results
 .sass-cache/
+.yarn/
+public/.yarnrc.yml
