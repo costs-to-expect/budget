@@ -186,7 +186,7 @@ class Index extends Controller
         abort($result, $action->getMessage());
     }
 
-    public function isDemoLoaded(Request $request): Response
+    public function isDemoLoaded(Request $request): \Illuminate\Http\JsonResponse
     {
         $this->bootstrap();
 
