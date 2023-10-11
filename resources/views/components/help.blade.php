@@ -8,8 +8,8 @@
                         to your question.
                     </p>
                     <p class="lead">If you have a question that is not covered by our
-                        <a href="{{ route('faqs') }}" title="Read our FAQs">FAQs</a>, please reach out to us on
-                        <a href="https://twitter.com/coststoexpect" title="Ask a question on Twitter">Twitter</a> or
+                        <a href="{{ route('faqs') }}" title="Read our FAQs">FAQs</a>, please reach out to us via
+                        email @ <a href="mailto:support@costs-to-expect.com" title="Contact us via support@costs-to-expect.com">support@costs-to-expect.com</a> or
                         via <a href="https://github.com/costs-to-expect/budget/issues" title="Raise an issue on GitHub">GitHub</a>.
                         We will respond as soon as we can.</p>
                 </div>
