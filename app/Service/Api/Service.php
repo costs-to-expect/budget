@@ -297,6 +297,7 @@ class Service
             [
                 'name' => $payload['name'],
                 'email' => $payload['email'],
+                'registered_via' => 'budget',
             ]
         );
     }
