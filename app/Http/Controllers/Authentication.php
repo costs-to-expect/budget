@@ -106,8 +106,8 @@ class Authentication extends Controller
             $request->only(['token', 'email', 'password', 'password_confirmation'])
         );
 
-        if ($result === 204) {
-            return redirect()->route('registration-complete');
+        if ($result === 204 && Auth::attempt($request->only(['email', 'password']), false)) {
+            return redirect()->route('home');
         }
 
         if ($result === 422) {
