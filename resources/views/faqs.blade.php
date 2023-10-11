@@ -19,7 +19,7 @@
                     <h2 class="display-5 mt-3 mb-3">Frequency Asked Questions</h2>
 
                     <p class="lead">Hopefully, any questions you have are answered below, if not,
-                        reach out to us on <a href="https://twitter.com/coststoexpect" title="Ask a question on Twitter">Twitter</a> or
+                        contact us via email @ <a href="mailto:support@costs-to-expect.com" title="Email us @ support@costs-to-expect.com">support@costs-to-expect.com</a> or
                         via <a href="https://github.com/costs-to-expect/budget/issues" title="Raise an issue on GitHub">GitHub</a>
                     </p>
 
@@ -116,7 +116,7 @@
 
                     <h3 class="display-6 mt-3 mb-3">What if I need further help?</h3>
                     <p class="lead">If you need help, please reach out to us on
-                        <a href="https://twitter.com/coststoexpect" title="Ask a question on Twitter">Twitter</a> or
+                        <a href="mailto:support@costs-to-expect.com" title="Email us @ support@costs-to-expect.com">support@costs-to-expect.com</a> or
                         via <a href="https://github.com/costs-to-expect/budget/issues" title="Raise an issue on GitHub">GitHub</a>, we'll get back to
                         you as soon as we can.</p>
                 </div>

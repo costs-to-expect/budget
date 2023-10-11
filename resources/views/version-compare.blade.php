@@ -18,8 +18,7 @@
                     <h2 class="display-4 mt-3 mb-3">Budget and Budget Pro</h2>
 
                     <p class="lead"><a href="https://budget-pro.costs-to-expect.com">Budget Pro</a>
-                        recently entered alpha, we are adding a few more features and expect to enter the
-                        beta period soon.</p>
+                        recently entered it Public Alpha. We are working on the quarterly Budget view and user feedback.</p>
 
                     <p class="lead">During the alpha & beta period, <a href="https://budget-pro.costs-to-expect.com">Budget Pro</a>
                         is FREE for all.</p>
@@ -143,7 +142,7 @@
                                 <td>Yes</td>
                             </tr>
                             <tr>
-                                <th scope="row">Range-based Budget Item Amounts</th>
+                                <th scope="row">Range-based Budget Item Amounts *</th>
                                 <td>No</td>
                                 <td>Yes <span class="text-muted small">e.g. &pound;35-45 per week</span></td>
                             </tr>
@@ -158,7 +157,7 @@
                                 <td>Yes <span class="text-muted small">Copy an entire Budget</span></td>
                             </tr>
                             <tr>
-                                <th scope="row">Copy Budget Items *</th>
+                                <th scope="row">Copy Budget Items</th>
                                 <td>No</td>
                                 <td>Yes <span class="text-muted small">Useful for faster data entry</span></td>
                             </tr>
@@ -170,7 +169,7 @@
                             <tr>
                                 <th scope="row">Supported Ad-Hoc Adjustments</th>
                                 <td>Amount</td>
-                                <td>Amount, Exclusions</td>
+                                <td>Amount, Exclusions & Frequency *</td>
                             </tr>
                             <tr>
                                 <th scope="row">Currencies Supported</th>
@@ -180,10 +179,10 @@
                             <tr>
                                 <th scope="row">Budget Item Frequencies</th>
                                 <td>Annually, Monthly & One-Off</td>
-                                <td>Daily, Weekly, Fortnightly, Annually, Monthly & One-Off</td>
+                                <td>Fortnightly, Annually, Monthly & One-Off</td>
                             </tr>
                             <tr>
-                                <th scope="row">Budget Item Exclusions</th>
+                                <th scope="row">Budget Item Exclusions *</th>
                                 <td>Months for Monthly frequencies</td>
                                 <td>As per Budget & Weekends, Holidays, move forward/backward</td>
                             </tr>
@@ -251,15 +250,10 @@
                             <tr>
                                 <th scope="row">Number of Visible Periods for Monthly Budget</th>
                                 <td>3</td>
-                                <td>3, 6, 12 and quarterly</td>
+                                <td>3, 6, and quarterly *</td>
                             </tr>
                             <tr>
-                                <th scope="row">Number of Visible Periods for Weekly Budget</th>
-                                <td>N/A</td>
-                                <td>4, 6, 13 and quarterly</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Customise Expense Bars *</th>
+                                <th scope="row">Customise Expense Bars</th>
                                 <td>No</td>
                                 <td>Yes</td>
                             </tr>
