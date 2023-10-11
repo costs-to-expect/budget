@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $api_status = [];
 
-        if (app()->environment('local')) {
+        if (app()->runningInConsole() === false && app()->environment('local')) {
             $api = new Service();
             $status = $api->status();
             if ($status['status'] === 200) {
