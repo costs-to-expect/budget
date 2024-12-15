@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <x-html-head title="Add Expense" description="How do you add an expense budget item to your Budget?" />
+    <x-html-head title="Budget how to: Add an expense item" description="How do you add an expense budget item to your Budget?" />
     <body>
 
         @auth
