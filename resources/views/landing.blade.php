@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-    <x-html-head title="Budget by Costs to Expect" description="A budgeting tool so easy to use, it’s child play!" />
+    <x-html-head title="Budget by Costs to Expect" description="A budgeting calculator that is so easy to use, it’s child play!" />
     <body>
 
     <header class="site-header sticky-top py-1">

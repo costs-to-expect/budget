@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <x-html-head title="Getting started" description="How do I get started with Budget?" />
+    <x-html-head title="Getting started" description="We have a shory article on how to get started with Budget our free budget calculator" />
     <body>
 
         @auth

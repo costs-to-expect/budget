@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Budget by Costs to Expect - Simplified Budgeting">
+    <meta name="description" content="Use this form to reset your password">
     <meta name="author" content="Dean Blackborough">
     <title>Forgot Password</title>
     <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">

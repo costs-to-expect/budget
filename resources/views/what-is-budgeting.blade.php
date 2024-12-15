@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <x-html-head title="What is Budgeting" description="We explain what Budgeting is and explain some of the terms that get banded about" />
+    <x-html-head title="What is Budgeting" description="In this article we explain what Budgeting is and some of the terms thrown around when people try to explain it" />
     <body>
 
         @auth
