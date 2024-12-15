@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <x-html-head title="The Workflow" description="What is the workflow for Budget, how do I use it on a day by day basis?" />
+    <x-html-head title="Budget: What is the workflow" description="What is the workflow for Budget, how do I use it on a day by day basis?" />
     <body>
 
         @auth

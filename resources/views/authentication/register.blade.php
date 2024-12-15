@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Budget by Costs to Expect - Simplified Budgeting">
+    <meta name="description" content="Register with Budget to use our free budget calculator">
     <meta name="author" content="Dean Blackborough">
-    <title>Register</title>
+    <title>Register with Budget</title>
     <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet" />

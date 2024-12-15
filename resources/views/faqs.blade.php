@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <x-html-head title="Budget: FAQs" description="Have a question, review our FAQs to see if we have an answer" />
+    <x-html-head title="Budget - Frequency asked questions" description="Have a question about Budget, review our FAQs to see if we have an answer" />
     <body>
 
         @auth
