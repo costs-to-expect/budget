@@ -19,20 +19,16 @@
             <div class="mx-auto max-w-7xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
                 <div class="text-center">
                     <h2 class="text-4xl sm:text-5xl lg:text-6xl font-semibold text-pinky-600">
-                        Budget Pro
+                        Budget
                     </h2>
                     <p class="mt-1 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl lg:text-4xl">
-                        Your budgeting buddy - make your money work for you!
+                        Your free budget calculator - make your money work for you!
                     </p>
         
                     <div class="my-6 space-x-2">
-                        <a href="{{ route('auth.sign-in') }}" class="bg-pinky-500 px-4 py-2 rounded-md text-base font-medium text-white hover:bg-pinky-700">Sign-in</a>
-                        <a href="{{ route('auth.register') }}" class="bg-black px-4 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Register (30 day trial)</a>
+                        <a href="{{ route('sign-in.view') }}" class="bg-pinky-500 px-4 py-2 rounded-md text-base font-medium text-white hover:bg-pinky-700">Sign-in</a>
+                        <a href="{{ route('register.view') }}" class="bg-black px-4 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Register for Free</a>
                     </div>
-        
-                    <p class="mt-1 text-xl font-semibold tracking-tight text-gray-700">
-                        No Credit Card Required for Trial!
-                    </p>
                 </div>
             </div>
         </div>
@@ -40,17 +36,14 @@
         <div class="bg-white">
             <div class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-y-16 gap-x-8 px-4 sm:px-6 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
                 <div>
-                    <h1 class="text-4xl font-bold tracking-tight text-pinky-700">Welcome to Budget Pro!</h1>
+                    <h1 class="text-4xl font-bold tracking-tight text-pinky-700">Welcome to Budget</h1>
                     <p class="mt-4 text-lg text-gray-800">
-                        Costs to Expect is proud to present our latest budgeting web app, Budget Pro!
-                        It’s everything you love about
-                        <x-helper.control.link.text route="https://budget.costs-to-expect.com" label="our free Budget App" />,
-                        but with loads of additional features to help manage your budget.
+                        Costs to Expect is proud to present our free Budget Calculator, Budget!
                     </p>
                     <p class="mt-4 text-lg text-gray-800">
-                        In short, Budget Pro is Budget on steroids!  Check out some of our advanced features
-                        below and sign up for your
-                        <x-helper.control.link.text :route="route('auth.register')" label="Budget Pro 30 day free trial" />,
+                        Budget has everything you need to manage a simple Budget, if you need more control and 
+                        power you can try out Budget Pro with a  
+                        <x-helper.control.link.text :route="route('auth.register')" label="30 day free trial" />,
                         today!
                     </p>
         
