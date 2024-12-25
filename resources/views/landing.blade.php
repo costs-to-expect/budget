@@ -36,15 +36,14 @@
         <div class="bg-white">
             <div class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-y-16 gap-x-8 px-4 sm:px-6 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
                 <div>
-                    <h1 class="text-4xl font-bold tracking-tight text-pinky-700">Welcome to Budget</h1>
+                    <h1 class="text-4xl font-bold tracking-tight text-pinky-700">Welcome to Budget!</h1>
                     <p class="mt-4 text-lg text-gray-800">
                         Costs to Expect is proud to present our free Budget Calculator, Budget!
                     </p>
                     <p class="mt-4 text-lg text-gray-800">
                         Budget has everything you need to manage a simple Budget, if you need more control and 
                         power you can try out Budget Pro with a  
-                        <x-helper.control.link.text :route="route('auth.register')" label="30 day free trial" />,
-                        today!
+                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="30 day free trial." />
                     </p>
         
                     <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
@@ -272,7 +271,7 @@
                                     </p>
                                     <p class="mt-4 text-lg text-black">A budgeting tool so easy to use, it’s child play!</p>
                                     <p class="mt-4 mb-16 text-sm text-gray-800">A free, open source budgeting tool powered by the Costs to Expect API.</p>
-                                    <a href="https://budget.costs-to-expect.com" class="absolute bottom-0 block w-full flex-grow rounded-md border border-pinky-700 bg-pinky-600 py-2 text-center text-sm font-semibold text-white hover:bg-pinky-900">Register for Free</a>
+                                    <a href="{{ route('register.view') }}" class="absolute bottom-0 block w-full flex-grow rounded-md border border-pinky-700 bg-pinky-600 py-2 text-center text-sm font-semibold text-white hover:bg-pinky-900">Register for Free</a>
                                 </div>
                             </td>
         
@@ -284,7 +283,7 @@
                                     </p>
                                     <p class="mt-4 text-lg text-black">Budget Pro is Budget on steroids - it's everything you love about Budget and much more.</p>
                                     <p class="mt-4 mb-16 text-sm text-gray-800">Budget Pro is subject to a small lifetime fee and will get regular updates.</p>
-                                    <a href="{{ route('auth.register') }}" class="absolute bottom-0 block w-full flex-grow rounded-md border border-pinky-700 bg-pinky-600 py-2 text-center text-sm font-semibold text-white hover:bg-pinky-900">Register (30 day trial)</a>
+                                    <a href="https://budget-pro.costs-to-expect.com/register" class="absolute bottom-0 block w-full flex-grow rounded-md border border-pinky-700 bg-pinky-600 py-2 text-center text-sm font-semibold text-white hover:bg-pinky-900">Register (30 day trial)</a>
                                 </div>
                             </td>
                         </tr>

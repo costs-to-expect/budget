@@ -3,7 +3,7 @@
         <div class="flex h-12 justify-between">
             <div class="flex">
                 <div class="flex flex-shrink-0 items-center">
-                    <a href="{{ route('landing') }}"><img class="h-8 w-auto" src="{{ asset('images/navbar-logo.png') }}" alt="Costs to Expect"></a>
+                    <a href="{{ route('landing') }}"><img class="h-8 w-auto" src="{{ asset('images/logo.png') }}" alt="Costs to Expect"></a>
                 </div>
                 <div class="hidden sm:ml-3 sm:flex sm:space-x-4 flex items-center">
                     <div id="budgeting" class="relative">
@@ -25,8 +25,6 @@
                             <a href="https://budget-pro.costs-to-expect.com/why-is-budgeting-important" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">Why is Budgeting Important?</a>
                             <a href="https://budget-pro.costs-to-expect.com/reasons-to-start-budgeting" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">Reasons to Start Budgeting</a>
                             <a href="https://budget-pro.costs-to-expect.com/how-to-start-budgeting" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">How to Start Budgeting</a>
-                            <a href="https://budget-pro.costs-to-expect.com/budgeting-myths" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">Budgeting Myths</a>
-                            <a href="https://budget-pro.costs-to-expect.com/budgeting-q-and-a" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">Budgeting Q&A's</a>
                         </div>
                     </div>
 
@@ -98,9 +96,9 @@
     <div class="sm:hidden hidden" id="navbar-mobile-menu">
         <div class="space-y-1 pt-2 pb-3">
             @if ($active_route === 'landing')
-                <a href="{{ route('landing') }}" class="block border-l-4 border-pinky-500 py-2 pl-3 pr-4 text-base font-medium text-pinky-900">Budget Pro</a>
+                <a href="{{ route('landing') }}" class="block border-l-4 border-pinky-500 py-2 pl-3 pr-4 text-base font-medium text-pinky-900">Budget</a>
             @else
-                <a href="{{ route('landing') }}" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-700">Budget Pro</a>
+                <a href="{{ route('landing') }}" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-700">Budget</a>
             @endif
 
             @if($active_route === 'budgeting')

@@ -58,8 +58,7 @@
         }
     }
 
-    toggleSubmenu('budgeting', ['money-advice', 'features', 'about']);
-    toggleSubmenu('money-advice', ['budgeting', 'features', 'about']);
-    toggleSubmenu('about', ['budgeting', 'features', 'money-advice']);
-    toggleSubmenu('features', ['budgeting', 'money-advice', 'about']);
+    toggleSubmenu('budgeting', ['features', 'about']);
+    toggleSubmenu('about', ['budgeting', 'features']);
+    toggleSubmenu('features', ['budgeting', 'about']);
 })();
