@@ -49,22 +49,22 @@
                     </div>
 
                     <div id="about" class="relative">
-                        @if ($active_route === 'about')
+                        @if ($active_route === 'support')
                             <button type="button" class="submenu-toggle flex inline-flex items-center border-b-2 border-pinky-200 px-1 pt-1 pb-2 text-base font-medium text-white">
-                                About Us <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                Support <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
                                 </svg>
                             </button>
                         @else
                             <button type="button" class="submenu-toggle flex inline-flex items-center border-b-2 border-transparent px-1 pt-1 pb-2 text-base font-medium text-white hover:border-gray-600 hover:text-white">
-                                About Us <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                Support <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
                                 </svg>
                             </button>
                         @endif
                         <div class="submenu hidden absolute z-10 mt-2 w-56 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            <a href="https://budget-pro.costs-to-expect.com/our-team" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">Our Team</a>
-                            <a href="https://budget-pro.costs-to-expect.com/our-budgeting-story" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">Our Budgeting Story</a>
+                            <a href="https://budget-pro.costs-to-expect.com/our-team" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">FAQs</a>
+                            <a href="https://budget-pro.costs-to-expect.com/our-budgeting-story" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">Privacy Policy</a>
                         </div>
                     </div>
                 </div>
