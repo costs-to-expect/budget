@@ -115,6 +115,11 @@ Route::view(
 )->name('what-is-budgeting');
 
 Route::view(
+    '/why-is-budgeting-important',
+    'why-is-budgeting-important'
+)->name('why-is-budgeting-important');
+
+Route::view(
     '/how-to-start-budgeting',
     'how-to-start-budgeting'
 )->name('how-to-start-budgeting');

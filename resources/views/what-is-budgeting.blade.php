@@ -148,6 +148,6 @@
 
         <x-layout.footer />
 
-        <script src="{{ asset('js//navbar.js') }}" defer></script>
+        <script src="{{ asset('js/navbar.js') }}" defer></script>
     </body>
 </html>
