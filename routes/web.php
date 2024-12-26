@@ -120,6 +120,11 @@ Route::view(
 )->name('how-to-start-budgeting');
 
 Route::view(
+    '/reasons-to-start-budgeting',
+    'reasons-to-start-budgeting'
+)->name('reasons-to-start-budgeting');
+
+Route::view(
     '/help/add-income',
     'add-income'
 )->name('help.add-income');

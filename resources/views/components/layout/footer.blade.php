@@ -29,7 +29,7 @@
                 <h3 class="text-base font-medium text-lg text-gray-900">Budgeting</h3>
                 <ul role="list" class="mt-2 space-y-4">
                     <li>
-                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/what-is-budgeting')" label="What is Budgeting?" />
+                        <x-helper.control.link.text :route="route('what-is-budgeting')" label="What is Budgeting?" />
                     </li>
                     <li>
                         <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/why-is-budgeting-important')" label="Why is budgeting important?" />
