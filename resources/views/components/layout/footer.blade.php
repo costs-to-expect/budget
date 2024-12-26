@@ -60,25 +60,8 @@
             </div>
             <div>
                 <h3 class="text-base font-medium text-lg text-gray-900">Support</h3>
-                <ul role="list" class="mt-2 space-y-4">
-                    {{--<li>
-                        <x-helper.control.link.text :route="route('content.faqs')" label="Budget Pro: FAQs" />
-                    </li>
-                    <li>
-                        <x-helper.control.link.text :route="route('roadmap')" label="Roadmap" />
-                    </li>
-                    <li>
-                        <x-helper.control.link.text :route="route('privacy-policy')" label="Privacy Policy" />
-                    </li>
-                    <li>
-                        <x-helper.control.link.text :route="route('terms-of-service')" label="Terms of Service" />
-                    </li>
-                    <li>
-                        <x-helper.control.link.text :route="route('refund-policy')" label="Refund Policy" />
-                    </li>--}}
-                </ul>
 
-                <p class="mt-6 mb-2 text-sm text-gray-800">
+                <p class="mt-2 mb-2 text-sm text-gray-800">
                     <x-helper.control.link.text route="https://www.deanblackborough.com" label="Dean Blackborough" /> &copy; 2018-2024
                 </p>
                 <p class="mb-2 text-sm text-gray-800">{{ $version }}<br />
