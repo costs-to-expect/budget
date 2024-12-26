@@ -38,7 +38,7 @@
                         <x-helper.control.link.text :route="route('reasons-to-start-budgeting')" label="Reasons to start Budgeting?" />
                     </li>
                     <li>
-                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/how-to-start-budgeting')" label="How to start Budgeting?" />
+                        <x-helper.control.link.text :route="route('how-to-start-budgeting')" label="How to start Budgeting?" />
                     </li>
                 </ul>
             </div>
