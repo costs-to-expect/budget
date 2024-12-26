@@ -23,7 +23,7 @@
                         <div class="submenu hidden absolute z-10 mt-2 w-56 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <a href="{{ route('what-is-budgeting') }}" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">What is Budgeting?</a>
                             <a href="{{ route('why-is-budgeting-important') }}" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">Why is Budgeting Important?</a>
-                            <a href="https://budget-pro.costs-to-expect.com/reasons-to-start-budgeting" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">Reasons to Start Budgeting</a>
+                            <a href="{{ route('reasons-to-start-budgeting') }}" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">Reasons to Start Budgeting</a>
                             <a href="https://budget-pro.costs-to-expect.com/how-to-start-budgeting" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">How to Start Budgeting</a>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
             <a href="{{ route('why-is-budgeting-important') }}" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-600 hover:bg-gray-900 hover:text-gray-200">
                 <span class="pl-2">- Why is Budgeting Important?</span>
             </a>
-            <a href="https://budget-pro.costs-to-expect.com/reasons-to-start-budgeting" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-600 hover:bg-gray-900 hover:text-gray-200">
+            <a href="{{ route('reasons-to-start-budgeting') }}" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-600 hover:bg-gray-900 hover:text-gray-200">
                 <span class="pl-2">- Reasons to Start Budgeting?</span>
             </a>
             <a href="https://budget-pro.costs-to-expect.com/how-to-start-budgeting" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-600 hover:bg-gray-900 hover:text-gray-200">

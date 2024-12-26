@@ -32,13 +32,13 @@
                         <x-helper.control.link.text :route="route('what-is-budgeting')" label="What is Budgeting?" />
                     </li>
                     <li>
-                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/why-is-budgeting-important')" label="Why is budgeting important?" />
+                        <x-helper.control.link.text :route="route('why-is-budgeting-important')" label="Why is budgeting important?" />
                     </li>
                     <li>
-                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/reasons-to-start-budgeting')" label="Reasons to start Budgeting?" />
+                        <x-helper.control.link.text :route="route('reasons-to-start-budgeting')" label="Reasons to start Budgeting?" />
                     </li>
                     <li>
-                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/how-to-start-budgeting')" label="How to Start Budgeting?" />
+                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/how-to-start-budgeting')" label="How to start Budgeting?" />
                     </li>
                 </ul>
             </div>
