@@ -143,7 +143,7 @@
                             <x-content.landing.table-row-mobile feature="Budget Item Exclusions" description="As per Budget plus weekends, holidays and more *Update 1"/>
                             <x-content.landing.table-row-mobile feature="Search Budget Items" description="Powerful search"/>
                             <x-content.landing.table-row-mobile feature="Batch actions" description="Yes"/>
-                            <x-content.landing.table-row-mobile feature="Import from Budget" description="N/A"/>
+                            <x-content.landing.table-row-mobile feature="Import from Budget" description="Yes - Automatic"/>
         
                             </tbody>
                         </table>
@@ -222,7 +222,7 @@
                             <x-content.landing.table-row-mobile feature="Budget Item Exclusions" description="Months for monthly frequencies"/>
                             <x-content.landing.table-row-mobile feature="Search Budget Items" description="Simple search - Client side"/>
                             <x-content.landing.table-row-mobile feature="Batch Actions" description="No"/>
-                            <x-content.landing.table-row-mobile feature="Import from Budget" description="Yes - Automatic"/>
+                            <x-content.landing.table-row-mobile feature="Import from Budget" description="N/A"/>
         
                             </tbody>
                         </table>
@@ -317,7 +317,7 @@
                         <x-content.landing.table-row-desktop feature="Budget Item Exclusions" budget="Months for monthly frequencies" budgetPro="As per Budget plus weekends, holidays and more *Update 1" />
                         <x-content.landing.table-row-desktop feature="Search Budget Items" budget="Simple search - Client side" budgetPro="Powerful search" />
                         <x-content.landing.table-row-desktop feature="Batch Actions" budget="No" budgetPro="Yes" />
-                        <x-content.landing.table-row-desktop feature="Import from Budget" budget="Yes - Automatic" budgetPro="N/A" />
+                        <x-content.landing.table-row-desktop feature="Import from Budget" budget="N/A" budgetPro="Yes - Automatic" />
         
                         <x-content.landing.table-header-row-desktop title="Viewing features" />
         
