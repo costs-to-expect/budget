@@ -80,7 +80,7 @@
                     </p>
                 </div>
                 <div class="flex justify-center">
-                    <img src="{{ asset('/images/getting-started/set-exclusions.png') }}" alt="Set budget item exclusions" class="rounded-lg object-cover shadow-xl">
+                    <img src="{{ asset('images/getting-started/set-exclusions.png') }}" alt="Set budget item exclusions" class="rounded-lg object-cover shadow-xl">
                 </div>
             </div>
         </div>
