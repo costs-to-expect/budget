@@ -5,12 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="This short article will show you how to add an expense budget item to your Budget?">
         <meta name="author" content="Dean Blackborough">
-        <title>Budget: How to add an expense</title>
+        <title>Budget: How to add an expense budget item</title>
         <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
         <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
-        <x-layout.open-graph title="Budget: How to add an expense" description="This short article will show you how to add an expense budget item to your Budget?" />
-        <x-layout.twitter-card title="Budget: How to add an expense" description="This short article will show you how to add an expense budget item to your Budget?" />
+        <x-layout.open-graph title="Budget: How to add an expense budget item" description="This short article will show you how to add an expense budget item to your Budget?" />
+        <x-layout.twitter-card title="Budget: How to add an expense budget item" description="This short article will show you how to add an expense budget item to your Budget?" />
     </head>
     <body>
         <x-layout.navbar activeRoute="features" />

@@ -45,7 +45,9 @@
                         <div class="submenu hidden absolute z-10 mt-2 w-56 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <a href="{{ route('getting-started') }}" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">Getting Started</a>
                             <a href="{{ route('workflow') }}" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">Workflow</a>
+                            <a href="{{ route('help.add-income') }}" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">How do I add an income budget item?</a>
                             <a href="{{ route('help.add-expense') }}" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">How do I add an expense budget item?</a>
+                            <a href="{{ route('help.add-savings') }}" class="block border-l-2 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-600 hover:bg-gray-100 hover:text-gray-800">How do I add an savings budget item?</a>
                         </div>
                     </div>
 
