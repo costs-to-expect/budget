@@ -31,6 +31,28 @@
 
                         @csrf
 
+                        <label for="email" class="block text-base font-medium text-gray-700">
+                            Email <span class="text-lg">*</span>
+                        </label>
+                        <div class="mt-1">
+                            <input id="email" name="email" type="email" required 
+                            class="block w-full rounded-md border border-gray-300 px-3 py-2
+            placeholder-gray-400 shadow-sm focus:border-pinky-500 focus:outline-none focus:ring-pinky-500 @if($errors !== null && array_key_exists('email', $errors)) border-red-500 ring-1 ring-red-500 @endif sm:text-sm"
+                                   placeholder="email@email.com" value="{{ old('email') }}" />
+                            <p class="mt-2 text-sm text-gray-500">Please enter your email address</p>
+                            @if($errors !== null && array_key_exists('email', $errors) && is_array($errors['email']))
+                                @if (count($errors['email']['errors']) === 1)
+                                    <p class="mt-2 text-sm text-red-500 pl-2">{{ $errors['email']['errors'][0] }}</p>
+                                @else
+                                    <ul class="mt-2 text-sm text-red-500 list-disc pl-6">
+                                        @foreach ($errors['email']['errors'] as $__error)
+                                            <li>{{ $__error }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            @endif
+                        </div>
+
                         {{--<div>
                             <x-helper.form.field.email
                                     name="email"
