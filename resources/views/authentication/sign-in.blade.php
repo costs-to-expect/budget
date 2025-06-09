@@ -1,82 +1,101 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Let's get started with Budget - our free calculator">
-    <meta name="author" content="Dean Blackborough">
-    <title>Sign-in to Budget to get started</title>
-    <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
-    <link href="{{ asset('css/theme.css') }}" rel="stylesheet" />
-    <x-open-graph />
-    <x-twitter-card />
-    <style>
-        .site-header {
-            background-color: #000000;
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            backdrop-filter: saturate(180%) blur(20px);
-        }
-    </style>
-</head>
-<body>
-    <header class="site-header sticky-top py-1">
-        <x-api-status />
-        <x-navbar />
-    </header>
-    <div class="container-fluid pt-5">
-    <div class="row d-flex align-items">
-        <div class="col-12">
-            <div class="header text-center">
-                <h1 class="display-1">Budget</h1>
-                <h2 class="display-6">Simplified Budgeting</h2>
-                powered by <a href="https://api.costs-to-expect.com">
-                    <img src="{{ asset('images/logo.png') }}" width="64" height="64" alt="Costs to Expect Logo" title="Powered by the Costs to Expect API">
-                    <span class="d-none">C</span>osts to Expect API
-                </a>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Let's get started with Budget, sign-in below">
+        <meta name="author" content="Dean Blackborough">
+        <title>Sign-in to Budget</title>
+        <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
+        <x-layout.open-graph title="Sign-in to Budget" description="Let's get started with Budget, sign in below" />
+        <x-layout.twitter-card title="Sign-in to Budget" description="Let's get started with Budget, sign in below" />
+    </head>
+    <body>
+        <x-layout.navbar activeRoute="landing" />
+
+        <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+            <div class="sm:mx-auto sm:w-full sm:max-w-md">
+                <h1 class="mt-6 text-center text-6xl font-bold tracking-tight text-pinky-700">Budget</h1>
+                <h2 class="mt-6 text-center text-3xl font-medium tracking-tight text-gray-700">Sign-in</h2>
+                <p class="mt-2 text-center text-base text-gray-600">
+                    Or
+                    <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="tryout Budget Pro." />
+                </p>
             </div>
 
-            <form action="{{ route('sign-in.process') }}" method="POST" class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mx-auto p-2">
+            <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+                <div class="py-6 px-4 sm:px-10">
+                    <form class="space-y-4" action="{{ route('sign-in.process') }}" method="POST">
 
-                @csrf
+                        @csrf
 
-                <div class="mt-3 mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control <x-validation-error field='email' />" id="email" aria-describedby="email-help" required value="{{ old('email') }}" />
-                    <div id="email-help" class="form-text">Please enter your email address, <em>we will never share
-                            your email address</em>.</div>
-                    <x-validation-error-message field="email" />
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control <x-validation-error field='password' />" id="password" aria-describedby="password-help" required value="{{ old('password') }}" />
-                    <div id="password-help" class="form-text">Please enter your password, <em>we will check this
-                            against the hashed value in our database</em>.</div>
-                    <x-validation-error-message field="password" />
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" name="remember_me" id="remember_me">
-                    <label class="form-check-label" for="remember_me">Check to stay signed-in for longer</label>
+                        {{--<div>
+                            <x-helper.form.field.email
+                                    name="email"
+                                    title="Email address"
+                                    :required="true"
+                                    :hasError="$errors !== null && array_key_exists('email', $errors)"
+                                    :value="old('email')"
+                            />
+                            <p class="mt-2 text-sm text-gray-500">Please enter your email address</p>
+                            <x-helper.form.api-error :errors="$errors['email'] ?? null" />
+                        </div>
+
+                        <div>
+                            <x-helper.form.field.password
+                                    name="password"
+                                    title="Your password"
+                                    :required="true"
+                                    :hasError="$errors !== null && array_key_exists('password', $errors)"
+                            />
+                            <p class="mt-2 text-sm text-gray-500">Please enter your password</p>
+                            <x-helper.form.api-error :errors="$errors['password'] ?? null" />
+                        </div>--}}
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input id="remember_me" name="remember_me" type="checkbox"
+                                       class="h-4 w-4 rounded border-gray-300 text-pinky-600 focus:ring-pinky-500">
+                                <label for="remember_me" class="ml-2 block text-base text-gray-900">Remember me</label>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center space-x-4">
+                            <button type="submit" value="submit" class="rounded-md border border-transparent
+        px-1.5 py-1 md:px-2 md:py-1.5 text-base font-medium text-white shadow-sm bg-pinky-500 hover:bg-pinky-700">
+                                Sign-in
+                            </button>
+                        </div>
+                    </form>
                 </div>
 
-                <div class="mb-3">
-                    <p>If you don't have an account with Costs to Expect, you can
-                        <a href="{{ route('register.view') }}">register</a> to get
-                        access to Budget and the entire Costs to Expect service.</p>
-                </div>
+                <div class="py-6 px-4 sm:px-10">
+                    <p class="text-sm text-gray-500">
+                        By using Budget, you are agreeing to our 
+                        <a href="{{ route('privacy-policy') }}">privacy policy</a>. Please read our privacy policy 
+                        carefully before registering. In short, we <strong>do not</strong> track you and we 
+                        <strong>will not</strong> share your data.
+                    </p>
+                    
+                    <p class="mt-2 text-sm text-gray-500">
+                        If you don't have an account with Costs to Expect, you can 
+                        <a href="{{ route('register.view') }}">register</a> to get access to Budget and the 
+                        entire Costs to Expect service.
+                    </p>
 
-                <div class="mb-3">
-                    <p>If you have forgotten your password, please use our
+                    <p class="mt-2 text-sm text-gray-500">
+                        If you have forgotten your password, please use our
                         <a href="{{ route('forgot-password.view') }}">forgot password</a>
-                        form and we will issue instructions on how to create a new password.</p>
+                        form and we will issue instructions on how to create a new password.
+                    </p>
                 </div>
-
-                <button type="submit" class="btn btn-primary w-100" title="Sign in to Budget">Sign-in</button>
-            </form>
+            </div>
         </div>
-    </div>
-</div>
-    <script src="{{ asset('node_modules/@popperjs/core/dist/umd/popper.min.js') }}" defer></script>
-    <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
-</body>
+        
+        <x-layout.footer />
+        
+        <script src="{{ asset('js/navbar.js') }}" defer></script>
+    </body>
 </html>
