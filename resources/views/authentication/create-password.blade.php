@@ -23,7 +23,7 @@
 
             <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div class="py-6 px-4 sm:px-10">
-                    <form class="space-y-4" action="{{ route('sign-in.process') }}" method="POST">
+                    <form class="space-y-4" action="{{ route('create-password.process') }}" method="POST">
 
                         @csrf
 
