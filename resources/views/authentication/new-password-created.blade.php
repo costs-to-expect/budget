@@ -23,13 +23,13 @@
 
             <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div class="py-6 px-4 sm:px-10">
-                    <p class="text-sm text-gray-500">
+                    <p class="text-xl text-gray-500">
                         Your password has been saved, you can now 
-                        <x-helper.control.link.text :route="{{ route('sign-in.view') }}" label="sign-in," />
+                        <x-helper.control.link.text :route="route('sign-in.view')" label="sign-in," />
                         happy budgeting!
                     </p>
 
-                    <p class="text-sm text-gray-500">
+                    <p class="mt-4 text-xl text-gray-500">
                         If you have any suggestions, reach out to us on 
                         <x-helper.control.link.text route="https://github.com/costs-to-expect/budget/issues" label="GitHub" />, 
                         we are always looking for help with improving our apps.
