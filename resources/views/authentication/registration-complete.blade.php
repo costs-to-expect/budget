@@ -1,57 +1,45 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Budget by Costs to Expect - Simplified Budgeting">
-    <meta name="author" content="Dean Blackborough">
-    <title>Registration Complete</title>
-    <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
-    <link href="{{ asset('css/theme.css') }}" rel="stylesheet" />
-    <x-open-graph />
-    <x-twitter-card />
-    <style>
-        .site-header {
-            background-color: #000000;
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            backdrop-filter: saturate(180%) blur(20px);
-        }
-    </style>
-</head>
-<body>
-    <header class="site-header sticky-top py-1">
-        <x-api-status />
-        <x-navbar />
-    </header>
-    <div class="container-fluid pt-5">
-        <div class="row d-flex align-items">
-            <div class="col-12">
-                <div class="header text-center">
-                    <h1 class="display-1">Budget</h1>
-                    <h2 class="display-6">Simplified Budgeting</h2>
-                    powered by <a href="https://api.costs-to-expect.com">
-                        <img src="{{ asset('images/logo.png') }}" width="64" height="64" alt="Costs to Expect Logo" title="Powered by the Costs to Expect API">
-                        <span class="d-none">C</span>osts to Expect API
-                    </a>
-                </div>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="You are registered, time to start your budgeting journey with Budget">
+        <meta name="author" content="Dean Blackborough">
+        <title>Registration complete</title>
+        <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
+        <x-layout.open-graph title="Registration complete" description="You are registered, time to start your budgeting journey with Budget" />
+        <x-layout.twitter-card title="Registration complete" description="You are registered, time to start your budgeting journey with Budget" />
+    </head>
+    <body>
+        <x-layout.navbar activeRoute="landing" />
 
-                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mx-auto p-2">
+        <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+            <div class="sm:mx-auto sm:w-full sm:max-w-md">
+                <h1 class="mt-6 text-center text-6xl font-bold tracking-tight text-pinky-700">Budget</h1>
+                <h2 class="mt-6 text-center text-3xl font-medium tracking-tight text-gray-700">Account Created</h2>
+            </div>
 
-                    <h4 class="text-center pt-3">All Done!</h4>
+            <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+                <div class="py-6 px-4 sm:px-10">
+                    <p class="text-sm text-gray-500">
+                        Your account is ready, you cano now
+                        <x-helper.control.link.text :route="{{ route('sign-in.view') }}" label="sign-in" />
+                        and start setting up your budget, enjoy!
+                    </p>
 
-                    <p class="lead">Your account is ready, you are free to
-                        <a href="{{ route('sign-in.view') }}" title="Go to sign-in">sign-in</a>
-                        immediately and start setting up your budget, enjoy!</p>
-
-                    <p>If you have any suggestions, reach out to us on
-                        <a href="https://github.com/costs-to-expect/budget/issues" title="Visit issues section on GitHub">GitHub</a>, we are
-                        always looking for help with improving our apps.</p>
+                    <p class="text-sm text-gray-500">
+                        If you have any suggestions, reach out to us on 
+                        <x-helper.control.link.text route="https://github.com/costs-to-expect/budget/issues" label="GitHub" />, 
+                        we are always looking for help with improving our apps.
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="{{ asset('node_modules/@popperjs/core/dist/umd/popper.min.js') }}" defer></script>
-    <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
-</body>
+        
+        <x-layout.footer />
+        
+        <script src="{{ asset('js/navbar.js') }}" defer></script>
+    </body>
 </html>
