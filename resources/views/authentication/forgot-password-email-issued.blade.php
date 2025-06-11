@@ -18,23 +18,23 @@
         <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
             <div class="sm:mx-auto sm:w-full sm:max-w-md">
                 <h1 class="mt-6 text-center text-6xl font-bold tracking-tight text-pinky-700">Budget</h1>
-                <h2 class="mt-6 text-center text-3xl font-medium tracking-tight text-gray-700">Forgot Password - Email on the Way!</h2>
+                <h2 class="mt-6 text-center text-3xl font-medium tracking-tight text-gray-700">Email on the Way!</h2>
             </div>
 
             <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div class="py-6 px-4 sm:px-10">
-                    <p class="text-sm text-gray-500">
+                    <p class="text-xl text-gray-500">
                         We have emailed you, there should be an email in your
                         inbox soon containing a link, you can use this to create a new password.
                     </p>
 
-                    <p class="text-sm text-gray-500">
+                    <p class="mt-4 text-xl text-gray-500">
                         An email should arrive within the next couple of
                         minutes, if you don't see it, please check your spam or
                         trash.
                     </p>
 
-                    <p class="text-sm text-gray-500">
+                    <p class="mt-4 text-xl text-gray-500">
                         If you have any suggestions, reach out to us on 
                         <x-helper.control.link.text route="https://github.com/costs-to-expect/budget/issues" label="GitHub" />, 
                         we are always looking for help with improving our apps.

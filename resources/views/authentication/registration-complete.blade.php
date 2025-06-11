@@ -23,13 +23,13 @@
 
             <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div class="py-6 px-4 sm:px-10">
-                    <p class="text-sm text-gray-500">
-                        Your account is ready, you cano now
-                        <x-helper.control.link.text :route="{{ route('sign-in.view') }}" label="sign-in" />
+                    <p class="text-xl text-gray-500">
+                        Your account is ready, you can now
+                        <x-helper.control.link.text :route="route('sign-in.view')" label="sign-in" />
                         and start setting up your budget, enjoy!
                     </p>
 
-                    <p class="text-sm text-gray-500">
+                    <p class="mt-4 text-xl text-gray-500">
                         If you have any suggestions, reach out to us on 
                         <x-helper.control.link.text route="https://github.com/costs-to-expect/budget/issues" label="GitHub" />, 
                         we are always looking for help with improving our apps.
