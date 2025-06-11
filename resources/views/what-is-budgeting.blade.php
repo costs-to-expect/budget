@@ -1,113 +1,153 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <x-html-head title="What is Budgeting" description="In this article we explain what Budgeting is and some of the terms thrown around when people try to explain it" />
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="When you start tracking your money, you need to decide which budgeting approach to take. We explain zero-based, 50/30/20 budget plan and reverse budgeting here.">
+        <meta name="author" content="Dean Blackborough">
+        <title>What is Budgeting?</title>
+        <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
+        <x-layout.open-graph title="What is Budgeting?" description="When you start tracking your money, you need to decide which budgeting approach to take. We explain zero-based, 50/30/20 budget plan and reverse budgeting here." />
+        <x-layout.twitter-card title="What is Budgeting?" description="When you start tracking your money, you need to decide which budgeting approach to take. We explain zero-based, 50/30/20 budget plan and reverse budgeting here." />
+    </head>
     <body>
+        <x-layout.navbar activeRoute="budgeting" />
 
-        @auth
-        <x-offcanvas active="what-is-budgeting"/>
-        @else
-        <header class="site-header sticky-top py-1">
-            <x-api-status />
-            <x-navbar active="budgeting" />
-        </header>
-        @endauth
-
-        <div class="col-lg-8 col-xl-6 mx-auto p-3">
-
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="display-5 mt-3 mb-3">What is Budgeting?</h2>
-
-                    <p class="lead">
-                        Budgeting is simply the process of balancing your income and outcome and thus creating a plan
-                        for how you'll spend your money. It's that simple.
+        <div class="relative overflow-hidden bg-white py-16">
+            <div class="hidden lg:absolute lg:inset-y-0 lg:block lg:h-full lg:w-full lg:[overflow-anchor:none]">
+                <div class="relative mx-auto h-full max-w-prose text-lg" aria-hidden="true">
+                    <svg class="absolute top-12 left-full translate-x-32 transform" width="404" height="384" fill="none" viewBox="0 0 404 384">
+                        <defs>
+                            <pattern id="74b3fd99-0a6f-4271-bef2-e80eeafdf357" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="384" fill="url(#74b3fd99-0a6f-4271-bef2-e80eeafdf357)" />
+                    </svg>
+                    <svg class="absolute top-1/2 right-full -translate-y-1/2 -translate-x-32 transform" width="404" height="384" fill="none" viewBox="0 0 404 384">
+                        <defs>
+                            <pattern id="f210dbf6-a58d-4871-961e-36d5016a0f49" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="384" fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)" />
+                    </svg>
+                    <svg class="absolute bottom-12 left-full translate-x-32 transform" width="404" height="384" fill="none" viewBox="0 0 404 384">
+                        <defs>
+                            <pattern id="d3eb07ae-5182-43e6-857d-35c643af9034" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="384" fill="url(#d3eb07ae-5182-43e6-857d-35c643af9034)" />
+                    </svg>
+                </div>
+            </div>
+            <div class="relative px-6 lg:px-8">
+                <div class="mx-auto max-w-prose text-lg">
+                    <h1>
+                        <span class="block text-center text-lg font-semibold text-pinky-700">Budgeting</span>
+                        <span class="mt-2 block text-center text-3xl font-bold leading-8 tracking-tight text-black sm:text-4xl">What is Budgeting?</span>
+                    </h1>
+                    <p class="mt-8 text-xl leading-8 text-gray-500">
+                        Budgeting is a great financial discipline and is simply the process of balancing your income 
+                        and out goings, thus creating a plan for how you’ll spend your money. It’s that simple.
                     </p>
-                    <p class="lead">
-                        Creating a budget can help you to determine whether you'll have enough cash-flow to do what
-                        you need/want to and can help you to identify where you might be able to make savings.
+                    <p class="mt-8 text-xl leading-8 text-gray-500">
+                        <x-helper.control.link.text :route="route('how-to-start-budgeting')" label="Starting a budget" />
+                        can help you to determine whether you’ll have enough cash-flow to do what you need/want to and can
+                        help you to identify where you might be able to make savings.
                     </p>
-                    <p class="lead">
-                        Budgeting can also help you to build up an emergency fund so that you're prepared for
-                        those unexpected costs which catch most of us out.
+                    <p class="mt-8 text-xl leading-8 text-gray-500">
+                        Budgeting can also help you to build up an emergency fund so that you're prepared for those
+                        unexpected costs which catch most of us out.
                     </p>
-                    <p class="lead">
-                        There are several different approaches to budgeting and what works for one person, may not
-                        work for someone else:
+                    <p class="mt-8 text-xl leading-8 text-gray-500">
+                        There are several different approaches to budgeting and
+                        what works for one person, may not work for someone else.
+                        You can read about <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/our-budgeting-story" label="our-budgeting-story" />
+                        and the approach we decided to adopt.
                     </p>
+                </div>
+                <div class="prose prose-lg prose-indigo mx-auto mt-6 text-gray-500">
 
-                    <h3>Zero-based budgeting</h3>
+                    <h2>Zero-based budgeting</h2>
 
-                    <p class="lead">
+                    <p>
                         The aim of this approach is to ensure that every single pound (dollar/euro etc) of your
                         income is accounted for in your expenditure. Your income minus your expenses equals zero
                         every month.
                     </p>
-                    <p class="lead">
+                    <p>
                         So if you earn &pound;2,000 per month, you will plan where every single &pound; will go.
                     </p>
 
-                    <h3>50/30/20 Budget Plan</h3>
+                    <h2>50/30/20 Budget Plan</h2>
 
-                    <p class="lead">
+                    <p>
                         This is a common budget approach and allows much more flexibility. The goal is that 50&percnt; of
                         your income goes towards the essentials - food, mortgage/rent and bills. 30&percnt; goes towards
                         "wants", or what we call the "fun stuff" – takeouts, days out and holidays.
                     </p>
 
-                    <p class="lead">
+                    <p>
                         Yes, you read that correctly - a budget is not about restricting what you spend, more
                         about planning what you spend.
                     </p>
 
-                    <p class="lead">
+                    <p>
                         The last 20&percnt; of your income goes into savings or investments.
                     </p>
 
-                    <p class="lead">
-                        Our Budget App provides an indication of which categories your expenses fall into.
+                    <p>
+                        <x-helper.control.link.text :route="route('register.view')" label="Our Budget Calculator" />
+                        provides an indication of which categories your expenses fall into.
                     </p>
 
-                    <h3>The Reverse Budget</h3>
+                    <h2>The Reverse Budget</h2>
 
-                    <p class="lead">
+                    <p>
                         This method of budgeting turns the traditional approach on its head by putting saving ahead
                         of any other expenses. Save first and then spend. This prioritises your financial goals such
                         as paying off debt or saving for a mortgage. Once you have put money towards your financial
                         goals, you then pay your essential costs.
                     </p>
 
-                    <p class="lead">
+                    <p>
                         With this budgeting method, you won't have much left over but whatever you have can be
                         spent on the "fun stuff".
                     </p>
 
-                    <h3>60&percnt; Solution Budget</h3>
+                    <h2>60&percnt; Solution Budget</h2>
 
-                    <p class="lead">
+                    <p>
                         This approach to budgeting was coined by former MSN Money editor-in-chief
-                        <a href="https://web.archive.org/web/20130127123532/http://web.utah.edu/basford/personalfinance/handouts/budgeting/The60Solution.htm">Richard Jenkins</a>,
+                        <x-helper.control.link.text route="https://web.archive.org/web/20130127123532/http://web.utah.edu/basford/personalfinance/handouts/budgeting/The60Solution.htm" label="Richard Jenkins" />,
                         who realised that traditional budgeting methods just weren't effective for him. His
                         budgeting approach is that 60&percnt; of gross income should go towards what Jenkins calls
                         "committed expenses" – mortgage, food, clothing etc. Jenkins acknowledges that 60&percnt; isn't a
                         magic figure – just what works for his circumstances.
                     </p>
 
-                    <p class="lead">
+                    <p>
                         The remaining 40&percnt; is divided equally and allocated into four pots: retirement savings,
                         long-term savings (for bigger purchases), short-term savings (for holidays) and the
                         all-important "fun stuff".
                     </p>
 
-                    <p class="lead">
-                        Whichever method of budgeting you opt for, our Budget App will help you take control of your
-                        finances and plan your spending.  <a href="{{ route('home') }}">Let's get started</a>.
+                    <p>
+                        Whatever your <x-helper.control.link.text :route="route('reasons-to-start-budgeting')" label="reason for starting a budget" />
+                        or whichever method of budgeting you opt for, our Budget App will help you take control of your
+                        finances and plan your spending. <x-helper.control.link.text :route="route('landing')" label="Let's get started" />.
                     </p>
+
                 </div>
             </div>
-
-            <x-footer />
         </div>
-        <script src="{{ asset('node_modules/@popperjs/core/dist/umd/popper.min.js') }}" defer></script>
-        <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
+
+        <x-layout.footer />
+
+        <script src="{{ asset('js/navbar.js') }}" defer></script>
     </body>
 </html>

@@ -1,72 +1,109 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Budget by Costs to Expect - Simplified Budgeting">
-    <meta name="author" content="Dean Blackborough">
-    <title>Create New Password</title>
-    <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
-    <link href="{{ asset('css/theme.css') }}" rel="stylesheet" />
-    <style>
-        .site-header {
-            background-color: #000000;
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            backdrop-filter: saturate(180%) blur(20px);
-        }
-    </style>
-</head>
-<body>
-    <header class="site-header sticky-top py-1">
-        <x-api-status />
-        <x-navbar />
-    </header>
-    <div class="container-fluid pt-5">
-        <div class="row d-flex align-items">
-        <div class="col-12">
-            <div class="header text-center">
-                <h1 class="display-1">Budget</h1>
-                <h2 class="display-6">Simplified Budgeting</h2>
-                powered by <a href="https://api.costs-to-expect.com">
-                    <img src="{{ asset('images/logo.png') }}" width="64" height="64" alt="Costs to Expect Logo" title="Powered by the Costs to Expect API">
-                    <span class="d-none">C</span>osts to Expect API
-                </a>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Let's get going again, create a new password to continue">
+        <meta name="author" content="Dean Blackborough">
+        <title>Create a new password</title>
+        <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
+        <x-layout.open-graph title="Create a new password" description="Let's get going again, create a new password to continue" />
+        <x-layout.twitter-card title="Create a new password" description="Let's get going again, create a new password to continue" />
+    </head>
+    <body>
+        <x-layout.navbar activeRoute="landing" />
+
+        <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+            <div class="sm:mx-auto sm:w-full sm:max-w-md">
+                <h1 class="mt-6 text-center text-6xl font-bold tracking-tight text-pinky-700">Budget</h1>
+                <h2 class="mt-6 text-center text-3xl font-medium tracking-tight text-gray-700">Create New Password</h2>
             </div>
 
-            <form action="{{ route('create-new-password.process') }}" method="POST" class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mx-auto p-2">
+            <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+                <div class="py-6 px-4 sm:px-10">
+                    <form class="space-y-4" action="{{ route('create-new-password') }}" method="POST">
 
-                @csrf
+                        @csrf
 
-                <h4 class="text-center">Create New Passowrd</h4>
+                        @if ($failed !== null)
+                        <p class="text-sm text-red-500">
+                            We were unable to create your account, the API returned the
+                            following error "{{ $failed }}". Please check our 
+                            <x-helper.control.link.text route="https://status.costs-to-expect.com" label="status" />
+                            page and try again later.
+                        </p>
+                        @endif
 
-                @if ($failed !== null)
-                    <p class="alert alert-danger">We were unable to create your password, the API returned the
-                        following error "{{ $failed }}". Please check our <a href="https://status.costs-to-expect.com">status</a>
-                        page and try again later.</p>
-                @endif
+                        <div>
+                            <label for="password" class="block text-base font-medium text-gray-700">
+                                Password <span class="text-lg">*</span>
+                            </label>
+                            <div class="mt-1">
+                                <input id="password" name="password" type="password" required 
+                                class="block w-full sm:max-w-sm rounded-md border border-gray-300 px-3 py-2
+                placeholder-gray-400 shadow-sm focus:border-pinky-500 focus:outline-none focus:ring-pinky-500 @if($errors !== null && array_key_exists('password', $errors)) border-red-500 ring-1 ring-red-500 @endif sm:text-sm" />
+                                <p class="mt-2 text-sm text-gray-500">Please enter a password, at least 12 characters please, 
+                                    <em>your password will be hashed</em></p>
+                                @if($errors !== null && array_key_exists('password', $errors) && is_array($errors['password']))
+                                    @if (count($errors['password']['errors']) === 1)
+                                        <p class="mt-2 text-sm text-red-500 pl-2">{{ $errors['password']['errors'][0] }}</p>
+                                    @else
+                                        <ul class="mt-2 text-sm text-red-500 list-disc pl-6">
+                                            @foreach ($errors['password']['errors'] as $__error)
+                                                <li>{{ $__error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
 
-                <div class="mt-3 mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control <x-validation-error field='password' />" id="password" aria-describedby="password-help" required value="{{ old('password') }}" />
-                    <div id="password-help" class="form-text">Please enter a password, at least 12 characters please, <em>your password will be hashed</em>.</div>
-                    <x-validation-error-message field="password" />
+                        <div>
+                            <label for="password_confirmation" class="block text-base font-medium text-gray-700">
+                                Confirm password <span class="text-lg">*</span>
+                            </label>
+                            <div class="mt-1">
+                                <input id="password_confirmation" name="password_confirmation" type="password" required
+                                       class="block w-full sm:max-w-sm rounded-md border border-gray-300 px-3 py-2
+                placeholder-gray-400 shadow-sm focus:border-pinky-500 focus:outline-none focus:ring-pinky-500 @if($errors !== null && array_key_exists('password_confirmation', $errors)) border-red-500 ring-1 ring-red-500 @endif sm:text-sm" />
+                                <p class="mt-2 text-sm text-gray-500">Please enter your password again</p>
+                                @if($errors !== null && array_key_exists('password_confirmation', $errors) && is_array($errors['password_confirmation']))
+                                    @if (count($errors['password_confirmation']['errors']) === 1)
+                                        <p class="mt-2 text-sm text-red-500 pl-2">{{ $errors['password_confirmation']['errors'][0] }}</p>
+                                    @else
+                                        <ul class="mt-2 text-sm text-red-500 list-disc pl-6">
+                                            @foreach ($errors['password_confirmation']['errors'] as $__error)
+                                                <li>{{ $__error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="encrypted_token" value="{{ old('encrypted_token', $encrypted_token) }}" />
+                        <input type="hidden" name="email" value="{{ old('email', $email) }}" />
+
+                        <div class="flex justify-center space-x-4">
+                            <button type="submit" value="submit" class="rounded-md border border-transparent
+        px-1.5 py-1 md:px-2 md:py-1.5 text-base font-medium text-white shadow-sm bg-pinky-500 hover:bg-pinky-700">
+                                Set Password
+                            </button>
+
+                            <a href="{{ route('landing') }}" class="rounded-md border border-transparent
+    bg-black px-1.5 py-1 md:px-2 md:py-1.5 text-base font-medium text-white shadow-sm hover:bg-gray-700">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="mt-3 mb-3">
-                    <label for="password_confirmation" class="form-label">Confirm password</label>
-                    <input type="password" name="password_confirmation" class="form-control <x-validation-error field='password_confirmation' />" id="password_confirmation" aria-describedby="password_confirmation-help" required value="{{ old('password_confirmation') }}" />
-                    <div id="password_confirmation-help" class="form-text">Please enter your password again</div>
-                    <x-validation-error-message field="password_confirmation" />
-                </div>
-                <input type="hidden" name="encrypted_token" value="{{ old('encrypted_token', $encrypted_token) }}" />
-                <input type="hidden" name="email" value="{{ old('email', $email) }}" />
-                <button type="submit" class="btn btn-primary w-100" title="Set your password">Set Password</button>
-            </form>
+            </div>
         </div>
-    </div>
-    </div>
-    <script src="{{ asset('node_modules/@popperjs/core/dist/umd/popper.min.js') }}" defer></script>
-    <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" defer></script>
-</body>
+        
+        <x-layout.footer />
+        
+        <script src="{{ asset('js/navbar.js') }}" defer></script>
+    </body>
 </html>

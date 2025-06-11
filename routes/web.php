@@ -99,10 +99,9 @@ Route::view(
     'faqs'
 )->name('faqs');
 
-Route::view(
-    '/version-compare',
-    'version-compare'
-)->name('version-compare');
+Route::get('version-compare', static function () {
+    return redirect('/');
+});
 
 Route::view(
     '/privacy-policy',
@@ -115,9 +114,19 @@ Route::view(
 )->name('what-is-budgeting');
 
 Route::view(
+    '/why-is-budgeting-important',
+    'why-is-budgeting-important'
+)->name('why-is-budgeting-important');
+
+Route::view(
     '/how-to-start-budgeting',
     'how-to-start-budgeting'
 )->name('how-to-start-budgeting');
+
+Route::view(
+    '/reasons-to-start-budgeting',
+    'reasons-to-start-budgeting'
+)->name('reasons-to-start-budgeting');
 
 Route::view(
     '/help/add-income',
