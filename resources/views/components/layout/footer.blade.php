@@ -62,7 +62,7 @@
                 <h3 class="text-base font-medium text-lg text-gray-900">Support</h3>
 
                 <p class="mt-2 mb-2 text-sm text-gray-800">
-                    <x-helper.control.link.text route="https://www.deanblackborough.com" label="Dean Blackborough" /> &copy; 2018-2024
+                    <x-helper.control.link.text route="https://www.deanblackborough.com" label="Dean Blackborough" /> &copy; 2018-{{ date('Y') }}
                 </p>
                 <p class="mb-2 text-sm text-gray-800">{{ $version }}<br />
                     Released {{ $release_date }}
