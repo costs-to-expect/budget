@@ -3,10 +3,13 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
     content: [
-        "./resources/**/*.blade.php",
         "./app/View/Components/Content/Landing/*.php",
         "./app/View/Components/Helper/Control/Link/*.php",
         "./app/View/Components/Layout/*.php",
+        "./resources/views/authentication/*.blade.php",
+        "./resources/views/components/helper/**/*.blade.php",
+        "./resources/views/components/layout/**/*.blade.php",
+        "./resources/views/*.blade.php",
     ],
     theme: {
         extend: {
