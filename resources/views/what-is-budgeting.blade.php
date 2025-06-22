@@ -3,14 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="When you start tracking your money, you need to decide which budgeting approach to take. We explain zero-based, 50/30/20 budget plan and reverse budgeting here.">
+        <meta name="description" content="If you're wondering what budgeting is, here we explain the concept as well as the different approaches to budgeting including zero based and the reverse budget.">
         <meta name="author" content="Dean Blackborough">
         <title>What is Budgeting?</title>
         <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
         <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
-        <x-layout.open-graph title="What is Budgeting?" description="When you start tracking your money, you need to decide which budgeting approach to take. We explain zero-based, 50/30/20 budget plan and reverse budgeting here." />
-        <x-layout.twitter-card title="What is Budgeting?" description="When you start tracking your money, you need to decide which budgeting approach to take. We explain zero-based, 50/30/20 budget plan and reverse budgeting here." />
+        <x-layout.open-graph title="What is Budgeting?" description="If you're wondering what budgeting is, here we explain the concept as well as the different approaches to budgeting including zero based and the reverse budget." />
+        <x-layout.twitter-card title="What is Budgeting?" description="If you're wondering what budgeting is, here we explain the concept as well as the different approaches to budgeting including zero based and the reverse budget." />
     </head>
     <body>
         <x-layout.navbar activeRoute="budgeting" />
@@ -55,19 +55,19 @@
                         and out goings, thus creating a plan for how you’ll spend your money. It’s that simple.
                     </p>
                     <p class="mt-8 text-xl leading-8 text-gray-500">
-                        <x-helper.control.link.text :route="route('how-to-start-budgeting')" label="Starting a budget" />
-                        can help you to determine whether you’ll have enough cash-flow to do what you need/want to and can
-                        help you to identify where you might be able to make savings.
+                        <x-helper.control.link.text :route="route('how-to-start-budgeting')" label="Starting a budget" /> 
+                        can help you to determine whether you’ll have enough cash-flow to do what you need/want to 
+                        and can help you to identify where you might be able to make savings.
                     </p>
                     <p class="mt-8 text-xl leading-8 text-gray-500">
-                        Budgeting can also help you to build up an emergency fund so that you're prepared for those
-                        unexpected costs which catch most of us out.
+                        Budgeting can also help you to build up an emergency fund so that you're prepared for 
+                        those unexpected costs which catch most of us out.
                     </p>
                     <p class="mt-8 text-xl leading-8 text-gray-500">
-                        There are several different approaches to budgeting and
-                        what works for one person, may not work for someone else.
-                        You can read about <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/our-budgeting-story" label="our-budgeting-story" />
-                        and the approach we decided to adopt.
+                        There are several different approaches to budgeting and what works for one person, may not 
+                        work for someone else. You can read about 
+                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/our-budgeting-story" label="our-budgeting-story" /> 
+                        and the approach we decided to adopt on Budget Pro.
                     </p>
                 </div>
                 <div class="prose prose-lg prose-indigo mx-auto mt-6 text-gray-500">
@@ -75,47 +75,42 @@
                     <h2>Zero-based budgeting</h2>
 
                     <p>
-                        The aim of this approach is to ensure that every single pound (dollar/euro etc) of your
-                        income is accounted for in your expenditure. Your income minus your expenses equals zero
-                        every month.
+                        The aim of this approach is to ensure that every single pound (dollar/euro etc) of your 
+                        income is accounted for in your expenditure. Your income minus your expenses equals 
+                        zero every month.
                     </p>
                     <p>
-                        So if you earn &pound;2,000 per month, you will plan where every single &pound; will go.
+                        So if you earn &pound;2,000 per month, you will plan where every single &pound; or $ will go.
                     </p>
 
                     <h2>50/30/20 Budget Plan</h2>
 
                     <p>
-                        This is a common budget approach and allows much more flexibility. The goal is that 50&percnt; of
-                        your income goes towards the essentials - food, mortgage/rent and bills. 30&percnt; goes towards
-                        "wants", or what we call the "fun stuff" – takeouts, days out and holidays.
+                        This is a common budget approach and allows much more flexibility. The goal is that 50&percnt; 
+                        of your income goes towards the essentials - food, mortgage/rent and bills. 30&percnt; goes 
+                        towards "wants", or what we call the "fun stuff" – takeouts, days out and holidays.
                     </p>
 
                     <p>
-                        Yes, you read that correctly - a budget is not about restricting what you spend, more
-                        about planning what you spend.
+                        Yes, you read that correctly - <em>a budget is not about restricting what you spend</em>, 
+                        more about planning what you spend.
                     </p>
 
                     <p>
                         The last 20&percnt; of your income goes into savings or investments.
                     </p>
 
-                    <p>
-                        <x-helper.control.link.text :route="route('register.view')" label="Our Budget Calculator" />
-                        provides an indication of which categories your expenses fall into.
-                    </p>
-
                     <h2>The Reverse Budget</h2>
 
                     <p>
-                        This method of budgeting turns the traditional approach on its head by putting saving ahead
-                        of any other expenses. Save first and then spend. This prioritises your financial goals such
-                        as paying off debt or saving for a mortgage. Once you have put money towards your financial
-                        goals, you then pay your essential costs.
+                        This method of budgeting turns the traditional approach on its head by putting saving 
+                        ahead of any other expenses. Save first and then spend. This prioritises your financial 
+                        goals such as paying off debt or saving for a mortgage. Once you have put money towards 
+                        your financial goals, you then pay your essential costs.
                     </p>
 
                     <p>
-                        With this budgeting method, you won't have much left over but whatever you have can be
+                        With this budgeting method, you won't have much left over but whatever you have can be 
                         spent on the "fun stuff".
                     </p>
 
@@ -124,22 +119,24 @@
                     <p>
                         This approach to budgeting was coined by former MSN Money editor-in-chief
                         <x-helper.control.link.text route="https://web.archive.org/web/20130127123532/http://web.utah.edu/basford/personalfinance/handouts/budgeting/The60Solution.htm" label="Richard Jenkins" />,
-                        who realised that traditional budgeting methods just weren't effective for him. His
-                        budgeting approach is that 60&percnt; of gross income should go towards what Jenkins calls
-                        "committed expenses" – mortgage, food, clothing etc. Jenkins acknowledges that 60&percnt; isn't a
+                        who realised that traditional budgeting methods just weren't effective for him.
+                        His budgeting approach is that 60% of gross income should go towards what Jenkins calls 
+                        "committed expenses" – mortgage, food, clothing etc. Jenkins acknowledges that 60% isn't a 
                         magic figure – just what works for his circumstances.
                     </p>
 
                     <p>
-                        The remaining 40&percnt; is divided equally and allocated into four pots: retirement savings,
-                        long-term savings (for bigger purchases), short-term savings (for holidays) and the
+                        The remaining 40&percnt; is divided equally and allocated into four pots: retirement savings, 
+                        long-term savings (for bigger purchases), short-term savings (for holidays) and the 
                         all-important "fun stuff".
                     </p>
 
                     <p>
-                        Whatever your <x-helper.control.link.text :route="route('reasons-to-start-budgeting')" label="reason for starting a budget" />
-                        or whichever method of budgeting you opt for, our Budget App will help you take control of your
-                        finances and plan your spending. <x-helper.control.link.text :route="route('landing')" label="Let's get started" />.
+                        Whatever your reason for starting a budget or whichever method of budgeting you opt for, 
+                        our <x-helper.control.link.text :route="route('landing')" label="Free Budget App" /> 
+                        will help you take control of your finances and plan your spending. 
+                        However, if you’d like more advanced features for managing your budget, you can try our
+                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="Budget Pro App" />, it is free for the first 30 days and then just &19.99 for a lifetime license.
                     </p>
 
                 </div>
