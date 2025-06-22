@@ -126,7 +126,7 @@
                     <p>
                         If you’re kids are approaching their teenage years (good luck!), now is a great time to have them learn about
                         how to manage their money and start budgeting. Make sure they check out our 
-                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/money-and-budgeting-for-teenagers" label="Money and Budgeting for Teenagers Page" /> 
+                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/money-and-budgeting-for-teenagers" label="Money and Budgeting for Teenagers Page" :external="true" /> 
                         on Budget Pro.
                     </p>
 
@@ -172,7 +172,7 @@
                     <p>
                         Whatever your reason for wanting to start a budget, we have this free Budget Calculator that 
                         can help you get started and if you need more power you can make use of our 30 day free trial 
-                        of <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="Budget Pro" />.
+                        of <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="Budget Pro" :external="true" />.
                     </p>
                     
                 </div>

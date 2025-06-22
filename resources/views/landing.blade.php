@@ -43,7 +43,7 @@
                     <p class="mt-4 text-lg text-gray-800">
                         Budget has everything you need to manage a simple Budget, if you need more control and 
                         power you can try out Budget Pro with a  
-                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="30 day free trial." />
+                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="30 day free trial." :external="true" />
                     </p>
         
                     <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">

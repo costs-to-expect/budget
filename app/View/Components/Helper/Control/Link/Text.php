@@ -11,7 +11,8 @@ class Text extends Component
     public function __construct(
         private readonly string $label,
         private readonly string $route,
-        private readonly bool $lockable = false
+        private readonly bool $lockable = false,
+        private readonly bool $external = false
     )
     {
     }
@@ -21,7 +22,8 @@ class Text extends Component
         return view('components.helper.control.link.text', [
             'label' => $this->label,
             'route' => $this->route,
-            'lockable' => $this->lockable
+            'lockable' => $this->lockable,
+            'external' => $this->external,
         ]);
     }
 }

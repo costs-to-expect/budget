@@ -21,7 +21,7 @@
                 <h2 class="mt-6 text-center text-3xl font-medium tracking-tight text-gray-700">Sign-in</h2>
                 <p class="mt-2 text-center text-base text-gray-600">
                     Or
-                    <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="tryout Budget Pro." />
+                    <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="tryout Budget Pro." :external="true" />
                 </p>
             </div>
 

@@ -122,7 +122,7 @@
                         you back. Perhaps you’re spending money on things you really don’t need such as unused 
                         subscriptions. Your budget can help you shine a light on unnecessary spending and redirect 
                         that money towards your financial goals. Check out our Budget Pro article on
-                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/how-to-stop-impulse-spending" label="managing impulse spending" />.
+                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/how-to-stop-impulse-spending" label="managing impulse spending" :external="true" />.
                     </p>
 
                     <h2>Having a budget helps reduce stress</h2>
@@ -137,7 +137,7 @@
                     <p>
                         This article provides a brief overview of why it’s important to have a budget but if you’d 
                         like more information, there is a more detailed article on
-                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/why-is-budgeting-important" label="Budget Pro" />.
+                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/why-is-budgeting-important" label="Budget Pro" :external="true" />.
                     </p>
 
 
