@@ -136,7 +136,7 @@
 
                     <p>
                         This article provides a brief overview of why it’s important to have a budget but if you’d 
-                        like more information, there is a more detailed article on
+                        like more information, there is a much more detailed article on
                         <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/why-is-budgeting-important" label="Budget Pro" :external="true" />.
                     </p>
 
