@@ -139,7 +139,7 @@
                     
                     <p>
                         Budget does not and will not support Open Banking. However, after the release of
-                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="Budget Pro" />, 
+                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="Budget Pro" :external="true" />, 
                         one of our first priorities based on user feedback will be to add Open Banking support.
                     </p>
                     

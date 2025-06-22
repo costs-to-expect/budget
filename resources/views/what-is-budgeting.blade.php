@@ -66,8 +66,8 @@
                     <p class="mt-8 text-xl leading-8 text-gray-500">
                         There are several different approaches to budgeting and what works for one person, may not 
                         work for someone else. You can read about 
-                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/our-budgeting-story" label="our-budgeting-story" /> 
-                        and the approach we decided to adopt on Budget Pro.
+                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/our-budgeting-story" label="our-budgeting-story" :external="true" />
+                         and the approach we decided to adopt on Budget Pro.
                     </p>
                 </div>
                 <div class="prose prose-lg prose-indigo mx-auto mt-6 text-gray-500">
@@ -136,7 +136,7 @@
                         our <x-helper.control.link.text :route="route('landing')" label="Free Budget App" /> 
                         will help you take control of your finances and plan your spending. 
                         However, if you’d like more advanced features for managing your budget, you can try our
-                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="Budget Pro App" />, it is free for the first 30 days and then just &19.99 for a lifetime license.
+                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="Budget Pro App" :external="true" />, it is free for the first 30 days and then just &19.99 for a lifetime license.
                     </p>
 
                 </div>
