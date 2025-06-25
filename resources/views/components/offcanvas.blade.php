@@ -27,18 +27,6 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <h5>Budgeting</h5>
-
-                        <ul class="navbar-nav justify-content-end flex-grow-1 ps-4 pe-3">
-                            <li class="nav-item">
-                                <a class="nav-link @if($active === 'what-is-budgeting') active @endif" href="{{ route('what-is-budgeting') }}" title="What is Budgeting?">What is Budgeting?</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link @if($active === 'how-to-start-budgeting') active @endif" href="{{ route('how-to-start-budgeting') }}" title="How to Start Budgeting?">How to Start Budgeting?</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
                         <h5>Your Account</h5>
 
                         <ul class="navbar-nav justify-content-end flex-grow-1 ps-4 pe-3">
