@@ -278,7 +278,7 @@
                             <p>In Budget Pro we plan to support multi-edit.</p>
                             <p>You will be able to update all your budget items on a single page.</p>
                             <hr>
-                            <p class="mb-0"><a href="{{ route('version-compare') }}" title="Compare Budget to Budget Pro">Find out more</a>.</p>
+                            <p class="mb-0"><a href="https://budget-pro.costs-to-expect.com" target=_"blank" title="Compare Budget to Budget Pro">Find out more</a>.</p>
                         </div>
                     </div>
                 </div>

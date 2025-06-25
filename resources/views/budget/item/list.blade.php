@@ -75,7 +75,7 @@
                             <h4 class="alert-heading">Budget Pro!</h4>
                             <p>In Budget Pro there is not be a limit to the number of items you can create.</p>
                             <hr>
-                            <p class="mb-0"><a href="{{ route('version-compare') }}" title="Compare Budget to Budget Pro">Find out more</a>.</p>
+                            <p class="mb-0"><a href="https://budget-pro.costs-to-expect.com" target=_"blank" title="Compare Budget to Budget Pro">Find out more</a>.</p>
                         </div>
                     </div>
                 </div>

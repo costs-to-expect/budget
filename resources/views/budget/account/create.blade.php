@@ -105,7 +105,7 @@
                             <p>In Budget Pro there is no limit to the number of accounts you can add.</p>
                             <p>You have created <strong>{{ count($accounts) }}</strong>, the maximum for Budget is <strong>{{ $max_accounts }}</strong>.</p>
                             <hr>
-                            <p class="mb-0"><a href="{{ route('version-compare') }}" title="Compare Budget to Budget Pro">Find out more</a>.</p>
+                            <p class="mb-0"><a href="https://budget-pro.costs-to-expect.com" target=_"blank" title="Compare Budget to Budget Pro">Find out more</a>.</p>
                         </div>
                     </div>
                 </div>
