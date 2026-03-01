@@ -136,7 +136,7 @@
                         our <x-helper.control.link.text :route="route('landing')" label="Free Budget App" /> 
                         will help you take control of your finances and plan your spending. 
                         However, if you’d like more advanced features for managing your budget, you can try our
-                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="Budget Pro App" :external="true" />, it is free for the first 30 days and then just &19.99 for a lifetime license.
+                        <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="Budget Pro App" :external="true" />, it is free for the first 30 days and then &29.99 for a lifetime license.
                     </p>
 
                 </div>

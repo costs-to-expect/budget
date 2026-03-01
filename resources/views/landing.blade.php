@@ -22,7 +22,7 @@
                         Budget
                     </h2>
                     <p class="mt-1 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl lg:text-4xl">
-                        Your free budget calculator - make your money work for you!
+                        Your free planning-first budgeting app - make your money work for you!
                     </p>
         
                     <div class="my-6 space-x-2">
@@ -38,7 +38,7 @@
                 <div>
                     <h1 class="text-4xl font-bold tracking-tight text-pinky-700">Welcome to Budget!</h1>
                     <p class="mt-4 text-lg text-gray-800">
-                        Costs to Expect is proud to present our free Budget Calculator, Budget!
+                        Costs to Expect is proud to present our free planning focused budgeting app, Budget!
                     </p>
                     <p class="mt-4 text-lg text-gray-800">
                         Budget has everything you need to manage a simple Budget, if you need more control and 
@@ -88,7 +88,7 @@
                         <div class="mb-8 px-4">
                             <h2 class="text-lg font-medium leading-6 text-gray-900">Budget Pro</h2>
                             <p class="mt-4">
-                                <span class="text-3xl font-bold tracking-tight text-pinky-600">&pound;19.99</span>
+                                <span class="text-3xl font-bold tracking-tight text-pinky-600">&pound;29.99</span>
                                 <span class="text-base font-medium text-gray-800">/ lifetime </span>
                             </p>
                             <p class="mt-4 text-lg text-black">Budget Pro is Budget on steroids - it's everything you love about Budget and much more.</p>
@@ -278,7 +278,7 @@
                             <td class="h-full py-8 px-6 align-top">
                                 <div class="relative table h-full">
                                     <p>
-                                        <span class="text-4xl font-bold tracking-tight text-pinky-600">&pound;19.99</span>
+                                        <span class="text-4xl font-bold tracking-tight text-pinky-600">&pound;29.99</span>
                                         <span class="text-base font-medium text-gray-800">/ lifetime </span>
                                     </p>
                                     <p class="mt-4 text-lg text-black">Budget Pro is Budget on steroids - it's everything you love about Budget and much more.</p>
