@@ -91,8 +91,8 @@
                                 <span class="text-3xl font-bold tracking-tight text-pinky-600">&pound;29.99</span>
                                 <span class="text-base font-medium text-gray-800">/ lifetime </span>
                             </p>
-                            <p class="mt-4 text-lg text-black">Budget Pro is Budget on steroids - it's everything you love about Budget and much more.</p>
-                            <p class="mt-4 text-sm text-gray-800">Budget Pro is subject to a small lifetime fee and will get regular updates.</p>
+                            <p class="mt-4 text-lg text-black">Budget Pro (Premium Planning Tools).</p>
+                            <p class="mt-4 text-sm text-gray-800">Advanced forecasting, projections and long-term financial control — with ongoing updates and support.</p>
                             <a href="https://budget-pro.costs-to-expect.com/register" class="mt-6 block w-full rounded-md border border-pinky-700 bg-pinky-600 py-2 text-center text-sm font-semibold text-white hover:bg-pinky-900">Register (30 day trial)</a>
                         </div>
         
@@ -170,8 +170,8 @@
                             <p class="mt-4">
                                 <span class="text-3xl font-bold tracking-tight text-pinky-700">Free</span>
                             </p>
-                            <p class="mt-4 text-lg text-black">A budgeting tool so easy to use, it’s child play!</p>
-                            <p class="mt-4 text-sm text-gray-800">A free, open source budgeting tool powered by the Costs to Expect API.</p>
+                            <p class="mt-4 text-lg text-black">Budget (Free & Open Source)</p>
+                            <p class="mt-4 text-sm text-gray-800">Planning-first budgeting. Free, open and powered by the Costs to Expect API.</p>
                             <a href="{{ route('register.view') }}" class="mt-6 block w-full rounded-md border border-pinky-700 bg-pinky-600 py-2 text-center text-sm font-semibold text-white hover:bg-pinky-900">Register</a>
                         </div>
         
@@ -269,8 +269,8 @@
                                     <p>
                                         <span class="text-4xl font-bold tracking-tight text-pinky-600">Free</span>
                                     </p>
-                                    <p class="mt-4 text-lg text-black">A budgeting tool so easy to use, it’s child play!</p>
-                                    <p class="mt-4 mb-16 text-sm text-gray-800">A free, open source budgeting tool powered by the Costs to Expect API.</p>
+                                    <p class="mt-4 text-lg text-black">Budget (Free & Open Source)</p>
+                                    <p class="mt-4 mb-16 text-sm text-gray-800">Planning-first budgeting. Free, open and powered by the Costs to Expect API.</p>
                                     <a href="{{ route('register.view') }}" class="absolute bottom-0 block w-full flex-grow rounded-md border border-pinky-700 bg-pinky-600 py-2 text-center text-sm font-semibold text-white hover:bg-pinky-900">Register for Free</a>
                                 </div>
                             </td>
@@ -281,8 +281,8 @@
                                         <span class="text-4xl font-bold tracking-tight text-pinky-600">&pound;29.99</span>
                                         <span class="text-base font-medium text-gray-800">/ lifetime </span>
                                     </p>
-                                    <p class="mt-4 text-lg text-black">Budget Pro is Budget on steroids - it's everything you love about Budget and much more.</p>
-                                    <p class="mt-4 mb-16 text-sm text-gray-800">Budget Pro is subject to a small lifetime fee and will get regular updates.</p>
+                                    <p class="mt-4 text-lg text-black">Budget Pro (Premium Planning Tools)</p>
+                                    <p class="mt-4 mb-16 text-sm text-gray-800">Advanced forecasting, projections and long-term financial control — with ongoing updates and support.</p>
                                     <a href="https://budget-pro.costs-to-expect.com/register" class="absolute bottom-0 block w-full flex-grow rounded-md border border-pinky-700 bg-pinky-600 py-2 text-center text-sm font-semibold text-white hover:bg-pinky-900">Register (30 day trial)</a>
                                 </div>
                             </td>

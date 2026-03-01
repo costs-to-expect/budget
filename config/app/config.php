@@ -11,8 +11,8 @@ return [
     'item_subtype_id' => env('ITEM_SUBTYPE_ID'),
     'cookie_user' => env('SESSION_NAME_USER'),
     'cookie_bearer' => env('SESSION_NAME_BEARER'),
-    'version' => 'v1.13.0',
-    'release_date' => '22nd June 2025',
+    'version' => 'v1.14.0',
+    'release_date' => '1st March 2026',
     'exception_notification_email' => env('EXCEPTION_NOTIFICATION_EMAIL'),
     'timezone' => 'UTC', // We can allow users to override this later
 ];
