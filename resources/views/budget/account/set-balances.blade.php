@@ -57,7 +57,7 @@
                             <p>In Budget Pro you can have more than {{ $max_accounts }} accounts.</p>
                             <p>You have created {{ count($accounts) }} accounts.</p>
                             <hr>
-                            <p class="mb-0"><a href="{{ route('version-compare') }}" title="Compare Budget to Budget Pro">Find out more</a>.</p>
+                            <p class="mb-0"><a href="https://budget-pro.costs-to-expect.com" target=_"blank" title="Compare Budget to Budget Pro">Find out more</a>.</p>
                         </div>
                     </div>
                 </div>

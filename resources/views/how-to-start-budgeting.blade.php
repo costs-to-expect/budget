@@ -3,14 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="New to tracking your money? These are our step by step tips for getting your budgeting journey started . Calculate your income; list and label expenses">
+        <meta name="description" content="Taking you through the simple steps you need to start budgeting. Understanding your net income and tracking your expenses is key to creating an effective budget">
         <meta name="author" content="Dean Blackborough">
         <title>How to start Budgeting?</title>
         <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
         <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
-        <x-layout.open-graph title="How to start Budgeting?" description="New to tracking your money? These are our step by step tips for getting your budgeting journey started . Calculate your income; list and label expenses" />
-        <x-layout.twitter-card title="How to start Budgeting?" description="New to tracking your money? These are our step by step tips for getting your budgeting journey started . Calculate your income; list and label expenses" />
+        <x-layout.open-graph title="How to start Budgeting?" description="Taking you through the simple steps you need to start budgeting. Understanding your net income and tracking your expenses is key to creating an effective budget" />
+        <x-layout.twitter-card title="How to start Budgeting?" description="Taking you through the simple steps you need to start budgeting. Understanding your net income and tracking your expenses is key to creating an effective budget" />
     </head>
     <body>
         <x-layout.navbar activeRoute="budgeting" />
@@ -63,57 +63,55 @@
                 </div>
                 <div class="prose prose-lg prose-indigo mx-auto mt-6 text-gray-500">
 
-                    <h2>1. Know what your net income is</h2>
+                    <h2>Know what your net income is</h2>
 
                     <p>
-                        Seems simple, right? Just remember your net income is what you take home after tax and
-                        other costs such as pension contributions have been deducted. If you receive any benefits,
-                        remember to add these into the pot. If you’re one half of a couple, you’ll have extra
+                        Seems simple, right? Just remember your net income is what you take home after tax and 
+                        other costs such as pension contributions have been deducted. If you receive any benefits, 
+                        remember to add these into the pot. If you’re one half of a couple, you’ll have extra 
                         calculations to make.
                     </p>
 
-                    <h2>2. Start tracking your expenses</h2>
+                    <h2>Start tracking your expenses</h2>
 
                     <p>
-                        Before you even start a budget, you need to understand what you’re spending. It’s important that you
-                        track everything – even those coffees on the way to work!  Keep a note of all your expenses – 
-                        you can’t track expenses in your head!
-
+                        Before you even start a budget, you need to understand what you’re spending. It’s important that you 
+                        track everything – even those coffees on the way to work! You might be surprised by how 
+                        expenses add up. Track your spending for at least a month so that you have a good understanding of your expenses.
                     </p>
 
-                    <p>
-                        You might be surprised by how expenses add up! Track your spending for at least a month so that you
-                        have a good understanding of your expenses
-                    </p>
-
-                    <h2>3. List your expenses and label them</h2>
+                    <h2>List your expenses and label them</h2>
 
                     <p>
-                        Your expenses will fall into two categories: Fixed expenses are the ones which are always
-                        the same and must be paid. Variable expenses can change from month to month and are not
+                        Your expenses will fall into two categories: Fixed expenses are the ones which are always 
+                        the same and must be paid. Variable expenses can change from month to month and are not 
                         strictly necessary – we call them the “fun stuff”!
                     </p>
 
-                    <h2>4. Choose your budgeting approach</h2>
+                    <h2>Choose your budgeting approach </h2>
 
                     <p>
-                        What works for one person, won’t work for everyone. There are
-                        <x-helper.control.link.text :route="route('what-is-budgeting')" label="several different ways of budgeting" />
-                        and it’s up to you to decide which approach suits you.
+                        What works for one person, won’t work for everyone. There are 
+                        <x-helper.control.link.text :route="route('what-is-budgeting')" label="several different ways of budgeting" /> 
+                        and it’s up to you to decide which approach suits you. Our "What is Budgeting?" 
+                        page outlines some of the different approaches to budgeting which might help you get 
+                        started. <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/our-budgeting-story" label="Our Budgeting Story" :external="true" />
+                        over on Budget Pro might give you further tips and ideas.
                     </p>
 
-                    <h2>5. Start managing your money</h2>
+                    <h2>Start managing your money</h2>
 
                     <p>
-                        Ready for some more calculations? If the difference between your income and expenditure
-                        is making money tight, you may have to make adjustments to your spending habits –
-                        remember those variable expenses?!
+                        Ready for some more calculations? If the difference between your income and expenditure is 
+                        making money tight, you may have to make adjustments to your spending habits – remember 
+                        those variable expenses?!
                     </p>
 
                     <p>
-                        Now you’re well on your way to having an effective budget and managing your money so that
-                        it works for you. If you’d like to use the Costs to Expect Budget App, check out
-                        our <x-helper.control.link.text :route="route('getting-started')" label="Getting started" /> page.
+                        Now you’re well on your way to having an effective budget and managing your money so that 
+                        it works for you. This app allows you to create a free budget. If you’d like more advanced 
+                        budgeting features, check out the <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com/getting-started" label="Getting started page" :external="true" /> 
+                        over on our sister App, <x-helper.control.link.text route="https://budget-pro.costs-to-expect.com" label="Budget Pro" :external="true" />.
                     </p>
                     
                 </div>
