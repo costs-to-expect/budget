@@ -91,7 +91,7 @@
                         <div class="flex justify-center space-x-4">
                             <button type="submit" value="submit" class="rounded-md border border-transparent
         px-1.5 py-1 md:px-2 md:py-1.5 text-base font-medium text-white shadow-sm bg-pinky-500 hover:bg-pinky-700">
-                                Sign-in
+                                Register
                             </button>
 
                             <a href="{{ route('landing') }}" class="rounded-md border border-transparent
