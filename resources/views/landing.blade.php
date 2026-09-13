@@ -11,6 +11,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
         <x-layout.open-graph title="Budget by Costs to Expect" description="A budgeting calculator that is so easy to use, it’s child play! - Budget is the free open source of Budget Pro" />
         <x-layout.twitter-card title="Budget by Costs to Expect" description="A budgeting calculator that is so easy to use, it’s child play! - Budget is the free open source of Budget Pro" />
+        <x-layout.canonical />
     </head>
     <body>
         <x-layout.navbar activeRoute="landing" />

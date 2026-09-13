@@ -11,6 +11,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
         <x-layout.open-graph title="What is Budgeting?" description="If you're wondering what budgeting is, here we explain the concept as well as the different approaches to budgeting including zero based and the reverse budget." />
         <x-layout.twitter-card title="What is Budgeting?" description="If you're wondering what budgeting is, here we explain the concept as well as the different approaches to budgeting including zero based and the reverse budget." />
+        <x-layout.canonical />
     </head>
     <body>
         <x-layout.navbar activeRoute="budgeting" />

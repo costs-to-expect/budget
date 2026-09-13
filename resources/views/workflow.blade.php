@@ -11,6 +11,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
         <x-layout.open-graph title="Budget: Workflow" description="The Budget Workflow provides three easy steps to use the App. Start by setting your balances, mark expenses as paid and see your projections for the period." />
         <x-layout.twitter-card title="Budget: Workflow" description="The Budget Workflow provides three easy steps to use the App. Start by setting your balances, mark expenses as paid and see your projections for the period." />
+        <x-layout.canonical />
     </head>
     <body>
         <x-layout.navbar activeRoute="features" />

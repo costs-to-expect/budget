@@ -11,6 +11,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
         <x-layout.open-graph title="Why is budgeting important?" description="It's important to have a budget to ensure you keep your finances healthy and on track. Budgeting is important in helping to prevent overspending & manage debt" />
         <x-layout.twitter-card title="Why is budgeting important?" description="It's important to have a budget to ensure you keep your finances healthy and on track. Budgeting is important in helping to prevent overspending & manage debt" />
+        <x-layout.canonical />
     </head>
     <body>
         <x-layout.navbar activeRoute="budgeting" />

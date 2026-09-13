@@ -11,6 +11,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
     <x-layout.open-graph title="Privacy Policy for Budget" description="The Privacy Policy for Budget. In short, your privacy is important to us and we will never sell or share your data unless required to do so by law." />
     <x-layout.twitter-card title="Privacy Policy for Budget" description="The Privacy Policy for Budget. In short, your privacy is important to us and we will never sell or share your data unless required to do so by law." />
+    <x-layout.canonical />
 </head>
 <body>
 <x-layout.navbar activeRoute="support" />

@@ -3,14 +3,15 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Budget Frequently Asked Questions - everything you need to know about our budget tracker app, what's included in the lifetime price & our advanced features">
+        <meta name="description" content="Budget Frequently Asked Questions - everything you need to know about our free, open source budget tracker app and how it works">
         <meta name="author" content="Dean Blackborough">
-        <title>Budget Pro: FAQs</title>
+        <title>Budget: FAQs</title>
         <link rel="icon" sizes="48x48" href="{{ asset('images/favicon.ico') }}">
         <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon.png') }}">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
-        <x-layout.open-graph title="Budget Pro: FAQs" description="Budget Frequently Asked Questions - everything you need to know about our budget tracker app, what's included in the lifetime price & our advanced features" />
-        <x-layout.twitter-card title="Budget Pro: FAQs" description="Budget Frequently Asked Questions - everything you need to know about our budget tracker app, what's included in the lifetime price & our advanced features" />
+        <x-layout.open-graph title="Budget: FAQs" description="Budget Frequently Asked Questions - everything you need to know about our free, open source budget tracker app and how it works" />
+        <x-layout.twitter-card title="Budget: FAQs" description="Budget Frequently Asked Questions - everything you need to know about our free, open source budget tracker app and how it works" />
+        <x-layout.canonical />
     </head>
     <body>
         <x-layout.navbar activeRoute="support" />

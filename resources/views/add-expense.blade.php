@@ -11,6 +11,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
         <x-layout.open-graph title="Budget: How to add an expense budget item" description="This short article will show you how to add an expense budget item to your Budget?" />
         <x-layout.twitter-card title="Budget: How to add an expense budget item" description="This short article will show you how to add an expense budget item to your Budget?" />
+        <x-layout.canonical />
     </head>
     <body>
         <x-layout.navbar activeRoute="features" />
