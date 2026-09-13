@@ -11,6 +11,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
         <x-layout.open-graph title="Forgotten your password?" description="Forgotten you Password? Let's help you create a new one and get back at it" />
         <x-layout.twitter-card title="Forgotten your password?" description="Forgotten you Password? Let's help you create a new one and get back at it" />
+        <x-layout.canonical />
     </head>
     <body>
         <x-layout.navbar activeRoute="landing" />

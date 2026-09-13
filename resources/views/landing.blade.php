@@ -11,6 +11,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
         <x-layout.open-graph title="Budget by Costs to Expect" description="A budgeting calculator that is so easy to use, it’s child play! - Budget is the free open source of Budget Pro" />
         <x-layout.twitter-card title="Budget by Costs to Expect" description="A budgeting calculator that is so easy to use, it’s child play! - Budget is the free open source of Budget Pro" />
+        <x-layout.canonical />
     </head>
     <body>
         <x-layout.navbar activeRoute="landing" />
@@ -88,7 +89,7 @@
                         <div class="mb-8 px-4">
                             <h2 class="text-lg font-medium leading-6 text-gray-900">Budget Pro</h2>
                             <p class="mt-4">
-                                <span class="text-3xl font-bold tracking-tight text-pinky-600">&pound;29.99</span>
+                                <span class="text-3xl font-bold tracking-tight text-pinky-600">&pound;89.99</span>
                                 <span class="text-base font-medium text-gray-800">/ lifetime </span>
                             </p>
                             <p class="mt-4 text-lg text-black">Budget Pro (Premium Planning Tools).</p>
@@ -278,7 +279,7 @@
                             <td class="h-full py-8 px-6 align-top">
                                 <div class="relative table h-full">
                                     <p>
-                                        <span class="text-4xl font-bold tracking-tight text-pinky-600">&pound;29.99</span>
+                                        <span class="text-4xl font-bold tracking-tight text-pinky-600">&pound;89.99</span>
                                         <span class="text-base font-medium text-gray-800">/ lifetime </span>
                                     </p>
                                     <p class="mt-4 text-lg text-black">Budget Pro (Premium Planning Tools)</p>

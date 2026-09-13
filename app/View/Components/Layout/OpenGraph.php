@@ -12,16 +12,22 @@ class OpenGraph extends Component
 
     public string $description;
 
-    public function __construct(string $title, string $description)
+    public string $url;
+
+    public function __construct(string $title, string $description, ?string $path = null)
     {
         $this->title = $title;
         $this->description = $description;
+
+        $path ??= request()->path();
+        $path = ($path === '' || $path === '/') ? '' : '/' . ltrim($path, '/');
+        $this->url = 'https://budget.costs-to-expect.com' . $path;
     }
 
     public function render()
     {
         return <<<'blade'
-    <meta property="og:url" content="https://budget.costs-to-expect.com">
+    <meta property="og:url" content="{{ $url }}">
         <meta property="og:site_name" content="Budget by Costs to Expect">
         <meta property="og:title" content="{{ $title }}">
         <meta property="og:description" content="{{ $description }}">

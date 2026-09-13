@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://budget.costs-to-expect.com/sitemap.xml

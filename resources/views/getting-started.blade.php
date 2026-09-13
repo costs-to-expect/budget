@@ -11,6 +11,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
         <x-layout.open-graph title="Budget: Getting Started" description="There are several ways to get started with Budget. Our Q&A tool helps you generate a budget or you can manually import your data using our budget item form" />
         <x-layout.twitter-card title="Budget: Getting Started" description="There are several ways to get started with Budget. Our Q&A tool helps you generate a budget or you can manually import your data using our budget item form" />
+        <x-layout.canonical />
     </head>
     <body>
         <x-layout.navbar activeRoute="features" />

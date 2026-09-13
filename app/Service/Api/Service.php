@@ -54,7 +54,8 @@ class Service
             $uri['uri'],
             [
                 'email' => $payload['email'],
-            ]
+            ],
+            internal: true
         );
     }
 
@@ -298,7 +299,8 @@ class Service
                 'name' => $payload['name'],
                 'email' => $payload['email'],
                 'registered_via' => 'budget',
-            ]
+            ],
+            internal: true
         );
     }
 

@@ -11,6 +11,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
         <x-layout.open-graph title="Register to Budget" description="Register with Budget to use our free budget calculator" />
         <x-layout.twitter-card title="Register to Budget" description="Register with Budget to use our free budget calculator" />
+        <x-layout.canonical />
     </head>
     <body>
         <x-layout.navbar activeRoute="landing" />

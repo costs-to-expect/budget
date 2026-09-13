@@ -11,6 +11,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
         <x-layout.open-graph title="Reasons to start Budgeting?" description="Starting to track your finances might seem onerous and time-consuming but there are many reasons why you might find starting a budget useful" />
         <x-layout.twitter-card title="Reasons to start Budgeting?" description="Starting to track your finances might seem onerous and time-consuming but there are many reasons why you might find starting a budget useful" />
+        <x-layout.canonical />
     </head>
     <body>
         <x-layout.navbar activeRoute="budgeting" />

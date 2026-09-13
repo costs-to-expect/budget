@@ -11,6 +11,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
         <x-layout.open-graph title="How to start Budgeting?" description="Taking you through the simple steps you need to start budgeting. Understanding your net income and tracking your expenses is key to creating an effective budget" />
         <x-layout.twitter-card title="How to start Budgeting?" description="Taking you through the simple steps you need to start budgeting. Understanding your net income and tracking your expenses is key to creating an effective budget" />
+        <x-layout.canonical />
     </head>
     <body>
         <x-layout.navbar activeRoute="budgeting" />

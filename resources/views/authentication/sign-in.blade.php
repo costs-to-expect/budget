@@ -11,6 +11,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
         <x-layout.open-graph title="Sign-in to Budget" description="Let's get started with Budget, sign in below" />
         <x-layout.twitter-card title="Sign-in to Budget" description="Let's get started with Budget, sign in below" />
+        <x-layout.canonical />
     </head>
     <body>
         <x-layout.navbar activeRoute="landing" />
