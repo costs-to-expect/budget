@@ -14,5 +14,6 @@ return [
     'version' => 'v1.14.0',
     'release_date' => '1st March 2026',
     'exception_notification_email' => env('EXCEPTION_NOTIFICATION_EMAIL'),
+    'internal_key' => env('COSTS_TO_EXPECT_INTERNAL_API_KEY'),
     'timezone' => 'UTC', // We can allow users to override this later
 ];
