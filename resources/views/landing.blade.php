@@ -88,7 +88,7 @@
                         <div class="mb-8 px-4">
                             <h2 class="text-lg font-medium leading-6 text-gray-900">Budget Pro</h2>
                             <p class="mt-4">
-                                <span class="text-3xl font-bold tracking-tight text-pinky-600">&pound;29.99</span>
+                                <span class="text-3xl font-bold tracking-tight text-pinky-600">&pound;89.99</span>
                                 <span class="text-base font-medium text-gray-800">/ lifetime </span>
                             </p>
                             <p class="mt-4 text-lg text-black">Budget Pro (Premium Planning Tools).</p>
@@ -278,7 +278,7 @@
                             <td class="h-full py-8 px-6 align-top">
                                 <div class="relative table h-full">
                                     <p>
-                                        <span class="text-4xl font-bold tracking-tight text-pinky-600">&pound;29.99</span>
+                                        <span class="text-4xl font-bold tracking-tight text-pinky-600">&pound;89.99</span>
                                         <span class="text-base font-medium text-gray-800">/ lifetime </span>
                                     </p>
                                     <p class="mt-4 text-lg text-black">Budget Pro (Premium Planning Tools)</p>
