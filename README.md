@@ -52,6 +52,7 @@ $ `docker compose up`
 - I typically install all my dependencies through PHPStorm, but you should install then how you normally would.
 
 ```bash
+$ `docker exec costs.budget.app yarn --cwd public install`
 $ `docker exec costs.budget.app php artisan key:generate`
 $ `docker exec costs.budget.app php artisan migrate`
 ```
